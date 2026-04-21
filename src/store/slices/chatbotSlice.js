@@ -1,5 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const createMessageId = () => {
+    if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+        return crypto.randomUUID();
+    }
+
+    return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+};
+
 const initialState = {
     messages: [],
     sessionId: null,
@@ -23,7 +31,7 @@ const chatbotSlice = createSlice({
             }
 
             state.messages.push({
-                id: payload.id || crypto.randomUUID(),
+                id: payload.id || createMessageId(),
                 role: 'bot',
                 content: payload.chunk || '',
                 timestamp: payload.timestamp || new Date().toISOString(),
@@ -43,7 +51,7 @@ const chatbotSlice = createSlice({
         },
         addUserMessage: (state, { payload }) => {
             state.messages.push({
-                id: payload.id || crypto.randomUUID(),
+                id: payload.id || createMessageId(),
                 role: 'user',
                 content: payload.content,
                 timestamp: payload.timestamp || new Date().toISOString(),

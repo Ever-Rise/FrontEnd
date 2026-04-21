@@ -1,53 +1,21 @@
-import { eventChannel } from 'redux-saga';
-import { call, put, takeLatest, take, fork, cancel } from 'redux-saga/effects';
-import { createStompClient } from '../../services/websocket';
-import { WS_CHANNELS } from '../../utils/constants';
-import { connectWebSocketRequest, handleTelemetryEvent } from '../slices/telemetrySlice';
+import { put, select, takeLatest } from 'redux-saga/effects';
+import {
+    connectWebSocketRequest,
+    disconnectWebSocketRequest,
+    wsDisconnected,
+} from '../slices/telemetrySlice';
+import { listenTelemetryRequest } from '../slices/guinchoSlice';
 
-const createTelemetryChannel = () => {
-    return eventChannel((emit) => {
-        const { client, connect, disconnect } = createStompClient({
-            onConnect: () => {
-                client.subscribe(WS_CHANNELS.TELEMETRY_TOPIC, (message) => {
-                    const payload = JSON.parse(message.body);
-                    emit({ ...payload, lastUpdated: new Date().toISOString() });
-                });
-
-                client.subscribe(WS_CHANNELS.ALERTS_TOPIC, (message) => {
-                    const payload = JSON.parse(message.body);
-                    emit({ anomalyAlert: payload, lastUpdated: new Date().toISOString() });
-                });
-            },
-        });
-
-        connect();
-
-        return () => {
-            disconnect();
-        };
-    });
-};
-
-function* telemetryStreamWorker() {
-    const channel = yield call(createTelemetryChannel);
-    try {
-        while (true) {
-            const event = yield take(channel);
-            yield put(handleTelemetryEvent(event));
-        }
-    } finally {
-        channel.close();
-    }
+function* connectWebSocketSaga({ payload }) {
+    const guinchoId = payload?.id || (yield select((state) => state.guincho.id));
+    yield put(listenTelemetryRequest({ id: guinchoId }));
 }
 
-let telemetryTask;
-function* connectWebSocketWorker() {
-    if (telemetryTask) {
-        yield cancel(telemetryTask);
-    }
-    telemetryTask = yield fork(telemetryStreamWorker);
+function* disconnectWebSocketSaga() {
+    yield put(wsDisconnected());
 }
 
 export default function* telemetrySaga() {
-    yield takeLatest(connectWebSocketRequest.type, connectWebSocketWorker);
+    yield takeLatest(connectWebSocketRequest.type, connectWebSocketSaga);
+    yield takeLatest(disconnectWebSocketRequest.type, disconnectWebSocketSaga);
 }

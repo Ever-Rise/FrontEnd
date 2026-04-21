@@ -2,33 +2,75 @@ import { API_ENDPOINTS } from '../utils/constants';
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api';
 
-const chatbotService = {
-    sendMessageSSE: ({ message, sessionId, onMessage, onError, onComplete }) => {
-        const url = new URL(`${baseUrl}${API_ENDPOINTS.CHATBOT_SEND}/stream`);
-        url.searchParams.set('message', message);
-        if (sessionId) {
-            url.searchParams.set('sessionId', sessionId);
+const streamMessage = ({ message, sessionId, onToken, onError, onComplete }) => {
+    let resolvedSessionId = sessionId || null;
+
+    const closeAndComplete = () => {
+        onComplete?.({ sessionId: resolvedSessionId });
+        eventSource.close();
+    };
+
+    const url = new URL(`${baseUrl}${API_ENDPOINTS.CHATBOT_SEND}/stream`);
+    url.searchParams.set('message', message);
+    if (sessionId) {
+        url.searchParams.set('sessionId', sessionId);
+    }
+
+    const eventSource = new EventSource(url.toString(), {
+        withCredentials: false,
+    });
+
+    eventSource.onmessage = (event) => {
+        const rawData = event.data;
+
+        if (!rawData || rawData === '[DONE]') {
+            closeAndComplete();
+            return;
         }
 
-        const eventSource = new EventSource(url.toString(), {
-            withCredentials: false,
+        try {
+            const parsed = JSON.parse(rawData);
+            const token = parsed.chunk || parsed.token || parsed.content || '';
+
+            if (parsed.sessionId) {
+                resolvedSessionId = parsed.sessionId;
+            }
+
+            if (token) {
+                onToken?.(token);
+            }
+
+            if (parsed.done) {
+                closeAndComplete();
+            }
+            return;
+        } catch {
+            onToken?.(rawData);
+        }
+    };
+
+    eventSource.onerror = (event) => {
+        onError?.(event);
+        eventSource.close();
+    };
+
+    eventSource.addEventListener('done', () => {
+        closeAndComplete();
+    });
+
+    return eventSource;
+};
+
+const chatbotService = {
+    streamMessage,
+    sendMessageSSE: ({ message, sessionId, onMessage, onError, onComplete }) => {
+        return streamMessage({
+            message,
+            sessionId,
+            onToken: onMessage,
+            onError,
+            onComplete: () => onComplete?.(),
         });
-
-        eventSource.onmessage = (event) => {
-            onMessage?.(event.data);
-        };
-
-        eventSource.onerror = (event) => {
-            onError?.(event);
-            eventSource.close();
-        };
-
-        eventSource.addEventListener('done', () => {
-            onComplete?.();
-            eventSource.close();
-        });
-
-        return eventSource;
     },
 };
 

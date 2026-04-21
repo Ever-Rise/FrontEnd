@@ -1,8 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+export const GUINCHO_STATUS = Object.freeze({
+    DESLIGADO: 'DESLIGADO',
+    PRONTO: 'PRONTO',
+    EM_MOVIMENTO: 'EM_MOVIMENTO',
+    PAUSADO: 'PAUSADO',
+    ERRO: 'ERRO',
+    EMERGENCIA: 'EMERGENCIA',
+});
+
 const initialState = {
     id: null,
-    status: 'DESLIGADO',
+    status: GUINCHO_STATUS.DESLIGADO,
     battery: 0,
     connectionQuality: 0,
     isMoving: false,
@@ -46,6 +55,7 @@ const guinchoSlice = createSlice({
             state.loading = false;
             state.error = payload;
         },
+        listenTelemetryRequest: () => { },
         updateStatusFromTelemetry: (state, { payload }) => {
             state.status = payload.status ?? state.status;
             state.isMoving = payload.isMoving ?? state.isMoving;
@@ -57,7 +67,7 @@ const guinchoSlice = createSlice({
             state.connectionQuality = payload;
         },
         setEmergency: (state) => {
-            state.status = 'EMERGENCIA';
+            state.status = GUINCHO_STATUS.EMERGENCIA;
             state.isMoving = false;
         },
     },
@@ -70,6 +80,7 @@ export const {
     sendCommandRequest,
     sendCommandSuccess,
     sendCommandFailure,
+    listenTelemetryRequest,
     updateStatusFromTelemetry,
     updateBattery,
     updateConnectionQuality,

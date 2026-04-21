@@ -4,18 +4,18 @@ import chatbotService from '../../services/chatbotService';
 import {
     sendMessageRequest,
     appendBotChunk,
-    sendMessageSuccess,
-    sendMessageFailure,
+    messageComplete,
+    setError,
 } from '../slices/chatbotSlice';
 
 const createChatStreamChannel = ({ message, sessionId }) => {
     return eventChannel((emit) => {
-        const stream = chatbotService.sendMessageSSE({
+        const stream = chatbotService.streamMessage({
             message,
             sessionId,
-            onMessage: (chunk) => emit({ type: 'chunk', chunk }),
+            onToken: (chunk) => emit({ type: 'chunk', chunk }),
             onError: (error) => emit({ type: 'error', error }),
-            onComplete: () => emit({ type: 'done' }),
+            onComplete: (metadata) => emit({ type: 'done', metadata }),
         });
 
         return () => {
@@ -27,24 +27,32 @@ const createChatStreamChannel = ({ message, sessionId }) => {
 function* sendMessageWorker({ payload }) {
     const channel = yield call(createChatStreamChannel, payload);
     try {
+        let accumulatedMessage = '';
+
         while (true) {
             const event = yield take(channel);
 
             if (event.type === 'chunk') {
+                accumulatedMessage += event.chunk;
                 yield put(appendBotChunk({ chunk: event.chunk }));
             }
 
             if (event.type === 'done') {
-                yield put(sendMessageSuccess({ sessionId: payload.sessionId }));
+                yield put(
+                    messageComplete({
+                        sessionId: event.metadata?.sessionId || payload.sessionId || null,
+                        content: accumulatedMessage,
+                    }),
+                );
                 break;
             }
 
             if (event.type === 'error') {
-                throw new Error('Falha na conexao com o chatbot.');
+                throw event.error || new Error('Falha na conexao com o chatbot.');
             }
         }
-    } catch (error) {
-        yield put(sendMessageFailure(error.message || 'Falha no atendimento virtual.'));
+    } catch {
+        yield put(setError('Nao foi possivel processar sua mensagem no momento. Tente novamente.'));
     } finally {
         channel.close();
     }

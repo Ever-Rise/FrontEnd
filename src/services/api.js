@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { STORAGE_KEYS, API_ENDPOINTS } from '../utils/constants';
+import { refreshTokenRequest } from '../store/slices/authSlice';
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api',
@@ -8,6 +9,11 @@ const api = axios.create({
 
 let isRefreshing = false;
 let requestQueue = [];
+let reduxStore = null;
+
+export const registerStore = (store) => {
+    reduxStore = store;
+};
 
 const resolveQueue = (error, token = null) => {
     requestQueue.forEach(({ resolve, reject }) => {
@@ -33,8 +39,9 @@ api.interceptors.response.use(
     (response) => response,
     async (error) => {
         const originalRequest = error.config;
+        const isRefreshRequest = originalRequest?.url?.includes(API_ENDPOINTS.AUTH_REFRESH);
 
-        if (error.response?.status !== 401 || originalRequest._retry) {
+        if (error.response?.status !== 401 || originalRequest?._retry || isRefreshRequest) {
             return Promise.reject(error);
         }
 
@@ -52,10 +59,20 @@ api.interceptors.response.use(
 
         try {
             const refreshToken = localStorage.getItem(STORAGE_KEYS.REFRESH_TOKEN);
-            const { data } = await axios.post(
-                `${api.defaults.baseURL}${API_ENDPOINTS.AUTH_REFRESH}`,
-                { refreshToken },
-            );
+
+            if (!reduxStore) {
+                throw new Error('Store Redux nao inicializada para renovar sessao.');
+            }
+
+            const data = await new Promise((resolve, reject) => {
+                reduxStore.dispatch(
+                    refreshTokenRequest({
+                        refreshToken,
+                        resolve,
+                        reject,
+                    }),
+                );
+            });
 
             localStorage.setItem(STORAGE_KEYS.AUTH_TOKEN, data.token);
             localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, data.refreshToken);
