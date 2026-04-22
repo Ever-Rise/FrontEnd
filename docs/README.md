@@ -1,23 +1,36 @@
-# Documentacao EVERRISE FrontEnd
+# Manual Tecnico EVERRISE FrontEnd
 
-Este diretorio concentra o manual tecnico do projeto EVERRISE.
+Este diretorio contem o manual completo para entender, evoluir e manter o projeto.
 
-## Conteudo
+## Publico alvo
+
+- pessoas entrando no projeto pela primeira vez
+- pessoas que vao criar novas paginas e funcionalidades
+- pessoas responsaveis por manutencao e sustentacao
+- revisores tecnicos e lideranca de engenharia
+
+## Mapa da documentacao
 
 1. [01 - Visao geral da arquitetura](./01-visao-geral-arquitetura.md)
-2. [02 - Guia para criar e manter paginas](./02-guia-desenvolvimento-paginas.md)
-3. [03 - Estado global (Redux Toolkit + Saga + Persist)](./03-estado-global-redux-saga-persist.md)
+2. [02 - Guia de desenvolvimento de paginas](./02-guia-desenvolvimento-paginas.md)
+3. [03 - Estado global com Redux Toolkit, Saga e Persist](./03-estado-global-redux-saga-persist.md)
 4. [04 - Operacao, manutencao e troubleshooting](./04-operacao-manutencao.md)
+5. [05 - Integracoes, servicos e protocolos](./05-integracoes-servicos-e-protocolos.md)
+6. [06 - Checklists de entrega e manutencao](./06-checklists-de-entrega-e-manutencao.md)
 
-## Para quem e
+## Ordem sugerida de leitura
 
-- Devs novos no projeto
-- Devs que vao implementar novas features
-- Devs que vao dar manutencao em bugs de autenticacao, telemetria e chatbot
+1. Comece pelo documento 01 para formar o mapa mental da arquitetura.
+2. Leia o documento 03 para entender o fluxo de estado e side effects.
+3. Use o documento 02 para criar paginas seguindo o padrao atual.
+4. Consulte os documentos 04, 05 e 06 no trabalho diario de manutencao.
 
-## Ordem recomendada de leitura
+## Resultado esperado apos leitura
 
-1. Leia o documento 01 para entender o mapa do projeto.
-2. Leia o documento 03 para entender o ciclo de estado global e side effects.
-3. Leia o documento 02 para executar o fluxo de criacao de pagina sem quebrar padroes.
-4. Use o documento 04 no dia a dia de operacao e suporte.
+Ao concluir este manual, qualquer pessoa deve conseguir:
+
+- rodar o projeto localmente
+- localizar rapidamente cada camada da arquitetura
+- criar telas e fluxos novos seguindo o padrao existente
+- diagnosticar problemas comuns de auth, telemetria e chatbot
+- executar manutencao com baixo risco de regressao

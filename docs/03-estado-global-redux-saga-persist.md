@@ -1,237 +1,219 @@
-# 03 - Estado global (Redux Toolkit + Saga + Persist)
+# 03 - Estado global com Redux Toolkit, Saga e Persist
 
-Este documento descreve em detalhes o setup atual do estado global e o que foi implementado.
+Este documento detalha como o estado global esta organizado, quais contratos existem e como trafegam os dados assincronos.
 
-## O que foi implementado
+## 1) Composicao da store
 
-- Store com Redux Toolkit + Saga + Persist em `src/store/index.js`.
-- Persistencia com `redux-persist`:
-  - storage: localStorage
-  - whitelist: `auth`, `ui`
-  - blacklist: `guincho`, `telemetry`, `chatbot`
-- Integracao do interceptor 401 com saga de refresh via `registerStore` em `src/services/api.js`.
-- Slices completos para auth, guincho, telemetry, chatbot e ui.
-- Sagas completas para auth, guincho, chatbot e telemetry.
-- Telemetria STOMP via `eventChannel` com reconexao exponencial.
-- Chatbot streaming SSE por chunks.
+Arquivos principais:
 
-## Composicao da store
+- `src/store/index.js`
+- `src/store/rootReducer.js`
+- `src/store/rootSaga.js`
 
-- `src/store/rootReducer.js`: combina reducers.
-- `src/store/rootSaga.js`: executa watchers de todos os modulos.
-- `src/store/index.js`: cria middleware saga, aplica persistReducer e exporta `store` e `persistor`.
+Configuracao atual:
 
-## Persistencia
+- middleware: saga
+- persistencia: `redux-persist` com localStorage
+- slices registrados: `auth`, `guincho`, `telemetry`, `chatbot`, `ui`
 
-Persistido:
-- `auth`
-- `ui`
+Persistencia (`persistConfig`):
 
-Nao persistido:
-- `guincho`
-- `telemetry`
-- `chatbot`
+- `key`: `everrise`
+- `whitelist`: `auth`, `ui`
+- `blacklist`: `guincho`, `telemetry`, `chatbot`
 
-Racional:
-- Dados de equipamento e telemetria sao volateis e devem refletir o estado corrente do backend.
-- Sessao e preferencias de interface precisam sobreviver a refresh de pagina.
+## 2) Contrato de fluxo de estado
 
-## Slice de autenticacao
+Padrao adotado no projeto:
 
-Arquivo: `src/store/slices/authSlice.js`
+1. UI dispara `algumaActionRequest`.
+2. Saga escuta e executa side effect.
+3. Saga dispara `algumaActionSuccess` ou `algumaActionFailure`.
+4. Reducer aplica alteracao de estado.
+5. UI re-renderiza com base no novo estado.
 
-Estado:
-- user
-- token
-- refreshToken
-- deviceId
-- isAuthenticated
-- loading
-- error
+Vantagens:
+
+- previsibilidade
+- rastreabilidade
+- centralizacao de erro e retry
+
+## 3) Dominio de autenticacao (`auth`)
+
+Slice: `src/store/slices/authSlice.js`
+
+Estado principal:
+
+- `user`
+- `token`
+- `refreshToken`
+- `deviceId`
+- `isAuthenticated`
+- `loading`
+- `error`
 
 Acoes:
-- loginRequest/loginSuccess/loginFailure
-- registerRequest/registerSuccess/registerFailure
-- logoutRequest/logoutSuccess
-- refreshTokenRequest/refreshTokenSuccess/refreshTokenFailure
-- bindDeviceRequest/bindDeviceSuccess/bindDeviceFailure
-- clearError
+
+- login: `loginRequest|loginSuccess|loginFailure`
+- cadastro: `registerRequest|registerSuccess|registerFailure`
+- logout: `logoutRequest|logoutSuccess`
+- refresh: `refreshTokenRequest|refreshTokenSuccess|refreshTokenFailure`
+- vinculo: `bindDeviceRequest|bindDeviceSuccess|bindDeviceFailure`
+- utilitario: `clearError`
 
 Saga: `src/store/sagas/authSaga.js`
 
-Fluxos:
-1. loginSaga:
-   - chama `POST /auth/login`
-   - salva token/refreshToken no localStorage
-   - despacha loginSuccess
-2. refreshTokenSaga:
-   - disparada pelo interceptor 401 em `src/services/api.js`
-   - chama `POST /auth/refresh`
-   - atualiza tokens e resolve fila de requests
-3. bindDeviceSaga:
-   - chama `POST /auth/device/bind`
-   - salva `deviceId` no estado
-4. logoutSaga:
-   - chama `POST /auth/logout`
-   - limpa tokens
-   - limpa estado auth via logoutSuccess
+Fluxos criticos:
+
+1. `loginSaga`:
+   - chama `authService.login`
+   - salva token e refresh token no localStorage
+   - despacha `loginSuccess`
+2. `refreshTokenSaga`:
+   - acionada no fluxo de interceptor `401`
+   - renova token via `authService.refresh`
+   - atualiza storage e estado
+3. `bindDeviceSaga`:
+   - chama `authService.bindDevice`
+   - persiste `deviceId` no estado
+4. `logoutSaga`:
+   - chama `authService.logout`
+   - remove tokens
+   - reseta estado auth
    - redireciona para `/login`
 
-Todos os fluxos:
-- usam try/catch
-- retornam mensagens de erro em pt-BR
+## 4) Dominio do guincho (`guincho`)
 
-## Slice do guincho
+Slice: `src/store/slices/guinchoSlice.js`
 
-Arquivo: `src/store/slices/guinchoSlice.js`
+Estado principal:
 
-Estado:
-- id
-- status (`DESLIGADO|PRONTO|EM_MOVIMENTO|PAUSADO|ERRO|EMERGENCIA`)
-- battery
-- connectionQuality
-- isMoving
-- lastCommand
-- loading
-- error
+- `id`
+- `status`
+- `battery`
+- `connectionQuality`
+- `isMoving`
+- `lastCommand`
+- `loading`
+- `error`
 
-Acoes:
-- fetchGuinchoRequest/Success/Failure
-- sendCommandRequest/Success/Failure
-- listenTelemetryRequest
-- updateStatusFromTelemetry
-- updateBattery
-- updateConnectionQuality
-- setEmergency
+Eventos relevantes:
 
-Comportamento critico:
-- `setEmergency` muda status para `EMERGENCIA` imediatamente, sem esperar retorno de saga.
+- `status_update`
+- `bateria_low`
+- `obstaculo_detectado`
+- `sobrecarga_detectada`
 
 Saga: `src/store/sagas/guinchoSaga.js`
 
-Watchers:
-- `takeLatest(fetchGuinchoRequest, fetchGuinchoSaga)`
-- `takeLatest(sendCommandRequest, sendCommandSaga)`
-- `takeLatest(listenTelemetryRequest, listenTelemetrySaga)`
+Responsabilidades:
 
-Telemetria via eventChannel:
-- Assina canal STOMP: `/ws/guincho/{id}`
-- Eventos tratados:
-  - `status_update`
-  - `bateria_low`
-  - `obstaculo_detectado`
-  - `sobrecarga_detectada`
+- carregar status inicial (`fetchGuinchoSaga`)
+- enviar comandos (`sendCommandSaga`)
+- manter stream de telemetria (`listenTelemetrySaga`)
 
-Reconexao:
-- Backoff exponencial com max 5 retries:
-  - 1s
-  - 2s
-  - 4s
-  - 8s
-  - 16s
+Resiliencia:
 
-## Slice de telemetria
+- reconexao com backoff exponencial
+- tentativas: 1s, 2s, 4s, 8s, 16s (max 5)
 
-Arquivo: `src/store/slices/telemetrySlice.js`
+## 5) Dominio de telemetria (`telemetry`)
 
-Estado:
-- fsrReading
-- obstacleDetected
-- anomalyAlert
-- alertHistory (limite 50)
-- wsConnected
-- lastUpdated
+Slice: `src/store/slices/telemetrySlice.js`
 
-Acoes:
-- connectWebSocketRequest
-- disconnectWebSocketRequest
-- wsConnected
-- wsDisconnected
-- receivedTelemetry
-- clearAlertHistory
+Estado principal:
 
-Regra de historico:
-- Sempre que entra alerta, aplica `slice(0, 50)` para manter no maximo 50 itens.
+- `fsrReading`
+- `obstacleDetected`
+- `anomalyAlert`
+- `alertHistory` (max 50)
+- `wsConnected`
+- `lastUpdated`
 
 Saga: `src/store/sagas/telemetrySaga.js`
 
 Papel atual:
-- Ponte de compatibilidade para hooks legados.
-- `connectWebSocketRequest` dispara `listenTelemetryRequest` do guincho.
 
-## Slice de chatbot
+- camada de compatibilidade
+- converte `connectWebSocketRequest` em `listenTelemetryRequest` do dominio guincho
 
-Arquivo: `src/store/slices/chatbotSlice.js`
+## 6) Dominio de chatbot (`chatbot`)
 
-Estado:
-- messages
-- sessionId
-- isLoading
-- error
+Slice: `src/store/slices/chatbotSlice.js`
 
-Acoes:
-- sendMessageRequest
-- appendBotChunk
-- messageComplete
-- addUserMessage
-- clearSession
-- setError
+Estado principal:
+
+- `messages`
+- `sessionId`
+- `isLoading`
+- `error`
 
 Saga: `src/store/sagas/chatbotSaga.js`
 
-Fluxo:
-1. chama `chatbotService.streamMessage()`
-2. a cada token SSE, despacha `appendBotChunk`
-3. ao encerrar stream, despacha `messageComplete`
-4. em erro, despacha `setError` com mensagem pt-BR
+Fluxo de streaming:
 
-## Slice de UI
+1. cria `eventChannel`
+2. recebe chunks do service SSE
+3. despacha `appendBotChunk`
+4. finaliza com `messageComplete`
+5. em erro, dispara `setError`
 
-Arquivo: `src/store/slices/uiSlice.js`
+## 7) Dominio de UI (`ui`)
 
-Estado:
-- theme
-- sidebarOpen
-- activeModal
-- notifications
+Slice: `src/store/slices/uiSlice.js`
 
-Acoes:
-- toggleTheme
-- toggleSidebar
-- openModal
-- closeModal
-- addNotification
-- removeNotification
+Estado principal:
 
-## Interceptor HTTP e refresh de token
+- `theme`
+- `sidebarOpen`
+- `activeModal`
+- `notifications`
+
+Pontos importantes:
+
+- notifications usam `crypto.randomUUID()` por default
+- slice `ui` e persistido
+
+## 8) Interceptor HTTP e renovacao de sessao
 
 Arquivo: `src/services/api.js`
 
-Resumo:
-- Request interceptor injeta Authorization quando ha token.
-- Response interceptor trata 401.
-- Se refresh ja estiver em andamento, requests entram em fila.
-- O refresh e delegado para `refreshTokenSaga` via dispatch de `refreshTokenRequest`.
-- Ao concluir refresh, fila e resolvida com novo token.
+Comportamento:
 
-## Fluxo de ponta a ponta (exemplo)
+1. Em request, injeta header `Authorization` quando existir token.
+2. Em `401`, verifica se request pode tentar refresh.
+3. Se refresh ja estiver em andamento, request entra na fila.
+4. Refresh e delegado para saga via dispatch de `refreshTokenRequest`.
+5. Quando refresh conclui, fila e drenada com novo token.
 
-Exemplo login:
-1. tela despacha `loginRequest`
-2. authSaga chama service
-3. response gera `loginSuccess`
-4. reducer atualiza estado
-5. auth/ui persistem em localStorage
+Isso evita tempestade de refresh concorrente.
 
-Exemplo telemetria:
-1. hook dispara `listenTelemetryRequest`
-2. guinchoSaga conecta STOMP
-3. eventos entram no channel
-4. saga atualiza slices `guincho` e `telemetry`
-5. dashboard reage automaticamente aos novos dados
+## 9) Fluxos ponta a ponta (resumo)
 
-## Pontos de atencao para manutencao
+Login:
 
-- Em `src/hooks/useAuth.js`, o hook usa `qrCodeBindRequest`; no slice atual a acao e `bindDeviceRequest`.
-- `PrivateRoute` redireciona para `/vinculo-dispositivo`, rota que precisa existir no router para evitar navegacao quebrada.
-- `uiSlice` usa `crypto.randomUUID()` para notificacao; garantir ambiente com suporte ou fallback se necessario.
+1. tela -> `loginRequest`
+2. saga -> `authService.login`
+3. success -> `loginSuccess`
+4. estado atualizado -> UI reage
+
+Telemetria:
+
+1. UI/hook -> `listenTelemetryRequest`
+2. saga abre canal STOMP
+3. evento recebido -> normalize + dispatch
+4. slices `guincho` e `telemetry` atualizam
+
+Chatbot:
+
+1. UI -> `sendMessageRequest`
+2. saga abre stream SSE
+3. chunk -> `appendBotChunk`
+4. fim -> `messageComplete`
+
+## 10) Pontos de atencao atuais
+
+1. `src/hooks/useAuth.js` referencia `qrCodeBindRequest`, mas o slice expoe `bindDeviceRequest`.
+2. `src/router/PrivateRoute.jsx` redireciona para `/vinculo-dispositivo` e essa rota precisa existir no router.
+
+Esses itens devem ser tratados como hardening tecnico para evitar regressao em auth e navegacao.

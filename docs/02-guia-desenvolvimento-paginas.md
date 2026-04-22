@@ -1,16 +1,49 @@
-# 02 - Guia para criar e manter paginas
+# 02 - Guia de desenvolvimento de paginas
 
-## Checklist rapido para criar nova pagina
+Este guia mostra o processo completo para criar, registrar e manter paginas sem quebrar o padrao do projeto.
 
-1. Criar pasta em `src/pages/NovaPagina/`.
-2. Criar `index.jsx` com componente funcional.
-3. Criar `styles.js` para os estilos da pagina.
-4. Criar `index.js` reexportando `index.jsx`.
-5. Registrar import lazy em `src/router/index.jsx`.
-6. Adicionar rota no grupo correto (publica, privada ou aberta).
-7. Se necessario, exportar em `src/pages/index.js`.
+## 1) Estrutura padrao de pagina
 
-## Template recomendado de pagina
+Cada pagina usa o formato:
+
+`src/pages/NomePagina/`
+
+- `index.jsx`: componente principal
+- `styles.js`: estilos da pagina
+- `index.js`: reexport default
+
+Exemplo de `index.js`:
+
+```js
+export { default } from './index.jsx';
+```
+
+## 2) Processo completo para criar pagina nova
+
+1. Criar pasta da pagina em `src/pages/NomePagina`.
+2. Criar `index.jsx` com estrutura da tela.
+3. Criar `styles.js` com styled-components da tela.
+4. Criar `index.js` para reexport.
+5. Adicionar export em `src/pages/index.js`.
+6. Registrar lazy import em `src/router/index.jsx`.
+7. Criar rota no bloco correto (publico, privado ou aberto).
+8. Atualizar navegacao (header/sidebar/menu) se aplicavel.
+9. Validar fluxo em desktop e mobile.
+
+## 3) Decisao de responsabilidade por camada
+
+Use esta regra antes de codar:
+
+- Visual/layout da tela: `pages` e `components`
+- Comportamento compartilhado de tela: `hooks`
+- Estado global de dominio: `slices`
+- Fluxo assincrono e resiliencia: `sagas`
+- Chamada externa e protocolo: `services`
+- Constantes, formatadores e validadores: `utils`
+
+## 4) Template base recomendado
+
+`index.jsx`:
 
 ```jsx
 import React from 'react';
@@ -28,6 +61,8 @@ const NovaPagina = () => {
 export default NovaPagina;
 ```
 
+`styles.js`:
+
 ```js
 import styled from 'styled-components';
 
@@ -41,46 +76,61 @@ export const Title = styled.h1``;
 export const Description = styled.p``;
 ```
 
-## Como decidir onde colocar logica
+## 5) Como conectar pagina ao estado global
 
-- Regra visual da tela: pagina/componente.
-- Estado compartilhado entre telas: slice Redux.
-- Fluxo assincrono (HTTP, WS, SSE, retry): saga.
-- Chamada externa (endpoint/protocolo): service.
-- Formatacao e utilitarios: `src/utils/`.
+Passos:
 
-## Como conectar pagina ao estado global
+1. Criar/usar um hook em `src/hooks`.
+2. Ler estado com `useSelector` dentro do hook.
+3. Expor metodos que disparam actions com `useDispatch`.
+4. Consumir hook na pagina para manter UI limpa.
 
-1. Criar/usar hook em `src/hooks/`.
-2. No hook, usar `useSelector` para leitura.
-3. No hook, usar `useDispatch` para disparar acoes.
-4. Consumir o hook na pagina.
+Fluxo esperado:
 
-Exemplo de fluxo:
-- Usuario clica botao
-- Pagina chama metodo do hook
-- Hook dispara action `*Request`
-- Saga escuta action e chama service
-- Saga dispara `*Success` ou `*Failure`
-- UI re-renderiza com base no novo estado
+1. Usuario interage com a UI.
+2. Pagina chama metodo do hook.
+3. Hook dispara action `*Request`.
+4. Saga processa side effect e chama service.
+5. Saga despacha `*Success` ou `*Failure`.
+6. Slice atualiza store.
+7. Pagina reage ao novo estado.
 
-## Como adicionar uma rota privada
+## 6) Como registrar rota nova
 
-1. Declare o lazy import no topo de `src/router/index.jsx`.
-2. Adicione a rota no bloco com `element: <PrivateRoute />`.
-3. Garanta que a navegacao para ela exista (header/sidebar/menu).
-4. Se a pagina depender de `deviceId`, valide o fluxo de vinculo.
+Arquivo: `src/router/index.jsx`.
 
-## Como adicionar formulario novo
+Passo a passo:
 
-1. Criar componente em `src/components/forms/`.
-2. Validar com Zod + React Hook Form.
-3. Em submit, disparar acao do slice correspondente.
-4. Mostrar estado de loading/erro com base no store.
+1. Declarar `const MinhaPagina = lazy(() => import('../pages/MinhaPagina'));`.
+2. Adicionar rota no grupo adequado:
+   - aberto (sem guard)
+   - `PublicRoute`
+   - `PrivateRoute`
+3. Garantir fallback com `withSuspense`.
+4. Validar navegacao por URL direta e por menu.
 
-## Boas praticas de manutencao de pagina
+## 7) Como criar formularios
 
-- Evite side effect direto no componente quando a regra e global.
-- Evite duplicar strings: use locale em `src/locales/pt-BR.js` quando aplicavel.
-- Use componentes de `src/components/common/` antes de criar novos.
-- Preserve semantica e acessibilidade (main, section, role, aria-*).
+Padrao recomendado:
+
+1. Criar componente em `src/components/forms`.
+2. Definir schema com Zod.
+3. Integrar com React Hook Form.
+4. Disparar action `*Request` no submit.
+5. Exibir estados de loading/erro vindos da store.
+
+## 8) Boas praticas obrigatorias
+
+1. Evitar side effect na pagina quando o impacto e global.
+2. Reutilizar componentes existentes em `src/components/common`.
+3. Evitar strings duplicadas quando houver chance de reaproveitamento em `src/locales/pt-BR.js`.
+4. Manter acessibilidade minima: landmarks semanticos, labels e foco de teclado.
+5. Preservar responsividade com breakpoints do tema.
+
+## 9) Checklist final antes de merge
+
+1. Rota funciona com usuario logado e deslogado conforme esperado.
+2. Loading e erro aparecem corretamente.
+3. Nao existe chamada HTTP direta dentro da pagina.
+4. Nao houve quebra de rotas existentes.
+5. Build local executa com sucesso (`npm run build`).

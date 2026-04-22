@@ -1,104 +1,147 @@
 # 01 - Visao geral da arquitetura
 
-## Stack principal
+Este documento explica como o frontend foi organizado, por que cada camada existe e como os blocos se conectam.
 
-- React 18 com Vite
-- React Router
+## 1) Stack principal
+
+- React 18 + Vite
+- React Router 6
 - Styled Components
 - Redux Toolkit
 - Redux Saga
 - Redux Persist
 - Axios
-- WebSocket STOMP com SockJS
+- STOMP + SockJS
+- SSE (EventSource)
 
-## Fluxo de bootstrap da aplicacao
+## 2) Bootstrap da aplicacao
 
-1. O entrypoint e `src/main.jsx`.
-2. A arvore React e montada com:
-   - `Provider` (Redux)
-   - `PersistGate` (rehydration do estado persistido)
-   - `ThemeProvider` (tema visual)
-   - `RouterProvider` (rotas)
-3. O componente `src/App.jsx` atua como casca da aplicacao e renderiza `Outlet`.
+Arquivo de entrada: `src/main.jsx`.
 
-## Estrutura em camadas
+Ordem de montagem:
 
-### Camada de apresentacao
+1. `Provider`: injeta store Redux para toda a arvore.
+2. `PersistGate`: restaura estado persistido (`auth` e `ui`) antes de liberar a UI.
+3. `ThemeProvider`: disponibiliza tokens de tema.
+4. `GlobalStyles`: aplica reset e base visual global.
+5. `RouterProvider`: ativa roteamento por browser history.
 
-- `src/pages/`: telas de rota.
-- `src/components/`: blocos reutilizaveis (common, forms, layout, guincho, telemetry, chatbot).
-- `src/theme/`: tema, breakpoints e estilos globais.
+Arquivo `src/App.jsx`:
 
-Responsabilidade:
-- Renderizar UI
-- Coletar interacao do usuario
-- Disparar acoes para hooks/store
+- renderiza apenas `Outlet`.
+- funciona como shell de composicao para rotas filhas.
 
-Nao deve:
-- Conhecer detalhes de HTTP/WS
-- Conter regra de side effect complexo
+## 3) Arquitetura por camadas
 
-### Camada de orquestracao local
+### 3.1 Camada de apresentacao
 
-- `src/hooks/`: ponte entre UI e estado global.
+Pastas:
 
-Responsabilidade:
-- Expor estado de slices
-- Expor metodos dispatchaveis (ex: login, fetchGuincho, connect)
+- `src/pages`
+- `src/components`
+- `src/theme`
 
-### Camada de estado global
+Responsabilidades:
 
-- `src/store/slices/`: estado e reducers (sincrono)
-- `src/store/sagas/`: side effects (assincrono)
-- `src/store/index.js`: configuracao da store e persistencia
+- renderizar UI
+- coletar interacao de usuario
+- exibir estado e feedback (loading, erro, sucesso)
 
-Responsabilidade:
-- Definir contratos de estado
-- Centralizar efeitos assincronos
-- Garantir recuperacao de sessao com persistencia
+Nao deve conter:
 
-### Camada de integracao
+- chamada HTTP direta
+- conexao STOMP/SSE direta
+- regra de resiliencia/retry
 
-- `src/services/`: acesso a API REST, SSE e WS
-- `src/utils/constants.js`: endpoints, chaves de storage e enums
+### 3.2 Camada de orquestracao local
 
-Responsabilidade:
-- Encapsular chamadas externas
-- Esconder detalhes de protocolo e autenticacao
+Pasta: `src/hooks`.
 
-## Roteamento e acesso
+Responsabilidades:
+
+- encapsular `useSelector` e `useDispatch`
+- expor interface simples para paginas e componentes
+- reduzir acoplamento entre UI e detalhes da store
+
+### 3.3 Camada de estado global
+
+Pastas:
+
+- `src/store/slices`
+- `src/store/sagas`
+- `src/store/index.js`
+
+Responsabilidades:
+
+- definir contrato de estado por dominio
+- processar side effects assincronos
+- controlar transicoes de estado previsiveis
+- centralizar fluxo de erros de dominio
+
+### 3.4 Camada de integracao
+
+Pastas:
+
+- `src/services`
+- `src/utils/constants.js`
+
+Responsabilidades:
+
+- encapsular REST, SSE e STOMP
+- centralizar endpoints e chaves de storage
+- isolar detalhes de protocolo do restante da app
+
+## 4) Roteamento e controle de acesso
 
 Arquivo principal: `src/router/index.jsx`.
 
-- Rotas publicas: landing e paginas institucionais.
-- Rotas de autenticacao: sob `PublicRoute` (`/login`, `/register`, `/forgot-password`).
-- Rotas privadas: sob `PrivateRoute` (`/dashboard`, `/controle`, etc).
-- Fallback 404: rota `*`.
+Padrao utilizado:
 
-Regras de guarda:
-- `PrivateRoute` exige `auth.isAuthenticated`.
-- `PrivateRoute` tambem exige `auth.deviceId` e redireciona para `/vinculo-dispositivo` se ausente.
-- `PublicRoute` redireciona para `/dashboard` quando ja autenticado.
+- `createBrowserRouter` com lazy loading por pagina
+- fallback de carregamento com `Loader`
+- `RouterErrorBoundary` para erro em renderizacao de rota
+- `NotFoundPage` para wildcard `*`
 
-## Convencoes de pastas
+Guards:
 
-### Pagina
+- `PublicRoute`: bloqueia `/login`, `/register`, `/forgot-password` quando usuario ja autenticado.
+- `PrivateRoute`: exige `auth.isAuthenticated` e `auth.deviceId` para liberar rotas privadas.
 
-Padrao por pagina em `src/pages/NomePage/`:
-- `index.jsx` -> componente da tela
-- `styles.js` -> styled components da tela
-- `index.js` -> reexport default
+## 5) Estado global em alto nivel
 
-### Modulo reutilizavel
+Slices registrados:
 
-Padrao em `src/components/Modulo/Componente/`:
-- `index.jsx`
-- `styles.js` (quando necessario)
-- `index.js`
+- `auth`
+- `guincho`
+- `telemetry`
+- `chatbot`
+- `ui`
 
-## Principios para manutencao
+Persistencia (`redux-persist` em `src/store/index.js`):
 
-- UI desacoplada de IO externo.
-- Toda chamada assincrona relevante deve passar por saga.
-- Estado que representa sessao deve ficar no slice correspondente e persistir por contrato.
-- Mensagens de erro para o usuario final em pt-BR.
+- `whitelist`: `auth`, `ui`
+- `blacklist`: `guincho`, `telemetry`, `chatbot`
+
+Racional:
+
+- sessao e preferencias sobrevivem refresh
+- dados operacionais volateis nao devem ser reaproveitados entre sessoes
+
+## 6) Principios arquiteturais do projeto
+
+1. Fluxo unidirecional de dados.
+2. Side effect em saga, nao na UI.
+3. Integracoes isoladas em service.
+4. Contratos centralizados em constants/utils.
+5. Mensagens de erro orientadas ao usuario em pt-BR.
+
+## 7) Mapa rapido de navegacao no codigo
+
+- Entrada da app: `src/main.jsx`
+- Roteamento: `src/router/index.jsx`
+- Store e persistencia: `src/store/index.js`
+- Reducers raiz: `src/store/rootReducer.js`
+- Sagas raiz: `src/store/rootSaga.js`
+- Interceptor HTTP: `src/services/api.js`
+- WS/STOMP: `src/services/websocket.js`
+- Chat streaming SSE: `src/services/chatbotService.js`
