@@ -1,8 +1,10 @@
-﻿import React from 'react';
-import { Container } from './styles';
+import React from 'react';
+import styles from './styles.module.css';
 
 const ObstacleStatus = () => {
-  return <Container>ObstacleStatus</Container>;
+  return <section className={styles.container} role='region'>
+      ObstacleStatus
+    </section>;
 };
 
 export default ObstacleStatus;

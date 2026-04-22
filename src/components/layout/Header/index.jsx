@@ -1,8 +1,10 @@
-﻿import React from 'react';
-import { Container } from './styles';
+import React from 'react';
+import styles from './styles.module.css';
 
 const Header = () => {
-  return <Container>Header</Container>;
+  return <section className={styles.container} role='region'>
+      Header
+    </section>;
 };
 
 export default Header;

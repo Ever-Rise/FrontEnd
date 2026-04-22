@@ -1,8 +1,10 @@
-﻿import React from 'react';
-import { Container } from './styles';
+import React from 'react';
+import styles from './styles.module.css';
 
 const MessageBubble = () => {
-  return <Container>MessageBubble</Container>;
+  return <section className={styles.container} role='region'>
+      MessageBubble
+    </section>;
 };
 
 export default MessageBubble;

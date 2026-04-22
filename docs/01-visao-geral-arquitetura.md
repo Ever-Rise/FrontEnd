@@ -6,7 +6,7 @@ Este documento explica como o frontend foi organizado, por que cada camada exist
 
 - React 18 + Vite
 - React Router 6
-- Styled Components
+- CSS Modules
 - Redux Toolkit
 - Redux Saga
 - Redux Persist
@@ -22,9 +22,8 @@ Ordem de montagem:
 
 1. `Provider`: injeta store Redux para toda a arvore.
 2. `PersistGate`: restaura estado persistido (`auth` e `ui`) antes de liberar a UI.
-3. `ThemeProvider`: disponibiliza tokens de tema.
-4. `GlobalStyles`: aplica reset e base visual global.
-5. `RouterProvider`: ativa roteamento por browser history.
+3. `global.css`: aplica reset, tokens CSS e base visual global.
+4. `RouterProvider`: ativa roteamento por browser history.
 
 Arquivo `src/App.jsx`:
 

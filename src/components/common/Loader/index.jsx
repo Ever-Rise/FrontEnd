@@ -1,11 +1,22 @@
-﻿import React from 'react';
-import { Container, SkeletonBlock, Spinner } from './styles';
+﻿import React from "react";
+import styles from "./styles.module.css";
 
-const Loader = ({ fullPage = false, variant = 'spinner' }) => {
+const Loader = ({ fullPage = false, variant = "spinner" }) => {
+  const containerClassName = `${styles.container} ${fullPage ? styles.fullPage : ""}`;
+
   return (
-    <Container $fullPage={fullPage} aria-live='polite' aria-busy='true'>
-      {variant === 'skeleton' ? <SkeletonBlock /> : <Spinner />}
-    </Container>
+    <section
+      className={containerClassName}
+      role="status"
+      aria-live="polite"
+      aria-busy="true"
+    >
+      {variant === "skeleton" ? (
+        <div className={styles.skeletonBlock} />
+      ) : (
+        <div className={styles.spinner} aria-label="Carregando" />
+      )}
+    </section>
   );
 };
 

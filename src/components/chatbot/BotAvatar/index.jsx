@@ -1,8 +1,10 @@
-﻿import React from 'react';
-import { Container } from './styles';
+import React from 'react';
+import styles from './styles.module.css';
 
 const BotAvatar = () => {
-  return <Container>BotAvatar</Container>;
+  return <section className={styles.container} role='region'>
+      BotAvatar
+    </section>;
 };
 
 export default BotAvatar;

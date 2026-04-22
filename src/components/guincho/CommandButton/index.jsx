@@ -1,8 +1,10 @@
-﻿import React from 'react';
-import { Container } from './styles';
+import React from 'react';
+import styles from './styles.module.css';
 
 const CommandButton = () => {
-  return <Container>CommandButton</Container>;
+  return <section className={styles.container} role='region'>
+      CommandButton
+    </section>;
 };
 
 export default CommandButton;

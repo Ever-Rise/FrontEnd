@@ -1,14 +1,14 @@
-﻿import React from 'react';
-import { Container, Title, Description } from './styles';
+import React from 'react';
+import styles from './styles.module.css';
 
 const PAGE_NAME = 'Central de Controle';
 
 const ControlePage = () => {
   return (
-    <Container>
-      <Title>{PAGE_NAME}</Title>
-      <Description>Conteudo desta pagina em construcao para a plataforma hospitalar autonoma.</Description>
-    </Container>
+    <main className={styles.container} role='main'>
+      <h1 className={styles.title}>{PAGE_NAME}</h1>
+      <p className={styles.description}>Conteudo desta pagina em construcao para a plataforma hospitalar autonoma.</p>
+    </main>
   );
 };
 

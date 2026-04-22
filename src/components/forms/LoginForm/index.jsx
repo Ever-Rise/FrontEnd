@@ -1,10 +1,10 @@
-﻿import React from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Button from '../../common/Button';
 import Input from '../../common/Input';
 import { loginSchema } from '../../../utils/validators';
-import { Form, Container } from './styles';
+import styles from './styles.module.css';
 
 const LoginForm = ({ onSubmit }) => {
   const {
@@ -20,8 +20,8 @@ const LoginForm = ({ onSubmit }) => {
   });
 
   return (
-    <Container>
-      <Form onSubmit={handleSubmit((data) => onSubmit?.(data))} noValidate>
+    <section className={styles.container} role='region'>
+      <form className={styles.form} aria-label='formulario-login' onSubmit={handleSubmit((data) => onSubmit?.(data))} noValidate>
         <Input
           id='email'
           label='E-mail'
@@ -41,8 +41,8 @@ const LoginForm = ({ onSubmit }) => {
         <Button type='submit' disabled={isSubmitting}>
           {isSubmitting ? 'Entrando...' : 'Entrar'}
         </Button>
-      </Form>
-    </Container>
+      </form>
+    </section>
   );
 };
 

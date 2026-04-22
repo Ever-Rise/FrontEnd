@@ -1,8 +1,10 @@
-﻿import React from 'react';
-import { Container } from './styles';
+import React from 'react';
+import styles from './styles.module.css';
 
 const ControlPanel = () => {
-  return <Container>ControlPanel</Container>;
+  return <section className={styles.container} role='region'>
+      ControlPanel
+    </section>;
 };
 
 export default ControlPanel;

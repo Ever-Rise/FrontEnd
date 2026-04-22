@@ -1,8 +1,10 @@
-﻿import React from 'react';
-import { Container } from './styles';
+import React from 'react';
+import styles from './styles.module.css';
 
 const ChatInput = () => {
-  return <Container>ChatInput</Container>;
+  return <section className={styles.container} role='region'>
+      ChatInput
+    </section>;
 };
 
 export default ChatInput;

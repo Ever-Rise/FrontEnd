@@ -1,8 +1,10 @@
-﻿import React from 'react';
-import { Container } from './styles';
+import React from 'react';
+import styles from './styles.module.css';
 
 const Toast = () => {
-  return <Container>Toast</Container>;
+  return <section className={styles.container} role='region'>
+      Toast
+    </section>;
 };
 
 export default Toast;

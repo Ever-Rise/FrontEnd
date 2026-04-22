@@ -9,7 +9,7 @@ Cada pagina usa o formato:
 `src/pages/NomePagina/`
 
 - `index.jsx`: componente principal
-- `styles.js`: estilos da pagina
+- `styles.module.css`: estilos da pagina
 - `index.js`: reexport default
 
 Exemplo de `index.js`:
@@ -22,7 +22,7 @@ export { default } from './index.jsx';
 
 1. Criar pasta da pagina em `src/pages/NomePagina`.
 2. Criar `index.jsx` com estrutura da tela.
-3. Criar `styles.js` com styled-components da tela.
+3. Criar `styles.module.css` com classes da tela.
 4. Criar `index.js` para reexport.
 5. Adicionar export em `src/pages/index.js`.
 6. Registrar lazy import em `src/router/index.jsx`.
@@ -47,33 +47,31 @@ Use esta regra antes de codar:
 
 ```jsx
 import React from 'react';
-import { Container, Title, Description } from './styles';
+import styles from './styles.module.css';
 
 const NovaPagina = () => {
   return (
-    <Container>
-      <Title>Titulo da tela</Title>
-      <Description>Descricao da funcionalidade.</Description>
-    </Container>
+    <main className={styles.container} role='main'>
+      <h1 className={styles.title}>Titulo da tela</h1>
+      <p className={styles.description}>Descricao da funcionalidade.</p>
+    </main>
   );
 };
 
 export default NovaPagina;
 ```
 
-`styles.js`:
+`styles.module.css`:
 
-```js
-import styled from 'styled-components';
-
-export const Container = styled.main`
+```css
+.container {
   margin: 0 auto;
   max-width: 1200px;
   padding: 2rem 1rem;
-`;
+}
 
-export const Title = styled.h1``;
-export const Description = styled.p``;
+.title {}
+.description {}
 ```
 
 ## 5) Como conectar pagina ao estado global

@@ -1,8 +1,10 @@
-﻿import React from 'react';
-import { Container } from './styles';
+import React from 'react';
+import styles from './styles.module.css';
 
 const AlertBanner = () => {
-  return <Container>AlertBanner</Container>;
+  return <section className={styles.container} role='region'>
+      AlertBanner
+    </section>;
 };
 
 export default AlertBanner;

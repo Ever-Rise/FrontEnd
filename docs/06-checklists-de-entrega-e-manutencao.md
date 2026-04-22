@@ -14,7 +14,7 @@ Este documento e um guia pratico para garantir qualidade e previsibilidade nas e
 ## 2) Checklist para criar nova pagina
 
 1. criar pasta em `src/pages/NomePagina`
-2. criar `index.jsx`, `styles.js`, `index.js`
+2. criar `index.jsx`, `styles.module.css`, `index.js`
 3. exportar em `src/pages/index.js`
 4. registrar lazy import e rota
 5. integrar menu/navegacao

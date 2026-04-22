@@ -1,39 +1,20 @@
-import React, { useEffect } from 'react';
-import { useGuincho } from '../../hooks/useGuincho';
-import { useTelemetry } from '../../hooks/useTelemetry';
-import { formatBattery, formatDateTime, formatEquipmentStatus } from '../../utils/formatters';
-import { EQUIPMENT_STATES } from '../../utils/constants';
+import React, { useEffect } from "react";
+import { useGuincho } from "../../hooks/useGuincho";
+import { useTelemetry } from "../../hooks/useTelemetry";
 import {
-  AlertTag,
-  DashboardGrid,
-  EmergencyButton,
-  EmergencyContent,
-  EmergencyOverlay,
-  Header,
-  InfoCard,
-  Label,
-  Strong,
-  Subtitle,
-  Title,
-  Wrapper,
-} from './styles';
+  formatBattery,
+  formatDateTime,
+  formatEquipmentStatus,
+} from "../../utils/formatters";
+import { EQUIPMENT_STATES } from "../../utils/constants";
+import styles from "./styles.module.css";
 
 const DashboardPage = () => {
-  const {
-    status,
-    battery,
-    connectionQuality,
-    fetchGuincho,
-    listenTelemetry,
-  } = useGuincho();
+  const { status, battery, connectionQuality, fetchGuincho, listenTelemetry } =
+    useGuincho();
 
-  const {
-    fsrReading,
-    obstacleDetected,
-    anomalyAlert,
-    lastUpdated,
-    connect,
-  } = useTelemetry();
+  const { fsrReading, obstacleDetected, anomalyAlert, lastUpdated, connect } =
+    useTelemetry();
 
   useEffect(() => {
     fetchGuincho();
@@ -44,56 +25,85 @@ const DashboardPage = () => {
   const isEmergency = status === EQUIPMENT_STATES.EMERGENCIA;
 
   return (
-    <Wrapper>
-      <Header>
-        <Title>Painel Operacional do Guincho</Title>
-        <Subtitle>Monitoramento ao vivo de bateria, telemetria, obstaculos e estado do equipamento.</Subtitle>
-      </Header>
+    <main className={styles.wrapper} role="main">
+      <header className={styles.header}>
+        <h1 className={styles.title}>Painel Operacional do Guincho</h1>
+        <p className={styles.subtitle}>
+          Monitoramento ao vivo de bateria, telemetria, obstaculos e estado do
+          equipamento.
+        </p>
+      </header>
 
-      <DashboardGrid>
-        <InfoCard>
-          <Label>Estado Atual</Label>
-          <Strong>{formatEquipmentStatus(status)}</Strong>
-        </InfoCard>
+      <section className={styles.dashboardGrid} role="region">
+        <article className={styles.infoCard}>
+          <span className={styles.label}>Estado Atual</span>
+          <strong className={styles.strong}>
+            {formatEquipmentStatus(status)}
+          </strong>
+        </article>
 
-        <InfoCard>
-          <Label>Bateria</Label>
-          <Strong>{formatBattery(battery)}</Strong>
-        </InfoCard>
+        <article className={styles.infoCard}>
+          <span className={styles.label}>Bateria</span>
+          <strong className={styles.strong}>{formatBattery(battery)}</strong>
+        </article>
 
-        <InfoCard>
-          <Label>Qualidade de Conexao</Label>
-          <Strong>{Number(connectionQuality || 0)}%</Strong>
-        </InfoCard>
+        <article className={styles.infoCard}>
+          <span className={styles.label}>Qualidade de Conexao</span>
+          <strong className={styles.strong}>
+            {Number(connectionQuality || 0)}%
+          </strong>
+        </article>
 
-        <InfoCard>
-          <Label>Leitura FSR (carga)</Label>
-          <Strong>{Number(fsrReading || 0).toFixed(1)} N</Strong>
-        </InfoCard>
+        <article className={styles.infoCard}>
+          <span className={styles.label}>Leitura FSR (carga)</span>
+          <strong className={styles.strong}>
+            {Number(fsrReading || 0).toFixed(1)} N
+          </strong>
+        </article>
 
-        <InfoCard>
-          <Label>Deteccao de Obstaculo</Label>
-          <Strong>{obstacleDetected ? 'Obstaculo detectado' : 'Area livre'}</Strong>
-        </InfoCard>
+        <article className={styles.infoCard}>
+          <span className={styles.label}>Deteccao de Obstaculo</span>
+          <strong className={styles.strong}>
+            {obstacleDetected ? "Obstaculo detectado" : "Area livre"}
+          </strong>
+        </article>
 
-        <InfoCard>
-          <Label>Ultima Atualizacao</Label>
-          <Strong>{formatDateTime(lastUpdated)}</Strong>
-        </InfoCard>
-      </DashboardGrid>
+        <article className={styles.infoCard}>
+          <span className={styles.label}>Ultima Atualizacao</span>
+          <strong className={styles.strong}>
+            {formatDateTime(lastUpdated)}
+          </strong>
+        </article>
+      </section>
 
-      {anomalyAlert ? <AlertTag role='status'>Alerta de anomalia: {anomalyAlert.message || 'Variacao fora do padrao'}</AlertTag> : null}
+      {anomalyAlert ? (
+        <div className={styles.alertTag} role="status">
+          Alerta de anomalia:{" "}
+          {anomalyAlert.message || "Variacao fora do padrao"}
+        </div>
+      ) : null}
 
       {isEmergency ? (
-        <EmergencyOverlay role='alertdialog' aria-modal='true' aria-label='Emergencia do equipamento'>
-          <EmergencyContent>
+        <div
+          className={styles.emergencyOverlay}
+          role="alertdialog"
+          aria-modal="true"
+          aria-label="Emergencia do equipamento"
+          data-emergency="true"
+        >
+          <div className={styles.emergencyContent}>
             <h2>EMERGENCIA DETECTADA</h2>
-            <p>Interrompa imediatamente a operacao e acione a equipe tecnica no local.</p>
-            <EmergencyButton type='button'>PARADA DE EMERGENCIA</EmergencyButton>
-          </EmergencyContent>
-        </EmergencyOverlay>
+            <p>
+              Interrompa imediatamente a operacao e acione a equipe tecnica no
+              local.
+            </p>
+            <button className={styles.emergencyButton} type="button">
+              PARADA DE EMERGENCIA
+            </button>
+          </div>
+        </div>
       ) : null}
-    </Wrapper>
+    </main>
   );
 };
 

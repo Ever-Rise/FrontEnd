@@ -1,8 +1,10 @@
-﻿import React from 'react';
-import { Container } from './styles';
+import React from 'react';
+import styles from './styles.module.css';
 
 const Footer = () => {
-  return <Container>Footer</Container>;
+  return <section className={styles.container} role='region'>
+      Footer
+    </section>;
 };
 
 export default Footer;
