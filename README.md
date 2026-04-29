@@ -136,9 +136,7 @@ Leia os documentos abaixo na ordem:
 6. [docs/05-integracoes-servicos-e-protocolos.md](docs/05-integracoes-servicos-e-protocolos.md)
 7. [docs/06-checklists-de-entrega-e-manutencao.md](docs/06-checklists-de-entrega-e-manutencao.md)
 
-## Motion Architecture
-
-Adicionada arquitetura de motion baseada em Framer Motion + GSAP + Three.js. Leia [docs/motion-architecture.md](docs/motion-architecture.md) para detalhes e guias de integração.
+<!-- Motion Architecture document removed from README: deprecated -->
 
 ## Riscos tecnicos conhecidos
 
