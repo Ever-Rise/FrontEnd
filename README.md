@@ -1,4 +1,4 @@
-# EVERRISE FrontEnd
+# EVER RISE FrontEnd
 
 Aplicacao frontend da plataforma EVERRISE para operacao do guincho, monitoramento de telemetria, autenticacao de usuarios e suporte assistido por chatbot.
 
