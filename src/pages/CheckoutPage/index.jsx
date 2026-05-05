@@ -7,7 +7,7 @@ const CheckoutPage = () => {
   return (
     <main className={styles.container} role='main'>
       <h1 className={styles.title}>{PAGE_NAME}</h1>
-      <p className={styles.description}>Conteudo desta pagina em construcao para a plataforma hospitalar autonoma.</p>
+      <p className={styles.description}>fodase.</p>
     </main>
   );
 };
