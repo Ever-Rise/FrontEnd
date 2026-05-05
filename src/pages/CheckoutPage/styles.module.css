@@ -1,7 +1,8 @@
 .container {
   margin: 0 auto;
-  max-width: 1200px;
-  padding: 2rem 1rem;
+  background-color: #050A24;
+  width: 100%;
+  height: 100vh;
 }
 
 .title {

@@ -1,23 +1,13 @@
 ﻿import React from "react";
 import styles from "./styles.module.css";
+import { Link } from "react-router-dom";
 
-const Button = ({
-  children,
-  variant = "primary",
-  type = "button",
-  ...props
-}) => {
-  const variantClass =
-    variant === "secondary" ? styles.secondary : styles.primary;
-
+const Button = ({ texto, link }) => {
+  
   return (
-    <button
-      type={type}
-      className={`${styles.button} ${variantClass}`}
-      {...props}
-    >
-      {children}
-    </button>
+    <Link to={link} className={styles.link}>
+      <button className={styles.button}>{texto}</button>
+    </Link>
   );
 };
 
