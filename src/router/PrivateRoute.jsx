@@ -3,6 +3,10 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const PrivateRoute = () => {
+  if (import.meta.env.DEV) {
+    return <Outlet />;
+  }
+
   const { isAuthenticated, deviceId } = useSelector((state) => state.auth);
   const location = useLocation();
 
