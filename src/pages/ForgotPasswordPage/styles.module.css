@@ -1,14 +1,119 @@
-.container {
-  margin: 0 auto;
-  max-width: 1200px;
-  padding: 2rem 1rem;
+.recuperar_senha{
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #1a1f3a;
+  background-image:
+  radial-gradient(ellipse at top left, rgba(99,102,241,0.45) 0%, transparent 52%),
+  radial-gradient(ellipse at bottom right, rgba(37,99,235,0.4) 0%, transparent 52%);
 }
 
-.title {
-  color: var(--color-baltic-blue);
-  font-family: var(--font-display);
+.infos_email{
+  width: 39%;
+  height: 600px;
+  text-align: center;
+  font-size: 17px;
+  color: white;
+  border-radius: 5px;
+  padding-top: 50px;
+  margin-top: 50px;
+  background-color: #1a1f3a;
+  background-image:
+  radial-gradient(ellipse at top left, rgba(99,102,241,0.45) 0%, transparent 52%),
+  radial-gradient(ellipse at bottom right, rgba(37,99,235,0.4) 0%, transparent 52%);
+  border-radius: 5px;
+  margin-top: 50px;
+  padding-top: 50px;
+  border-radius: 10px;
+  box-shadow:
+  0 1px 2px rgba(0,0,0,0.07),
+  0 4px 8px rgba(0,0,0,0.07),
+  0 12px 24px rgba(0,0,0,0.08),
+  0 24px 48px rgba(0,0,0,0.06);
 }
 
-.description {
-  color: var(--color-graphite);
+.acao_recuperar h1{
+  width: 100%;
+  font-size: 55px;
+  color: white;
+  text-align: center;
+}
+
+.acao_recuperar p{
+  width: 100%;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+}
+
+.lambel_email_recuperar{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start; 
+  margin-top: 20px;
+  margin-left: 50px;
+}
+
+.lambel_email_recuperar label{
+  color: white;
+  font-size: 20px;
+}
+
+.lambel_email_recuperar input{
+  border-radius: 5px ;
+  padding-left: 10px;
+  width: 500px;
+  height: 30px;
+}
+
+.voltar_recuperar{
+  margin-top: 20px;
+  width: 70%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: 80px;
+
+  & img{
+    width: 10px;
+    height: 10px;
+  }
+
+  & a{
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  & hr{
+    width: 100%;
+  }
+}
+
+h4{
+  margin-top: 40px;
+}
+
+.suporte_recuperar{
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-left: 250px;
+  margin-top: 5px;
+}
+
+.imagem{
+  width: 50%;
+  height: 822px;
+  background-image: url(../../assets/images/Recuperar/ImageRecuperar.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
