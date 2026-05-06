@@ -1,14 +1,7 @@
 import React from 'react';
 import styles from './styles.module.css';
-<<<<<<< HEAD
-impot
-
-const PAGE_NAME = 'Finalizacao de Compra';
-
-=======
 import Header from '../../components/layout/Header';
- 
->>>>>>> 6b5d8c3056ba5bba7abc824317eaee4566857a87
+
 const CheckoutPage = () => {
   const [delivery, setDelivery] = React.useState('standard');
   const [paymentTab, setPaymentTab] = React.useState('card');
@@ -18,7 +11,7 @@ const CheckoutPage = () => {
       <Header />
  
       <div className={styles.page}>
-        <h1 className={styles.title}>Inicie sua sessão para finalizar a compra</h1>
+        <h1 className={styles.title}>Faça login para continuar com seu pedido</h1>
  
         <div className={styles.layout}>
  
