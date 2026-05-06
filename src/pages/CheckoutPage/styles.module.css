@@ -1,15 +1,422 @@
 .container {
-  margin: 0 auto;
+  min-height: 100vh;
   background-color: #050A24;
-  width: 100%;
-  height: 100vh;
+  color: #fff;
+  font-family: Inter, sans-serif;
 }
-
+ 
+.page {
+  padding-top: calc(76px + 2rem);
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  padding-bottom: 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+ 
 .title {
-  color: var(--color-baltic-blue);
-  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 1000;
+  letter-spacing: -0.5px;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  font-family: Inter, sans-serif;
+  margin-top: 50px;
+  margin-left: 30px;
+}
+ 
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 1.25rem;
+  align-items: start;
+}
+ 
+/* ─────────────────────────────────────
+   COLUNA ESQUERDA — fiel ao Figma
+───────────────────────────────────── */
+.left {
+  width: 850px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+ 
+  /* wrapper externo do Figma */
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+  padding: 24px 17px 32px;
+  margin-top: 50px;
+}
+ 
+/* ── Títulos de seção (Poppins 36px como no Figma) ── */
+.sectionTitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+ 
+.sectionTitleSpaced {
+  font-family: 'Poppins', sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 16px;
+  margin-top: 32px;
+}
+ 
+/* ── Card de input (fundo #19233D, radius 15px) ── */
+.inputCard {
+  background-color: #19233D;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(118, 117, 117, 0.25);
+  padding: 16px 24px 14px;
+  margin-bottom: 12px;
+}
+ 
+.inputCard:last-child {
+  margin-bottom: 0;
+}
+ 
+.inputRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+ 
+.inputRow .inputCard {
+  margin-bottom: 0;
+}
+ 
+/* ── Label e input dentro do card ── */
+.label {
+  display: block;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  color: #fff;
+  margin-bottom: 6px;
+  font-family: Inter, sans-serif;
+}
+ 
+.input {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #fff;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 18px;
+  font-family: Inter, sans-serif;
+  padding: 4px 0 6px;
+  outline: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+ 
+.input:focus {
+  border-bottom-color: #5B5FC7;
+  color: #fff;
+}
+ 
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+ 
+/* ── Forma de Entrega ── */
+.deliveryOptions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 0;
+}
+ 
+.deliveryOption {
+  background-color: #19233D;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(118, 117, 117, 0.25);
+  padding: 16px 20px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: border-color 0.2s, background 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+ 
+.deliveryOption.selected {
+  border-color: #5B5FC7;
+  background: rgba(91, 95, 199, 0.12);
+}
+ 
+.deliveryOptionHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 25px;
+  font-weight: 700;
+  color: #fff;
+}
+ 
+.deliveryMeta {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.35);
+}
+ 
+.deliveryPrice {
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 2px;
+}
+ 
+.deliveryPriceFree {
+  color: #4ade80;
+}
+ 
+/* ── Pagamento ── */
+.paymentTabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+ 
+.paymentTab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 18px;
+  font-weight: 600;
+  font-family: Inter, sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+ 
+.paymentTab.active {
+  background: rgba(91, 95, 199, 0.15);
+  border-color: #5B5FC7;
+  color: #fff;
+}
+ 
+/* ─────────────────────────────────────
+   COLUNA DIREITA 
+───────────────────────────────────── */
+.right {
+  width: 460px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: sticky;
+  top: 100px;
+  margin-top: 50px;
+  margin-left: -80px;
+}
+ 
+.orderCard {
+  background-color: #19233D;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
 }
 
-.description {
-  color: var(--color-graphite);
+.summaryRowFree{
+  font-size: 24px;
+}
+
+.summaryRow span{
+  font-size: 18px;
+}
+
+.productRow {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+ 
+.productThumb {
+  width: 54px;
+  height: 80px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+ 
+.productThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+ 
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+ 
+.productName {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+ 
+.inStock {
+  font-size: 17px;
+  color: #f97316;
+  font-weight: 600;
+}
+ 
+.summaryRows {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+ 
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+}
+ 
+.summaryRowValue {
+  color: rgba(255, 255, 255, 0.75);
+}
+ 
+.summaryRowFree {
+  color: #4ade80;
+  font-weight: 700;
+}
+ 
+.summaryRowInc {
+  color: rgba(255, 255, 255, 0.3);
+  font-style: italic;
+}
+ 
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.07);
+  margin: 0.2rem 0;
+}
+ 
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30px;
+  color: rgba(255, 255, 255, 0.45);
+}
+ 
+.totalValue {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+ 
+.checkoutBtn {
+  display: block;
+  width: calc(100% - 2.5rem);
+  margin: 0 1.25rem 1.25rem;
+  padding: 1rem;
+  background: #f97316;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 25px;
+  font-weight: 900;
+  font-family: Inter, sans-serif;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: background 0.2s, transform 0.15s;
+  text-align: center;
+}
+ 
+.checkoutBtn:hover {
+  background: #ea6c0a;
+  transform: translateY(-1px);
+}
+ 
+.supportCard {
+  background-color: #19233D;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1rem 1.25rem;
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+}
+ 
+.supportIcon {
+  font-size: 30px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+ 
+.supportTitle {
+  font-size: 25px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.3rem;
+}
+ 
+.supportText {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.38);
+  line-height: 1.6;
+}
+ 
+/* ── Responsivo ── */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+ 
+  .right {
+    position: static;
+  }
+ 
+  .page {
+    padding: 1.5rem 1.25rem 3rem;
+    padding-top: calc(76px + 1.5rem);
+  }
+ 
+  .title {
+    font-size: 1.5rem;
+  }
+ 
+  .sectionTitle,
+  .sectionTitleSpaced {
+    font-size: 22px;
+  }
+ 
+  .inputRow {
+    grid-template-columns: 1fr;
+  }
+ 
+  .deliveryOptions {
+    grid-template-columns: 1fr;
+  }
 }
