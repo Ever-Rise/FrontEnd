@@ -6,8 +6,26 @@ const PAGE_NAME = 'Status de Pagamento';
 const PagamentoPage = () => {
   return (
     <main className={styles.container} role='main'>
-      <h1 className={styles.title}>{PAGE_NAME}</h1>
-      <p className={styles.description}>Conteudo desta pagina em construcao para a plataforma hospitalar autonoma.</p>
+      <div className={styles.content}>
+
+        
+
+        <h2>
+          Processando seu pagamento
+        </h2>
+
+        <p>Isso pode levar alguns segundos.
+        <br /> Não feche esta página.</p>
+
+        <div className={styles.loader}>
+          <div className={styles.linha}></div>
+        </div>
+
+        <div className={styles.seguranca}>
+          <p className={styles.segurancaTexto}>Ambiente 100% Seguro</p>
+        </div>
+
+      </div>
     </main>
   );
 };
