@@ -1,14 +1,162 @@
-.container {
-  margin: 0 auto;
-  max-width: 1200px;
-  padding: 2rem 1rem;
+
+
+.email{
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #1a1f3a;
+  background-image:
+  radial-gradient(ellipse at top left, rgba(99,102,241,0.45) 0%, transparent 52%),
+  radial-gradient(ellipse at bottom right, rgba(37,99,235,0.4) 0%, transparent 52%);
 }
 
-.title {
-  color: var(--color-baltic-blue);
-  font-family: var(--font-display);
+.info{
+  width: 39%;
+  height: 600px;
+  text-align: center;
+  font-size: 17px;
+  color: white;
+  border-radius: 5px;
+  padding-top: 50px;
+  margin-top: 50px;
 }
 
-.description {
-  color: var(--color-graphite);
+.acao_login h1{
+  width: 100%;
+  font-size: 55px;
+  color: white;
+  text-align: center;
+}
+
+.acao_login p{
+  width: 100%;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+}
+
+.linha{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+ margin-left: 100px;
+}
+
+.linha::before,
+.linha::after{
+  content: '';
+  width: 100px;
+  flex: none;
+  border-top: 1px solid white;
+}
+
+.lambel_email{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start; 
+  margin-top: 20px;
+  margin-left: 50px;
+}
+
+.lambel_email label{
+  color: white;
+  font-size: 20px;
+}
+
+.lambel_email input{
+  border-radius: 5px ;
+  padding-left: 10px;
+  width: 500px;
+  height: 30px;
+}
+
+.lambel_senha{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start; 
+  margin-top: 20px;
+  margin-left: 50px;
+}
+
+.lambel_senha label{
+  color: white;
+  font-size: 20px;
+}
+
+.lambel_senha input{
+  border-radius: 5px ;
+  padding-left: 10px;
+  width: 500px;
+  height: 30px;
+}
+
+.recuperar{
+  width: 500px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 17px;
+  margin-left: 50px;
+}
+
+.recuperar a{
+  color: white;
+}
+
+
+.criar{
+  position: relative;
+  width: 500px;
+  height: 30px;
+  background-color: #2D55FB;
+  color: white;
+  border-radius: 5px;
+  font-size: 17px;
+}
+
+.google{
+  display: flex;          
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 500px;
+  height: 30px;
+  background-color: #D1E9FF;
+  color: #2D55FB;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-left: 50px;
+  cursor: pointer;
+  border: none;
+  font-size: 17px;
+  
+}
+
+.google img{
+  width: 15px;
+  height: 15px;
+}
+
+.log_in{
+  margin-top: 10px;
+}
+
+
+.derma_login{
+  color: #2D55FB;
+}
+
+.imagem{
+  width: 50%;
+  height: 822px;
+  background-image: url(../../img/imagem-login.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
