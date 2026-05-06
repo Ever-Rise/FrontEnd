@@ -24,26 +24,50 @@
   margin-top: 50px;
 }
 
-.acao_login h1{
+#login-title{
   width: 100%;
-  font-size: 55px;
+  font-size: 65px;
   color: white;
   text-align: center;
 }
 
-.acao_login p{
+header p{
   width: 100%;
   font-size: 20px;
   color: white;
   text-align: center;
 }
 
+.acao_login{
+  width: 100%;
+  height: 600px;
+  background-color: #1a1f3a;
+  background-image:
+  radial-gradient(ellipse at top left, rgba(99,102,241,0.45) 0%, transparent 52%),
+  radial-gradient(ellipse at bottom right, rgba(37,99,235,0.4) 0%, transparent 52%);
+  border-radius: 5px;
+  margin-top: 50px;
+  padding-top: 50px;
+  border-radius: 10px;
+  box-shadow:
+  0 1px 2px rgba(0,0,0,0.07),
+  0 4px 8px rgba(0,0,0,0.07),
+  0 12px 24px rgba(0,0,0,0.08),
+  0 24px 48px rgba(0,0,0,0.06);
+}
+
+.acao_login fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
 .linha{
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 12px;
- margin-left: 100px;
+  font-size: 20px;
+  margin-left: 100px;
 }
 
 .linha::before,
@@ -75,25 +99,43 @@
   height: 30px;
 }
 
-.lambel_senha{
+.lambel_senha {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start; 
+  align-items: flex-start;
   margin-top: 20px;
   margin-left: 50px;
 }
 
-.lambel_senha label{
+.lambel_senha label {
   color: white;
   font-size: 20px;
+  text-align: left;  
 }
 
-.lambel_senha input{
-  border-radius: 5px ;
-  padding-left: 10px;
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
   width: 500px;
-  height: 30px;
+}
+
+.inputWrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.olho {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.olho img {
+  width: 20px;
+  height: 20px;
 }
 
 .recuperar{
@@ -109,7 +151,6 @@
 .recuperar a{
   color: white;
 }
-
 
 .criar{
   position: relative;
@@ -156,7 +197,8 @@
 .imagem{
   width: 50%;
   height: 822px;
-  background-image: linear-gradient(135deg, #0f172a 0%, #1d4ed8 55%, #93c5fd 100%);
+  background-image: url(../../assets/images/Login/ImageLogin.svg);
   background-repeat: no-repeat;
   background-size: cover;
 }
+
