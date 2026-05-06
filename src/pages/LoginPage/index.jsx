@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './styles.module.css';
-import Google from '../../img/Google - Original.png'
 
 
 const PAGE_NAME = 'Acesso da Plataforma';
@@ -32,7 +31,6 @@ const LoginPage = () => {
 
           <button className={styles.criar}>Criar conta</button>
           <button className={styles.google}>
-             <img src={Google} alt="icon google"/>
              Continue with Google</button>
           <p className={styles.log_in}>Already Have An Acconunt? <a href="#">Log in</a></p>
         </div>

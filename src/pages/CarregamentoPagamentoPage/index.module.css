@@ -1,0 +1,14 @@
+.container {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 2rem 1rem;
+}
+
+.title {
+    color: var(--color-baltic-blue);
+    font-family: var(--font-display);
+}
+
+.description {
+    color: var(--color-graphite);
+}
