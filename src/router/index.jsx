@@ -13,7 +13,7 @@ const ParceirosPage = lazy(() => import("../pages/ParceirosPage"));
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/RegisterPage"));
 const ForgotPasswordPage = lazy(() => import("../pages/ForgotPasswordPage"));
-const ValidationEmailPage = lazy(() => import("../pages/ForgotPasswordPage"));
+const ValidationEmailPage = lazy(() => import("../pages/ValidationEmailPage"));
 const DashboardPage = lazy(() => import("../pages/DashboardPage"));
 const ControlePage = lazy(() => import("../pages/ControlePage"));
 const ManualPage = lazy(() => import("../pages/ManualPage"));
@@ -26,7 +26,7 @@ const SustentabilidadePage = lazy(
     () => import("../pages/SustentabilidadePage"),
 );
 const SuportePage = lazy(() => import("../pages/SuportePage"));
-
+const RastreioPage = lazy(() => import("../pages/RastreioPage"));
 class RouterErrorBoundary extends Component {
     constructor(props) {
         super(props);
@@ -146,6 +146,7 @@ const router = createBrowserRouter([
                         element: withSuspense(SustentabilidadePage),
                     },
                     { path: "/suporte", element: withSuspense(SuportePage) },
+                    { path: "/rastreio", element: withSuspense(RastreioPage) },
                 ],
             },
             { path: "*", element: <NotFoundPage /> },

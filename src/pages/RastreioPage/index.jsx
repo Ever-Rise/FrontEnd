@@ -1,10 +1,9 @@
 import React from 'react';
-import styles from './styles.module.css';
+import styles from './index.module.css';
 
-const PAGE_NAME = 'Validação';
+const PAGE_NAME = 'Sobre o Projeto';
 
-const ValidationPage = () => {
-
+const SobrePage = () => {
   return (
     <main className={styles.container} role='main'>
       <h1 className={styles.title}>{PAGE_NAME}</h1>
@@ -13,5 +12,5 @@ const ValidationPage = () => {
   );
 };
 
-export default ValidationPage;
+export default SobrePage;
 
