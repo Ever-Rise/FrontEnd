@@ -1,14 +1,205 @@
 .container {
-  margin: 0 auto;
-  max-width: 1200px;
-  padding: 2rem 1rem;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1a2238;
+}
+
+.content {
+    width: 1000px;
+    height: 750px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(325deg, #1a2238 35%, #3a7ca556 100%);
+    border: #ffffff6b solid 1px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.548);
+    border-radius: 30px;
+    gap: 20px;
+}
+
+.confirmation {
+    width: 90px;
+    height: 90px;
+    background: #fff;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.397);
 }
 
 .title {
-  color: var(--color-baltic-blue);
-  font-family: var(--font-display);
+    font-size: 33px;
+    color: #0051ff;
+    margin: 0;
 }
 
 .description {
-  color: var(--color-graphite);
+    font-size: 23px;
+    color: #ffffff;
+    margin-top: 10px;
+    text-align: center;
+    max-width: 400px;
+}
+
+.fundo {
+    width: 70%;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.info {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+}
+
+.pedido {
+    width: 50%;
+    height: 100px;
+}
+
+.produto {
+    width: 50%;
+    height: 100px;
+}
+
+.entrega {
+    width: 50%;
+    height: 85px;
+}
+
+.pd {
+    color: #000000c7;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-weight: 100;
+    font-size: 28px;
+}
+
+.cod {
+    color: #0051ff;
+    font-weight: 800;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+.guincho {
+    color: #000000;
+    font-weight: 800;
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.endereco {
+    height: 35px;
+    width: 400px;
+    color: #000000c7;
+    font-weight: 800;
+    margin-left: 20px;
+    font-size: 27px;
+    font-weight: 500;
+    margin-top: 17px;
+}
+
+.rua {
+    color: #000000;
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+.previsao {
+    height: 35px;
+    width: 400px;
+    color: #000000c7;
+    font-weight: 800;
+    margin-left: 20px;
+    font-size: 27px;
+    font-weight: 500;
+}
+
+.carrinho {
+    display: flex;
+    margin-left: 23px;
+}
+
+.dias {
+    color: #000000;
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+.caminhao {
+    width: 20px;
+}
+
+.gmail {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.foto {
+    width: 20px;
+    height: 18px;
+    margin-top: 9px;
+    margin-right: 20px;
+}
+
+.atualizacoes {
+    color: #fff;
+    font-size: 22px;
+}
+
+.buttons {
+    display: flex;
+    gap: 30px;
+}
+
+.button1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+    text-shadow: 
+        0 0 2px #fff,
+        0 0 10px #fff;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.button2 {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: none;
+    background-color: #2770be00;
+    border: 1px solid;
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.fundoButton{
+    width: 300px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: none;
+    background-color: #004ea0;
 }

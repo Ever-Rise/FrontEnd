@@ -26,7 +26,7 @@ const SustentabilidadePage = lazy(
     () => import("../pages/SustentabilidadePage"),
 );
 const SuportePage = lazy(() => import("../pages/SuportePage"));
-
+const RastreioPage = lazy(() => import("../pages/RastreioPage"));
 class RouterErrorBoundary extends Component {
     constructor(props) {
         super(props);
@@ -146,6 +146,7 @@ const router = createBrowserRouter([
                         element: withSuspense(SustentabilidadePage),
                     },
                     { path: "/suporte", element: withSuspense(SuportePage) },
+                    { path: "/rastreio", element: withSuspense(RastreioPage) },
                 ],
             },
             { path: "*", element: <NotFoundPage /> },
