@@ -9,6 +9,11 @@ import Baixo from '../../assets/icons/Controle/baixo.svg'
 import Direito from '../../assets/icons/Controle/direita.svg'
 import Play from '../../assets/icons/Controle/play.svg'
 import Retorno from '../../assets/icons/Controle/retorno.svg'
+import microfone from '../../assets/icons/Controle/microfone.svg'
+import grafico from '../../assets/icons/Controle/grafico.svg'
+import velocidade from '../../assets/icons/Controle/velocidade.svg'
+import inclinacao from '../../assets/icons/Controle/inclinacao.svg'
+import bateria from '../../assets/icons/Controle/bateria.svg'
 
 const PAGE_NAME = 'Central de Controle';
 
@@ -51,6 +56,23 @@ const ControlePage = () => {
           <button className={styles.iniciar_button}><img src={Play} alt="play" />INICIAR CICLO</button>
           <button className={styles.recalibrar_button}><img src={Retorno} alt="retorno" />RECALIBRAR</button>
         </div>
+      </section>
+
+      <section className={styles.section_comando_voz}>
+        <div className={styles.div_comando_voz}>
+          <h3>Comando de Voz</h3>
+          <img src={microfone} alt="microfone" className={styles.img_mic}/>
+        </div>
+        <img src={grafico} alt="grafico" className={styles.img_grafico}/>
+        <p>"Elevar cabeceira em 15 graus"</p>
+        <button className={styles.botao_ouvindo}>OUVINDO...</button>
+      </section>
+
+      <section className={styles.section_telemetria}>
+          <h4>Teemetria de Precisão</h4>
+        <button className={styles.botao_velocidade}><img src={velocidade} alt="velocidade" />Velocidade <p>0.4 m/s</p></button>
+        <button className={styles.botao_velocidade}><img src={inclinacao} alt="inclinação" />Inclinação <p>12.5°</p></button>
+        <button className={styles.botao_velocidade}><img src={bateria} alt="bateria" />Bateria <p>92 %</p></button>
       </section>
     </main>
   );
