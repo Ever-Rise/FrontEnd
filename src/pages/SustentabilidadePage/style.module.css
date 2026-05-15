@@ -3,7 +3,7 @@
   --bg-dark: #0a0e17;
   --bg-card: #131a2a;
   --primary-green: #00ff41;
-  --primary-blue: #3b82f6;
+  --primary-blue: #004AC6;
   --text-light: #f3f4f6;
   --text-muted: #9ca3af;
   
@@ -11,18 +11,6 @@
   color: var(--text-light);
   font-family: sans-serif;
   overflow-x: hidden;
-}
-
-.imagePlaceholder {
-  width: 100%;
-  height: 300px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px dashed var(--primary-green);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--primary-green);
-  border-radius: 12px;
 }
 
 /* Buttons */
@@ -37,13 +25,8 @@
   transition: opacity 0.3s;
 }
 
-.btnPrimaryFull {
-  width: 100%;
-}
-
-.btnPrimary:hover, .btnPrimaryFull:hover {
-  opacity: 0.8;
-}
+.btnPrimaryFull { width: 100%; }
+.btnPrimary:hover, .btnPrimaryFull:hover { opacity: 0.8; }
 
 .btnSecondary {
   background-color: transparent;
@@ -59,47 +42,27 @@
 .hero {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 5rem 10%;
   min-height: 80vh;
+  background-size: cover;
+  background-position: center right;
 }
 
 .heroContent {
   flex: 1;
-  max-width: 500px;
+  max-width: 600px;
+  background: linear-gradient(90deg, rgba(10,14,23,0.9) 0%, rgba(10,14,23,0.2) 100%);
+  padding: 2rem;
+  border-radius: 12px;
 }
 
-.title {
-  font-size: 3rem;
-  line-height: 1.2;
-  margin-bottom: 2rem;
-}
-
-.highlightBlue {
-  color: var(--primary-blue);
-}
-
-.heroButtons {
-  display: flex;
-  gap: 1rem;
-}
-
-.heroImage {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
+.title { font-size: 3rem; line-height: 1.2; margin-bottom: 2rem; }
+.highlightBlue { color: var(--primary-blue); }
+.heroButtons { display: flex; gap: 1rem; }
 
 /* Impact Section */
-.impactSection {
-  padding: 4rem 10%;
-  text-align: center;
-}
-
-.sectionTitle {
-  font-size: 2rem;
-  margin-bottom: 3rem;
-}
+.impactSection { padding: 4rem 10%; text-align: center; }
+.sectionTitle { font-size: 2rem; margin-bottom: 3rem; }
 
 .impactGrid {
   display: grid;
@@ -115,12 +78,9 @@
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.icon {
-  font-size: 2rem;
-  display: block;
-  margin-bottom: 1rem;
-}
+.cardIcon { width: 48px; height: 48px; margin-bottom: 1rem; object-fit: contain; }
 
+/* Stats */
 .statsBar {
   display: flex;
   justify-content: space-around;
@@ -128,85 +88,54 @@
   padding: 2rem;
   border-radius: 12px;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2rem;
 }
 
-.statItem {
-  display: flex;
-  flex-direction: column;
-}
-
-.statItem strong {
-  font-size: 1.5rem;
-  color: var(--primary-green);
-}
+.statItem { display: flex; flex-direction: column; align-items: center; }
+.statIcon { width: 36px; height: 36px; margin-bottom: 0.5rem; object-fit: contain; }
+.statItem strong { font-size: 1.5rem; color: var(--primary-green); }
 
 /* How It Works Timeline */
-.howItWorks {
-  padding: 4rem 10%;
-  text-align: center;
-}
-
-.timeline {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-}
+.howItWorks { padding: 4rem 10%; text-align: center; }
+.timeline { position: relative; max-width: 800px; margin: 0 auto; }
 
 .timeline::after {
   content: '';
   position: absolute;
   width: 2px;
   background-color: var(--primary-green);
-  top: 0;
-  bottom: 0;
-  left: 50%;
+  top: 0; bottom: 0; left: 50%;
   margin-left: -1px;
 }
 
 .timelineItem {
   padding: 10px 40px;
   position: relative;
-  background-color: inherit;
   width: 50%;
   display: flex;
   align-items: center;
   box-sizing: border-box;
 }
 
-.left {
-  left: 0;
-  justify-content: flex-end;
-  text-align: right;
-}
-
-.right {
-  left: 50%;
-  justify-content: flex-start;
-  text-align: left;
-}
+.left { left: 0; justify-content: flex-end; text-align: right; }
+.right { left: 50%; justify-content: flex-start; text-align: left; }
 
 .timelineIcon {
-  width: 40px;
-  height: 40px;
-  background-color: var(--primary-green);
+  width: 48px;
+  height: 48px;
+  background-color: var(--bg-card);
+  border: 2px solid var(--primary-green);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1;
   position: absolute;
-  color: #000;
-  font-size: 1.2rem;
 }
 
-.left .timelineIcon {
-  right: -20px;
-}
-
-.right .timelineIcon {
-  left: -20px;
-}
+.timelineIcon img { width: 24px; height: 24px; object-fit: contain; }
+.left .timelineIcon { right: -24px; }
+.right .timelineIcon { left: -24px; }
 
 .timelineContent {
   background-color: var(--bg-card);
@@ -217,54 +146,35 @@
 
 /* CTA Section */
 .ctaSection {
-  display: flex;
   background-color: var(--bg-card);
   margin: 4rem 10%;
   border-radius: 16px;
   overflow: hidden;
+  background-size: cover;
+  background-position: center;
 }
 
 .ctaContent {
-  flex: 1;
   padding: 4rem;
+  background: linear-gradient(90deg, rgba(10,14,23,0.95) 0%, rgba(10,14,23,0.4) 100%);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
 }
 
-.ctaGlobe {
-  flex: 1;
-}
-
-/* Form Section */
-.formSection {
-  display: flex;
-  gap: 2rem;
-  padding: 4rem 10%;
-}
+/* Form Section & Evaluation Info (Substituindo o antigo Cupom) */
+.formSection { display: flex; gap: 2rem; padding: 4rem 10%; }
 
 .formContainer {
   flex: 2;
   background-color: var(--bg-card);
-  padding: 2rem;
+  padding: 2.5rem;
   border-radius: 12px;
 }
 
-.formTitle {
-  margin-bottom: 1.5rem;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.inputGroup {
-  display: flex;
-  gap: 1rem;
-}
+.formTitle { margin-bottom: 1.5rem; }
+.form { display: flex; flex-direction: column; gap: 1rem; }
+.inputGroup { display: flex; gap: 1rem; }
 
 input, textarea {
   width: 100%;
@@ -275,49 +185,49 @@ input, textarea {
   border-radius: 6px;
   outline: none;
 }
+textarea { min-height: 100px; resize: vertical; }
 
-textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-.couponContainer {
+.evaluationContainer {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.couponBox {
-  background: linear-gradient(135deg, rgba(0,255,65,0.1) 0%, rgba(0,0,0,0) 100%);
+.evaluationBox {
+  background: linear-gradient(135deg, rgba(0,255,65,0.05) 0%, rgba(19,26,42,1) 100%);
   border: 1px solid var(--primary-green);
   padding: 2rem;
   border-radius: 12px;
   text-align: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
-  width: 100%;
 }
 
-.couponCode {
-  color: var(--primary-green);
-  font-size: 1.2rem;
-  letter-spacing: 2px;
-}
-
-.couponDiscount {
-  font-size: 2rem;
-  font-weight: bold;
-}
+.evaluationIcon { width: 64px; height: 64px; margin-bottom: 1rem; }
+.evaluationTitle { color: var(--primary-green); font-size: 1.4rem; }
+.evaluationText { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
 
 /* Newsletter / Footer */
+.footer {
+  background-size: cover;
+  background-position: center;
+  padding: 4rem 10%;
+  display: flex;
+  justify-content: center;
+}
+
 .newsletter {
-  background-color: var(--bg-card);
-  margin: 4rem 10%;
+  background-color: rgba(19, 26, 42, 0.85);
+  backdrop-filter: blur(8px);
   padding: 3rem;
   border-radius: 16px;
   text-align: center;
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .newsletterInput {
@@ -325,55 +235,17 @@ textarea {
   gap: 1rem;
   justify-content: center;
   margin-top: 1.5rem;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* Responsiveness */
 @media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-    padding: 3rem 5%;
-  }
-  
-  .heroButtons {
-    justify-content: center;
-    margin-bottom: 2rem;
-  }
-
-  .timeline::after {
-    left: 31px;
-  }
-
-  .timelineItem {
-    width: 100%;
-    padding-left: 70px;
-    padding-right: 25px;
-    justify-content: flex-start;
-    text-align: left;
-  }
-
-  .left, .right {
-    left: 0;
-  }
-
-  .left .timelineIcon, .right .timelineIcon {
-    left: 11px;
-  }
-
-  .timelineContent {
-    width: 100%;
-  }
-
-  .ctaSection, .formSection {
-    flex-direction: column;
-    margin: 2rem 5%;
-    padding: 2rem 5%;
-  }
-
-  .inputGroup, .newsletterInput {
-    flex-direction: column;
-  }
+  .hero { background-position: center; padding: 3rem 5%; }
+  .heroButtons { justify-content: flex-start; }
+  .timeline::after { left: 24px; }
+  .timelineItem { width: 100%; padding-left: 60px; padding-right: 0; justify-content: flex-start; text-align: left; }
+  .left, .right { left: 0; }
+  .left .timelineIcon, .right .timelineIcon { left: 0; }
+  .timelineContent { width: 100%; }
+  .formSection { flex-direction: column; padding: 2rem 5%; }
+  .inputGroup, .newsletterInput { flex-direction: column; }
 }
