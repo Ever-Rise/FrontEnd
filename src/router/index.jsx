@@ -121,6 +121,10 @@ const router = createBrowserRouter([
                         element: withSuspense(ValidationEmailPage),
                     },
                     { path: "/checkout", element: withSuspense(CheckoutPage) },
+                    {
+                        path: "/sustentabilidade",
+                        element: withSuspense(SustentabilidadePage),
+                    },
                 ],
             },
             {
@@ -141,12 +145,8 @@ const router = createBrowserRouter([
                         element: withSuspense(CarregamentoPagamentoPage),
                     },
 
-                    {
-                        path: "/sustentabilidade",
-                        element: withSuspense(SustentabilidadePage),
-                    },
                     { path: "/suporte", element: withSuspense(SuportePage) },
-                    
+
                     { path: "/rastreio", element: withSuspense(RastreioPage) },
                 ],
             },

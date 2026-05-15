@@ -1,0 +1,20 @@
+.useCaseCard {
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: linear-gradient(-55.87deg, rgba(6, 40, 61, 0.18), rgba(16, 107, 163, 0.42));
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 1.25rem;
+}
+
+.useCaseTitle {
+  margin: 0;
+  color: #fff;
+  font-size: 1.18rem;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.useCaseDescription {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+}

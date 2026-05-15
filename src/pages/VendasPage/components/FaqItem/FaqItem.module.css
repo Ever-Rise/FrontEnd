@@ -1,0 +1,22 @@
+.faqItem {
+  overflow: hidden;
+  padding: 0;
+  background: rgba(74, 74, 74, 0.08);
+}
+
+.faqQuestion {
+  cursor: pointer;
+  list-style: none;
+  padding: 1.15rem 1.25rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+.faqQuestion::-webkit-details-marker {
+  display: none;
+}
+
+.faqAnswer {
+  padding: 0 1.25rem 1.25rem;
+  color: rgba(255, 255, 255, 0.72);
+}
