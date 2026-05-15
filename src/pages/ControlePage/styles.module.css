@@ -1,14 +1,613 @@
+* {
+  background-color: #131622;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .container {
-  margin: 0 auto;
-  max-width: 1200px;
-  padding: 2rem 1rem;
+  width: 90%;
+  height: auto;
+  margin: auto;
 }
 
-.title {
-  color: var(--color-baltic-blue);
-  font-family: var(--font-display);
+/* ===== HEADER / NAVBAR ===== */
+.section_controle {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+  border: 2px solid black;
+  border-radius: 100px;
+  background: rgb(255 255 255 / 5%);
+
+  & h1 {
+    background: rgb(255 255 255 / 5%);
+    color: white;
+    font-size: 20px;
+  }
 }
 
-.description {
-  color: var(--color-graphite);
+.navegacao {
+  width: 60%;
+  height: 20px;
+  background: rgb(255 255 255 / 0%);
+
+  & ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    list-style: none;
+    background: rgb(255 255 255 / 0%);
+
+    & li {
+      background: rgb(255 255 255 / 0%);
+
+      & a {
+        color: white;
+        text-decoration: none;
+        background: transparent;
+
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.perfil {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  margin: 0;
+
+  & img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    background: transparent;
+  }
+}
+
+/* ===== PAINEL DE OPERAÇÃO ===== */
+.section_operacao {
+  width: 65%;
+  height: 700px;
+  margin-top: 30px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  float: left;
+}
+
+.primeiro_titulo {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+
+  & h2 {
+    margin-left: 20px;
+    font-size: 20px;
+    color: #00386F;
+    background-color: white;
+  }
+
+  & .p_painel {
+    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #00386F;
+    background-color: white;
+
+    & span {
+      background-color: white;
+    }
+  }
+
+  & img {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+  }
+}
+
+.p_pri_tiluto {
+  margin-left: 20px;
+  font-size: 15px;
+  background-color: white;
+}
+
+.controle_direcional {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background-color: white;
+}
+
+.controle_horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background-color: white;
+
+  & .stop_button {
+    width: 200px;
+    height: 200px;
+    color: #00386F;
+    background-color: white;
+    border: #00386F 4px solid;
+    border-radius: 100px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    & img {
+      width: 50px;
+      height: 50px;
+      background-color: white;
+    }
+  }
+
+  & .esquerdo,
+  .direita {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border: 2px groove black;
+    border-radius: 10px;
+
+    & img {
+      width: 30px;
+      height: 30px;
+      background-color: white;
+    }
+  }
+
+  .esquerdo {
+    padding-left: 10px;
+  }
+
+  .direita {
+    padding-left: 15px;
+  }
+}
+
+.cima,
+.baixo {
+  width: 60px;
+  height: 60px;
+  background-color: white;
+  border: 2px groove black;
+  border-radius: 10px;
+  padding-left: 12px;
+  align-items: center;
+
+  & img {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+  }
+}
+
+.botoes_operacao {
+  position: relative;
+  width: 100%;
+  height: 70px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background-color: white;
+
+  & .iniciar_button,
+  .recalibrar_button {
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 35px;
+  }
+
+  .iniciar_button {
+    color: white;
+    background-color: #00386F;
+    border: none;
+    box-shadow: 0 0 0 2px rgb(0 56 111 / 30%);
+  }
+
+  .recalibrar_button {
+    color: #00386F;
+    background-color: white;
+    border: none;
+    box-shadow: 0 0 0 2px rgb(0 56 111 / 20%);
+  }
+
+  & .iniciar_button img,
+  .recalibrar_button img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .iniciar_button img {
+    background-color: #00386F;
+  }
+
+  .recalibrar_button img {
+    background-color: white;
+  }
+}
+
+/* ===== COMANDO DE VOZ ===== */
+.section_comando_voz {
+  position: relative;
+  width: 33%;
+  height: 300px;
+  margin-top: 30px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 25px;
+}
+
+.div_comando_voz {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+
+  & .titulo_voz {
+    font-size: 20px;
+    color: #00386F;
+    background-color: white;
+  }
+
+  & img {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+  }
+}
+
+.img_grafico {
+  width: 120px;
+  height: 120px;
+  background-color: white;
+}
+
+.q_grafico {
+  margin-left: 20px;
+  font-size: 15px;
+  background-color: white;
+}
+
+.botao_ouvindo {
+  width: 300px;
+  height: 50px;
+  background-color: white;
+  color: #00386F;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+/* ===== TELEMETRIA ===== */
+.section_telemetria {
+  position: relative;
+  width: 33%;
+  height: 300px;
+  margin-top: 30px;
+  margin-left: 25px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  float: left;
+
+  & h2 {
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 18px;
+    background-color: white;
+    color: #00386F;
+    border-radius: 10px;
+  }
+}
+
+.botoes_telemetria {
+  width: 100%;
+  height: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-around;
+  background-color: white;
+  padding-left: 10px;
+
+  & .botao_velocidade {
+    width: 95%;
+    height: 60px;
+    font-size: 16px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px black solid;
+    border-radius: 10px;
+    gap: 10px;
+    margin-top: 20px;
+    padding-left: 10px;
+
+    & img {
+      width: 20px;
+      height: 20px;
+      background-color: white;
+    }
+
+    & h3 {
+      font-size: 16px;
+      font-weight: normal;
+      background-color: white;
+    }
+
+    & .p_velocidade,
+    .p_inclinacao,
+    .p_bateria {
+      font-size: 15px;
+      background-color: white;
+      margin-left: auto;
+      padding-right: 10px;
+    }
+
+    & .p_velocidade {
+      color: #00386F;
+    }
+
+    & .p_inclinacao {
+      color: #00386F;
+    }
+
+    & .p_bateria {
+      color: #00A300;
+    }
+  }
+}
+
+/* ===== STATUS: MONITORAMENTO / MODO / TEMPO ===== */
+.status_dispositivo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: transparent;
+  clear: left;
+}
+
+.section_monitoramento {
+  position: relative;
+  width: 31%;
+  height: 100px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.div_img_monitoramento {
+  width: 65px;
+  height: 65px;
+  background: rgb(0 10 60 / 8%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin-left: 10px;
+
+  & img {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+  }
+}
+
+.div_monitoramento {
+  width: 300px;
+  height: 50px;
+  background-color: white;
+  padding-left: 10px;
+
+  & .moni {
+    font-size: 18px;
+    color: #737781;
+    background-color: white;
+  }
+
+  & .p_moni {
+    font-size: 16px;
+    color: #00386F;
+    background-color: white;
+  }
+}
+
+.section_modo {
+  position: relative;
+  width: 31%;
+  height: 100px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 40px;
+  margin-top: 20px;
+}
+
+.div_img_modo {
+  width: 65px;
+  height: 65px;
+  background: rgb(80 40 0 / 7%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin-left: 10px;
+
+  & img {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+  }
+}
+
+.div_modo {
+  width: 300px;
+  height: 50px;
+  background-color: white;
+  padding-left: 10px;
+
+  & .modo {
+    font-size: 18px;
+    color: #737781;
+    background-color: white;
+  }
+
+  & .p_modo {
+    font-size: 16px;
+    color: #00386F;
+    background-color: white;
+  }
+}
+
+.section_tempo {
+  position: relative;
+  width: 32.5%;
+  height: 100px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 35px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.div_img_tempo {
+  width: 65px;
+  height: 65px;
+  background: rgb(0 10 60 / 8%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin-left: 10px;
+
+  & img {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+  }
+}
+
+.div_tempo {
+  width: 300px;
+  height: 50px;
+  background-color: white;
+  padding-left: 10px;
+
+  & .tempo {
+    font-size: 18px;
+    color: #737781;
+    background-color: white;
+  }
+
+  & .p_tempo {
+    font-size: 16px;
+    color: #00386F;
+    background-color: white;
+  }
+}
+
+/* ===== PARADA DE EMERGÊNCIA ===== */
+.pare {
+  position: relative;
+  width: 80%;
+  height: 80px;
+  background: #C44C4C;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-left: 130px;
+
+  & .button_pare {
+    width: 500px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+    background: #F05B5B;
+    border: none;
+    box-shadow: 0 0 0 2px rgb(196, 76, 76 / 30%);
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+
+    & img {
+      width: 30px;
+      height: 30px;
+      background: #F05B5B;
+    }
+  }
 }

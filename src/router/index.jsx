@@ -146,6 +146,7 @@ const router = createBrowserRouter([
                         element: withSuspense(SustentabilidadePage),
                     },
                     { path: "/suporte", element: withSuspense(SuportePage) },
+                    
                     { path: "/rastreio", element: withSuspense(RastreioPage) },
                 ],
             },

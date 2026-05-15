@@ -1,0 +1,251 @@
+/* Base Variables & Container */
+.container {
+  --bg-dark: #0a0e17;
+  --bg-card: #131a2a;
+  --primary-green: #00ff41;
+  --primary-blue: #004AC6;
+  --text-light: #f3f4f6;
+  --text-muted: #9ca3af;
+  
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  font-family: sans-serif;
+  overflow-x: hidden;
+}
+
+/* Buttons */
+.btnPrimary, .btnPrimaryFull {
+  background-color: var(--primary-green);
+  color: #000;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.btnPrimaryFull { width: 100%; }
+.btnPrimary:hover, .btnPrimaryFull:hover { opacity: 0.8; }
+
+.btnSecondary {
+  background-color: transparent;
+  color: var(--text-light);
+  padding: 12px 24px;
+  border: 1px solid var(--text-light);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: center;
+  padding: 5rem 10%;
+  min-height: 80vh;
+  background-size: cover;
+  background-position: center right;
+}
+
+.heroContent {
+  flex: 1;
+  max-width: 600px;
+  background: linear-gradient(90deg, rgba(10,14,23,0.9) 0%, rgba(10,14,23,0.2) 100%);
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.title { font-size: 3rem; line-height: 1.2; margin-bottom: 2rem; }
+.highlightBlue { color: var(--primary-blue); }
+.heroButtons { display: flex; gap: 1rem; }
+
+/* Impact Section */
+.impactSection { padding: 4rem 10%; text-align: center; }
+.sectionTitle { font-size: 2rem; margin-bottom: 3rem; }
+
+.impactGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.impactCard {
+  background-color: var(--bg-card);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cardIcon { width: 48px; height: 48px; margin-bottom: 1rem; object-fit: contain; }
+
+/* Stats */
+.statsBar {
+  display: flex;
+  justify-content: space-around;
+  background-color: var(--bg-card);
+  padding: 2rem;
+  border-radius: 12px;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.statItem { display: flex; flex-direction: column; align-items: center; }
+.statIcon { width: 36px; height: 36px; margin-bottom: 0.5rem; object-fit: contain; }
+.statItem strong { font-size: 1.5rem; color: var(--primary-green); }
+
+/* How It Works Timeline */
+.howItWorks { padding: 4rem 10%; text-align: center; }
+.timeline { position: relative; max-width: 800px; margin: 0 auto; }
+
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background-color: var(--primary-green);
+  top: 0; bottom: 0; left: 50%;
+  margin-left: -1px;
+}
+
+.timelineItem {
+  padding: 10px 40px;
+  position: relative;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.left { left: 0; justify-content: flex-end; text-align: right; }
+.right { left: 50%; justify-content: flex-start; text-align: left; }
+
+.timelineIcon {
+  width: 48px;
+  height: 48px;
+  background-color: var(--bg-card);
+  border: 2px solid var(--primary-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  position: absolute;
+}
+
+.timelineIcon img { width: 24px; height: 24px; object-fit: contain; }
+.left .timelineIcon { right: -24px; }
+.right .timelineIcon { left: -24px; }
+
+.timelineContent {
+  background-color: var(--bg-card);
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+}
+
+/* CTA Section */
+.ctaSection {
+  background-color: var(--bg-card);
+  margin: 4rem 10%;
+  border-radius: 16px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.ctaContent {
+  padding: 4rem;
+  background: linear-gradient(90deg, rgba(10,14,23,0.95) 0%, rgba(10,14,23,0.4) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Form Section & Evaluation Info (Substituindo o antigo Cupom) */
+.formSection { display: flex; gap: 2rem; padding: 4rem 10%; }
+
+.formContainer {
+  flex: 2;
+  background-color: var(--bg-card);
+  padding: 2.5rem;
+  border-radius: 12px;
+}
+
+.formTitle { margin-bottom: 1.5rem; }
+.form { display: flex; flex-direction: column; gap: 1rem; }
+.inputGroup { display: flex; gap: 1rem; }
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  border-radius: 6px;
+  outline: none;
+}
+textarea { min-height: 100px; resize: vertical; }
+
+.evaluationContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.evaluationBox {
+  background: linear-gradient(135deg, rgba(0,255,65,0.05) 0%, rgba(19,26,42,1) 100%);
+  border: 1px solid var(--primary-green);
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.evaluationIcon { width: 64px; height: 64px; margin-bottom: 1rem; }
+.evaluationTitle { color: var(--primary-green); font-size: 1.4rem; }
+.evaluationText { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
+
+/* Newsletter / Footer */
+.footer {
+  background-size: cover;
+  background-position: center;
+  padding: 4rem 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.newsletter {
+  background-color: rgba(19, 26, 42, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 3rem;
+  border-radius: 16px;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.newsletterInput {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .hero { background-position: center; padding: 3rem 5%; }
+  .heroButtons { justify-content: flex-start; }
+  .timeline::after { left: 24px; }
+  .timelineItem { width: 100%; padding-left: 60px; padding-right: 0; justify-content: flex-start; text-align: left; }
+  .left, .right { left: 0; }
+  .left .timelineIcon, .right .timelineIcon { left: 0; }
+  .timelineContent { width: 100%; }
+  .formSection { flex-direction: column; padding: 2rem 5%; }
+  .inputGroup, .newsletterInput { flex-direction: column; }
+}
