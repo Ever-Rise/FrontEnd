@@ -18,12 +18,20 @@ Este diretorio contem o manual completo para entender, evoluir e manter o projet
 5. [05 - Integracoes, servicos e protocolos](./05-integracoes-servicos-e-protocolos.md)
 6. [06 - Checklists de entrega e manutencao](./06-checklists-de-entrega-e-manutencao.md)
 
+### Motion / animacoes (paginas marketing)
+
+7. [07 - Modulo motions (referencia tecnica)](./07-modulo-motions.md)
+8. [08 - Arquitetura motion](./08-arquitetura-motion.md)
+9. [09 - Checklist motion](./09-checklist-motion.md)
+10. **[10 - Guia de uso das animacoes](./10-guia-uso-animacoes.md)** — leia este ao implementar ou corrigir efeitos nas telas
+
 ## Ordem sugerida de leitura
 
 1. Comece pelo documento 01 para formar o mapa mental da arquitetura.
 2. Leia o documento 03 para entender o fluxo de estado e side effects.
 3. Use o documento 02 para criar paginas seguindo o padrao atual.
 4. Consulte os documentos 04, 05 e 06 no trabalho diario de manutencao.
+5. Ao trabalhar em Landing, Vendas, Produto, Parceiros ou Sustentabilidade, use o documento **10** e os exemplos em `src/motions/EXEMPLOS.md`.
 
 ## Resultado esperado apos leitura
 

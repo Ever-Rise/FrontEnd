@@ -1,0 +1,48 @@
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 2rem 1rem;
+}
+
+.hero {
+  margin-bottom: 3rem;
+}
+
+.heroTitle {
+  color: var(--color-baltic-blue);
+  font-family: var(--font-display);
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.heroDescription {
+  color: var(--color-graphite);
+  margin-top: 1rem;
+  max-width: 42rem;
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.revealSection {
+  padding: 2rem 0;
+}
+
+.revealTitle {
+  color: var(--color-baltic-blue);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.revealText {
+  color: var(--color-graphite);
+  line-height: 1.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroTitle,
+  .heroDescription {
+    opacity: 1;
+    transform: none;
+  }
+}

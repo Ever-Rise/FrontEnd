@@ -1,9 +1,11 @@
-# Motion Architecture (DEPRECATED)
+# Motion Architecture
 
-Esta documentação descrevia a integração entre `Framer Motion`, `GSAP` e `Three.js (R3F)` implementada anteriormente. A implementação localizada em `src/animations` foi considerada obsoleta e removida do repositório.
+Este arquivo estava desatualizado.
 
-Notas rápidas:
-- Se você está procurando implementar animações, prefira adotar um padrão atualizado antes de usar o conteúdo antigo desta página.
-- Os artefatos removidos incluem hooks como `useGSAP`, `gsapUtils` e `motionConfig`; qualquer referência a esses arquivos foi removida.
+Use a documentação atual:
 
-Se desejar, posso criar uma versão atualizada deste documento com um novo padrão de integração (por exemplo, usando um orquestrador centralizado diferente, ou apenas Framer + R3F). Solicite e eu reescrevo a documentação atualizada.
+- **[10 - Guia de uso das animações](./10-guia-uso-animacoes.md)** — como implementar e corrigir efeitos
+- [08 - Arquitetura motion](./08-arquitetura-motion.md) — visão estrutural
+- [09 - Checklist motion](./09-checklist-motion.md) — antes de entregar
+
+Código de referência: `src/pages/LandingPage/` e `src/motions/EXEMPLOS.md`.

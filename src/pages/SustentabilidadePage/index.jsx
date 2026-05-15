@@ -1,16 +1,15 @@
-import React from 'react';
-import styles from './styles.module.css';
+import { createMarketingPage } from '../shared/createMarketingPage';
+import { useSustentabilidadeIntro } from './motion/useSustentabilidadeIntro';
 
-const PAGE_NAME = 'Sustentabilidade';
-
-const SustentabilidadePage = () => {
-  return (
-    <main className={styles.container} role='main'>
-      <h1 className={styles.title}>{PAGE_NAME}</h1>
-      <p className={styles.description}>Conteudo desta pagina em construcao para a plataforma hospitalar autonoma.</p>
-    </main>
-  );
-};
+const SustentabilidadePage = createMarketingPage({
+  pageId: 'sustentabilidade',
+  usePageIntro: useSustentabilidadeIntro,
+  title: 'Sustentabilidade',
+  description:
+    'Compromisso ambiental e social da EVERRISE.',
+  contentTitle: 'Impacto',
+  contentBody:
+    'Conteudo desta pagina em construcao. Motion leve com GSAP sob demanda.',
+});
 
 export default SustentabilidadePage;
-

@@ -1,16 +1,15 @@
-import React from 'react';
-import styles from './styles.module.css';
+import { createMarketingPage } from '../shared/createMarketingPage';
+import { useParceirosIntro } from './motion/useParceirosIntro';
 
-const PAGE_NAME = 'Rede de Parceiros';
-
-const ParceirosPage = () => {
-  return (
-    <main className={styles.container} role='main'>
-      <h1 className={styles.title}>{PAGE_NAME}</h1>
-      <p className={styles.description}>Conteudo desta pagina em construcao para a plataforma hospitalar autonoma.</p>
-    </main>
-  );
-};
+const ParceirosPage = createMarketingPage({
+  pageId: 'parceiros',
+  usePageIntro: useParceirosIntro,
+  title: 'Rede de Parceiros',
+  description:
+    'Parceiros da plataforma hospitalar autonoma EVERRISE.',
+  contentTitle: 'Parcerias',
+  contentBody:
+    'Conteudo desta pagina em construcao. Scroll reveal e intro GSAP ativos nesta rota.',
+});
 
 export default ParceirosPage;
-
