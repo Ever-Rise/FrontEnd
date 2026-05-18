@@ -8,7 +8,7 @@
 }
 
 .inner {
-    max-width: 1280px;
+    max-width: 1380px;
     margin: 0 auto;
 }
 
@@ -102,7 +102,7 @@
 }
 
 .sectionLabel {
-    font-size: 15px;
+    font-size: 22px;
     font-weight: 600;
     color: rgba(160, 185, 255, 0.75);
     margin-bottom: 20px;
@@ -159,16 +159,16 @@
 }
 
 .tlLabel {
-    font-size: 13px;
-    color: rgba(150, 170, 220, 0.5);
+    font-size: 20px;
+    color: rgba(150, 170, 220, 0.842);
     letter-spacing: 0.3px;
     margin-bottom: 3px;
 }
 
 .tlTitle {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
-    color: #fff;
+    color: #ffffffe5;
     line-height: 1.4;
 }
 
@@ -178,8 +178,8 @@
 }
 
 .tlMeta {
-    font-size: 13px;
-    color: rgba(130, 155, 210, 0.45);
+    font-size: 18px;
+    color: rgba(130, 155, 210, 0.74);
     margin-top: 4px;
     line-height: 1.55;
 }
@@ -208,14 +208,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     color: #fff;
     flex-shrink: 0;
 }
 
 .driverLbl {
-    font-size: 12px;
+    font-size: 14px;
     color: rgba(150, 170, 220, 0.45);
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -290,7 +290,7 @@
 }
 
 .infoIco {
-    font-size: 16px;
+    font-size: 20px;
     width: 32px;
     height: 32px;
     border-radius: 7px;
@@ -303,13 +303,13 @@
 }
 
 .infoHdrLabel {
-    font-size: 16px;
+    font-size: 28px;
     font-weight: 700;
     color: rgba(160, 185, 255, 0.7);
 }
 
 .addrLine {
-    font-size: 17px;
+    font-size: 22px;
     font-weight: 500;
     color: #fff;
     line-height: 1.65;
@@ -331,19 +331,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 20px;
     flex-shrink: 0;
 }
 
 .payName {
-    font-size: 17px;
+    font-size: 28px;
     font-weight: 700;
     color: #fff;
 }
 
 .paySub {
-    font-size: 13px;
-    color: rgba(140, 165, 220, 0.45);
+    font-size: 22px;
+    color: rgba(140, 165, 220, 0.733);
     margin-top: 2px;
 }
 
@@ -356,8 +356,8 @@
 }
 
 .payTotalLbl {
-    font-size: 16px;
-    color: rgba(140, 165, 220, 0.5);
+    font-size: 30px;
+    color: rgba(140, 165, 220, 0.733);
 }
 
 .payTotalVal {
@@ -376,7 +376,7 @@
 }
 
 .tableTitle {
-    font-size: 18px;
+    font-size: 28px;
     font-weight: 700;
     color: rgba(180, 200, 255, 0.75);
     margin-bottom: 14px;
@@ -392,7 +392,7 @@
 }
 
 .items th {
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 700;
     letter-spacing: 1.2px;
     text-transform: uppercase;
@@ -416,7 +416,7 @@
 .items td:not(:first-child) {
     text-align: right;
     color: rgba(170, 190, 240, 0.65);
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .itemCell {
@@ -434,12 +434,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: 18px;
     flex-shrink: 0;
 }
 
 .loteBadge {
-    font-size: 13px;
+    font-size: 18px;
     padding: 4px 10px;
     border-radius: 5px;
     background: rgba(25, 50, 120, 0.5);

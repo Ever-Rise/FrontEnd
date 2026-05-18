@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
 import confirm from '../../assets/icons/PagamentoPage/confirm.svg';
 import caminhao from '../../assets/icons/PagamentoPage/caminhao.svg';
 import email from '../../assets/icons/PagamentoPage/email.png';
 
 const ManualPage = () => {
+  const navigate = useNavigate();
+
   return (
     <main className={styles.container} role='main'>
       <div className={styles.content}>
@@ -55,10 +58,20 @@ const ManualPage = () => {
         </div>
 
         <div className={styles.buttons}>
-          <button className={styles.fundoButton}>
+          <button
+            className={styles.fundoButton}
+            type='button'
+            onClick={() => navigate('/rastreio')}
+          >
             <span className={styles.button1}>Acompanhar pedido</span>
           </button>
-          <button className={styles.button2}>Voltar ao site</button>
+          <button
+            className={styles.button2}
+            type='button'
+            onClick={() => navigate('/')}
+          >
+            Voltar ao site
+          </button>
         </div>
 
       </div>
