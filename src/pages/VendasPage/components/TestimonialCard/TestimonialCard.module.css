@@ -1,0 +1,22 @@
+.testimonialCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.35rem;
+  border-radius: 24px;
+  background: #fff;
+  color: #424752;
+  box-shadow: 15px 15px 15px rgba(0, 149, 255, 0.35);
+}
+
+.testimonialQuote {
+  color: #191c1e;
+  font-size: 1rem;
+}
+
+.testimonialMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  color: #424752;
+}
