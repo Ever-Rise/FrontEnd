@@ -1,8 +1,7 @@
-import React, { useRef, useEffect } from "react";
-import { Canvas, useThree } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import { R3FBridgeProvider, useR3FBridge } from "./useR3FBridge";
-import { Mesh } from "three";
+import React, { useRef, useEffect } from 'react';
+import { Canvas, useThree } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+import { R3FBridgeProvider, useR3FBridge } from './useR3FBridge.jsx';
 
 function SceneContent() {
   const meshRef = useRef();
@@ -10,18 +9,18 @@ function SceneContent() {
   const bridge = useR3FBridge();
 
   useEffect(() => {
-    // register camera and a sample object
     bridge.registerCamera(camera);
     bridge.registerScene(scene);
-    if (meshRef.current) bridge.registerObject("sampleBox", meshRef.current);
+    if (meshRef.current) bridge.registerObject('sampleBox', meshRef.current);
 
     return () => {
-      // cleanup: dispose geometry/material
       if (meshRef.current) {
         try {
           meshRef.current.geometry?.dispose?.();
           meshRef.current.material?.dispose?.();
-        } catch (e) {}
+        } catch {
+          /* noop */
+        }
       }
     };
   }, [bridge, camera, scene]);

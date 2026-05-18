@@ -610,4 +610,706 @@
       background: #F05B5B;
     }
   }
+<<<<<<< HEAD
+=======
+}
+
+
+/* ===== TABLET RESPONSIVE — 481px até 1024px ===== */
+
+@media (min-width: 481px) and (max-width: 1024px) {
+
+  /* ===== RESET GLOBAL ===== */
+  * {
+    background-color: #131622;
+  }
+
+  .container {
+    width: 92%;
+    padding-bottom: 40px;
+    overflow-x: hidden;
+  }
+
+  /* ===== NAVBAR ===== */
+  .section_controle {
+    height: 46px;
+    margin-top: 20px;
+    padding: 0 16px;
+    gap: 12px;
+    border-radius: 100px;
+
+    & h1 {
+      font-size: 15px;
+      white-space: nowrap;
+    }
+  }
+
+  .navegacao {
+    width: 60%;
+
+    & ul {
+      & li & a {
+        font-size: 13px;
+      }
+    }
+  }
+
+  .perfil {
+    width: 34px;
+    height: 34px;
+
+    & img {
+      width: 34px;
+      height: 34px;
+    }
+  }
+
+  /* ===== PAINEL DE OPERAÇÃO ===== */
+  .section_operacao {
+    float: none;
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    border-radius: 12px;
+  }
+
+  .primeiro_titulo {
+    height: 50px;
+
+    & h2 {
+      font-size: 17px;
+      margin-left: 18px;
+    }
+
+    & .p_painel {
+      margin-right: 18px;
+      font-size: 13px;
+      gap: 8px;
+    }
+
+    & img {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  .p_pri_tiluto {
+    font-size: 13px;
+    margin-left: 18px;
+  }
+
+  .controle_direcional {
+    height: auto;
+    padding: 30px 0;
+    gap: 20px;
+  }
+
+  .controle_horizontal {
+    gap: 24px;
+
+    & .stop_button {
+      width: 170px;
+      height: 170px;
+      font-size: 15px;
+      border-width: 4px;
+      gap: 10px;
+      border-radius: 100px;
+
+      & img {
+        width: 44px;
+        height: 44px;
+      }
+    }
+
+    & .esquerdo,
+    & .direita {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+
+      & img {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    .esquerdo {
+      padding-left: 10px;
+    }
+
+    .direita {
+      padding-left: 14px;
+    }
+  }
+
+  .cima,
+  .baixo {
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    padding-left: 12px;
+
+    & img {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  .botoes_operacao {
+    height: auto;
+    padding: 16px 0;
+    gap: 16px;
+    flex-direction: row;
+    justify-content: center;
+
+    & .iniciar_button,
+    & .recalibrar_button {
+      width: 200px;
+      height: 48px;
+      font-size: 14px;
+      padding-left: 30px;
+      gap: 8px;
+
+      & img {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  /* ===== COMANDO DE VOZ + TELEMETRIA — lado a lado ===== */
+  .section_comando_voz {
+    float: left;
+    width: 48%;
+    height: auto;
+    min-height: 280px;
+    margin-left: 0;
+    margin-top: 20px;
+    padding-bottom: 16px;
+    border-radius: 12px;
+  }
+
+  .div_comando_voz {
+    height: 46px;
+    padding: 0 14px;
+    border-radius: 12px;
+
+    & .titulo_voz {
+      font-size: 16px;
+    }
+
+    & img {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .img_grafico {
+    width: 100px;
+    height: 100px;
+    margin-top: 8px;
+  }
+
+  .q_grafico {
+    font-size: 13px;
+    margin-left: 16px;
+    margin-top: 6px;
+    text-align: center;
+  }
+
+  .botao_ouvindo {
+    width: 88%;
+    height: 46px;
+    font-size: 14px;
+    border-radius: 8px;
+    margin-top: 14px;
+  }
+
+  .section_telemetria {
+    float: right;
+    width: 48%;
+    height: auto;
+    min-height: 280px;
+    margin-left: 0;
+    margin-top: 20px;
+    padding-bottom: 16px;
+    border-radius: 12px;
+
+    & h2 {
+      font-size: 16px;
+      margin-left: 14px;
+      margin-top: 12px;
+    }
+  }
+
+  .botoes_telemetria {
+    height: auto;
+    padding: 0 12px;
+
+    & .botao_velocidade {
+      width: 100%;
+      height: 56px;
+      font-size: 14px;
+      margin-top: 14px;
+      padding-left: 12px;
+      gap: 10px;
+      border-radius: 10px;
+
+      & img {
+        width: 18px;
+        height: 18px;
+      }
+
+      & h3 {
+        font-size: 14px;
+      }
+
+      & .p_velocidade,
+      & .p_inclinacao,
+      & .p_bateria {
+        font-size: 14px;
+        padding-right: 12px;
+      }
+    }
+  }
+
+  /* ===== PARADA DE EMERGÊNCIA ===== */
+  .pare {
+    clear: both;
+    width: 100%;
+    height: 72px;
+    margin-left: 0;
+    margin-top: 20px;
+    border-radius: 12px;
+
+    & .button_pare {
+      width: 80%;
+      height: 50px;
+      font-size: 15px;
+      gap: 14px;
+      border-radius: 10px;
+
+      & img {
+        width: 26px;
+        height: 26px;
+      }
+    }
+  }
+
+  /* ===== STATUS: MONITORAMENTO / MODO / TEMPO — linha horizontal ===== */
+  .status_dispositivo {
+    clear: both;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 20px;
+    background: transparent;
+  }
+
+  .section_monitoramento,
+  .section_modo,
+  .section_tempo {
+    flex: 1;
+    width: auto;
+    height: 90px;
+    margin: 0;
+    border-radius: 12px;
+    justify-content: flex-start;
+    gap: 12px;
+    padding-right: 10px;
+  }
+
+  .div_img_monitoramento,
+  .div_img_modo,
+  .div_img_tempo {
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    margin-left: 12px;
+
+    & img {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  .div_monitoramento,
+  .div_modo,
+  .div_tempo {
+    width: auto;
+    flex: 1;
+    height: auto;
+    padding-left: 0;
+
+    & .moni,
+    & .modo,
+    & .tempo {
+      font-size: 13px;
+    }
+
+    & .p_moni,
+    & .p_modo,
+    & .p_tempo {
+      font-size: 14px;
+      margin-top: 3px;
+    }
+  }
+}
+
+/* ===== MOBILE RESPONSIVE — max-width: 480px ===== */
+
+@media (max-width: 480px) {
+
+  /* ===== RESET GLOBAL ===== */
+  * {
+    background-color: #131622;
+  }
+
+  .container {
+    width: 95%;
+    padding-bottom: 30px;
+    overflow-x: hidden;
+  }
+
+  /* ===== NAVBAR ===== */
+  .section_controle {
+    height: 38px;
+    margin-top: 14px;
+    padding: 0 10px;
+    gap: 6px;
+    border-radius: 100px;
+
+    & h1 {
+      font-size: 15px;
+      white-space: nowrap;
+    }
+  }
+
+  .navegacao {
+    width: 60%;
+    font-size: 10px;
+
+    & ul {
+      gap: 2px;
+
+      & li & a {
+        letter-spacing: -0.2px;
+      }
+    }
+  }
+
+  .perfil {
+    width: 28px;
+    height: 28px;
+
+    & img {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  /* ===== PAINEL DE OPERAÇÃO ===== */
+  .section_operacao {
+    float: none;
+    width: 100%;
+    height: auto;
+    margin-top: 16px;
+    border-radius: 10px;
+  }
+
+  .primeiro_titulo {
+    height: 44px;
+
+    & h2 {
+      font-size: 15px;
+      margin-left: 14px;
+    }
+
+    & .p_painel {
+      margin-right: 14px;
+      font-size: 12px;
+      gap: 6px;
+    }
+
+    & img {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  .p_pri_tiluto {
+    font-size: 12px;
+    margin-left: 14px;
+  }
+
+  .controle_direcional {
+    height: auto;
+    padding: 20px 0;
+    gap: 16px;
+  }
+
+  .controle_horizontal {
+    gap: 16px;
+
+    & .stop_button {
+      width: 140px;
+      height: 140px;
+      font-size: 14px;
+      border-width: 3px;
+      gap: 8px;
+      border-radius: 100px;
+
+      & img {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    & .esquerdo,
+    & .direita {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+
+      & img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .esquerdo {
+      padding-left: 8px;
+    }
+
+    .direita {
+      padding-left: 12px;
+    }
+  }
+
+  .cima,
+  .baixo {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    padding-left: 10px;
+
+    & img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .botoes_operacao {
+    height: auto;
+    padding: 12px 0;
+    gap: 12px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    & .iniciar_button,
+    & .recalibrar_button {
+      width: 160px;
+      height: 44px;
+      font-size: 13px;
+      padding-left: 20px;
+      gap: 6px;
+
+      & img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  /* ===== PARADA DE EMERGÊNCIA ===== */
+  .pare {
+    width: 100%;
+    height: 64px;
+    margin-left: 0;
+    border-radius: 10px;
+    margin-top: 16px;
+
+    & .button_pare {
+      width: 90%;
+      height: 44px;
+      font-size: 14px;
+      gap: 12px;
+      border-radius: 8px;
+
+      & img {
+        width: 22px;
+        height: 22px;
+      }
+    }
+  }
+
+  /* ===== COMANDO DE VOZ ===== */
+  .section_comando_voz {
+    float: none;
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    margin-top: 16px;
+    padding-bottom: 14px;
+    border-radius: 10px;
+  }
+
+  .div_comando_voz {
+    height: 44px;
+    padding: 0 12px;
+    border-radius: 10px;
+
+    & .titulo_voz {
+      font-size: 15px;
+    }
+
+    & img {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .img_grafico {
+    width: 90px;
+    height: 90px;
+    margin-top: 6px;
+  }
+
+  .q_grafico {
+    font-size: 13px;
+    margin-left: 14px;
+    margin-top: 4px;
+    text-align: center;
+  }
+
+  .botao_ouvindo {
+    width: 90%;
+    height: 44px;
+    font-size: 14px;
+    border-radius: 8px;
+    margin-top: 12px;
+  }
+
+  /* ===== TELEMETRIA ===== */
+  .section_telemetria {
+    float: none;
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    margin-top: 16px;
+    padding-bottom: 14px;
+    border-radius: 10px;
+
+    & h2 {
+      font-size: 15px;
+      margin-left: 12px;
+      margin-top: 10px;
+    }
+  }
+
+  .botoes_telemetria {
+    height: auto;
+    padding: 0 10px;
+
+    & .botao_velocidade {
+      width: 100%;
+      height: 52px;
+      font-size: 14px;
+      margin-top: 12px;
+      padding-left: 10px;
+      gap: 8px;
+      border-radius: 8px;
+
+      & img {
+        width: 18px;
+        height: 18px;
+      }
+
+      & h3 {
+        font-size: 14px;
+      }
+
+      & .p_velocidade,
+      & .p_inclinacao,
+      & .p_bateria {
+        font-size: 13px;
+        padding-right: 10px;
+      }
+    }
+  }
+
+  /* ===== STATUS ===== */
+  .status_dispositivo {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    clear: both;
+  }
+
+  .section_monitoramento,
+  .section_modo,
+  .section_tempo {
+    width: 100%;
+    height: 80px;
+    margin-left: 0;
+    margin-top: 16px;
+    border-radius: 10px;
+    justify-content: flex-start;
+    gap: 14px;
+    padding-right: 10px;
+  }
+
+  .section_modo {
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .section_tempo {
+    margin-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  .div_img_monitoramento,
+  .div_img_modo,
+  .div_img_tempo {
+    width: 52px;
+    height: 52px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    margin-left: 10px;
+
+    & img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .div_monitoramento,
+  .div_modo,
+  .div_tempo {
+    width: auto;
+    flex: 1;
+    height: auto;
+    padding-left: 0;
+
+    & .moni,
+    & .modo,
+    & .tempo {
+      font-size: 13px;
+    }
+
+    & .p_moni,
+    & .p_modo,
+    & .p_tempo {
+      font-size: 14px;
+      margin-top: 2px;
+    }
+  }
+>>>>>>> 5d3f1448f9309c7754868f9605ce510b2c66f6c3
 }

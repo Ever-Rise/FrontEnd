@@ -1,16 +1,15 @@
-import React from 'react';
-import styles from './styles.module.css';
+import { createMarketingPage } from '../shared/createMarketingPage';
+import { useProdutoIntro } from './motion/useProdutoIntro';
 
-const PAGE_NAME = 'Produto EVERRISE';
-
-const ProdutoPage = () => {
-  return (
-    <main className={styles.container} role='main'>
-      <h1 className={styles.title}>{PAGE_NAME}</h1>
-      <p className={styles.description}>Conteudo desta pagina em construcao para a plataforma hospitalar autonoma.</p>
-    </main>
-  );
-};
+const ProdutoPage = createMarketingPage({
+  pageId: 'produto',
+  usePageIntro: useProdutoIntro,
+  title: 'Produto EVERRISE',
+  description:
+    'Conheca o produto da plataforma hospitalar autonoma.',
+  contentTitle: 'Destaques',
+  contentBody:
+    'Conteudo desta pagina em construcao. Timelines e cenas 3D podem ser adicionadas em pages/ProdutoPage/motion/.',
+});
 
 export default ProdutoPage;
-

@@ -1,82 +1,34 @@
-# 🎬 Motion Module
+# Motion Module (kernel)
 
-Módulo de animações imersivas para o projeto Ever-Rise Frontend.
+Infraestrutura compartilhada de animação. Timelines e cenas específicas ficam em `pages/<Page>/motion/`.
 
-## 📦 O que está incluído
+**Guia completo para implementar correções:** [`docs/10-guia-uso-animacoes.md`](../../docs/10-guia-uso-animacoes.md)  
+**Exemplos de código:** [`EXEMPLOS.md`](./EXEMPLOS.md)
+
+## Estrutura
 
 ```
 src/motions/
-├── canvas/           # Componentes Three.js (pronto para expansão)
-├── hooks/            # Hooks React para gerenciar animações
-│   ├── useGsap.js           # Gerenciador de animações GSAP
-│   ├── useThreeCanvas.js    # Inicialização de canvas Three.js
-│   └── useScrollAnimation.js # Animações de scroll
-├── utils/            # Utilitários de animação
-│   ├── math.js       # Cálculos vetoriais (lerp, distance, etc)
-│   └── timeline.js   # Timeline helpers (stagger, cascata, onda)
-├── configs/          # Configurações centralizadas
-│   └── index.ts      # Presets de easing, durações, cores
-├── types/            # Type definitions (TypeScript)
-├── services/         # Serviços de integração
-├── shaders/          # Arquivos GLSL customizados
-└── contexts/         # React Contexts
+├── configs/          # Presets, durações, easing
+├── types/            # TypeScript
+├── hooks/            # useGsap, useIntersectionReveal, useReducedMotion, useMarketingIntro
+├── lib/              # loadGsap, loadThree (dynamic import)
+├── primitives/       # MarketingMotionPage, ScrollReveal, MotionLayout
+├── r3f/              # React Three Fiber (ImmersiveCanvas, useR3FBridge)
+└── utils/            # math, timeline
 ```
 
-## 🚀 Início Rápido
+## Imports recomendados
 
-### 1. Instalar Dependências
-
-```bash
-npm install three gsap
+```js
+import { useGsap } from '@/motions/hooks/useGsap';
+import { loadGsap } from '@/motions/lib/loadGsap';
+import { DURATION } from '@/motions/configs';
+import MarketingMotionPage from '@/motions/primitives/MarketingMotionPage';
 ```
 
-### 2. Usar nos Componentes
+Evite `import { everything } from '@/motions'` em rotas sem animação.
 
-```jsx
-import { useGsap, useThreeCanvas } from '@/motions/hooks';
-import { DURATION, EASING_PRESETS } from '@/motions/configs';
+## Páginas marketing
 
-export const MyComponent = () => {
-  const { registerAnimation } = useGsap();
-
-  // Usar animações GSAP
-  useEffect(() => {
-    const animation = gsap.to(element, {
-      duration: DURATION.normal,
-      ease: EASING_PRESETS.easeOutCubic,
-    });
-
-    registerAnimation(animation);
-  }, []);
-
-  return <div>Seu componente aqui</div>;
-};
-```
-
-## 🎯 Funcionalidades
-
-- ✅ **GSAP Animations**: Timeline, scroll triggers, easing presets
-- ✅ **Three.js Canvas**: Base para cenas 3D
-- ✅ **Math Utilities**: Lerp, distance, normalize, cross product
-- ✅ **Cleanup Automático**: Previne memory leaks
-- ✅ **Configurações Centralizadas**: Presets reutilizáveis
-- ✅ **TypeScript Ready**: Type definitions prontas
-
-## 📖 Documentação
-
-Veja a documentação completa em `/docs/07-modulo-motions.md`
-
-Exemplos práticos em `/src/motions/EXEMPLOS.md`
-
-## 🔧 Próximas Etapas
-
-1. Instalar `three` e `gsap`
-2. Expandir componentes em `canvas/`
-3. Criar custom shaders em `shaders/`
-4. Integrar 21dev quando necessário
-5. Migrar completamente para TypeScript
-
----
-
-**Status**: Em desenvolvimento 🚀  
-**Última atualização**: Abril de 2026
+Landing, Vendas, Produto, Parceiros, Sustentabilidade — ver guia em `docs/10-guia-uso-animacoes.md`.

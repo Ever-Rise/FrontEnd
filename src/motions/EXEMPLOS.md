@@ -1,210 +1,228 @@
-/**
- * Exemplo: Como integrar animações Motion em uma página
- * 
- * Este arquivo demonstra como usar o módulo Motion
- * em seus componentes de página
- */
+# Exemplos — módulo Motion
 
-// ============================================
-// EXEMPLO 1: Animação simples com GSAP
-// ============================================
+Copie e adapte estes trechos ao corrigir páginas marketing.  
+Guia completo: [`docs/10-guia-uso-animacoes.md`](../../docs/10-guia-uso-animacoes.md).
 
-/*
-import { useEffect, useRef } from 'react';
-import { useGsap } from '@/motions/hooks';
-import { DURATION, EASING_PRESETS } from '@/motions/configs';
-import gsap from 'gsap';
+---
 
-export const AnimatedHero = () => {
+## 1. Página marketing completa (padrão Landing)
+
+```jsx
+import React, { useRef } from 'react';
+import MarketingMotionPage from '@/motions/primitives/MarketingMotionPage';
+import MarketingHeroSection from '@/motions/primitives/MarketingHeroSection';
+import MarketingContentSection from '@/motions/primitives/MarketingContentSection';
+import { useLandingIntro } from './motion/useLandingIntro';
+import motionStyles from '@/motions/primitives/marketingPage.module.css';
+
+export default function LandingPage() {
+  const heroRef = useRef(null);
   const titleRef = useRef(null);
-  const { registerAnimation } = useGsap({ debug: true });
+  const descriptionRef = useRef(null);
 
-  useEffect(() => {
-    const tl = gsap.timeline();
-
-    tl.to(titleRef.current, {
-      duration: DURATION.normal,
-      ease: EASING_PRESETS.easeOutCubic,
-      opacity: 1,
-      y: 0,
-    });
-
-    registerAnimation(tl);
-  }, [registerAnimation]);
+  useLandingIntro({ heroRef, titleRef, descriptionRef });
 
   return (
-    <h1 ref={titleRef} style={{ opacity: 0, y: 50 }}>
-      Bem-vindo ao projeto imersivo
-    </h1>
+    <MarketingMotionPage pageId="landing" className={motionStyles.container}>
+      <MarketingHeroSection
+        heroRef={heroRef}
+        titleRef={titleRef}
+        descriptionRef={descriptionRef}
+        title="Titulo"
+        description="Subtitulo"
+        className={motionStyles.hero}
+        titleClassName={motionStyles.heroTitle}
+        descriptionClassName={motionStyles.heroDescription}
+      />
+      <MarketingContentSection title="Secao">
+        Conteudo com scroll reveal.
+      </MarketingContentSection>
+    </MarketingMotionPage>
   );
-};
-*/
+}
+```
 
-// ============================================
-// EXEMPLO 2: Scroll Animation com ScrollTrigger
-// ============================================
+---
 
-/*
+## 2. GSAP customizado (sempre com loadGsap + useGsap)
+
+```jsx
 import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useScrollAnimation } from '@/motions/hooks';
-import { SCROLL_DEFAULTS, DURATION, EASING_PRESETS } from '@/motions/configs';
+import { loadGsap } from '@/motions/lib/loadGsap';
+import { useGsap } from '@/motions/hooks/useGsap';
+import { useReducedMotion } from '@/motions/hooks/useReducedMotion';
+import { DURATION, EASING_PRESETS } from '@/motions/configs';
 
-gsap.registerPlugin(ScrollTrigger);
+export function useHeroStagger() {
+  const listRef = useRef(null);
+  const reducedMotion = useReducedMotion();
+  const { registerAnimation } = useGsap();
 
-export const ScrollSection = () => {
+  useEffect(() => {
+    if (reducedMotion || !listRef.current) return undefined;
+
+    let cancelled = false;
+
+    (async () => {
+      const { gsap } = await loadGsap();
+      if (cancelled) return;
+
+      const items = listRef.current.querySelectorAll('[data-animate]');
+      const tl = gsap.from(items, {
+        opacity: 0,
+        y: 20,
+        stagger: 0.08,
+        duration: DURATION.fast,
+        ease: EASING_PRESETS.easeOutCubic,
+      });
+
+      registerAnimation(tl, 'hero-stagger');
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [reducedMotion, registerAnimation]);
+
+  return { listRef };
+}
+```
+
+---
+
+## 3. ScrollTrigger (pin / scrub)
+
+```jsx
+import { useEffect, useRef } from 'react';
+import { loadGsap } from '@/motions/lib/loadGsap';
+import { useGsap } from '@/motions/hooks/useGsap';
+import { useReducedMotion } from '@/motions/hooks/useReducedMotion';
+import { SCROLL_DEFAULTS } from '@/motions/configs';
+
+export function usePinnedSection() {
   const sectionRef = useRef(null);
-  const { triggerRef } = useScrollAnimation({ trigger: sectionRef });
+  const reducedMotion = useReducedMotion();
+  const { registerAnimation } = useGsap();
 
   useEffect(() => {
-    gsap.to(sectionRef.current, {
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: SCROLL_DEFAULTS.start,
-        end: SCROLL_DEFAULTS.end,
-        scrub: SCROLL_DEFAULTS.scrub,
-        markers: SCROLL_DEFAULTS.markers,
-      },
-      duration: DURATION.normal,
-      ease: EASING_PRESETS.easeOutCubic,
-      opacity: 1,
-      x: 0,
-    });
-  }, []);
+    if (reducedMotion || !sectionRef.current) return undefined;
 
-  return (
-    <section ref={sectionRef} style={{ opacity: 0, x: -100 }}>
-      Conteúdo que anima ao fazer scroll
-    </section>
-  );
-};
-*/
+    let cancelled = false;
+    let scrollTriggerInstance;
 
-// ============================================
-// EXEMPLO 3: Timeline com Stagger
-// ============================================
+    (async () => {
+      const { gsap, ScrollTrigger } = await loadGsap();
+      if (cancelled) return;
 
-/*
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { DURATION, EASING_PRESETS, STAGGER } from '@/motions/configs';
+      const anim = gsap.to(sectionRef.current, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: SCROLL_DEFAULTS.start,
+          end: '+=400',
+          scrub: SCROLL_DEFAULTS.scrub,
+          pin: true,
+        },
+        opacity: 1,
+      });
 
-export const AnimatedList = ({ items }) => {
-  const containerRef = useRef(null);
+      scrollTriggerInstance = anim.scrollTrigger;
+      registerAnimation(anim, 'pinned-section');
+    })();
 
-  useEffect(() => {
-    const elements = containerRef.current?.querySelectorAll('li');
+    return () => {
+      cancelled = true;
+      scrollTriggerInstance?.kill();
+    };
+  }, [reducedMotion, registerAnimation]);
 
-    gsap.to(elements, {
-      duration: DURATION.normal,
-      ease: EASING_PRESETS.easeOutCubic,
-      opacity: 1,
-      y: 0,
-      stagger: STAGGER.default,
-    });
-  }, []);
+  return { sectionRef };
+}
+```
 
-  return (
-    <ul ref={containerRef}>
-      {items.map((item, i) => (
-        <li key={i} style={{ opacity: 0, y: 20 }}>
-          {item}
-        </li>
-      ))}
-    </ul>
-  );
-};
-*/
+---
 
-// ============================================
-// EXEMPLO 4: Usar utilitários de Math
-// ============================================
+## 4. Revelação por viewport (sem GSAP)
 
-/*
-import { math } from '@/motions/utils';
+```jsx
+import { useRef } from 'react';
+import { useIntersectionReveal } from '@/motions/hooks/useIntersectionReveal';
 
-export const VectorCalculations = () => {
-  // Criar vetores
-  const pointA = math.vec3(0, 0, 0);
-  const pointB = math.vec3(10, 10, 10);
+export function MeuBloco() {
+  const ref = useRef(null);
 
-  // Calcular meio ponto (lerp)
-  const midPoint = math.lerp(pointA, pointB, 0.5);
-
-  // Calcular distância
-  const dist = math.distance(pointA, pointB);
-
-  // Normalizar direção
-  const direction = math.normalize(math.subtract(pointB, pointA));
-
-  // Mapear valor (0-100 para 0-1)
-  const normalized = math.map(50, 0, 100, 0, 1);
-
-  console.log({ midPoint, dist, direction, normalized });
-
-  return <div>Veja o console para cálculos vetoriais</div>;
-};
-*/
-
-// ============================================
-// EXEMPLO 5: Three.js Canvas Base
-// ============================================
-
-/*
-import { useEffect, useRef } from 'react';
-import { useThreeCanvas } from '@/motions/hooks';
-
-export const Scene3D = () => {
-  const { containerRef, initializeThree, startRenderLoop } = useThreeCanvas({
-    width: window.innerWidth,
-    height: window.innerHeight,
-    backgroundColor: '#000000',
+  useIntersectionReveal({
+    trigger: ref,
+    onEnter: () => ref.current?.classList.add('is-visible'),
+    onLeave: () => ref.current?.classList.remove('is-visible'),
   });
 
-  useEffect(() => {
-    initializeThree();
+  return <section ref={ref}>Conteudo</section>;
+}
+```
 
-    startRenderLoop(() => {
-      // Seu código de renderização Three.js aqui
-      // renderer.render(scene, camera);
-    });
-  }, [initializeThree, startRenderLoop]);
+---
 
+## 5. Cena 3D lazy na página
+
+```jsx
+// index.jsx da pagina
+import { lazy, Suspense } from 'react';
+import Loader from '@/components/common/Loader';
+
+const HeroScene = lazy(() => import('./motion/HeroScene'));
+
+export default function ProdutoPage() {
   return (
-    <div ref={containerRef} style={{ width: '100%', height: '100vh' }} />
+    <main>
+      <Suspense fallback={<Loader />}>
+        <HeroScene />
+      </Suspense>
+    </main>
   );
-};
-*/
+}
+```
 
-// ============================================
-// Instruções de Uso
-// ============================================
+```jsx
+// motion/HeroScene.jsx
+import { ImmersiveCanvas } from '@/motions/r3f';
 
-/*
-1. Descomente o exemplo que deseja testar
-2. Instale dependências: npm install three gsap
-3. Importe o componente em sua página
-4. Verifique o resultado no navegador
-
-Exemplos disponíveis:
-- AnimatedHero: Animação de entrada com GSAP
-- ScrollSection: Animação sincronizada ao scroll
-- AnimatedList: Stagger (efeito de onda) em lista
-- VectorCalculations: Demonstrar cálculos matemáticos
-- Scene3D: Canvas Three.js base (ainda não implementado)
-
-Documentação completa em: /docs/07-modulo-motions.md
-*/
-
-export const MotionExamples = () => {
+export default function HeroScene() {
   return (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
-      <h1>Motion Module - Exemplos Disponíveis</h1>
-      <p>Descomente os exemplos no arquivo para testar!</p>
-      <p>Veja /docs/07-modulo-motions.md para documentação completa</p>
-    </div>
+    <ImmersiveCanvas
+      style={{ width: '100%', height: '400px' }}
+    />
   );
-};
+}
+```
 
-export default MotionExamples;
+---
+
+## 6. Página app normal (sem motion pesado)
+
+```jsx
+// Login, Dashboard, etc. — sem @/motions/lib ou r3f
+import React from 'react';
+import styles from './styles.module.css';
+
+export default function LoginPage() {
+  return (
+    <main className={styles.container}>
+      <h1>Login</h1>
+    </main>
+  );
+}
+```
+
+---
+
+## 7. Constantes úteis
+
+```js
+import {
+  DURATION,
+  EASING_PRESETS,
+  SCROLL_DEFAULTS,
+  STAGGER,
+  ANIMATION_PRESETS,
+} from '@/motions/configs';
+```
