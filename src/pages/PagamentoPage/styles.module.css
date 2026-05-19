@@ -1,26 +1,29 @@
 .container {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #1a2238;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
 }
 
 .content {
     width: 1000px;
-    height: 750px;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     background: linear-gradient(325deg, #1a2238 35%, #3a7ca556 100%);
     border: #ffffff6b solid 1px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.548);
     border-radius: 30px;
     gap: 20px;
+    padding: 40px 32px;
+    box-sizing: border-box;
 }
 
 .confirmation {
@@ -32,174 +35,265 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 20px rgba(255, 255, 255, 0.397);
+    flex-shrink: 0;
+}
+
+.confirmation img {
+    width: 50px;
+    height: 50px;
 }
 
 .title {
     font-size: 33px;
     color: #0051ff;
     margin: 0;
+    text-align: center;
 }
 
 .description {
-    font-size: 23px;
+    font-size: 20px;
     color: #ffffff;
-    margin-top: 10px;
+    margin: 0;
     text-align: center;
     max-width: 400px;
+    line-height: 1.5;
 }
 
+/* ── Card branco ── */
 .fundo {
-    width: 70%;
-    height: 300px;
+    width: 75%;
     background-color: #fff;
     border-radius: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.separador {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+    margin: 0 20px;
 }
 
 .info {
-    width: 100%;
-    height: 100px;
     display: flex;
     flex-direction: row;
 }
 
-.pedido {
-    width: 50%;
-    height: 100px;
-}
-
+.pedido,
 .produto {
     width: 50%;
-    height: 100px;
+    padding: 20px 0 20px 28px;
+    box-sizing: border-box;
 }
 
 .entrega {
-    width: 50%;
-    height: 85px;
+    padding: 20px 28px;
+    box-sizing: border-box;
 }
 
 .pd {
     color: #000000c7;
-    margin-left: 20px;
-    margin-top: 20px;
-    font-weight: 100;
-    font-size: 28px;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 0 0 8px 0;
+    margin-left: 15px;
 }
 
 .cod {
     color: #0051ff;
     font-weight: 800;
-    margin-left: 20px;
-    font-size: 18px;
+    font-size: 20px;
+    margin: 0;
+    margin-right: 200px;
 }
 
 .guincho {
     color: #000000;
-    font-weight: 800;
-    margin-left: 20px;
-    font-size: 18px;
-    font-weight: 100;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+    margin-right: 120px;
 }
 
-.endereco {
-    height: 35px;
-    width: 400px;
+.entregaTitulo {
     color: #000000c7;
-    font-weight: 800;
-    margin-left: 20px;
-    font-size: 27px;
-    font-weight: 500;
-    margin-top: 17px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 0 0 8px 0;
 }
 
 .rua {
     color: #000000;
-    font-size: 20px;
-    margin-left: 20px;
-}
-
-.previsao {
-    height: 35px;
-    width: 400px;
-    color: #000000c7;
-    font-weight: 800;
-    margin-left: 20px;
-    font-size: 27px;
-    font-weight: 500;
+    font-size: 18px;
+    margin: 0;
+    text-align: left;
 }
 
 .carrinho {
     display: flex;
-    margin-left: 23px;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.caminhao {
+    width: 23px;
+    height: auto;
 }
 
 .dias {
     color: #000000;
-    font-size: 20px;
-    margin-left: 15px;
+    font-size: 18px;
+    margin: 0;
 }
 
-.caminhao {
-    width: 20px;
-}
-
+/* ── Email ── */
 .gmail {
     display: flex;
-    justify-content: center;
-    flex-direction: row;
+    align-items: center;
+    gap: 10px;
 }
 
 .foto {
     width: 20px;
     height: 18px;
-    margin-top: 9px;
-    margin-right: 20px;
+    flex-shrink: 0;
 }
 
 .atualizacoes {
     color: #fff;
-    font-size: 22px;
+    font-size: 18px;
+    margin: 0;
 }
 
+/* ── Botões ── */
 .buttons {
     display: flex;
-    gap: 30px;
+    gap: 16px;
+    width: 75%;
 }
 
-.button1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    border: none;
-    color: #fff;
-    text-shadow: 
-        0 0 2px #fff,
-        0 0 10px #fff;
-    font-weight: 600;
-    font-size: 18px;
-}
-
-.button2 {
-    width: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    border: none;
-    background-color: #2770be00;
-    border: 1px solid;
-    color: #fff;
-    font-weight: 700;
-    font-size: 18px;
-}
-
-.fundoButton{
-    width: 300px;
-    height: 60px;
+.fundoButton {
+    flex: 1;
+    height: 52px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
     border: none;
     background-color: #004ea0;
+    cursor: pointer;
+}
+
+.button1 {
+    color: #fff;
+    text-shadow: 0 0 2px #fff, 0 0 10px #fff;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.button2 {
+    flex: 1;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background-color: transparent;
+    border: 1px solid #ffffff80;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* ── Tablet (≤ 1024px) ── */
+@media (max-width: 1024px) {
+    .content {
+        width: 90%;
+        padding: 32px 24px;
+    }
+
+    .fundo {
+        width: 90%;
+    }
+
+    .buttons {
+        width: 90%;
+    }
+
+    .title {
+        font-size: 26px;
+    }
+
+    .description {
+        font-size: 17px;
+    }
+}
+
+/* ── Mobile (≤ 640px) ── */
+@media (max-width: 640px) {
+    .container {
+        padding: 1.5rem 1rem;
+    }
+
+    .content {
+        width: 100%;
+        padding: 24px 16px;
+        border-radius: 20px;
+        gap: 16px;
+    }
+
+    .confirmation {
+        width: 70px;
+        height: 70px;
+        border-radius: 14px;
+    }
+
+    .confirmation img {
+        width: 38px;
+        height: 38px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .description {
+        font-size: 14px;
+        max-width: 100%;
+    }
+
+    .fundo {
+        width: 100%;
+    }
+
+    .info {
+        flex-direction: column;
+    }
+
+    .pedido,
+    .produto {
+        width: 100%;
+    }
+
+    .buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .fundoButton,
+    .button2 {
+        width: 100%;
+        flex: unset;
+        height: 52px;
+    }
+
+    .atualizacoes {
+        font-size: 14px;
+    }
 }

@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
 import Header from '../../components/layout/Header';
 
 const CheckoutPage = () => {
+  const navigate = useNavigate();
   const [delivery, setDelivery] = React.useState('standard');
   const [paymentTab, setPaymentTab] = React.useState('card');
   const [formData, setFormData] = React.useState({
@@ -30,6 +32,7 @@ const CheckoutPage = () => {
     console.log('Dados do formulário:', { ...formData, delivery, paymentTab });
     // Exemplo: enviar para API
     // apiService.submitCheckout({ ...formData, delivery, paymentTab });
+    navigate('/carregamento-pagamento');
   };
 
   return (
