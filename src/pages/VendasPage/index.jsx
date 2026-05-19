@@ -1,7 +1,4 @@
-import { useRef } from "react";
-import MarketingMotionPage from "@/motions/primitives/MarketingMotionPage";
-import { useVendasIntro } from "./motion/useVendasIntro";
-import { useVendasHeroScroll } from "./motion/useVendasHeroScroll";
+// Componente de página simples — refs removidas por serem não usadas
 import heroImage from "@/assets/images/Vendas/ImgHero.svg";
 import heroVideo from "@/assets/images/Vendas/VideoHero.optimized.mp4";
 import styles from "./styles.module.css";
@@ -24,9 +21,9 @@ const highlights = [
             "Estruture a compra por fases, com implantação progressiva, treinamento e acompanhamento de uso.",
     },
     {
-        title: "Pronto para motion",
+        title: "Base pronta",
         description:
-            "A página já nasce com seções e âncoras estáveis para depois conectar GSAP, Framer Motion e gatilhos de scroll.",
+            "A página fica organizada por seção, sem dependência de motion para renderizar ou manter o conteúdo.",
     },
 ];
 
@@ -117,7 +114,7 @@ const faqItems = [
     },
     {
         question: "A página já está pronta para animações?",
-        answer: "Sim. Os blocos estão separados por seções, com refs e estrutura previsível para GSAP e Framer Motion.",
+        answer: "Ela está pronta para funcionar sem motion. As animações podem ser adicionadas depois, por seção, se necessário.",
     },
     {
         question: "Há suporte para implantação?",
@@ -129,53 +126,17 @@ const faqItems = [
     },
 ];
 
-// Componentes pequenos foram extraídos para arquivos próprios em
-// ./components/* para organizar o código e isolar estilos.
-
 export default function VendasPage() {
-    const heroRef = useRef(null);
-    const heroStageRef = useRef(null);
-    const copyRef = useRef(null);
-    const mediaFrameRef = useRef(null);
-    const imageRef = useRef(null);
-    const videoRef = useRef(null);
-    const titleRef = useRef(null);
-    const descriptionRef = useRef(null);
-    const highlightsRef = useRef(null);
-    const plansRef = useRef(null);
-    const useCasesRef = useRef(null);
-    const testimonialsRef = useRef(null);
-    const faqRef = useRef(null);
-    const ctaRef = useRef(null);
-
-    useVendasIntro({ heroRef, titleRef, descriptionRef });
-    useVendasHeroScroll({
-        sceneRef: heroRef,
-        copyRef,
-        heroStageRef,
-        mediaFrameRef,
-        imageRef,
-        videoRef,
-    });
-
     return (
-        <MarketingMotionPage pageId="vendas" className={styles.page}>
-            <section ref={heroRef} className={styles.heroShell} id="hero">
-                <div ref={heroStageRef} className={styles.heroStage}>
-                    <div ref={copyRef} className={styles.heroCopy}>
+        <main className={styles.page}>
+            <section className={styles.heroShell} id="hero">
+                <div className={styles.heroStage}>
+                    <div className={styles.heroCopy}>
                         <p className={styles.eyebrow}>Planos e vendas</p>
-                        <h1 ref={titleRef} className={styles.heroTitle}>
+                        <h1 className={styles.heroTitle}>
                             Mobilidade com segurança e dignidade
                         </h1>
-                        <p
-                            ref={descriptionRef}
-                            className={styles.heroDescription}
-                        >
-                            O hero começa como uma composição lateral e, ao
-                            scrollar, a imagem do lado direito se expande até
-                            virar um vídeo em tela cheia sincronizado com o
-                            movimento da página.
-                        </p>
+                    
                         <div className={styles.heroActions}>
                             <a className={styles.primaryAction} href="#planos">
                                 Ver como funciona
@@ -199,11 +160,11 @@ export default function VendasPage() {
                             />
                             <StatItem
                                 value="1"
-                                label="Hero pronto para scroll"
+                                label="Hero sem motion pesado"
                             />
                             <StatItem
                                 value="100%"
-                                label="Base pronta para GSAP e Framer"
+                                label="Layout pronto para evolução"
                             />
                         </dl>
                     </div>
@@ -212,48 +173,32 @@ export default function VendasPage() {
                         className={styles.heroAside}
                         aria-label="Visual do produto"
                     >
-                        <div className={styles.heroMediaCopy}>
-                            <p className={styles.mediaEyebrow}>
-                                Experiência interativa
-                            </p>
-                            <h2 className={styles.mediaTitle}>
-                                Uma abertura lateral que vira tela cheia no
-                                scroll
-                            </h2>
-                            <p className={styles.mediaDescription}>
-                                A imagem entra como peça de composição e, ao
-                                rolar, o vídeo assume a cena inteira sem ser
-                                comprimido pela hierarquia da coluna.
-                            </p>
+
+                        <div className={styles.mediaFrame}>
+                            <img
+                                className={styles.heroImage}
+                                src={heroImage}
+                                alt="Hero da EVERRISE em visual de produto"
+                            />
+                            <video
+                                className={styles.heroVideo}
+                                src={heroVideo}
+                                poster={heroImage}
+                                muted
+                                playsInline
+                                preload="auto"
+                                aria-hidden="true"
+                            />
+                            <div className={styles.mediaOverlay} />
                         </div>
                     </aside>
-
-                    <div ref={mediaFrameRef} className={styles.mediaFrame}>
-                        <img
-                            ref={imageRef}
-                            className={styles.heroImage}
-                            src={heroImage}
-                            alt="Hero da EVERRISE em visual de produto"
-                        />
-                        <video
-                            ref={videoRef}
-                            className={styles.heroVideo}
-                            src={heroVideo}
-                            poster={heroImage}
-                            muted
-                            playsInline
-                            preload="auto"
-                            aria-hidden="true"
-                        />
-                        <div className={styles.mediaOverlay} />
-                    </div>
                 </div>
             </section>
 
             <section
-                ref={highlightsRef}
                 className={styles.section}
                 aria-labelledby="beneficios-title"
+                id="beneficios"
             >
                 <div className={styles.sectionHeader}>
                     <p className={styles.sectionKicker}>Estrutura comercial</p>
@@ -261,9 +206,8 @@ export default function VendasPage() {
                         O que esta versão resolve agora
                     </h2>
                     <p className={styles.sectionLead}>
-                        O conteúdo foi separado em blocos menores para que você
-                        consiga codar por sessão, mover partes com facilidade e
-                        plugar animações onde fizer sentido.
+                        O conteúdo foi separado em blocos menores para manter a
+                        página simples de manter, sem motion global acoplado.
                     </p>
                 </div>
 
@@ -275,7 +219,6 @@ export default function VendasPage() {
             </section>
 
             <section
-                ref={plansRef}
                 className={styles.section}
                 aria-labelledby="planos-title"
                 id="planos"
@@ -299,11 +242,7 @@ export default function VendasPage() {
                 </div>
             </section>
 
-            <section
-                ref={useCasesRef}
-                className={styles.section}
-                aria-labelledby="casos-title"
-            >
+            <section className={styles.section} aria-labelledby="casos-title">
                 <div className={styles.sectionHeader}>
                     <p className={styles.sectionKicker}>Casos de uso</p>
                     <h2 id="casos-title" className={styles.sectionTitle}>
@@ -323,7 +262,6 @@ export default function VendasPage() {
             </section>
 
             <section
-                ref={testimonialsRef}
                 className={styles.section}
                 aria-labelledby="depoimentos-title"
             >
@@ -342,7 +280,6 @@ export default function VendasPage() {
             </section>
 
             <section
-                ref={faqRef}
                 className={styles.section}
                 aria-labelledby="faq-title"
                 id="faq"
@@ -362,7 +299,6 @@ export default function VendasPage() {
             </section>
 
             <section
-                ref={ctaRef}
                 className={styles.ctaSection}
                 id="contato"
                 aria-labelledby="cta-title"
@@ -375,9 +311,8 @@ export default function VendasPage() {
                     </h2>
                     <p className={styles.sectionLead}>
                         A base já está organizada por sessão. Agora você pode
-                        plugar animações de entrada, transições de cards e
-                        interações com Framer Motion sem precisar refazer o
-                        layout.
+                        plugar animações depois, se decidir reativar esse
+                        módulo.
                     </p>
                 </div>
 
@@ -390,6 +325,6 @@ export default function VendasPage() {
                     </a>
                 </div>
             </section>
-        </MarketingMotionPage>
+        </main>
     );
 }

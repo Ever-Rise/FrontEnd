@@ -5,6 +5,7 @@ import Loader from "../components/common/Loader";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 
+
 const LandingPage = lazy(() => import("../pages/LandingPage"));
 const SobrePage = lazy(() => import("../pages/SobrePage"));
 const ProdutoPage = lazy(() => import("../pages/ProdutoPage"));
