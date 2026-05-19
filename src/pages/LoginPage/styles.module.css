@@ -1,5 +1,3 @@
-
-
 .email{
   position: relative;
   width: 100%;
@@ -45,7 +43,6 @@ header p{
   background-image:
   radial-gradient(ellipse at top left, rgba(99,102,241,0.45) 0%, transparent 52%),
   radial-gradient(ellipse at bottom right, rgba(37,99,235,0.4) 0%, transparent 52%);
-  border-radius: 5px;
   margin-top: 50px;
   padding-top: 50px;
   border-radius: 10px;
@@ -67,13 +64,13 @@ header p{
   align-items: center;
   gap: 10px;
   font-size: 20px;
-  margin-left: 100px;
+  margin-left: 50px;
 }
 
 .linha::before,
 .linha::after{
   content: '';
-  width: 100px;
+  width: 140px;
   flex: none;
   border-top: 1px solid white;
 }
@@ -93,7 +90,7 @@ header p{
 }
 
 .lambel_email input{
-  border-radius: 5px ;
+  border-radius: 5px;
   padding-left: 10px;
   width: 500px;
   height: 30px;
@@ -177,7 +174,6 @@ header p{
   cursor: pointer;
   border: none;
   font-size: 17px;
-  
 }
 
 .google img{
@@ -188,7 +184,6 @@ header p{
 .log_in{
   margin-top: 10px;
 }
-
 
 .derma_login{
   color: #2D55FB;
@@ -202,3 +197,215 @@ header p{
   background-size: cover;
 }
 
+/* ===== TABLET RESPONSIVE — 481px até 1024px ===== */
+@media (min-width: 481px) and (max-width: 1024px) {
+
+  .email {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  /* .info é o wrapper do formulário — ocupa metade esquerda */
+  .info {
+    display: flex ;
+    width: 50%;
+    height: auto;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    order: 1;
+  }
+
+
+  /* .acao_login fica dentro do .info, ocupa todo o espaço dele */
+  .acao_login {
+    width: 100%;
+    height: auto;
+    min-height: unset;
+    margin-top: 0;
+    padding: 30px 20px;
+    border-radius: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  /* Imagem ocupa metade direita */
+  .imagem {
+    width: 50%;
+    height: 800px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    flex-shrink: 0;
+    margin-top: 100px;
+    order: 2;
+  }
+
+  .linha {
+  margin-left: 20px;
+  font-size: 16px;
+  width: 90%;
+  max-width: 320px;
+  justify-content: flex-start; /* alinha igual aos outros */
+}
+
+  .linha::before,
+  .linha::after {
+    width: 70px;
+  }
+
+  .criar {
+  width: 90%;
+  max-width: 320px;
+  display: block;
+  margin-left: 20px; /* mesmo margin dos outros */
+  margin-top: 10px;
+}
+
+  .lambel_email,
+  .lambel_senha {
+    margin-left: 20px;
+  }
+
+  .lambel_email input,
+  .inputWrapper,
+  .criar {
+    width: 90%;
+    max-width: 320px;
+  }
+
+  .inputWrapper input {
+    width: 100%;
+  }
+
+  .recuperar {
+    width: 90%;
+    max-width: 320px;
+    margin-left: 20px;
+  }
+
+  .google {
+    width: 90%;
+    max-width: 320px;
+    margin-left: 20px;
+  }
+}
+
+/* ===== MOBILE RESPONSIVE — max-width: 480px ===== */
+@media (max-width: 480px) {
+  .email {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px;
+    min-height: 100vh;
+  }
+
+  .imagem {
+    display: none;
+  }
+
+  .info {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+
+  #login-title {
+    font-size: 36px;
+  }
+
+  header p {
+    font-size: 16px;
+    padding: 0 10px;
+  }
+
+  .acao_login {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    padding: 30px 16px;
+    box-sizing: border-box;
+  }
+
+  .linha {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .linha::before,
+  .linha::after {
+    width: 60px;
+  }
+
+  .lambel_email,
+  .lambel_senha {
+    margin-left: 0;
+    margin-top: 20px;
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  .lambel_email label,
+  .lambel_senha label {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  .lambel_email input {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  .inputWrapper {
+    width: 100%;
+  }
+
+  .inputWrapper input {
+    height: 40px;
+    font-size: 16px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding-left: 10px;
+  }
+
+  .recuperar {
+    width: 100%;
+    margin-left: 0;
+    padding: 0 10px;
+    box-sizing: border-box;
+    font-size: 15px;
+  }
+
+  .criar {
+    width: calc(100% - 20px);
+    margin-left: 10px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .google {
+    width: calc(100% - 20px);
+    margin-left: 10px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .log_in {
+    text-align: center;
+    padding: 0 10px;
+  }
+}
