@@ -4,20 +4,31 @@ import styles from "./styles.module.css";
 const Footer = () => {
     return (
         <footer className={styles.footer}>
-            <div className={styles.container}>
-                <div className={styles.brandBlock}>
+            <div className={styles.footerInner}>
+                <section
+                    className={styles.brandSection}
+                    aria-labelledby="footer-brand"
+                >
                     <Link to="/" className={styles.brand}>
                         Ever Rise
                     </Link>
-                    <p className={styles.description}>
+                    <p id="footer-brand" className={styles.brandDescription}>
                         Controle operacional claro, rápido e focado em quem
                         precisa responder sem ruído.
                     </p>
-                </div>
+                </section>
 
-                <nav className={styles.nav} aria-label="Links do rodape">
-                    <div>
-                        <p className={styles.navTitle}>Empresa</p>
+                <nav className={styles.footerNav} aria-label="Links do rodapé">
+                    <section
+                        className={styles.linkGroup}
+                        aria-labelledby="footer-company-links"
+                    >
+                        <h2
+                            id="footer-company-links"
+                            className={styles.linkGroupTitle}
+                        >
+                            Empresa
+                        </h2>
                         <ul className={styles.list}>
                             <li>
                                 <Link to="/sobre" className={styles.link}>
@@ -35,10 +46,18 @@ const Footer = () => {
                                 </Link>
                             </li>
                         </ul>
-                    </div>
+                    </section>
 
-                    <div>
-                        <p className={styles.navTitle}>Produto</p>
+                    <section
+                        className={styles.linkGroup}
+                        aria-labelledby="footer-product-links"
+                    >
+                        <h2
+                            id="footer-product-links"
+                            className={styles.linkGroupTitle}
+                        >
+                            Produto
+                        </h2>
                         <ul className={styles.list}>
                             <li>
                                 <Link to="/register" className={styles.link}>
@@ -56,7 +75,7 @@ const Footer = () => {
                                 </Link>
                             </li>
                         </ul>
-                    </div>
+                    </section>
                 </nav>
             </div>
 

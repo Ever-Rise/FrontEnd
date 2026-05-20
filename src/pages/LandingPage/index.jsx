@@ -15,7 +15,7 @@ const LandingPage = () => {
         <div className={styles.page}>
             <Header />
 
-            <main className={styles.main}>
+            <main className={styles.main} style={{ paddingTop: "76px" }}>
                 <HeroSection />
                 <ProcessSection />
                 <StorySection />
