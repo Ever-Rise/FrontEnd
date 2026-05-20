@@ -1,13 +1,5 @@
-import React from 'react';
-import MotionLayout from './MotionLayout.jsx';
+import React from "react";
 
-/**
- * Wrapper Framer Motion para páginas marketing (não usar no router global).
- */
-export default function MarketingMotionPage({ children, pageId, className }) {
-  return (
-    <MotionLayout id={pageId}>
-      <main className={className}>{children}</main>
-    </MotionLayout>
-  );
+export default function MarketingMotionPage({ children, className }) {
+    return <main className={className}>{children}</main>;
 }

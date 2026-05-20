@@ -1,0 +1,46 @@
+.section {
+    position: relative;
+    z-index: 1;
+    width: min(1240px, calc(100% - 2rem));
+    margin: 0 auto;
+    display: grid;
+    gap: 1.4rem;
+    padding-top: 4rem;
+}
+
+.sectionHeader {
+    display: grid;
+    gap: 0.7rem;
+    max-width: 58rem;
+}
+
+.sectionKicker {
+    margin: 0;
+    color: #00bbff;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.sectionTitle {
+    margin: 0;
+    font-family: Montserrat, Poppins, Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.18);
+    font-size: clamp(1.9rem, 3vw, 3.6rem);
+    line-height: 1.04;
+}
+
+.faqList {
+    display: grid;
+    gap: 0.85rem;
+}
+
+@media (max-width: 1120px) {
+    .section {
+        width: min(1240px, calc(100% - 1rem));
+    }
+}

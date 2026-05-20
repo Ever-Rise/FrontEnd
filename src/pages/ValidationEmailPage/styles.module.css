@@ -1,4 +1,3 @@
-
 .validacao {
   min-height: 100vh;
   display: flex;
@@ -10,7 +9,6 @@
   radial-gradient(ellipse at bottom right, rgba(37,99,235,0.4) 0%, transparent 52%);
   font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   padding: 24px;
-  
 }
 
 .pergunta {
@@ -213,4 +211,109 @@
 .voltar nav a:hover img {
   opacity: 1;
   transform: translateX(-3px);
+}
+
+/* ===== TABLET RESPONSIVE — 481px até 1024px ===== */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .validacao {
+    padding: 32px 24px;
+    align-items: center;
+  }
+
+  .pergunta {
+    max-width: 500px;
+  }
+
+  .acao_validacao {
+    padding: 36px 28px 32px;
+  }
+
+  .acao_validacao > h1 {
+    font-size: 2rem;
+  }
+
+  .acao_validacao > p {
+    font-size: 0.9rem;
+    max-width: 380px;
+  }
+
+  .acao_validacao figure {
+    width: 100px;
+    height: 100px;
+  }
+
+  .acao_validacao figure img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .btn_reenviar {
+    padding: 16px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ===== MOBILE RESPONSIVE — max-width: 480px ===== */
+@media (max-width: 480px) {
+  .validacao {
+    padding: 20px 16px;
+    align-items: flex-start;
+  }
+
+  .pergunta {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .acao_validacao {
+    padding: 28px 16px 24px;
+  }
+
+  .acao_validacao > h1 {
+    font-size: 1.7rem;
+    letter-spacing: -0.5px;
+  }
+
+  .acao_validacao > p {
+    font-size: 0.85rem;
+    max-width: 100%;
+    margin: 0 0 24px;
+  }
+
+  .acao_validacao figure {
+    width: 90px;
+    height: 90px;
+  }
+
+  .acao_validacao figure img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .btn_email {
+    padding: 14px 14px;
+    gap: 12px;
+  }
+
+  .btn_email img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .btn_email_texto h2 {
+    font-size: 0.85rem;
+  }
+
+  .btn_email_texto p {
+    font-size: 0.75rem;
+  }
+
+  .btn_reenviar {
+    padding: 16px 20px;
+    font-size: 0.95rem;
+  }
+
+  .voltar nav a {
+    font-size: 0.82rem;
+  }
 }
