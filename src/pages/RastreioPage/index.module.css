@@ -496,4 +496,92 @@
         min-height: 200px;
         max-height: 260px;
     }
+
+    /* ── INFO CARDS ── */
+    .infoCard {
+        padding: 14px;
+    }
+
+    .infoHdrLabel {
+        font-size: 16px;
+    }
+
+    .addrLine {
+        font-size: 14px;
+    }
+
+    .payName {
+        font-size: 15px;
+    }
+
+    .paySub {
+        font-size: 12px;
+    }
+
+    .payTotalLbl {
+        font-size: 14px;
+    }
+
+    .payTotalVal {
+        font-size: 16px;
+    }
+
+    .payIco {
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+    }
+
+    /* ── TABLE ── */
+    .tableCard {
+        padding: 16px 12px;
+        overflow-x: auto;
+    }
+
+    .tableTitle {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .items {
+        table-layout: fixed;
+        min-width: 480px;
+    }
+
+    .items th:first-child  { width: 36%; }
+    .items th:nth-child(2) { width: 22%; }
+    .items th:nth-child(3) { width: 20%; }
+    .items th:nth-child(4) { width: 22%; }
+
+    .items th {
+        font-size: 10px;
+        letter-spacing: 0.6px;
+        padding: 0 4px 10px;
+        white-space: nowrap;
+    }
+
+    .items td {
+        font-size: 12px;
+        padding: 12px 4px 0;
+    }
+
+    .items td:not(:first-child) {
+        font-size: 12px;
+    }
+
+    .itemIconBox {
+        width: 24px;
+        height: 24px;
+        font-size: 13px;
+    }
+
+    .itemCell {
+        gap: 6px;
+    }
+
+    .loteBadge {
+        font-size: 10px;
+        padding: 3px 6px;
+        white-space: nowrap;
+    }
 }
