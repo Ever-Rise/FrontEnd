@@ -1,0 +1,92 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    width: 100%;
+    height: 100%;
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px 32px;
+}
+
+.card_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.card_titulo {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+}
+
+.dropdown_wrapper {
+    position: relative;
+}
+
+.dropdown_btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f1f3f5;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    color: #333;
+}
+
+.dropdown_menu {
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    z-index: 10;
+    min-width: 160px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.dropdown_item {
+    padding: 8px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    color: #333;
+    border-radius: 6px;
+}
+
+.dropdown_item:hover {
+    background: #f8f9fa;
+}
+
+.dropdown_item_ativo {
+    color: #7F77DD;
+    font-weight: 600;
+}
+
+.tooltip {
+    background: #0f1623;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    padding: 8px 14px;
+}
+
+.tooltip_label {
+    font-size: 12px;
+    color: #000000;
+    margin-bottom: 4px;
+}
+
+.tooltip_valor {
+    font-size: 13px;
+    color: #000000;
+    font-weight: 600;
+}

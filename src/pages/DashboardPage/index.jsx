@@ -1,110 +1,139 @@
-import React, { useEffect } from "react";
-import { useGuincho } from "../../hooks/useGuincho";
-import { useTelemetry } from "../../hooks/useTelemetry";
-import {
-  formatBattery,
-  formatDateTime,
-  formatEquipmentStatus,
-} from "../../utils/formatters";
-import { EQUIPMENT_STATES } from "../../utils/constants";
+import React from "react";
 import styles from "./styles.module.css";
+import bateria from "../../assets/icons/DashboardPage/Bateria.png";
+import inclinacao from "../../assets/icons/DashboardPage/inclinação.png";
+import wifi from "../../assets/icons/DashboardPage/wifi.png";
+import status from "../../assets/icons/DashboardPage/status.png";
+import ponta from "../../assets/icons/DashboardPage/ponta.png";
+import Graficos from "./Graficos";
 
 const DashboardPage = () => {
-  const { status, battery, connectionQuality, fetchGuincho, listenTelemetry } =
-    useGuincho();
+    return (
+        <main className={styles.container}>
+            <section className={styles.visao_geral}>
+                <div className={styles.cabecalho}>
+                    <h1>Visão Geral do Sistema</h1>
+                    <div className={styles.monitoramento}>
+                        <h2>Monitoramento em Tempo Real</h2>
+                        <p className={styles.status}> • SYSTEM HEALTH NOMINAL</p>
+                    </div>
+                </div>
 
-  const { fsrReading, obstacleDetected, anomalyAlert, lastUpdated, connect } =
-    useTelemetry();
+                <div className={styles.cards}>
+                    <div className={styles.card}>
+                        <div className={styles.bateria}>
+                            <h3>BATERIA</h3>
+                            <img src={bateria} alt="Ícone de bateria" />
+                        </div>
+                        <p className={styles.info}>78%</p>
+                        <div className={styles.carregamento}>
+                            <div className={styles.nivel}></div>
+                        </div>
+                        <div className={styles.duracao}>
+                            <p className={styles.tempo}>4h 30min restantes</p>
+                            <p className={styles.capacidade}>NORMAL</p>
+                        </div>
+                    </div>
 
-  useEffect(() => {
-    fetchGuincho();
-    listenTelemetry();
-    connect();
-  }, [fetchGuincho, listenTelemetry, connect]);
+                    <div className={styles.card}>
+                        <div className={styles.bateria}>
+                            <h3>CONEXÃO</h3>
+                            <img src={wifi} alt="Ícone de conexão" />
+                        </div>
+                        <p className={styles.info}>WI-FI</p>
+                        <p className={styles.rede}> • Ótima - 45ms</p>
+                        <p className={styles.qualidade}>Qualidade: Excelente</p>
+                    </div>
 
-  const isEmergency = status === EQUIPMENT_STATES.EMERGENCIA;
+                    <div className={styles.card}>
+                        <div className={styles.bateria}>
+                            <h3>STATUS</h3>
+                            <img src={status} alt="Ícone de status" />
+                        </div>
+                        <p className={styles.info}>Pronto</p>
+                        <p className={styles.comando}>Sistema aguardando comando</p>
+                        <p className={styles.modo}>MODO: ESTACIONÁRIO</p>
+                    </div>
 
-  return (
-    <main className={styles.wrapper} role="main">
-      <header className={styles.header}>
-        <h1 className={styles.title}>Painel Operacional do Guincho</h1>
-        <p className={styles.subtitle}>
-          Monitoramento ao vivo de bateria, telemetria, obstaculos e estado do
-          equipamento.
-        </p>
-      </header>
+                    <div className={styles.card}>
+                        <div className={styles.bateria}>
+                            <h3>INCLINAÇÃO</h3>
+                            <img src={inclinacao} alt="Ícone de inclinação" />
+                        </div>
+                        <p className={styles.info}>12,5</p>
+                        <p className={styles.graus}>Graus relativos ao solo</p>
+                    </div>
+                </div>
 
-      <section className={styles.dashboardGrid} role="region">
-        <article className={styles.infoCard}>
-          <span className={styles.label}>Estado Atual</span>
-          <strong className={styles.strong}>
-            {formatEquipmentStatus(status)}
-          </strong>
-        </article>
+                <div className={styles.acoes}>
+                    <button className={styles.controle}>
+                        <img src={ponta} alt="Ícone de controle" />
+                        <p className={styles.texto_botao}>INICIAR CONTROLE</p>
+                    </button>
+                    <button className={styles.sessao}>INICIAR SESSÃO</button>
+                </div>
+            </section>
 
-        <article className={styles.infoCard}>
-          <span className={styles.label}>Bateria</span>
-          <strong className={styles.strong}>{formatBattery(battery)}</strong>
-        </article>
+            <section className={styles.alertas}>
+                <div className={styles.alertas_header}>
+                    <h2 className={styles.titulo_alertas}>Normal</h2>
+                    <button type="button" className={styles.alerta}>• 0 ALERTAS ATIVOS</button>
+                    <button type="button" className={styles.ver_alertas}>VER ALERTAS</button>
+                </div>
+                <div className={styles.alerta_status}>
+                    <span className={styles.bolinha}></span>
+                    <p className={styles.sem_alertas}>Status: Ativo. Nenhuma anomalia detectada nas últimas 24 horas.</p>
+                </div>
+            </section>
 
-        <article className={styles.infoCard}>
-          <span className={styles.label}>Qualidade de Conexao</span>
-          <strong className={styles.strong}>
-            {Number(connectionQuality || 0)}%
-          </strong>
-        </article>
+            <section className={styles.graficos}>
+                <Graficos />
+            </section>
 
-        <article className={styles.infoCard}>
-          <span className={styles.label}>Leitura FSR (carga)</span>
-          <strong className={styles.strong}>
-            {Number(fsrReading || 0).toFixed(1)} N
-          </strong>
-        </article>
+            {/* ÚLTIMA SESSÃO */}
+            <section className={styles.ultima_sessao}>
+                <div className={styles.sessao_card}>
 
-        <article className={styles.infoCard}>
-          <span className={styles.label}>Deteccao de Obstaculo</span>
-          <strong className={styles.strong}>
-            {obstacleDetected ? "Obstaculo detectado" : "Area livre"}
-          </strong>
-        </article>
+                    <div className={styles.sessao_topo}>
+                        <div>
+                            <p className={styles.sessao_label}>ÚLTIMA SESSÃO</p>
+                            <h2 className={styles.sessao_titulo}>Hoje · 14h32</h2>
+                        </div>
+                        <span className={styles.sessao_icone}>🕐</span>
+                    </div>
 
-        <article className={styles.infoCard}>
-          <span className={styles.label}>Ultima Atualizacao</span>
-          <strong className={styles.strong}>
-            {formatDateTime(lastUpdated)}
-          </strong>
-        </article>
-      </section>
+                    <div className={styles.sessao_linha}>
+                        <p className={styles.sessao_chave}>Duração</p>
+                        <p className={styles.sessao_valor}>45 min</p>
+                    </div>
+                    <div className={styles.sessao_linha}>
+                        <p className={styles.sessao_chave}>Distância percorrida</p>
+                        <p className={styles.sessao_valor}>1.240 m</p>
+                    </div>
+                    <div className={styles.sessao_linha}>
+                        <p className={styles.sessao_chave}>Performance</p>
+                        <p className={styles.sessao_valor_verde}>Normal</p>
+                    </div>
+                    <div className={styles.sessao_linha}>
+                        <p className={styles.sessao_chave}>Operador</p>
+                        <p className={styles.sessao_valor}>JS-401</p>
+                    </div>
+                    <div className={styles.sessao_linha}>
+                        <p className={styles.sessao_chave}>Status final</p>
+                        <p className={styles.sessao_valor_azul}>Concluído com Sucesso</p>
+                    </div>
+                    <div className={styles.sessao_linha}>
+                        <p className={styles.sessao_chave}>Observações</p>
+                        <p className={styles.sessao_valor}>Calibragem de sensores realizada no início.</p>
+                    </div>
 
-      {anomalyAlert ? (
-        <div className={styles.alertTag} role="status">
-          Alerta de anomalia:{" "}
-          {anomalyAlert.message || "Variacao fora do padrao"}
-        </div>
-      ) : null}
+                    <button className={styles.sessao_btn}>VER RELATÓRIO COMPLETO</button>
 
-      {isEmergency ? (
-        <div
-          className={styles.emergencyOverlay}
-          role="alertdialog"
-          aria-modal="true"
-          aria-label="Emergencia do equipamento"
-          data-emergency="true"
-        >
-          <div className={styles.emergencyContent}>
-            <h2>EMERGENCIA DETECTADA</h2>
-            <p>
-              Interrompa imediatamente a operacao e acione a equipe tecnica no
-              local.
-            </p>
-            <button className={styles.emergencyButton} type="button">
-              PARADA DE EMERGENCIA
-            </button>
-          </div>
-        </div>
-      ) : null}
-    </main>
-  );
+                </div>
+            </section>
+
+        </main>
+    );
 };
 
 export default DashboardPage;
