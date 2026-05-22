@@ -1,15 +1,22 @@
-import { createMarketingPage } from '../shared/createMarketingPage';
-import { useParceirosIntro } from './motion/useParceirosIntro';
+import Header from "../../components/layout/Header";
+import './styles.module.css'
 
-const ParceirosPage = createMarketingPage({
-  pageId: 'parceiros',
-  usePageIntro: useParceirosIntro,
-  title: 'Rede de Parceiros',
-  description:
-    'Parceiros da plataforma hospitalar autonoma EVERRISE.',
-  contentTitle: 'Parcerias',
-  contentBody:
-    'Conteudo desta pagina em construcao. Scroll reveal e intro GSAP ativos nesta rota.',
-});
 
-export default ParceirosPage;
+function index() {
+ return (
+
+  <main>
+    <Header/>
+      <section>
+        
+      </section>
+
+
+
+
+  </main>
+
+ )
+}
+
+export default index
