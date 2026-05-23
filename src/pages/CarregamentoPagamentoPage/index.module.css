@@ -32,7 +32,6 @@ p {
     color: #fff;
     font-size: 25px;
     margin-top: 20px;
-    align-items: center;
     text-align: center;
 }
 
@@ -102,25 +101,33 @@ p {
     margin-bottom: 40px;
 }
 
+/* CÍRCULO EXTERNO */
 .spinRing {
     position: absolute;
     top: 50%;
     left: 50%;
-    animation: spin 1.2s linear infinite;
+    animation: spinLeft 1.2s linear infinite;
 }
 
+/* SETAS */
 .syncIcon {
     width: 22px;
     height: 22px;
     position: absolute;
     top: 50%;
     left: 50%;
-    animation: spin 2s linear infinite;
+    animation: spinLeft 2s linear infinite;
 }
 
-@keyframes spin {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to   { transform: translate(-50%, -50%) rotate(360deg); }
+/* ANIMAÇÃO DOS DOIS */
+@keyframes spinLeft {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(-360deg);
+    }
 }
 
 /* ── Tablet (≤ 1024px) ── */

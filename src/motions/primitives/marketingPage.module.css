@@ -11,16 +11,12 @@
 .heroTitle {
   color: var(--color-baltic-blue);
   font-family: var(--font-display);
-  opacity: 0;
-  transform: translateY(24px);
 }
 
 .heroDescription {
   color: var(--color-graphite);
   margin-top: 1rem;
   max-width: 42rem;
-  opacity: 0;
-  transform: translateY(24px);
 }
 
 .revealSection {
@@ -42,7 +38,7 @@
 @media (prefers-reduced-motion: reduce) {
   .heroTitle,
   .heroDescription {
-    opacity: 1;
+    opacity: inherit;
     transform: none;
   }
 }

@@ -1,16 +1,31 @@
-let gsapPromise = null;
+const noopTimeline = {
+  to: () => noopTimeline,
+  from: () => noopTimeline,
+  fromTo: () => noopTimeline,
+  add: () => noopTimeline,
+  kill: () => undefined,
+  pause: () => undefined,
+  play: () => undefined,
+  scrollTrigger: {
+    kill: () => undefined,
+  },
+};
 
-/**
- * Carrega GSAP + ScrollTrigger sob demanda (code-split).
- */
+const noopGsap = {
+  set: () => undefined,
+  timeline: () => ({ ...noopTimeline }),
+  fromTo: () => ({ ...noopTimeline }),
+  from: () => ({ ...noopTimeline }),
+  to: () => ({ ...noopTimeline }),
+  registerPlugin: () => undefined,
+};
+
 export async function loadGsap() {
-  if (!gsapPromise) {
-    gsapPromise = (async () => {
-      const { gsap } = await import('gsap');
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-      gsap.registerPlugin(ScrollTrigger);
-      return { gsap, ScrollTrigger };
-    })();
-  }
-  return gsapPromise;
+  return {
+    gsap: noopGsap,
+    ScrollTrigger: {
+      refresh: () => undefined,
+      kill: () => undefined,
+    },
+  };
 }
