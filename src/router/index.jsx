@@ -25,6 +25,7 @@ const NovoPacientePage = lazy(() => import("../pages/NovoPaciente"));
 const GerenciarPacientePage = lazy(() => import("../pages/GerenciarPaciente"));
 const PerfilFamiliaPage = lazy(() => import("../pages/PerfilFamilia"));
 const PerfilOperadorPage = lazy(() => import("../pages/PerfilOperador"));
+const PerfilAdminPage = lazy(() => import("../pages/PerfilAdmin"));
 const CarregamentoPagamentoPage = lazy(
     () => import("../pages/CarregamentoPagamentoPage"),
 );
@@ -155,6 +156,10 @@ const router = createBrowserRouter([
                     {
                         path: "/perfil-operador",
                         element: withSuspense(PerfilOperadorPage),
+                    },
+                    {
+                        path: "/perfil-admin",
+                        element: withSuspense(PerfilAdminPage),
                     },
                     { path: "/controle", element: withSuspense(ControlePage) },
                     { path: "/relatorio", element: withSuspense(RelatorioPage) },
