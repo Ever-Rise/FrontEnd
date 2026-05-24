@@ -23,6 +23,7 @@ const CheckoutPage = lazy(() => import("../pages/CheckoutPage"));
 const PagamentoPage = lazy(() => import("../pages/PagamentoPage"));
 const NovoPacientePage = lazy(() => import("../pages/NovoPaciente"));
 const GerenciarPacientePage = lazy(() => import("../pages/GerenciarPaciente"));
+const PerfilFamiliaPage = lazy(() => import("../pages/PerfilFamilia"));
 const CarregamentoPagamentoPage = lazy(
     () => import("../pages/CarregamentoPagamentoPage"),
 );
@@ -145,6 +146,10 @@ const router = createBrowserRouter([
                     {
                         path: "/gerenciar-paciente",
                         element: withSuspense(GerenciarPacientePage),
+                    },
+                    {
+                        path: "/perfil-familia",
+                        element: withSuspense(PerfilFamiliaPage),
                     },
                     { path: "/controle", element: withSuspense(ControlePage) },
                     { path: "/relatorio", element: withSuspense(RelatorioPage) },
