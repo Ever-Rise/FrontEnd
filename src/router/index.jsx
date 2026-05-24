@@ -21,6 +21,8 @@ const RelatorioPage = lazy(() => import("../pages/RelatorioPage"));
 const ManualPage = lazy(() => import("../pages/ManualPage"));
 const CheckoutPage = lazy(() => import("../pages/CheckoutPage"));
 const PagamentoPage = lazy(() => import("../pages/PagamentoPage"));
+const NovoPacientePage = lazy(() => import("../pages/NovoPaciente"));
+const GerenciarPacientePage = lazy(() => import("../pages/GerenciarPaciente"));
 const CarregamentoPagamentoPage = lazy(
     () => import("../pages/CarregamentoPagamentoPage"),
 );
@@ -135,6 +137,14 @@ const router = createBrowserRouter([
                     {
                         path: "/dashboard",
                         element: withSuspense(DashboardPage),
+                    },
+                    {
+                        path: "/novo-paciente",
+                        element: withSuspense(NovoPacientePage),
+                    },
+                    {
+                        path: "/gerenciar-paciente",
+                        element: withSuspense(GerenciarPacientePage),
                     },
                     { path: "/controle", element: withSuspense(ControlePage) },
                     { path: "/relatorio", element: withSuspense(RelatorioPage) },
