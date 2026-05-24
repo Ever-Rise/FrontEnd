@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import HeaderDashboard from "../../components/layout/Header-Dashboard";
 import iconBadge from "../../assets/icons/NovoPaciente/icon-badge.svg";
 import iconBotaoSalvar from "../../assets/icons/NovoPaciente/icon-botao-salvar.svg";
@@ -17,6 +18,7 @@ import iconVoltar from "../../assets/icons/NovoPaciente/icon-voltar.svg";
 import styles from "./style.module.css";
 
 export default function NewPatient() {
+  const navigate = useNavigate();
   const [gender, setGender] = useState("Feminino");
   const [status, setStatus] = useState("Aguardando Triagem");
 
@@ -36,7 +38,7 @@ export default function NewPatient() {
         />
 
         <div className={styles.pageHeader}>
-          <button type="button" className={styles.backButton}>
+          <button type="button" className={styles.backButton} onClick={() => navigate("/gerenciar-paciente")}>
             <img src={iconVoltar} alt="" aria-hidden="true" />
             Voltar
           </button>

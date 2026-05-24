@@ -36,13 +36,8 @@ body,
 
 body {
   background:
-    radial-gradient(
-      circle at 10% 10%,
-      rgba(147, 233, 190, 0.35),
-      transparent 30%
-    ),
-    radial-gradient(circle at 85% 0%, rgba(24, 95, 165, 0.2), transparent 35%),
-    var(--color-beige);
+    radial-gradient(circle at 85% 0%, rgba(24, 95, 165, 0.12), transparent 35%),
+    linear-gradient(180deg, #fbfbf4 0%, #f5f1dc 100%);
   color: var(--color-graphite);
   font-family: var(--font-body);
   line-height: 1.5;
