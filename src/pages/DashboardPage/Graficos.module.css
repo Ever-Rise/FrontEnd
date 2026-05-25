@@ -22,7 +22,7 @@
 .card_titulo {
     font-size: 20px;
     font-weight: 700;
-    color: #111;
+    color: #fff;
     margin: 0;
 }
 
@@ -40,7 +40,7 @@
     padding: 6px 12px;
     font-size: 13px;
     cursor: pointer;
-    color: #333;
+    color: #fff;
 }
 
 .dropdown_menu {
@@ -59,7 +59,7 @@
     padding: 8px 14px;
     font-size: 13px;
     cursor: pointer;
-    color: #333;
+    color: #fff;
     border-radius: 6px;
 }
 
@@ -68,25 +68,25 @@
 }
 
 .dropdown_item_ativo {
-    color: #7F77DD;
+    color: #ffffff;
     font-weight: 600;
 }
 
 .tooltip {
     background: #0f1623;
-    border: 1px solid #000000;
+    border: 1px solid #ffffff;
     border-radius: 8px;
     padding: 8px 14px;
 }
 
 .tooltip_label {
     font-size: 12px;
-    color: #000000;
+    color: #ffffff;
     margin-bottom: 4px;
 }
 
 .tooltip_valor {
     font-size: 13px;
-    color: #000000;
+    color: #ffffff;
     font-weight: 600;
 }

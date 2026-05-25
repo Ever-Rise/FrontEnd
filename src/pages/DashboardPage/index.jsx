@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./styles.module.css";
+import Header from "../../components/layout/Header";
 import bateria from "../../assets/icons/DashboardPage/Bateria.png";
 import inclinacao from "../../assets/icons/DashboardPage/inclinação.png";
 import wifi from "../../assets/icons/DashboardPage/wifi.png";
@@ -10,6 +11,7 @@ import Graficos from "./Graficos";
 const DashboardPage = () => {
     return (
         <main className={styles.container}>
+            <Header />
             <section className={styles.visao_geral}>
                 <div className={styles.cabecalho}>
                     <h1>Visão Geral do Sistema</h1>
