@@ -12,11 +12,11 @@ import GitHub from '../../assets/icons/SobreNos/github.svg';
 import LinkedIn from '../../assets/icons/SobreNos/linkedln.svg';
 import Instagram from '../../assets/icons/SobreNos/Instagram.svg';
 import Link from '../../assets/icons/SobreNos/link.svg';
-import insta from '../../assets/icons/SobreNos/insta.svg';
+import Insta from '../../assets/icons/SobreNos/insta.svg';
 import FotoAnderson from '../../assets/images/SobreNos/foto_anderson.svg';
-import FotoJoao from '../../assets/images/SobreNos/Foto_Joao_Pedro.svg';
-import FotoNalbert from '../../assets/images/SobreNos/foto_nalbert.svg';
-import FotoDuda from '../../assets/images/SobreNos/foto_maria_eduarda.svg';
+import FotoJoao from '../../assets/images/SobreNos/Foto_Joao.svg';
+import FotoNalbert from '../../assets/images/SobreNos/Foto_Nalbert.svg';
+import FotoDuda from '../../assets/images/SobreNos/Foto_Maria_Eduarda.svg';
 import FotoLeticia from '../../assets/images/SobreNos/foto_leticia.svg';
 import FotoKaue from '../../assets/images/SobreNos/foto_kaue.svg';
 import FotoJoaoVictor from '../../assets/images/SobreNos/foto_joao_vitor.svg';
@@ -26,6 +26,9 @@ import ODS9 from '../../assets/images/SobreNos/ODS9.svg';
 import ODS12 from '../../assets/images/SobreNos/ODS12.svg';
 import ODS17 from '../../assets/images/SobreNos/ODS17.svg';
 import FotoLipe from '../../assets/images/SobreNos/fotorafaelipe.jpeg';
+import Missao from '../../assets/images/SobreNos/missao.svg';
+import Visao from '../../assets/images/SobreNos/visao.svg';
+import Valores from '../../assets/images/SobreNos/valores.svg';
 import MVV from '../../assets/images/SobreNos/imagem_MVV.svg';
 import Foto1 from '../../assets/images/SobreNos/foto1.jpeg';
 import Foto2 from '../../assets/images/SobreNos/foto2.jpeg';
@@ -104,22 +107,21 @@ const SobrePage = () => {
       </section>
       <section className={styles.section_mvv_content}>
         <div className={styles.div_mvv}>
-          <img src={MVV} alt="imagem missão" className={styles.img_mvv}/>
+          <img src={Missao} alt="imagem missão" className={styles.img_missao}/>
           <h4 className={styles.h4_mvv}>Missão</h4>
           <p className={styles.p1_mvv}>Auxiliar pessoas com baixa mobilidade, trazendo conforto e segurança através da inovação e tecnologia — com empatia no centro de tudo.</p>
         </div>
         <div className={styles.div_mvv}>
-          <img src={MVV} alt="imagem visão" className={styles.img_mvv}/>
+          <img src={Visao} alt="imagem visão" className={styles.img_visao}/>
           <h4 className={styles.h4_mvv}>Visão</h4>
           <p className={styles.p1_mvv}>Desenvolver dispositivos de mobilidade assistida com excelência — tornando-nos  referência nacional com foco em autonomia, segurança e acessibilidade.</p>
         </div>
         <div className={styles.div_mvv}>
-          <img src={MVV} alt="imagem valores" className={styles.img_mvv}/>
-          <h4 className={styles.h4_mvv}>Valores</h4>
+          <img src={Valores} alt="imagem valores" className={styles.img_valores}/>
+          <h4 className={styles.h4v_mvv}>Valores</h4>
           <p className={styles.p1_mvv}>
-            <span>Responsabilidade</span> <span>Ética</span> <br/>
-            <span>Inovação</span> <span>Inclusão</span> <br/>
-            <span>Empatia</span>
+            <span className={styles.span_valores}>Responsabilidade</span> <span className={styles.span_valores}>Ética</span> <br/>
+             <span className={styles.span_valores}>Inovação</span> <span className={styles.span_valores}>Inclusão</span> <span className={styles.span_valores}>Empatia</span>
           </p>
         </div>
       </section>
@@ -134,111 +136,210 @@ const SobrePage = () => {
       </section>
 
       {/* Quem fazem parte */}
-      <h1>Qum faz parte da Ever Rise</h1>      
-      <section>
+      <section className={styles.section_nos_header}>
+      <h1 className={styles.h1_nos}>Quem faz parte da Ever Rise</h1>      
+      <section className={styles.section_nos}>
 
-      <div>
-        <div>
-          <img src={FotoAnderson} alt="imagem anderson"/>
-          <p><span>PO e Full Stack</span></p>
-          <h4>Anderson Reis</h4>
-          <p>Visionary entrepreneur with a passion for <br/> innovation and successful startup ventures. </p>
-          <div>
-            <img src={LinkedIn} alt="icon linkedin"/>
-            <img src={GitHub} alt="icon github"/>
-            <img src={Instagram} alt="icon instagram"/>
+      <div className={styles.cardWrapper}>
+        <div className={styles.card}>
+          <div className={styles.div_img_card}>
+            <img src={FotoAnderson} alt="Anderson Reis" className={styles.foto} />
+          </div>
+          <span className={styles.cargo}>
+          <span className={styles.ponto}></span>
+              PO e Full Stack
+          </span>
+          <h3 className={styles.nome}>Anderson Reis</h3>
+          <p className={styles.descricao}>
+            Visionary entrepreneur with a passion for innovation and successful startup ventures.
+          </p>
+          <div className={styles.redes}>
+            <a href="#"><i className={styles.linkedin} /><img src={LinkedIn} alt="icone linkedin" /></a>
+            <a href="#"><i className={styles.instagram} /> <img src={Instagram} alt="icone instagram" /></a>
+            <a href='#'><i className={styles.github} /> <img src={GitHub} alt="icone git"/></a>
           </div>
         </div>
 
-        <div>
-          <img src={FotoJoao} alt="imagem joao"/>
-          <p><span>SM e Full Stack</span></p>
-          <h4>João Silva</h4>
-          <p>Visionary entrepreneur with a passion for <br/> innovation and successful startup ventures. </p>
-          <div>
-            <img src={LinkedIn} alt="icon linkedin"/>
-            <img src={GitHub} alt="icon github"/>
-            <img src={Instagram} alt="icon instagram"/>
+        <div className={styles.card}>
+          <div className={styles.div_img_card}>
+            <img src={FotoJoao} alt="João Pedro" className={styles.foto_joao} />
+          </div>
+          <span className={styles.cargo}>
+          <span className={styles.ponto}></span>
+              SM e Full Stack
+          </span>
+          <h3 className={styles.nome}>João Pedro</h3>
+          <p className={styles.descricao}>
+            Visionary entrepreneur with a passion for innovation and successful startup ventures.
+          </p>
+          <div className={styles.redes}>
+            <a href="#"><i className={styles.linkedin} /><img src={LinkedIn} alt="icone linkedin" /></a>
+            <a href="#"><i className={styles.instagram} /> <img src={Instagram} alt="icone instagram" /></a>
+            <a href='#'><i className={styles.github} /> <img src={GitHub} alt="icone git"/></a>
           </div>
         </div>
 
-        <div>
-          <img src={FotoNalbert} alt="imagem nalbert"/>
-          <p><span>Full Stack</span></p>
-          <h4>Nalbert Henri</h4>
-          <p>Visionary entrepreneur with a passion for <br/> innovation and successful startup ventures. </p>
-          <div>
-            <img src={LinkedIn} alt="icon linkedin"/>
-            <img src={GitHub} alt="icon github"/>
-            <img src={Instagram} alt="icon instagram"/>
+        <div className={styles.card}>
+          <div className={styles.div_img_card}>
+            <img src={FotoNalbert} alt="Nalbert Heri" className={styles.foto} />
           </div>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <img src={FotoDuda} alt="imagem duda"/>
-          <p><span>Designer, Marketing e Front End</span></p>
-          <h4>Maria Eduarda</h4>
-          <p>Visionary entrepreneur with a passion for <br/> innovation and successful startup ventures. </p>
-          <div>
-            <img src={LinkedIn} alt="icon linkedin"/>
-            <img src={GitHub} alt="icon github"/>
-            <img src={Instagram} alt="icon instagram"/>
-          </div>
-        </div>
-
-        <div>
-          <img src={FotoLeticia} alt="imagem leticia"/>
-          <p><span>Designer e Front End</span></p>
-          <h4>Leticia Andrade</h4>
-          <p>Visionary entrepreneur with a passion for <br/> innovation and successful startup ventures. </p>
-          <div>
-            <img src={LinkedIn} alt="icon linkedin"/>
-            <img src={GitHub} alt="icon github"/>
-            <img src={Instagram} alt="icon instagram"/>
-          </div>
-        </div>
-
-        <div>
-          <img src={FotoKaue} alt="imagem kaue"/>
-          <p><span>Front End, Marketing e Financeiro</span></p>
-          <h4>Kaue Rodrigues</h4>
-          <p>Visionary entrepreneur with a passion for <br/> innovation and successful startup ventures. </p>
-          <div>
-            <img src={LinkedIn} alt="icon linkedin"/>
-            <img src={GitHub} alt="icon github"/>
-            <img src={Instagram} alt="icon instagram"/>
+          <span className={styles.cargo1}>
+          <span className={styles.ponto}></span>
+              Full Stack
+          </span>
+          <h3 className={styles.nome}>Nalbert Heri</h3>
+          <p className={styles.descricao}>
+            Visionary entrepreneur with a passion for innovation and successful startup ventures.
+          </p>
+          <div className={styles.redes}>
+            <a href="#"><i className={styles.linkedin} /><img src={LinkedIn} alt="icone linkedin" /></a>
+            <a href="#"><i className={styles.instagram} /> <img src={Instagram} alt="icone instagram" /></a>
+            <a href='#'><i className={styles.github} /> <img src={GitHub} alt="icone git"/></a>
           </div>
         </div>
       </div>
 
-      <div>
-        <div>
-          <img src={FotoJoaoVictor} alt="imagem joao victor"/>
-          <p><span>Full Stack e Hardware</span></p>
-          <h4>João Victor</h4>
-          <p>Visionary entrepreneur with a passion for <br/> innovation and successful startup ventures. </p>
-          <div>
-            <img src={LinkedIn} alt="icon linkedin"/>
-            <img src={GitHub} alt="icon github"/>
-            <img src={Instagram} alt="icon instagram"/>
+      <div className={styles.cardWrapper}>
+        <div className={styles.card}>
+          <div className={styles.div_img_card}>
+            <img src={FotoDuda} alt="Maria Eduarda" className={styles.foto} />
+          </div>
+          <span className={styles.cargo2}>
+          <span className={styles.ponto}></span>
+              Designer, Marketing <br/> e Front End
+          </span>
+          <h3 className={styles.nome1}>Maria Eduarda</h3>
+          <p className={styles.descricao}>
+            Visionary entrepreneur with a passion for innovation and successful startup ventures.
+          </p>
+          <div className={styles.redes}>
+            <a href="#"><i className={styles.linkedin} /><img src={LinkedIn} alt="icone linkedin" /></a>
+            <a href="#"><i className={styles.instagram} /> <img src={Instagram} alt="icone instagram" /></a>
+            <a href='#'><i className={styles.github} /> <img src={GitHub} alt="icone git"/></a>
           </div>
         </div>
 
-        <div>
-          <img src={FotoRafa} alt="imagem rafa"/>
-          <p><span>Full Stack e Hardware</span></p>
-          <h4>Rafaella Cintra</h4>
-          <p>Visionary entrepreneur with a passion for <br/> innovation and successful startup ventures. </p>
-          <div>
-            <img src={LinkedIn} alt="icon linkedin"/>
-            <img src={GitHub} alt="icon github"/>
-            <img src={Instagram} alt="icon instagram"/>
+        <div className={styles.card}>
+          <div className={styles.div_img_card}>
+            <img src={FotoLeticia} alt="Leticia Andrade" className={styles.foto} />
+          </div>
+          <span className={styles.cargo2}>
+          <span className={styles.ponto}></span>
+              Designer e Front End
+          </span>
+          <h3 className={styles.nome}>Leticia Andrade</h3>
+          <p className={styles.descricao}>
+            Visionary entrepreneur with a passion for innovation and successful startup ventures.
+          </p>
+          <div className={styles.redes}>
+            <a href="#"><i className={styles.linkedin} /><img src={LinkedIn} alt="icone linkedin" /></a>
+            <a href="#"><i className={styles.instagram} /> <img src={Instagram} alt="icone instagram" /></a>
+            <a href='#'><i className={styles.github} /> <img src={GitHub} alt="icone git"/></a>
+          </div>
+        </div>
+
+        <div className={styles.card}>
+          <div className={styles.div_img_card}>
+            <img src={FotoKaue} alt="Kaue Rodrigues" className={styles.foto_kaue} />
+          </div>
+          <span className={styles.cargo2}>
+          <span className={styles.ponto}></span>
+              Front End, Marketing <br/> e Financeiro
+          </span>
+          <h3 className={styles.nome1}>Kaue Rodrigues</h3>
+          <p className={styles.descricao}>
+            Visionary entrepreneur with a passion for innovation and successful startup ventures.
+          </p>
+          <div className={styles.redes}>
+            <a href="#"><i className={styles.linkedin} /><img src={LinkedIn} alt="icone linkedin" /></a>
+            <a href="#"><i className={styles.instagram} /> <img src={Instagram} alt="icone instagram" /></a>
+            <a href='#'><i className={styles.github} /> <img src={GitHub} alt="icone git"/></a>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.cardWrapper}>
+        <div className={styles.card}>
+          <div className={styles.div_img_card}>
+            <img src={FotoJoaoVictor} alt="João Victor" className={styles.foto_teko} />
+          </div>
+          <span className={styles.cargo2}>
+          <span className={styles.ponto}></span>
+              Full Stack e Hardware
+          </span>
+          <h3 className={styles.nome}>João Victor</h3>
+          <p className={styles.descricao}>
+            Visionary entrepreneur with a passion for innovation and successful startup ventures.
+          </p>
+          <div className={styles.redes}>
+            <a href="#"><i className={styles.linkedin} /><img src={LinkedIn} alt="icone linkedin" /></a>
+            <a href="#"><i className={styles.instagram} /> <img src={Instagram} alt="icone instagram" /></a>
+            <a href='#'><i className={styles.github} /> <img src={GitHub} alt="icone git"/></a>
+          </div>
+        </div>
+
+        <div className={styles.card}>
+          <div className={styles.div_img_card}>
+            <img src={FotoRafa} alt="Rafaella Cintra" className={styles.foto_rafa} />
+          </div>
+          <span className={styles.cargo2}>
+          <span className={styles.ponto}></span>
+              Full Stack e Hardware
+          </span>
+          <h3 className={styles.nome}>Rafaella Cintra</h3>
+          <p className={styles.descricao}>
+            Visionary entrepreneur with a passion for innovation and successful startup ventures.
+          </p>
+          <div className={styles.redes}>
+            <a href="#"><i className={styles.linkedin} /><img src={LinkedIn} alt="icone linkedin" /></a>
+            <a href="#"><i className={styles.instagram} /> <img src={Instagram} alt="icone instagram" /></a>
+            <a href='#'><i className={styles.github} /> <img src={GitHub} alt="icone git"/></a>
           </div>
         </div>
       </div>
       </section>
+      </section>
+
+      {/* Acompanhe a Ever Rise */}
+      <h1 className={styles.h1_acomp}>Acompanhe a <span className={styles.span_acomp}>Ever Rise</span></h1>
+      <p className={styles.p_acomp}>Siga nossas redes e acompanhe nossa jornada, bastidores, <br/> propósitos, conquistas e impacto real na vida das pessoas.</p>
+      
+      <section className={styles.section_acomp}>
+        <div className={styles.div_acomp_insta}>
+          <a href="#"><img src={Insta} alt="icon Insta" className={styles.img_acomp}/></a>
+          <p className={styles.p_redes}>Instagram</p>
+          <p className={styles.p_redes}>@everrise.Oficial</p>
+          <a href="#" className={styles.a_acomp}>
+            ACOMPANHE OS BASTIDORES →
+          </a>
+        </div>
+
+        <div className={styles.div_acomp_link}>
+          <a href="#"><img src={Link} alt="icon linkedin" className={styles.img_acomp}/></a>
+          <p className={styles.p_redes}>LinkedIn</p>
+          <p className={styles.p_redes}>@Everrise</p>
+          <a href="#" className={styles.a_acomp}>
+            CONHEÇA A NOSSA EMPRESA →
+          </a>
+        </div>
+
+        <div className={styles.div_acomp_git}>
+          <a href="#"><img src={GitHub} alt="icon GitHub" className={styles.img_acomp}/></a>
+          <p className={styles.p_redes}>GitHub</p>
+          <p className={styles.p_redes}>@Everrise</p>
+          <a href="#" className={styles.a_acomp}>
+            VEJA NOSSO REPOSITORIO →
+          </a>
+        </div>
+      </section>
+      <div className={styles.divisor}>
+        <span className={styles.linha}></span>        {/* linha esquerda */}
+        <p className={styles.texto}>Juntos podemos elevar vidas</p>
+        <span className={styles.linha}></span>        {/* linha direita */}
+      </div>
+
+      {/* Footer */}
+      <Footer/>	
 
     </main>
   );
