@@ -17,9 +17,15 @@ const ForgotPasswordPage = lazy(() => import("../pages/ForgotPasswordPage"));
 const ValidationEmailPage = lazy(() => import("../pages/ValidationEmailPage"));
 const DashboardPage = lazy(() => import("../pages/DashboardPage"));
 const ControlePage = lazy(() => import("../pages/ControlePage"));
+const RelatorioPage = lazy(() => import("../pages/RelatorioPage"));
 const ManualPage = lazy(() => import("../pages/ManualPage"));
 const CheckoutPage = lazy(() => import("../pages/CheckoutPage"));
 const PagamentoPage = lazy(() => import("../pages/PagamentoPage"));
+const NovoPacientePage = lazy(() => import("../pages/NovoPaciente"));
+const GerenciarPacientePage = lazy(() => import("../pages/GerenciarPaciente"));
+const PerfilFamiliaPage = lazy(() => import("../pages/PerfilFamilia"));
+const PerfilOperadorPage = lazy(() => import("../pages/PerfilOperador"));
+const PerfilAdminPage = lazy(() => import("../pages/PerfilAdmin"));
 const CarregamentoPagamentoPage = lazy(
     () => import("../pages/CarregamentoPagamentoPage"),
 );
@@ -135,7 +141,28 @@ const router = createBrowserRouter([
                         path: "/dashboard",
                         element: withSuspense(DashboardPage),
                     },
+                    {
+                        path: "/novo-paciente",
+                        element: withSuspense(NovoPacientePage),
+                    },
+                    {
+                        path: "/gerenciar-paciente",
+                        element: withSuspense(GerenciarPacientePage),
+                    },
+                    {
+                        path: "/perfil-familia",
+                        element: withSuspense(PerfilFamiliaPage),
+                    },
+                    {
+                        path: "/perfil-operador",
+                        element: withSuspense(PerfilOperadorPage),
+                    },
+                    {
+                        path: "/perfil-admin",
+                        element: withSuspense(PerfilAdminPage),
+                    },
                     { path: "/controle", element: withSuspense(ControlePage) },
+                    { path: "/relatorio", element: withSuspense(RelatorioPage) },
                     { path: "/manual", element: withSuspense(ManualPage) },
                     {
                         path: "/pagamento",

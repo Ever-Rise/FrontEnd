@@ -2,16 +2,19 @@
     width: 100%;
     max-width: 1900px;
     min-height: 100vh;
-    background-color: #0e162d;
+    background-color: #E6EBFF;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 76px;
+    gap: 24px;
 }
 
 .visao_geral {
     width: 96%;
-    height: 540px;
-    color: #fff;
+    min-height: 540px;
+    color: #FF6F33;
+    margin-top: 16px;
 }
 
 h1 {
@@ -21,7 +24,7 @@ h1 {
 
 h2 {
     font-size: 1.3rem;
-    color: #ffffffa4;
+    color: #000000;
 }
 
 .status {
@@ -184,7 +187,7 @@ h3 {
     justify-content: center;
     border-radius: 10px;
     border: none;
-    background-color: #2089f8;
+    background-color: #2563EB;
     cursor: pointer;
     color: #fff;
     font-weight: 800;
@@ -209,7 +212,7 @@ h3 {
     justify-content: center;
     border-radius: 10px;
     border: none;
-    background-color: #4b4a4a80;
+    background-color: #2563EB;
     cursor: pointer;
     color: #fff;
     font-weight: 800;
@@ -283,14 +286,14 @@ h3 {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: #3a3a3a5e;
+    background: #2563EB;
     padding: 10px 16px;
     border-radius: 10px;
 }
 
 .sem_alertas {
     font-size: 1.3rem;
-    color: #00b400;
+    color: #fff;
     font-weight: 500;
     margin-left: 10px;
 }
@@ -391,7 +394,7 @@ h3 {
     width: 100%;
     height: 56px;
     margin-top: 24px;
-    background-color: #2089f8;
+    background-color: #2563EB;
     color: #fff;
     font-size: 1.25rem;
     font-weight: 900;

@@ -1,0 +1,407 @@
+.page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(90, 96, 255, 0.08), transparent 28%),
+    linear-gradient(180deg, #f7f7ff 0%, #f4f5ff 100%);
+  color: #111827;
+  padding: 24px 0 48px;
+}
+
+.shell {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: transparent;
+  color: #6c63ff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  margin: 10px;
+}
+
+.backButton img {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+
+.heroIcon {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #ecebff 0%, #dbd8ff 100%);
+  color: #5b5ddf;
+  box-shadow: 0 14px 30px rgba(91, 93, 223, 0.16);
+  margin-top: 10px;
+}
+
+.heroIcon img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  margin: 0 auto;
+}
+
+.titleBlock {
+  margin-bottom: 22px;
+}
+
+.titleBlock h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: #1f2937;
+}
+
+.titleBlock p {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(223, 226, 233, 0.95);
+  border-radius: 28px;
+  box-shadow: 0 24px 64px rgba(31, 41, 55, 0.08);
+  padding: 30px;
+  backdrop-filter: blur(10px);
+}
+
+.section {
+  padding-bottom: 28px;
+}
+
+.section:last-of-type {
+  padding-bottom: 0;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.sectionIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: #e7e6ff;
+  color: #696cf2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.sectionIcon img {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+  font-size: 17px;
+  color: #243041;
+}
+
+.divider {
+  height: 1px;
+  background: #edf0f6;
+  margin: 0 0 28px;
+}
+
+.grid,
+.gridClinical {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.fieldWide {
+  grid-column: span 2;
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.grid label,
+.gridClinical label {
+  display: block;
+  margin: 0 0 8px;
+  color: #343c4b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.inputWrap,
+.textareaWrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #edf0ff;
+  border: 1px solid #edf0ff;
+  border-radius: 999px;
+  padding: 10px 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.textareaWrap {
+  border-radius: 26px;
+}
+
+.inputWrap:focus-within,
+.textareaWrap:focus-within {
+  background: #ffffff;
+  border-color: #c8cdfd;
+  box-shadow: 0 0 0 4px rgba(105, 108, 242, 0.12);
+}
+
+.inputWrap span,
+.textareaWrap span {
+  color: #9aa0b5;
+  margin-top: 2px;
+}
+
+.inputWrap img,
+.textareaWrap img {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  margin-top: 2px;
+  display: block;
+}
+
+.inputWrap input,
+.inputWrap select,
+.textareaWrap textarea {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #2b3441;
+  font: inherit;
+}
+
+.inputWrap input::placeholder,
+.textareaWrap textarea::placeholder {
+  color: #8f95a8;
+}
+
+.inputWrap select {
+  appearance: none;
+  cursor: pointer;
+}
+
+.textareaWrap textarea {
+  resize: none;
+  min-height: 56px;
+}
+
+.pillGroup,
+.statusGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pill,
+.pillActive,
+.status,
+.statusActive {
+  border: 1px solid #dde2ee;
+  border-radius: 999px;
+  background: #eff2fb;
+  color: #545b6c;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pill,
+.pillActive {
+  padding: 10px 16px;
+}
+
+.status,
+.statusActive {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+}
+
+.pillActive {
+  background: linear-gradient(180deg, #5f62f4 0%, #4c4fe4 100%);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 10px 20px rgba(76, 79, 228, 0.22);
+}
+
+.statusActive {
+  background: #f5f7ff;
+  border-color: #dbe1ff;
+  color: #262f43;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #8a90ff;
+  box-shadow: 0 0 0 4px rgba(138, 144, 255, 0.18);
+  flex: 0 0 auto;
+}
+
+.statusActive .dot {
+  background: #31c26a;
+  box-shadow: 0 0 0 4px rgba(49, 194, 106, 0.14);
+}
+
+.uploadArea {
+  border: 1.5px dashed #cbd3e7;
+  border-radius: 18px;
+  background: #f5f7ff;
+  min-height: 132px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 24px;
+}
+
+.uploadBubble {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background: #ffffff;
+  display: grid;
+  place-items: center;
+  color: #5f62f4;
+  box-shadow: 0 10px 24px rgba(95, 98, 244, 0.12);
+  margin-bottom: 10px;
+}
+
+.uploadBubble img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  margin: 0 auto;
+}
+
+.uploadArea h3 {
+  margin: 0;
+  font-size: 15px;
+  color: #1f2937;
+}
+
+.uploadArea p {
+  margin: 4px 0 0;
+  color: #787f91;
+  font-size: 12px;
+}
+
+.footerActions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  padding-top: 24px;
+}
+
+.cancelButton {
+  border: 0;
+  background: transparent;
+  color: #2f3848;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.saveButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 16px;
+  padding: 14px 22px;
+  background: linear-gradient(180deg, #5f62f4 0%, #4c4fe4 100%);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 16px 28px rgba(76, 79, 228, 0.24);
+  cursor: pointer;
+}
+
+.saveButton img {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+@media (max-width: 1080px) {
+  .grid,
+  .gridClinical {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fieldWide {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 760px) {
+  .shell {
+    width: min(100% - 24px, 1180px);
+  }
+
+  .card {
+    padding: 22px;
+    border-radius: 22px;
+  }
+
+  .grid,
+  .gridClinical {
+    grid-template-columns: 1fr;
+  }
+
+  .fieldWide,
+  .fullWidth {
+    grid-column: auto;
+  }
+
+  .pageHeader,
+  .footerActions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footerActions {
+    align-items: stretch;
+  }
+
+  .saveButton,
+  .cancelButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
