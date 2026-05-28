@@ -1,91 +1,106 @@
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 
+import footerLogo from "../../../assets/images/Footer/imagem_footer.png";
+import linkedInIcon from "../../../assets/icons/Footer/icon_linkedIn.svg";
+import instagramIcon from "../../../assets/icons/Footer/icon_instagram.svg";
+import githubIcon from "../../../assets/icons/Footer/icon_github.svg";
+
+const companyLinks = [
+  { label: "Sobre Nós", to: "/sobre" },
+  { label: "Parceiros", to: "/parceiros" },
+  { label: "Sustentabilidade", to: "/sustentabilidade" },
+];
+
+const guinchoLinks = [
+  { label: "Mais Sobre o Guincho", to: "/produto" },
+  { label: "Venda", to: "/vendas" },
+  { label: "Manual do Guincho", to: "/manual" },
+];
+
+const socialLinks = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/everrise-tech", icon: linkedInIcon },
+  { label: "Instagram", href: "https://www.instagram.com/everrise.oficial", icon: instagramIcon },
+  { label: "GitHub", href: "https://github.com/Ever-Rise", icon: githubIcon },
+];
+
 const Footer = () => {
-    return (
-        <footer className={styles.footer}>
-            <div className={styles.footerInner}>
-                <section
-                    className={styles.brandSection}
-                    aria-labelledby="footer-brand"
+  return (
+    <footer className={styles.footer}>
+      <div className={styles.inner}>
+        <div className={styles.top}>
+          <div className={styles.brandColumn}>
+            <Link to="/" className={styles.brandLink} aria-label="Ir para a página inicial">
+              <img
+                src={footerLogo}
+                alt="Ever Rise"
+                className={styles.brandImage}
+                loading="lazy"
+              />
+            </Link>
+
+            <div className={styles.socialRow} aria-label="Redes sociais">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  className={styles.socialLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={social.label}
                 >
-                    <Link to="/" className={styles.brand}>
-                        Ever Rise
+                  <img src={social.icon} alt="" aria-hidden="true" className={styles.socialIcon} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.linksGrid}>
+            <nav className={styles.linkColumn} aria-label="Empresa">
+              <h2 className={styles.columnTitle}>Empresa</h2>
+              <ul className={styles.linkList}>
+                {companyLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link to={link.to} className={styles.textLink}>
+                      {link.label}
                     </Link>
-                    <p id="footer-brand" className={styles.brandDescription}>
-                        Controle operacional claro, rápido e focado em quem
-                        precisa responder sem ruído.
-                    </p>
-                </section>
+                  </li>
+                ))}
+              </ul>
+            </nav>
 
-                <nav className={styles.footerNav} aria-label="Links do rodapé">
-                    <section
-                        className={styles.linkGroup}
-                        aria-labelledby="footer-company-links"
-                    >
-                        <h2
-                            id="footer-company-links"
-                            className={styles.linkGroupTitle}
-                        >
-                            Empresa
-                        </h2>
-                        <ul className={styles.list}>
-                            <li>
-                                <Link to="/sobre" className={styles.link}>
-                                    Sobre Nós
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/vendas" className={styles.link}>
-                                    Soluções
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/parceiros" className={styles.link}>
-                                    Parceiros
-                                </Link>
-                            </li>
-                        </ul>
-                    </section>
+            <nav className={styles.linkColumn} aria-label="Guincho">
+              <h2 className={styles.columnTitle}>Guincho</h2>
+              <ul className={styles.linkList}>
+                {guinchoLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link to={link.to} className={styles.textLink}>
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        </div>
 
-                    <section
-                        className={styles.linkGroup}
-                        aria-labelledby="footer-product-links"
-                    >
-                        <h2
-                            id="footer-product-links"
-                            className={styles.linkGroupTitle}
-                        >
-                            Produto
-                        </h2>
-                        <ul className={styles.list}>
-                            <li>
-                                <Link to="/register" className={styles.link}>
-                                    Criar conta
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/login" className={styles.link}>
-                                    Entrar
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/vendas" className={styles.link}>
-                                    Falar com vendas
-                                </Link>
-                            </li>
-                        </ul>
-                    </section>
-                </nav>
-            </div>
+        <div className={styles.divider} />
 
-            <div className={styles.bottomBar}>
-                <p className={styles.copy}>
-                    ©2026 EverRise. Todos os direitos reservados.
-                </p>
-            </div>
-        </footer>
-    );
+        <div className={styles.bottom}>
+          <div className={styles.legalLinks}>
+            <Link to="/privacidade" className={styles.legalLink}>
+              Política de Privacidade
+            </Link>
+            <Link to="/termos" className={styles.legalLink}>
+              Termos e Condições
+            </Link>
+          </div>
+
+          <p className={styles.copy}>©2026 EverRise Copyright.</p>
+        </div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;
