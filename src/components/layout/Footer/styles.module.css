@@ -1,10 +1,11 @@
 .footer {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   font-family: "Raleway", sans-serif;
   background: linear-gradient(270deg, #feb42d 10%, #4d00b5 90%),
     linear-gradient(270deg, rgba(12, 25, 83, 0.95) 12.74%, rgba(0, 1, 31, 0.95) 82.26%);
   color: rgba(255, 255, 255, 0.82);
+  margin-top: 200px;
 }
 
 .footer::before {
@@ -19,16 +20,17 @@
   opacity: 0.35;
 }
 
-.curve {
+.topGraphic {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: clamp(120px, 16vw, 181px);
+  height: clamp(120px, 14vw, 181px);
   object-fit: cover;
   object-position: center top;
   pointer-events: none;
-  z-index: 0;
+  z-index: 2;
+  transform: translateY(-96%);
 }
 
 .inner {
@@ -36,7 +38,7 @@
   z-index: 1;
   max-width: 1240px;
   margin: 0 auto;
-  padding: clamp(5.5rem, 10vw, 8rem) 1.5rem 2rem;
+  padding: clamp(4.5rem, 7vw, 6rem) 1.5rem 2rem;
 }
 
 .top {
@@ -172,7 +174,7 @@
 
 @media (max-width: 960px) {
   .inner {
-    padding-top: 5.5rem;
+    padding-top: 4.25rem;
   }
 
   .top {
@@ -195,7 +197,7 @@
 
 @media (max-width: 640px) {
   .inner {
-    padding: 4.75rem 1rem 1.5rem;
+    padding: 3.75rem 1rem 1.5rem;
   }
 
   .brandImage {

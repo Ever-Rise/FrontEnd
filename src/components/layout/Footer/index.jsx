@@ -28,7 +28,7 @@ const socialLinks = [
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <img src={footerCurve} alt="" aria-hidden="true" className={styles.curve} />
+      <img src={footerCurve} alt="" aria-hidden="true" className={styles.topGraphic} />
       <div className={styles.inner}>
         <div className={styles.top}>
           <div className={styles.brandColumn}>
