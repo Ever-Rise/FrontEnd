@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 
 import footerLogo from "../../../assets/images/Footer/imagem_footer.png";
+import footerCurve from "../../../assets/images/Footer/Vector.svg";
 import linkedInIcon from "../../../assets/icons/Footer/icon_linkedIn.svg";
 import instagramIcon from "../../../assets/icons/Footer/icon_instagram.svg";
 import githubIcon from "../../../assets/icons/Footer/icon_github.svg";
@@ -27,6 +28,7 @@ const socialLinks = [
 const Footer = () => {
   return (
     <footer className={styles.footer}>
+      <img src={footerCurve} alt="" aria-hidden="true" className={styles.curve} />
       <div className={styles.inner}>
         <div className={styles.top}>
           <div className={styles.brandColumn}>
