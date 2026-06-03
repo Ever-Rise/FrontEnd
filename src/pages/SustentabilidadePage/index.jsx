@@ -1,432 +1,326 @@
-import React from "react";
+import { Footer, Header } from "../../components";
 import styles from "./style.module.css";
-import Header from "../../components/layout/Header";
-import Footer from "../../components/layout/Footer";
 
-import heroImg from "../../assets/images/sustentabilidade/hero.png";
-import impactoImg from "../../assets/images/sustentabilidade/secao-impacto.png";
-import contatoImg from "../../assets/images/sustentabilidade/secao-contato.png";
-import sparklesImg from "../../assets/images/sustentabilidade/fundosBrilhos.png";
-import sparklesSoftImg from "../../assets/images/sustentabilidade/fundoBrilho2.png";
-import sparklesAltImg from "../../assets/images/sustentabilidade/fundoBrilho3.png";
-
-import iconSustentavel from "../../assets/icons/sustentabilidade/icon-sustentavel.png";
-import iconInteligente from "../../assets/icons/sustentabilidade/icon-inteligente.png";
-import iconPessoas from "../../assets/icons/sustentabilidade/icon-pessoas.png";
-import iconTransparente from "../../assets/icons/sustentabilidade/icon-transparente.png";
-import iconColetados from "../../assets/icons/sustentabilidade/icon-coletados.png";
-import iconEmpresas from "../../assets/icons/sustentabilidade/icon-empresas.png";
-import iconDestinacao from "../../assets/icons/sustentabilidade/icon-destinacao.png";
-import iconSolicite from "../../assets/icons/sustentabilidade/icon-solicite.png";
-import iconColeta from "../../assets/icons/sustentabilidade/icon-coleta.png";
-import iconAnalise from "../../assets/icons/sustentabilidade/icon-analise.png";
-import iconToken from "../../assets/icons/sustentabilidade/icon-token.png";
+import heroImage from "../../assets/images/sustentabilidade/hero.png";
+import impactBackground from "../../assets/images/sustentabilidade/secao-impacto.png";
+import iconSustentavel from "../../assets/icons/sustentabilidade/icon_sustentavel.svg";
+import iconInteligente from "../../assets/icons/sustentabilidade/icon_inteligente.svg";
+import iconSocial from "../../assets/icons/sustentabilidade/icon_social.svg";
+import iconTransparente from "../../assets/icons/sustentabilidade/icon_transparente.svg";
+import iconTonelada from "../../assets/icons/sustentabilidade/icon_tonelada.svg";
+import iconEmpresa from "../../assets/icons/sustentabilidade/icon_empresa.svg";
+import iconDestino from "../../assets/icons/sustentabilidade/icon_destino.svg";
+import iconSolicite from "../../assets/icons/sustentabilidade/icon_solicite.svg";
+import iconColeta from "../../assets/icons/sustentabilidade/icon_coleta.svg";
+import iconAnalise from "../../assets/icons/sustentabilidade/icon_analise.svg";
+import iconToken from "../../assets/icons/sustentabilidade/icon_token.svg";
+import icon62kg from "../../assets/icons/sustentabilidade/icon_62kg.svg";
+import icon35 from "../../assets/icons/sustentabilidade/icon_35pct.svg";
+import icon3x from "../../assets/icons/sustentabilidade/icon_3x.svg";
+import iconPrancheta from "../../assets/icons/sustentabilidade/icon_prancheta.svg";
 
 const impactCards = [
-    {
-        icon: iconSustentavel,
-        title: "Sustentável",
-        description:
-            "Reduzimos resíduos e prolongamos o ciclo de vida de cada material.",
-    },
-    {
-        icon: iconInteligente,
-        title: "Inteligente",
-        description:
-            "Processos rastreáveis com tecnologia própria para escala e controle.",
-    },
-    {
-        icon: iconPessoas,
-        title: "Social",
-        description:
-            "Geramos renda, oportunidades e impacto direto nas comunidades.",
-    },
-    {
-        icon: iconTransparente,
-        title: "Transparente",
-        description:
-            "Cada etapa é auditável e acompanhada com indicadores claros.",
-    },
+  {
+    icon: iconSustentavel,
+    title: "Sustentável",
+    description:
+      "Reduzimos resíduos e prolongamos o ciclo de vida da tecnologia.",
+  },
+  {
+    icon: iconInteligente,
+    title: "Inteligente",
+    description:
+      "Processos eficientes e rastreáveis com tecnologia própria.",
+  },
+  {
+    icon: iconSocial,
+    title: "Social",
+    description:
+      "Geramos inclusão, renda e oportunidades reais para milhares de pessoas.",
+  },
+  {
+    icon: iconTransparente,
+    title: "Transparente",
+    description:
+      "Relatórios claros e dados auditáveis em cada etapa.",
+  },
 ];
 
 const impactStats = [
-    { icon: iconColetados, value: "12.250", label: "Toneladas coletadas" },
-    { icon: iconEmpresas, value: "200", label: "Empresas parceiras" },
-    { icon: iconPessoas, value: "14.000", label: "Pessoas impactadas" },
-    { icon: iconDestinacao, value: "500", label: "Destinação correta" },
+  { icon: iconTonelada, value: "12.250", label: "Toneladas Coletadas" },
+  { icon: iconEmpresa, value: "200", label: "Empresas Parceiras" },
+  { icon: iconSocial, value: "14.000", label: "Pessoas Impactadas" },
+  { icon: iconDestino, value: "500", label: "Destinação Correta" },
 ];
 
-const processSteps = [
-    {
-        icon: iconSolicite,
-        title: "Solicite",
-        description: "Preencha o formulário com os dados do equipamento.",
-    },
-    {
-        icon: iconColeta,
-        title: "Coleta",
-        description: "Agendamos a retirada no seu endereço sem custos.",
-    },
-    {
-        icon: iconAnalise,
-        title: "Análise",
-        description: "A equipe avalia peças e define reuso ou reciclagem.",
-    },
-    {
-        icon: iconToken,
-        title: "Token",
-        description: "Você recebe o retorno com token ou desconto por e-mail.",
-    },
+const steps = [
+  {
+    icon: iconSolicite,
+    title: "Solicite",
+    description: "Preencha o formulário com os dados do equipamento.",
+    side: "left",
+  },
+  {
+    icon: iconColeta,
+    title: "Coleta",
+    description: "Agendamos a retirada no seu endereço sem custos.",
+    side: "right",
+  },
+  {
+    icon: iconAnalise,
+    title: "Análise",
+    description: "Nossa equipe avalia as peças para reuso ou reciclagem.",
+    side: "left",
+  },
+  {
+    icon: iconToken,
+    title: "Token",
+    description: "Você recebe seu TokenDesconto por e-mail.",
+    side: "right",
+  },
 ];
 
-const highlights = [
-    { value: "47kg", label: "desviados do descarte" },
-    { value: "62kg", label: "reaproveitados com rastreio" },
-    { value: "35%", label: "de aumento em recuperação" },
-    { value: "3h", label: "para retorno inicial" },
+const proofCards = [
+  {
+    icon: iconTonelada,
+    value: "47kg",
+    label: "de lixo eletrônico reaproveitado por cliente",
+  },
+  {
+    icon: icon62kg,
+    value: "62kg",
+    label: "CO2 evitado por empresa ao aderir ao ciclo reverso",
+  },
+  {
+    icon: icon35,
+    value: "35%",
+    label: "de aumento em reputação sustentável dos parceiros",
+  },
+  {
+    icon: icon3x,
+    value: "3x",
+    label: "mais engajamento nas campanhas de recolhimento",
+  },
+];
+
+const tableRows = [
+  { equipment: "Medial Wise IV", code: "ID-742-019", date: "10 Set 2024", status: "EM ANÁLISE" },
+  { equipment: "Englix Steel", code: "ID-431-281", date: "02 Nov 2024", status: "TOKEN GERADO" },
+  { equipment: "Advanced Motor Module", code: "ID-279-008", date: "19 Nov 2024", status: "CONCLUÍDO" },
 ];
 
 const testimonials = [
-    {
-        name: "John D.",
-        role: "Operações",
-        text: "O fluxo ficou objetivo, o acompanhamento é claro e o time responde rápido em cada etapa.",
-    },
-    {
-        name: "John B.",
-        role: "Compras",
-        text: "A proposta é visualmente forte e transmite a confiança que faltava para a nossa operação.",
-    },
-    {
-        name: "John S.",
-        role: "Logística",
-        text: "Conseguimos centralizar solicitações, triagem e retorno sem quebrar a experiência do usuário.",
-    },
-    {
-        name: "Aline R.",
-        role: "Sustentabilidade",
-        text: "O layout ajuda a comunicar impacto, métricas e jornada de forma consistente e elegante.",
-    },
+  {
+    name: "John D.",
+    text:
+      "United as a provider and partner to ensure a streamlined and simplified recovery journey. The service was professional and the turnaround was excellent.",
+  },
+  {
+    name: "John D.",
+    text:
+      "United as a provider and partner to ensure a streamlined and simplified recovery journey. The service was professional and the turnaround was excellent.",
+  },
+  {
+    name: "John D.",
+    text:
+      "United as a provider and partner to ensure a streamlined and simplified recovery journey. The service was professional and the turnaround was excellent.",
+  },
+  {
+    name: "John D.",
+    text:
+      "United as a provider and partner to ensure a streamlined and simplified recovery journey. The service was professional and the turnaround was excellent.",
+  },
 ];
 
-const infoRows = [
-    { label: "Coleta", value: "Sem custo" },
-    { label: "Triagem", value: "Diagnóstico técnico" },
-    { label: "Token", value: "Até 15% OFF" },
-];
+export default function Home() {
+  return (
+    <div className={styles.page}>
+      <Header />
 
-const sectionBgStyle = (image) => ({
-    ["--section-glow"]: `url(${image})`,
-});
+      <main id="topo">
+        <section className={styles.hero} aria-labelledby="hero-title">
+          <img
+            src={heroImage}
+            alt="Equipamento de coleta com planeta ao fundo"
+            className={styles.heroImage}
+          />
+          <div className={styles.heroShade} aria-hidden="true" />
+          <div className={styles.heroContent}>
+            <div className={styles.heroText}>
+              <h1 id="hero-title">Feito para cuidar de <span>pessoas</span> e do <span>planeta</span></h1>
+              <div className={styles.heroButtons}>
+                <a href="#contato" className={styles.primaryButton}>Quero Participar</a>
+                <a href="#impacto" className={styles.secondaryButton}>Saiba mais</a>
+              </div>
+            </div>
+          </div>
+        </section>
 
-const Sustentabilidade = () => {
-    return (
-        <div className={styles.container}>
-            <Header />
+        <section className={styles.section} id="impacto">
+          <div className={styles.sectionHeading}>
+            <span className={styles.sectionDecorationLeft} aria-hidden="true" />
+            <h2>Impacto que transforma</h2>
+            <span className={styles.sectionDecorationRight} aria-hidden="true" />
+          </div>
 
-            <main className={styles.main}>
-                <section
-                    className={styles.hero}
-                    style={{
-                        backgroundImage: `linear-gradient(90deg, rgba(4, 10, 18, 0.92) 0%, rgba(4, 10, 18, 0.72) 40%, rgba(4, 10, 18, 0.18) 100%), url(${heroImg})`,
-                    }}
-                >
-                    <div className={styles.shell}>
-                        <div className={styles.heroGrid}>
-                            <div className={styles.heroCopy}>
-                                <span className={styles.heroEyebrow}>
-                                    Logística reversa inteligente
-                                </span>
-                                <h1 className={styles.heroTitle}>
-                                    Feito para cuidar de <span>pessoas</span> e
-                                    do <span>planeta</span>
-                                </h1>
-                                <p className={styles.heroText}>
-                                    Uma jornada visualmente impactante para
-                                    transformar descarte em impacto mensurável,
-                                    com transparência e tecnologia.
-                                </p>
+          <div className={styles.impactGrid}>
+            {impactCards.map((card) => (
+              <article className={styles.impactCard} key={card.title}>
+                <img src={card.icon} alt="" aria-hidden="true" className={styles.cardIcon} />
+                <h3>{card.title}</h3>
+                <p>{card.description}</p>
+              </article>
+            ))}
+          </div>
 
-                                <div className={styles.heroActions}>
-                                    <button className={styles.primaryAction} type="button">
-                                        Quero participar
-                                    </button>
-                                    <button className={styles.secondaryAction} type="button">
-                                        Saiba mais
-                                    </button>
-                                </div>
-                            </div>
+          <div className={styles.statsBar}>
+            {impactStats.map((stat) => (
+              <div className={styles.statItem} key={stat.label}>
+                <img src={stat.icon} alt="" aria-hidden="true" className={styles.statIcon} />
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </section>
 
-                            <div className={styles.heroBadge}>
-                                <span>Impacto ao vivo</span>
-                                <strong>Monitoramento + rastreio + retorno</strong>
-                                <p>
-                                    Uma composição escura, com brilho verde e
-                                    azul, para destacar a operação sustentável.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+        <section className={styles.howSection} id="como-funciona">
+          <span className={styles.cornerAccentTopLeft} aria-hidden="true" />
+          <span className={styles.cornerAccentTopRight} aria-hidden="true" />
 
-                <section
-                    id="impacto"
-                    className={styles.impactSection}
-                    style={sectionBgStyle(sparklesImg)}
-                >
-                    <div className={styles.shell}>
-                        <header className={styles.sectionHeader}>
-                            <h2 className={styles.sectionTitle}>
-                                Impacto que transforma
-                            </h2>
-                        </header>
+          <div className={styles.sectionHeading}>
+            <h2>Como Funciona</h2>
+          </div>
 
-                        <div className={styles.impactGrid}>
-                            {impactCards.map((card) => (
-                                <article key={card.title} className={styles.impactCard}>
-                                    <img
-                                        src={card.icon}
-                                        alt={card.title}
-                                        className={styles.cardIcon}
-                                    />
-                                    <h3>{card.title}</h3>
-                                    <p>{card.description}</p>
-                                </article>
-                            ))}
-                        </div>
+          <div className={styles.stepsLayout}>
+            <div className={styles.stepsColumnLeft}>
+              {steps.filter((step) => step.side === "left").map((step) => (
+                <article className={`${styles.stepCard} ${styles.stepCardLeft}`} key={step.title}>
+                  <div className={styles.stepHeader}>
+                    <h3>{step.title}</h3>
+                    <span className={styles.stepIconWrap}><img src={step.icon} alt="" aria-hidden="true" /></span>
+                  </div>
+                  <p>{step.description}</p>
+                </article>
+              ))}
+            </div>
 
-                        <div className={styles.statsBar}>
-                            {impactStats.map((stat) => (
-                                <article key={stat.label} className={styles.statItem}>
-                                    <img
-                                        src={stat.icon}
-                                        alt={stat.label}
-                                        className={styles.statIcon}
-                                    />
-                                    <strong>{stat.value}</strong>
-                                    <span>{stat.label}</span>
-                                </article>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+            <div className={styles.stepsRail} aria-hidden="true" />
 
-                <section
-                    className={styles.processSection}
-                    style={sectionBgStyle(sparklesSoftImg)}
-                >
-                    <div className={styles.shell}>
-                        <header className={styles.sectionHeader}>
-                            <h2 className={styles.sectionTitle}>Como funciona</h2>
-                        </header>
+            <div className={styles.stepsColumnRight}>
+              {steps.filter((step) => step.side === "right").map((step) => (
+                <article className={`${styles.stepCard} ${styles.stepCardRight}`} key={step.title}>
+                  <div className={`${styles.stepHeader} ${styles.stepHeaderRight}`}>
+                    <h3>{step.title}</h3>
+                    <span className={styles.stepIconWrap}><img src={step.icon} alt="" aria-hidden="true" /></span>
+                  </div>
+                  <p>{step.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
 
-                        <div className={styles.timeline}>
-                            {processSteps.map((step, index) => (
-                                <article
-                                    key={step.title}
-                                    className={`${styles.timelineItem} ${
-                                        index % 2 === 0 ? styles.timelineLeft : styles.timelineRight
-                                    }`}
-                                >
-                                    <div className={styles.timelineCard}>
-                                        <div className={styles.timelineHead}>
-                                            <span className={styles.timelineStepNumber}>
-                                                0{index + 1}
-                                            </span>
-                                            <h3>{step.title}</h3>
-                                        </div>
-                                        <p>{step.description}</p>
-                                    </div>
+        <section className={styles.ctaSection} aria-labelledby="cta-title">
+          <div className={styles.ctaContent}>
+            <h2 id="cta-title">Pronto para gerar impacto?</h2>
+            <p>Junte-se às empresas que já estão transformando o futuro com a logística reversa.</p>
+            <a href="#contato" className={styles.ctaButton}>Quero impactar agora</a>
+          </div>
 
-                                    <div className={styles.timelineIcon}>
-                                        <img src={step.icon} alt={step.title} />
-                                    </div>
-                                </article>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+          <img src={impactBackground} alt="Planeta Terra com iluminação azul" className={styles.ctaImage} />
+        </section>
 
-                <section
-                    className={styles.ctaSection}
-                    style={{
-                        backgroundImage: `linear-gradient(90deg, rgba(6, 12, 22, 0.94) 0%, rgba(6, 12, 22, 0.84) 48%, rgba(6, 12, 22, 0.2) 100%), url(${impactoImg})`,
-                    }}
-                >
-                    <div className={styles.shell}>
-                        <div className={styles.ctaContent}>
-                            <span className={styles.ctaEyebrow}>Pronto para gerar impacto?</span>
-                            <h2>Transforme descarte em retorno positivo.</h2>
-                            <p>
-                                Um bloco de conversão com contraste forte, texto
-                                curto e visual de planeta para fechar a narrativa
-                                da página.
-                            </p>
-                            <button className={styles.primaryAction} type="button">
-                                Quero impactar agora
-                            </button>
-                        </div>
-                    </div>
-                </section>
+        <section className={styles.proofSection} id="sustentabilidade">
+          <div className={styles.sectionHeadingProof}>
+            <h2>Cada troca conta.<br />Os números provam.</h2>
+          </div>
 
-                <section
-                    className={styles.metricsSection}
-                    style={sectionBgStyle(sparklesAltImg)}
-                >
-                    <div className={styles.shell}>
-                        <header className={styles.sectionHeader}>
-                            <h2 className={styles.sectionTitle}>
-                                Cada troca conta. Os números provam.
-                            </h2>
-                            <p className={styles.sectionLead}>
-                                A composição abaixo reforça a operação com
-                                números, formulário e um resumo de benefícios em
-                                um único bloco.
-                            </p>
-                        </header>
+          <div className={styles.proofGrid}>
+            {proofCards.map((card) => (
+              <article className={styles.proofCard} key={card.label}>
+                <img src={card.icon} alt="" aria-hidden="true" className={styles.proofIcon} />
+                <strong>{card.value}</strong>
+                <p>{card.label}</p>
+              </article>
+            ))}
+          </div>
 
-                        <div className={styles.metricsGrid}>
-                            {highlights.map((metric) => (
-                                <article key={metric.label} className={styles.metricCard}>
-                                    <strong>{metric.value}</strong>
-                                    <span>{metric.label}</span>
-                                </article>
-                            ))}
-                        </div>
+          <div className={styles.requestGrid}>
+            <form className={styles.requestForm}>
+              <div className={styles.requestHeader}>
+                <h3>Solicite logística reversa</h3>
+                <span className={styles.requestHeaderIcon} aria-hidden="true"><img src={iconPrancheta} alt="" /></span>
+              </div>
 
-                        <div className={styles.formGrid}>
-                            <form className={styles.formCard}>
-                                <div className={styles.formHeader}>
-                                    <span className={styles.formBadge}>Solicite logística reversa</span>
-                                    <h3>Organize coleta e análise em poucos passos.</h3>
-                                    <p>
-                                        O formulário foi desenhado para ficar legível,
-                                        compacto e responsivo em telas grandes e pequenas.
-                                    </p>
-                                </div>
+              <div className={styles.formGrid}>
+                <label><span>Nome</span><input type="text" placeholder="Ex: Maria Silva" /></label>
+                <label><span>Equipamento</span><input type="text" placeholder="Ex: Computador" /></label>
+                <label><span>CEP</span><input type="text" placeholder="00.000-000" /></label>
+                <label><span>Cidade</span><input type="text" placeholder="Nome da cidade" /></label>
+                <label className={styles.fullWidth}><span>Observações</span><textarea rows="3" placeholder="Descreva o estado do equipamento" /></label>
+              </div>
 
-                                <div className={styles.formFields}>
-                                    <label>
-                                        <span>Nome</span>
-                                        <input type="text" placeholder="Seu nome" />
-                                    </label>
-                                    <label>
-                                        <span>E-mail</span>
-                                        <input type="email" placeholder="voce@exemplo.com" />
-                                    </label>
-                                    <label>
-                                        <span>Cidade</span>
-                                        <input type="text" placeholder="São Paulo" />
-                                    </label>
-                                    <label>
-                                        <span>CEP</span>
-                                        <input type="text" placeholder="00000-000" />
-                                    </label>
-                                    <label className={styles.formFullWidth}>
-                                        <span>Detalhes do equipamento</span>
-                                        <textarea placeholder="Descreva o estado do equipamento, volume e urgência" />
-                                    </label>
-                                </div>
+              <button className={styles.requestButton} type="button">Solicitar coleta</button>
+            </form>
 
-                                <button type="submit" className={styles.primaryActionFull}>
-                                    Solicitar coleta
-                                </button>
-                            </form>
+            <aside className={styles.couponCard} aria-label="Cupom de desconto">
+              <div className={styles.couponLabel}>CUPOM DE TROCA</div>
+              <div className={styles.couponCode}>RIS25-7X9K-LM2Q</div>
+              <div className={styles.couponValue}>15% OFF</div>
+              <div className={styles.couponMeta}><span>copie o código</span><span>para checkout</span></div>
+            </aside>
+          </div>
 
-                            <aside className={styles.offerCard}>
-                                <div className={styles.offerGlow} />
-                                <span className={styles.offerBadge}>Token de retorno</span>
-                                <h3>Até 15% OFF no primeiro ciclo</h3>
-                                <p>
-                                    A análise técnica identifica reaproveitamento,
-                                    reciclagem e o retorno ideal para o usuário.
-                                </p>
+          <div className={styles.historyCard}>
+            <div className={styles.historyHeader}>
+              <h3>Histórico de solicitações</h3>
+              <span>Filtro</span>
+            </div>
 
-                                <div className={styles.offerPrice}>
-                                    <strong>R$ 25 - 79K</strong>
-                                    <span>LM20</span>
-                                </div>
+            <div className={styles.historyTable}>
+              <div className={styles.historyRowHead}>
+                <span>Equipamento</span><span>Código ID</span><span>Data da retirada</span><span>Status</span><span>Ação</span>
+              </div>
 
-                                <div className={styles.offerRows}>
-                                    {infoRows.map((row) => (
-                                        <div key={row.label}>
-                                            <span>{row.label}</span>
-                                            <strong>{row.value}</strong>
-                                        </div>
-                                    ))}
-                                </div>
+              {tableRows.map((row) => (
+                <div className={styles.historyRow} key={row.code}>
+                  <span>{row.equipment}</span>
+                  <span>{row.code}</span>
+                  <span>{row.date}</span>
+                  <span><em className={styles.statusPill}>{row.status}</em></span>
+                  <span className={styles.eyeAction} aria-label="Ver detalhes">◌</span>
+                </div>
+              ))}
+            </div>
+          </div>
 
-                                <div className={styles.offerList}>
-                                    <div>
-                                        <img src={iconSolicite} alt="Solicite" />
-                                        <span>Solicitação recebida</span>
-                                    </div>
-                                    <div>
-                                        <img src={iconColeta} alt="Coleta" />
-                                        <span>Agenda de retirada</span>
-                                    </div>
-                                    <div>
-                                        <img src={iconAnalise} alt="Análise" />
-                                        <span>Triagem e diagnóstico</span>
-                                    </div>
-                                </div>
-                            </aside>
-                        </div>
-                    </div>
-                </section>
+          <div className={styles.testimonialsStrip}>
+            {testimonials.map((item, index) => (
+              <article className={styles.testimonialCard} key={`${item.name}-${index}`}>
+                <div className={styles.testimonialHeader}><span className={styles.testimonialAvatar}>{item.name[0]}</span><strong>{item.name}</strong></div>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
 
-                <section className={styles.testimonialSection}>
-                    <div className={styles.shell}>
-                        <header className={styles.sectionHeader}>
-                            <h2 className={styles.sectionTitle}>Confiança em cada entrega</h2>
-                        </header>
+          <div className={styles.contactCard} id="contato">
+            <div className={styles.contactTitle}><h3>Nos envie um saudação</h3></div>
 
-                        <div className={styles.testimonialGrid}>
-                            {testimonials.map((testimonial) => (
-                                <article key={testimonial.name} className={styles.testimonialCard}>
-                                    <div className={styles.avatar}>{testimonial.name.charAt(0)}</div>
-                                    <div>
-                                        <strong>{testimonial.name}</strong>
-                                        <span>{testimonial.role}</span>
-                                    </div>
-                                    <p>{testimonial.text}</p>
-                                </article>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+            <div className={styles.contactForm}>
+              <input type="text" placeholder="Seu nome" />
+              <input type="email" placeholder="Seu e-mail" />
+              <textarea rows="4" placeholder="Sua mensagem" />
+              <div className={styles.contactFooter}>
+                <div className={styles.captcha}>I'm not robot</div>
+                <button type="button" className={styles.sendButton}>Send</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
 
-                <section
-                    className={styles.newsletterSection}
-                    style={{
-                        backgroundImage: `linear-gradient(90deg, rgba(9, 14, 25, 0.92) 0%, rgba(9, 14, 25, 0.72) 56%, rgba(9, 14, 25, 0.18) 100%), url(${contatoImg})`,
-                    }}
-                >
-                    <div className={styles.shell}>
-                        <div className={styles.newsletterCard}>
-                            <div className={styles.newsletterContent}>
-                                <span className={styles.ctaEyebrow}>Futuro melhor começa com escolhas conscientes.</span>
-                                <h2>Receba novidades sobre logística reversa.</h2>
-                                <p>
-                                    Um bloco de fechamento com atmosfera suave,
-                                    folhas à direita e uma chamada clara para
-                                    inscrição.
-                                </p>
-                                <div className={styles.newsletterForm}>
-                                    <input type="email" placeholder="Insira seu e-mail" />
-                                    <button type="button" className={styles.primaryAction}>
-                                        Inscrever-se
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </main>
-
-            <Footer />
-        </div>
-    );
-};
-
-export default Sustentabilidade;
+      <Footer />
+    </div>
+  );
+}

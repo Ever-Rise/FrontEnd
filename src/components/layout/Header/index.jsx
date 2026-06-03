@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styles from "./styles.module.css";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import headerLogo from "../../../assets/images/Header/logo_sem_fundo.png";
+import profileIcon from "../../../assets/icons/Header/icon_perfil.svg";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -19,9 +21,13 @@ const Header = () => {
             <div className={styles.container}>
                 {/* Logo */}
                 <div className={styles.logoWrapper}>
-                    <a href="/" className={styles.logo}>
-                        Ever Rise
-                    </a>
+                    <Link to="/" className={styles.logo} aria-label="Ir para a página inicial">
+                        <img
+                            src={headerLogo}
+                            alt="Ever Rise"
+                            className={styles.logoImage}
+                        />
+                    </Link>
                 </div>
 
                 {/* Nav desktop */}
@@ -72,7 +78,11 @@ const Header = () => {
                         to="/login"
                         className={`${styles.loginLink} ${isLoginPage ? styles.loginLinkActive : ""}`}
                     >
+                        <span className={styles.loginIconWrap} aria-hidden="true">
+                            <img src={profileIcon} alt="" className={styles.loginIcon} />
+                        </span>
                         Login
+                        <span className={styles.loginChevron} aria-hidden="true" />
                     </Link>
                 </div>
 
