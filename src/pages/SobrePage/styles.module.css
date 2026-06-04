@@ -1,664 +1,796 @@
-main{
-    font-family: Poppins;
-    width: 100%;
-    height: auto;
-    background: url(../../assets/images/LandingPage/image8.svg) no-repeat center;
-    background-size: cover;
-    background-attachment: fixed;
+/* =====================
+   RESET
+   ===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Header */
-.header{
-  	width: 100%;
-  	height: 500px;
-  	background: url(../../assets/images/SobreNos/Background1.svg) no-repeat center;
-  	background-size: cover;
-  	position: relative;
-}
-
-.headerTexto {
-    position: relative;
-  	width: 100%;
-  	height: 242px;
-  	text-align: center;
-  	font-size: 67px;
-  	color: #fff;
-  	font-family: Poppins;
-    display: flex;
-  	align-items: center;
-  	justify-content: center;
-    flex-direction: column;
-    padding-top: 300px;
-}
-
-.header_h1 {
-    font-size: 60px;
-}
-.header_p {
-  	font-size: 25px;
-}
-
-/* História */
-.section_historia{
-    position: relative;
-  	width: 100%;
-  	height: 650px;
-  	text-align: left;
-  	font-size: 30px;
-  	color: #fff;
-  	font-family: Poppins;
-    display: flex;
-  	align-items: center;
-    flex-direction: row;
-    justify-content: space-around;
-
-}
-
-.div_historia {
-  	position: relative;
-  	width: 40%;
-  	height: 500px;
-    display: flex;
-  	align-items: center;
-  	justify-content: center;
-    flex-direction: column;
-}
-
-.h2_historia{
-    font-size: 50px;
-}
-
-.casa {
-  	color: #ff6f33;
-}
-
-.p_historia {
-    font-size: 25px;
-    margin-top: 30px;
-}
-
-.div_img_historia{
-    position: relative;
-    display: inline-block;
-    Width: 50%;
-}
-
-.image_historia {
-  	display: block;
-    width: 100%;
-}
-
-.legenda {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 50%;
-  background-color: rgba(0, 0, 0, 0.55);
-  color: #ffffff;
-  text-align: left;
-  padding: 10px 15px;
-  font-style: italic;
-  font-size: 25px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.div_img_historia:hover .legenda {
-  opacity: 1;
-}
-
-/* Missão, Visão e Valores */
-.section_mvv{
-    position: relative;
-  	width: 100%;
-  	height: 150px;
-  	text-align: left;
-  	font-size: 30px;
-  	color: #fff;
-  	font-family: Poppins;
-    display: flex;
-    flex-direction: column;
-    margin-top: 100px;
-}
-
-.h1_mvv{
-    font-size: 64px;
-    color: #fff;
-    text-align: center;
-}
-
-.span_h11{
-    font-size: 64px;
-    color: #0076E9;
-}
-.span_h12{
-    font-size: 64px;
-    color: #ff6f33;
-}
-
-.p_mvv{
-    font-size: 25px;
-    text-align: center;
-}
-
-.section_mvv_content{
-    position: relative;
-  	width: 100%;
-  	height: 550px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 40px;
-}
-
-.div_mvv{
-    position: relative;
-    width: 28%;
-    height: 450px;
-    display: flex;
-  	justify-content: center;
-    flex-direction: column;
-    border-radius: 12px;
-    text-align: left;
-    background-color: #fff;
-    margin-top: 50px;
-    position: relative;
-    transition: box-shadow 0.3s ease;
-    
-}
-
-.div_mvv::before {
-  content: '';
-  inset: -2px;
-  border-radius: 14px;
-  background:  linear-gradient(150deg, #1a6fff, #0a1fff, #4d8fff);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
- 
-.div_mvv:hover::before {
-  opacity: 1;
-}
- 
-.div_mvv:hover {
-  box-shadow:
-    0 0 18px rgba(59, 111, 212, 0.90),
-    0 0 40px rgba(59, 111, 212, 0.90),
-    0 0 80px rgba(59, 111, 212, 0.90);
-  transform: translateY(-2px);
-}
-
-.img_missao{
-    width: 100%;
-    height: 450px;
-    object-fit: cover;
-    object-position: center;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-}
-
-.img_visao{
-    width: 100%;
-    height: 450px;
-    object-fit: cover;
-    object-position: center;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-}
-
-.img_valores{
-    width: 100%;
-    height: 450px;
-    object-fit: cover;
-    object-position: center;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-}
-
-.div_mvv:hover .h4_mvv{
-  opacity: 1;
-}
-
-.div_mvv:hover .h4v_mvv{
-  opacity: 1;
-}
-
-.div_mvv:hover .p1_mvv{
-  opacity: 1;
-}
-
-.h4_mvv{
-    font-size: 24px;
-    padding-top: 10px;
-    margin-left: 20px;
-    position: absolute;
-    bottom: 140px;
-    left: 0;
-    width: 25%;
-    background-color: rgba(255, 255, 255, 0.80);
-    color: black;
-    text-align: left;
-    padding: 10px 15px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.h4v_mvv{
-    font-size: 24px;
-    padding-top: 10px;
-    margin-left: 20px;
-    position: absolute;
-    bottom: 108px;
-    left: 0;
-    width: 25%;
-    background-color: rgba(255, 255, 255, 0.80);
-    color: black;
-    text-align: left;
-    padding: 10px 15px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.p1_mvv{
-    font-size: 20px;
-    padding-top: 20px;
-    margin-left: 20px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 90%;
-    background-color: rgba(255, 255, 255, 0.80);
-    color: black;
-    text-align: left;
-    padding: 10px 15px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.span_valores{
-  display: inline-block;
-  background-color: #1a2e52;
-  color: #e8edf6;
-  font-size: 20px;
-  padding: 5px 12px;
-  border-radius: 20px;
-  margin: 4px 10px 0 0;
-}
-
-.h1_ods{
-    font-size: 54px;
-    color: #fff;
-    text-align: center;
-    margin-top: 60px;
-}
-
-.span_ods{
-    font-size: 54px;
-    color: #ff6f33;
-}
-
-.section_ods{
-    position: relative;
-  	width: 100%;
-  	height: 450px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 50px;
-}
-
-.img_ods3{
-    width: 16%;
-    height: 350px;
-    margin: 10px 20px;
-}
-
-.img_ods9{
-    width: 15%;
-    height: 350px;
-    margin: 30px 20px;
-}
-
-.img_ods12{
-    width: 15%;
-    height: 350px;
-    margin: 50px 20px;
-}
-
-.img_ods17{
-    width: 15%;
-    height: 350px;
-    margin: 70px 20px;
-}
-
-/*Sobre Nós*/
-.h1_nos{
-    font-size: 64px;
-    padding-top: 10px;
-    text-align: center;
-    color: #fff;
-    margin-top: 60px;
-}   
-
-.section_nos{
-    position: relative;
-  	width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-top: 50px;
-}
-
-.cardWrapper {
+/* =====================
+   HERO
+   ===================== */
+.hero {
+  background-image: url("../../assets/images/SobreNos/foto_equipe-background.png");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  padding-top: 60px; 
-  margin-top:35px; 
-  gap: 100px;
+  align-items: center;
+  text-align: center;
+  border-radius: 0 0 15px 15px;
+  transform: scale(1.03);
+  transform-origin: center top;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  border-radius: 0 0 15px 15px;
+}
+
+.overlay h1 {
+  color: #fff;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 59.52px;
+  letter-spacing: -0.992px;
+}
+
+.overlay h3 {
+  color: #fff;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 31.28px;
+}
+
+/* =====================
+   SEÇÃO 2
+   ===================== */
+.secao2 {
+  width: 100%;
+  height: auto;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.conteudo {
+  width: 90%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  text-align: left;
+  gap: 200px;
+}
+
+.texto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  width: 583px;
+  height: 650px;
+}
+
+.titulo {
+  font-family: "Poppins", sans-serif;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 59.52px;
+  letter-spacing: -0.992px;
+  background: linear-gradient(90deg, #041062 17.31%, #4d00b5 50%, #feb42d 82.69%, #fd742c 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.depoimento {
+  color: #282828;
+  font-family: "Poppins", sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+}
+
+.dp2 {
+  margin-bottom: 20px;
+}
+
+.imagem {
+  width: 583px;
+  height: 650px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* =====================
+   SEÇÃO 3 — CARROSSEL
+   ===================== */
+.secao3 {
+  width: auto;
+  height: auto;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.carousel {
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: scroll 30s linear infinite;
 }
 
 .card {
-  background-color: #fff;
-  border-radius: 16px;
-  padding: 70px 24px 28px; 
-  width: 260px;
-  text-align: center;
-  position: relative;
-  color: black;
+  width: 261.425px;
+  height: 260.169px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
-.div_img_card {
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-196px * 5));
+  }
+}
+
+/* =====================
+   SEÇÃO CARDS MVV
+   ===================== */
+.secaoCard {
+  width: 100%;
+  height: 120vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.tituloMvv {
+  display: flex;
+  flex-direction: row;
+}
+
+.m {
+  color: #041062;
+  font-family: "Poppins", sans-serif;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 59.52px;
+  letter-spacing: -0.992px;
+  -webkit-text-stroke: 2px white;
+  z-index: 100;
+}
+
+.vi {
+  color: #4d00b5;
+  font-family: "Poppins", sans-serif;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 59.52px;
+  letter-spacing: -0.992px;
+  -webkit-text-stroke: 2px white;
+  z-index: 100;
+}
+
+.va {
+  color: #ff6f33;
+  font-family: "Poppins", sans-serif;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 59.52px;
+  letter-spacing: -0.992px;
+  -webkit-text-stroke: 2px white;
+  z-index: 100;
+}
+
+.cardsContainer {
+  display: flex;
+  gap: 30px;
+  max-width: 1200px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 150px;
+}
+
+/* Card Wrapper */
+.cardWrapper {
+  position: relative;
+  width: 350px;
+}
+
+/* Personagem */
+.characterImg {
   position: absolute;
-  top: -60px;              
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  width: 85%;
+  height: auto;
+  z-index: 1;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  opacity: 0;
+}
+
+/* Hover — sobe o boneco */
+.cardWrapper:hover .characterImg {
+  transform: translateX(-50%) translateY(1px);
+  opacity: 1;
+}
+
+/* Card MVV */
+.cardMvv {
+  background: linear-gradient(270deg, #041062 0%, #4d00b5 74.52%);
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  width: auto;
+  height: 250px;
+  flex-direction: column;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.cardContent {
+  padding: 28px;
+  color: #ffffff;
+  position: relative;
+  z-index: 2;
+}
+
+.cardContent h2 {
+  color: #fff;
+  font-feature-settings: "liga" off, "clig" off;
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+
+.cardContent p {
+  color: #fff;
+  font-feature-settings: "liga" off, "clig" off;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.4px;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+/* =====================
+   SEÇÃO ODS
+   ===================== */
+.secaoOds {
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.conteudoOds {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.tituloOds {
+  font-family: "Poppins", sans-serif;
+  font-size: 54.4px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 68px;
+  letter-spacing: -2.176px;
+  background: linear-gradient(90deg, #041062 28.85%, #4d00b5 59.62%, #feb42d 84.13%, #fd942d 92.07%, #041062 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: auto;
+}
+
+.cardsOds {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.cardsOds img {
+  width: 300px;
+  height: 450px;
+  margin: 10px;
+}
+
+/* =====================
+   SEÇÃO EQUIPE
+   ===================== */
+.secaoEquipe {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+}
+
+.conteudoEquipe {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.tituloEquipe {
+  font-family: "Poppins", sans-serif;
+  font-size: 54.4px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 68px;
+  letter-spacing: -2.176px;
+  background: linear-gradient(90deg, #041062 28.85%, #4d00b5 59.62%, #feb42d 84.13%, #fd942d 92.07%, #041062 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: auto;
+  margin-bottom: 100px;
+}
+
+.equipeContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px 30px;
+  max-width: 1140px;
+  width: 100%;
+}
+
+.cardEquipe {
+  background: #ffffff;
+  border-radius: 16px;
+  width: 320px;
+  position: relative;
+  padding: 90px 24px 24px 24px;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-top: 60px;
+}
+
+.cardEquipe::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 8px;
+  background: linear-gradient(180deg, #560bad 0%, #ff763b 100%);
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+.fotoContainer {
+  position: absolute;
+  top: -60px;
   left: 50%;
   transform: translateX(-50%);
-  width: 170px;
-  height: 170px;
+  width: 130px;
+  height: 130px;
+  background: #ffffff;
   border-radius: 50%;
-  border: 6px solid #fff; 
-  overflow: hidden;
-  z-index: 1;
+  padding: 6px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
-.foto {
+.fotoContainer img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  display: block; 
-   margin-top: -5px;
-}
-
-.foto_joao {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block; 
-  margin-top: -5px;
-}
-
-.foto_kaue {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block; 
-  margin-top: -5px;
-}
-
-.foto_teko {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block; 
-  margin-top: -5px;
-}
-
-.foto_rafa {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block; 
-  margin-top: -10px;
-}
-
-.cargo {
-  position: absolute;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background-color: #0F2D59;
-  color: white;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 13px;
-  margin-top: 8px;
-  margin-left: -60px;
-  z-index: 2; 
-}
-
-.cargo1 {
-  position: absolute;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background-color: #0F2D59;
-  color: white;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 13px;
-  margin-top: 8px;
-  margin-left: -50px;
-  z-index: 2; 
-}
-
-.cargo2 {
-  position: absolute;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background-color: #0F2D59;
-  color: white;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 13px;
-  margin-top: 8px;
-  margin-left: -70px;
-  z-index: 2; 
-}
-
-.ponto {
-  width: 8px;
-  height: 8px;
   border-radius: 50%;
-  background-color: #ff6b35;
+  background-color: #e2e8f0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: #0d233a;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #ff763b;
+  border-radius: 50%;
+  margin-right: 6px;
 }
 
 .nome {
-  font-size: 20px;
-  font-weight: 600;
-  margin: 40px 0 8px;
-}
-
-.nome1 {
-  font-size: 20px;
-  font-weight: 600;
-  margin: 60px 0 8px;
+  color: #1a1a1a;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .descricao {
+  color: #666666;
   font-size: 13px;
-  color: black;
   line-height: 1.5;
-  margin: 0 0 20px;
+  margin-bottom: 20px;
 }
 
-.redes {
+.redesSociais {
   display: flex;
   justify-content: center;
   gap: 12px;
 }
 
-.redes a {
+.socialLink {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
+  background-color: #111111;
+  color: #ffffff;
   border-radius: 50%;
-  background-color: #0d0d1a;
-  color: #fff;
-  font-size: 18px;
   text-decoration: none;
-  transition: background 0.2s;
+  font-size: 14px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.redes a:hover {
-  background-color: #ff6b35;
+.socialLink:hover {
+  transform: translateY(-3px);
+  background-color: #560bad;
 }
 
-
-/*Acompanhe a Ever Rise*/
-.h1_acomp{
-    font-size: 64px;
-    padding-top: 10px;
-    text-align: center;
-    color: #fff;
-    margin-top: 60px;
-}   
-
-.span_acomp{
-    font-size: 64px;
-    color: #ff6f33;
-}
-
-.p_acomp{
-    font-size: 25px;
-    text-align: center;
-    color: #fff;
-    margin-top: 30px;
-}
-
-.section_acomp {
+/* =====================
+   SEÇÃO REDES
+   ===================== */
+.secaoRedes {
+  width: 100%;
+  height: auto;
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  margin-top: 100px;
   justify-content: center;
-  padding: 40px;
-  margin-top: 50px;
+  align-items: center;
 }
 
-.div_acomp_insta,
-.div_acomp_link,
-.div_acomp_git {
+.conteudoRedes {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tituloRedes h1 {
+  color: #041062;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 65px;
+}
+
+.tituloRedes span {
+  color: #ff6f33;
+  font-family: "Poppins", sans-serif;
+  font-size: 64px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 65px;
+}
+
+.tituloRedes h3 {
+  color: #041062;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+}
+
+.sociaisContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px 20px;
+  font-family: "Inter", sans-serif;
+  background-color: #f4f6f9;
+  width: 100%;
+}
+
+.cardSocial {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 280px;
-  height: 280px;
-  border-radius: 20px;
-  padding: 24px;
-  gap: 8px;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.div_acomp_insta:hover,
-.div_acomp_link:hover,
-.div_acomp_git:hover {
-  transform: scale(1.03);
-}
-
-.div_acomp_insta {
-  background: linear-gradient(
-    135deg,
-    #6159DC 0%,
-    #B011BF 50%,
-    #DE0C99 75%,
-    #EC1688 88%,
-    #F54C66 94%,
-    #FE8243 100%
-  );
-}
-
-.div_acomp_link {
-  background-color: #0077B5;
-}
-
-.div_acomp_git {
-  background-color: #1a1a1a; 
-  border: 1px solid #333;
-}
-
-.img_acomp {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  margin-bottom: 8px;
-}
-
-.image_historia {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-}
-
-.p_redes {
-  color: #ffffff;
-  margin: 0;
-  text-align: center;
-}
-
-.p_redes:first-of-type {
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.p_redes:last-of-type {
-  font-size: 14px;
-  opacity: 0.85;
-}
-
-.a_acomp {
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: 600;
+  justify-content: space-between;
+  width: 320px;
+  height: 320px;
+  border-radius: 24px;
+  padding: 40px 24px 30px 24px;
+  box-sizing: border-box;
   text-decoration: none;
-  letter-spacing: 0.5px;
-  margin-top: auto; 
-  opacity: 0.9;
+  text-align: center;
+  transition: transform 0.3s ease;
 }
 
-.a_acomp:hover {
-  opacity: 1;
-  text-decoration: underline;
+.cardSocial:hover {
+  transform: translateY(-5px);
 }
 
-.divisor {
+.iconWrapper {
   display: flex;
   align-items: center;
-  gap: 24px;
-  width: 50%;
-  padding: 32px 40px;
-  box-sizing: border-box;
-  margin-left: 400px;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
 }
 
-.linha {
-  display: block;
-  flex: 1;
-  height: 1px;
-  background-color: #444;
+.socialIcon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
 }
 
-.texto {
+.redesNome {
   color: #ffffff;
-  font-size: 25px;
+  font-size: 26px;
+  font-weight: 800;
+  margin: 20px 0 0 0;
+}
+
+.usuario {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 auto;
+}
+
+.chamada {
+  color: #ffffff;
+  font-size: 11px;
   font-weight: 700;
-  white-space: nowrap;
-  margin: 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: auto;
+}
+
+/* Cores dos cards sociais */
+.instagram {
+  background: linear-gradient(135deg, #4c5fd7 0%, #cc2366 50%, #f16f3a 100%);
+  box-shadow: 0 15px 35px rgba(204, 35, 102, 0.25);
+}
+
+.instagram .iconWrapper {
+  background: linear-gradient(135deg, #f99f4b, #ca1d7e, #672ccf);
+}
+
+.linkedin {
+  background-color: #3194cd;
+  box-shadow: 0 15px 35px rgba(49, 148, 205, 0.25);
+}
+
+.linkedin .iconWrapper {
+  background-color: #0077b5;
+}
+
+.github {
+  background-color: #373b3e;
+  box-shadow: 0 15px 35px rgba(55, 59, 62, 0.25);
+}
+
+.github .iconWrapper {
+  background-color: #181a1b;
+}
+
+/* =====================
+   RESPONSIVIDADE
+   ===================== */
+@media (max-width: 1024px) {
+  .conteudo {
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  .texto {
+    width: 100%;
+    height: auto;
+  }
+
+  .imagem {
+    width: 100%;
+    height: 450px;
+  }
+
+  .titulo {
+    font-size: 2.5rem;
+  }
+
+  .overlay h1 {
+    font-size: 3rem;
+  }
+
+  .tituloRedes h1,
+  .tituloRedes span {
+    font-size: 3rem;
+  }
+
+  .tituloOds,
+  .tituloEquipe {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .overlay h1 {
+    font-size: 2.3rem;
+  }
+
+  .overlay h3 {
+    font-size: 1rem;
+  }
+
+  .titulo {
+    font-size: 2rem;
+  }
+
+  .depoimento {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .imagem {
+    min-height: 350px;
+    height: 350px;
+  }
+
+  .m,
+  .vi,
+  .va {
+    font-size: 2.2rem;
+  }
+
+  .tituloEquipe,
+  .tituloOds {
+    font-size: 2rem;
+  }
+
+  .tituloRedes h1,
+  .tituloRedes span {
+    font-size: 2.2rem;
+  }
+
+  .cardSocial {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .secaoCard {
+    height: auto;
+    padding: 80px 20px;
+  }
+
+  .cardsOds img {
+    width: 200px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .overlay h1 {
+    font-size: 1.8rem;
+  }
+
+  .titulo {
+    font-size: 1.7rem;
+  }
+
+  .depoimento {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .cardWrapper,
+  .cardEquipe {
+    width: 100%;
+  }
+
+  .tituloRedes h1,
+  .tituloRedes span {
+    font-size: 1.8rem;
+  }
+
+  .conteudo {
+    gap: 40px;
+  }
+
+  .cardsOds img {
+    width: 150px;
+    height: 220px;
+  }
 }
