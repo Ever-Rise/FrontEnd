@@ -1,11 +1,62 @@
+/* ─── TOKENS ─────────────────────────────────── */
+:root {
+  --bg:         #FDFEFF;
+  --accent:     #FEB42D;
+  --purple:     #4D00B5;
+  --card-bg:    #FFFFFF;
+  --card-shadow: 0px 8px 40px rgba(77, 0, 181, 0.10), 0px 2px 8px rgba(0,0,0,0.06);
+  --input-border: #FEB42D;
+  --text-primary: #0D0D0D;
+  --text-secondary: rgba(0,0,0,0.45);
+  --text-muted: rgba(0,0,0,0.3);
+}
+
+/* ─── BASE ───────────────────────────────────── */
 .container {
   min-height: 100vh;
-  background-color: #050A24;
-  color: #fff;
+  background: var(--bg);
+  color: var(--text-primary);
   font-family: Inter, sans-serif;
+  position: relative;
+  overflow-x: hidden;
 }
- 
+
+/* Onda Superior Esquerda - Invertida a direção para o Roxo começar no topo gordo */
+.waveTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  /* Trajeto do gradiente ajustado de (0,0) para (1000, 800) para trazer a transição de cor para dentro da tela */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1024' fill='none' preserveAspectRatio='none'%3E%3C!-- CAMADA DE TRÁS --%3E%3Cpath d='M0 0H1440V24C1290 44 940 124 640 424C340 724 190 924 0 1024V0Z' fill='url(%23gradTopInvertido)' opacity='0.85'/%3E%3C!-- CAMADA DA FRENTE --%3E%3Cpath d='M0 0H1440V14C1240 29 890 94 590 354C290 614 140 774 0 824V0Z' fill='url(%23gradTopInvertido)'/%3E%3Cdefs%3E%3C!-- Puxamos o Laranja para 55% do percurso para que ele apareça nitidamente antes da curva sumir da tela --%3E%3ClinearGradient id='gradTopInvertido' x1='0' y1='0' x2='1000' y2='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%234D00B5'/%3E%3Cstop offset='55%25' stop-color='%23FEB42D'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top left;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Onda Inferior Direita - Rampa de Montanha-Russa Diagonal */
+.waveBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1024' fill='none' preserveAspectRatio='none'%3E%3C!-- CAMADA DE TRÁS --%3E%3Cpath d='M1440 1024H0V1000C150 980 500 900 800 600C1100 300 1250 100 1440 0V1024Z' fill='url(%23gradBottom)' opacity='0.85'/%3E%3C!-- CAMADA DA FRENTE --%3E%3Cpath d='M1440 1024H0V1010C200 995 550 930 850 670C1150 410 1300 250 1440 200V1024Z' fill='url(%23gradBottom)'/%3E%3Cdefs%3E%3ClinearGradient id='gradBottom' x1='1440' y1='0' x2='720' y2='1024' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%234D00B5'/%3E%3Cstop offset='84%25' stop-color='%23FEB42D'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom right;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .page {
+  position: relative;
+  z-index: 5;
   padding-top: calc(76px + 2rem);
   padding-left: 2.5rem;
   padding-right: 2.5rem;
@@ -13,69 +64,74 @@
   max-width: 1400px;
   margin: 0 auto;
 }
- 
+
+.content {
+  position: relative;
+  z-index: 99; /* Um valor alto para ganhar de qualquer outro z-index da página */
+}
+
 .title {
-    width: 1400px;
-  font-size: 4rem;
-  font-weight: 1000;
-  letter-spacing: -0.5px;
+  width: 100%;
+  max-width: 900px;
+  font-size: 3.5rem;
+  font-weight: 900;
+  letter-spacing: -1px;
   margin-bottom: 1.5rem;
-  line-height: 1.2;
+  line-height: 1.15;
   font-family: Inter, sans-serif;
   margin-top: 50px;
   margin-left: 20px;
+  color: var(--text-primary);
 }
- 
+
 .layout {
   display: grid;
   grid-template-columns: 1fr 360px;
   gap: 1.25rem;
   align-items: start;
 }
- 
-/* ─────────────────────────────────────
-   COLUNA ESQUERDA
-───────────────────────────────────── */
+
+/* ─── COLUNA ESQUERDA ────────────────────────── */
 .left {
   width: 850px;
   display: flex;
   flex-direction: column;
   gap: 0;
- 
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(15px);
-  padding: 36px 48px 48px; /* mais padding nas laterais */
+  position: relative;
+  z-index: 5;
+  background: var(--card-bg);
+  border: 1px solid rgba(254, 180, 45, 0.25);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  padding: 36px 48px 48px;
   margin-top: 50px;
 }
- 
+
 /* ── Títulos de seção ── */
 .sectionTitle {
   font-family: 'Poppins', sans-serif;
-  font-size: 40px;
-  font-weight: 500;
-  color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
   margin-bottom: 28px;
   margin-top: 0;
 }
- 
+
 .sectionTitleSpaced {
   font-family: 'Poppins', sans-serif;
-  font-size: 40px;
-  font-weight: 500;
-  color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
   margin-bottom: 28px;
-  margin-top: 48px; /* mais espaço antes de nova seção */
+  margin-top: 48px;
 }
- 
-/* ── Campo de formulário — label fora, input com fundo ── */
+
+/* ── Campos ── */
 .formField {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 20px; /* espaço generoso entre campos */
+  margin-bottom: 20px;
 }
 
 .formField:last-child {
@@ -93,95 +149,92 @@
   margin-bottom: 0;
 }
 
-/* ── Label fora do card, estilo formulário clássico ── */
 .label {
   display: block;
-  font-size: 23px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 1.2px;
+  letter-spacing: 1.4px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.671);
+  color: var(--text-secondary);
   font-family: Inter, sans-serif;
 }
- 
-/* ── Input com fundo próprio (sem label dentro) ── */
+
 .input {
   display: block;
   width: 100%;
-  background: #19233D;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #F0F5FB;
+  border: 1.5px solid var(--input-border);
   border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 20px;
+  box-shadow: 0px 2px 6px rgba(254, 180, 45, 0.12);
+  color: var(--text-primary);
+  font-size: 16px;
   font-family: Inter, sans-serif;
   padding: 14px 18px;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
   box-sizing: border-box;
 }
- 
+
 .input:focus {
-  border-color: #5B5FC7;
-  box-shadow: 0 0 0 3px rgba(91, 95, 199, 0.15);
-  color: #fff;
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(77, 0, 181, 0.1);
 }
- 
+
 .input::placeholder {
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(0,0,0,0.2);
 }
- 
-/* ── Forma de Entrega ── */
+
+/* ── Entrega ── */
 .deliveryOptions {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   margin-bottom: 0;
 }
- 
+
 .deliveryOption {
-  background-color: #19233D;
+  background-color: #F0F5FB;
   border-radius: 15px;
-  box-shadow: 0px 4px 4px rgba(118, 117, 117, 0.25);
+  box-shadow: 0px 2px 8px rgba(254, 180, 45, 0.1);
   padding: 20px 24px;
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: border-color 0.2s, background 0.2s;
+  border: 1.5px solid rgba(254, 180, 45, 0.3);
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
- 
+
 .deliveryOption.selected {
-  border-color: #5B5FC7;
-  background: rgba(91, 95, 199, 0.12);
+  border-color: var(--accent);
+  background: rgba(254, 180, 45, 0.08);
+  box-shadow: 0px 4px 16px rgba(254, 180, 45, 0.2);
 }
- 
+
 .deliveryOptionHeader {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 25px;
-  font-weight: 700;
-  color: #fff;
-}
- 
-.deliveryMeta {
-  font-size: 18px;
-  color: rgba(255, 255, 255, 0.35);
-}
- 
-.deliveryPrice {
   font-size: 20px;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.65);
-  margin-top: 2px;
+  color: var(--text-primary);
 }
- 
+
+.deliveryMeta {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.deliveryPrice {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
 .deliveryPriceFree {
-  color: #4ade80;
+  color: #16a34a;
 }
- 
+
 /* ── Pagamento ── */
 .paymentTabs {
   display: flex;
@@ -189,32 +242,30 @@
   margin-bottom: 20px;
   flex-wrap: wrap;
 }
- 
+
 .paymentTab {
   display: flex;
   align-items: center;
   gap: 6px;
   padding: 8px 16px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.03);
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 18px;
+  border: 1.5px solid rgba(0,0,0,0.1);
+  background: #f5f5f5;
+  color: rgba(0,0,0,0.45);
+  font-size: 15px;
   font-weight: 600;
   font-family: Inter, sans-serif;
   cursor: pointer;
   transition: all 0.2s;
 }
- 
+
 .paymentTab.active {
-  background: rgba(91, 95, 199, 0.15);
-  border-color: #5B5FC7;
-  color: #fff;
+  background: rgba(254, 180, 45, 0.12);
+  border-color: var(--accent);
+  color: var(--text-primary);
 }
- 
-/* ─────────────────────────────────────
-   COLUNA DIREITA 
-───────────────────────────────────── */
+
+/* ─── COLUNA DIREITA ─────────────────────────── */
 .right {
   width: 460px;
   display: flex;
@@ -222,23 +273,19 @@
   gap: 1.25rem;
   position: sticky;
   top: 100px;
+  z-index: 5;
   margin-top: 50px;
   margin-left: -80px;
 }
- 
+
 .orderCard {
-  background-color: #19233D;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid rgba(254, 180, 45, 0.2);
+  box-shadow: var(--card-shadow);
   overflow: hidden;
-}
-
-.summaryRowFree{
-  font-size: 24px;
-}
-
-.summaryRow span{
-  font-size: 18px;
+  position: relative;
+  z-index: 5;
 }
 
 .productRow {
@@ -247,362 +294,209 @@
   align-items: center;
   gap: 0.9rem;
   padding: 1.25rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
 }
- 
+
 .productThumb {
   width: 54px;
   height: 80px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(254, 180, 45, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 30px;
   flex-shrink: 0;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(254, 180, 45, 0.2);
 }
- 
+
 .productThumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
 }
- 
+
 .productInfo {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
 }
- 
+
 .productName {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-primary);
   line-height: 1.3;
 }
- 
+
 .inStock {
-  font-size: 17px;
-  color: #f97316;
-  font-weight: 600;
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 700;
 }
- 
+
 .summaryRows {
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
 }
- 
+
 .summaryRow {
   display: flex;
   justify-content: space-between;
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.45);
+  font-size: 14px;
+  color: var(--text-secondary);
 }
- 
+
 .summaryRowValue {
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--text-primary);
+  font-weight: 600;
 }
- 
+
 .summaryRowFree {
-  color: #4ade80;
+  color: #16a34a;
   font-weight: 700;
+  font-size: 14px;
 }
- 
+
 .summaryRowInc {
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--text-muted);
   font-style: italic;
 }
- 
+
 .divider {
   height: 1px;
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(0,0,0,0.07);
   margin: 0.2rem 0;
 }
- 
+
 .totalRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 30px;
-  color: rgba(255, 255, 255, 0.45);
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-weight: 600;
 }
- 
+
 .totalValue {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 900;
-  color: #fff;
+  color: var(--text-primary);
   letter-spacing: -0.5px;
 }
- 
+
+/* ── Botão principal ── */
 .checkoutBtn {
   display: block;
   width: calc(100% - 2.5rem);
   margin: 0 1.25rem 1.25rem;
   padding: 1rem;
-  background: #f97316;
+  background: var(--accent);
   border: none;
   border-radius: 10px;
   color: #fff;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 900;
   font-family: Inter, sans-serif;
   cursor: pointer;
   letter-spacing: 0.3px;
-  transition: background 0.2s, transform 0.15s;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
   text-align: center;
+  box-shadow: 0 4px 20px rgba(254, 180, 45, 0.4);
 }
- 
+
 .checkoutBtn:hover {
-  background: #ea6c0a;
-  transform: translateY(-1px);
+  background: #e6a020;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(254, 180, 45, 0.5);
 }
- 
+
 .supportCard {
-  background-color: #19233D;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid rgba(254, 180, 45, 0.2);
+  box-shadow: var(--card-shadow);
   padding: 1rem 1.25rem;
   display: flex;
   gap: 0.8rem;
   align-items: flex-start;
+  position: relative;
+  z-index: 5;
 }
- 
+
 .supportIcon {
-  font-size: 30px;
+  font-size: 28px;
   flex-shrink: 0;
   margin-top: 2px;
 }
- 
+
 .supportTitle {
-  font-size: 25px;
+  font-size: 16px;
   font-weight: 800;
-  color: #fff;
+  color: var(--text-primary);
   margin-bottom: 0.3rem;
 }
- 
+
 .supportText {
-  font-size: 18px;
-  color: rgba(255, 255, 255, 0.38);
+  font-size: 13px;
+  color: var(--text-secondary);
   line-height: 1.6;
 }
- 
-/* ── Tablet (≤ 1024px) ── */
+
+/* ── Tablet ── */
 @media (max-width: 1024px) {
-  .layout {
-    grid-template-columns: 1fr;
-  }
-
-  .left {
-    width: 100%;
-    padding: 28px 32px 40px;
-    margin-top: 32px;
-  }
-
-  .right {
-    width: 100%;
-    position: static;
-    margin-top: 0;
-    margin-left: 0;
-  }
-
-  .title {
-    font-size: 2.8rem;
-    margin-left: 0;
-    margin-top: 32px;
-  }
-
-  .sectionTitle {
-    font-size: 30px;
-  }
-
-  .sectionTitleSpaced {
-    font-size: 30px;
-    margin-top: 36px;
-  }
-
-  .deliveryOptionHeader {
-    font-size: 20px;
-  }
-
-  .deliveryMeta {
-    font-size: 15px;
-  }
-
-  .deliveryPrice {
-    font-size: 17px;
-  }
-
-  .paymentTab {
-    font-size: 15px;
-  }
-
-  .supportTitle {
-    font-size: 20px;
-  }
-
-  .supportText {
-    font-size: 15px;
-  }
+  .layout { grid-template-columns: 1fr; }
+  .left { width: 100%; padding: 28px 32px 40px; margin-top: 32px; }
+  .right { width: 100%; position: static; margin-top: 0; margin-left: 0; }
+  .title { font-size: 2.4rem; margin-left: 0; margin-top: 32px; }
+  .sectionTitle { font-size: 26px; }
+  .sectionTitleSpaced { font-size: 26px; margin-top: 36px; }
+  .waveTop { height: 60vh; }
+  .waveBottom { height: 60vh; }
 }
 
-/* ── Mobile (≤ 640px) ── */
+/* ── Mobile ── */
 @media (max-width: 640px) {
-  .page {
-    padding-top: calc(60px + 1rem);
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-bottom: 3rem;
-  }
+  .page { padding-top: calc(60px + 1rem); padding-left: 1rem; padding-right: 1rem; padding-bottom: 3rem; }
+  .title { font-size: 1.6rem; margin-left: 0; margin-top: 20px; margin-bottom: 1rem; }
+  .layout { grid-template-columns: 1fr; gap: 1rem; }
+  .left { width: 100%; padding: 20px 16px 32px; margin-top: 0; border-radius: 14px; }
+  .sectionTitle { font-size: 20px; margin-bottom: 18px; }
+  .sectionTitleSpaced { font-size: 20px; margin-top: 28px; margin-bottom: 18px; }
+  .formRow { grid-template-columns: 1fr; gap: 16px; }
+  .formField { margin-bottom: 14px; }
+  .label { font-size: 10px; letter-spacing: 1px; }
+  .input { font-size: 14px; padding: 12px 14px; }
+  .deliveryOptions { grid-template-columns: 1fr; gap: 10px; }
+  .deliveryOption { padding: 14px 16px; gap: 8px; }
+  .deliveryOptionHeader { font-size: 16px; }
+  .paymentTabs { gap: 6px; }
+  .paymentTab { font-size: 12px; padding: 7px 10px; }
+  .right { width: 100%; position: static; margin: 0; }
+  .orderCard { border-radius: 14px; }
+  .productRow { height: auto; padding: 1rem; }
+  .productName { font-size: 15px; }
+  .inStock { font-size: 13px; }
+  .summaryRows { padding: 1rem; }
+  .totalValue { font-size: 1.3rem; }
+  .checkoutBtn { font-size: 17px; padding: 0.85rem; }
+  .supportCard { border-radius: 14px; padding: 0.85rem 1rem; }
+  .supportTitle { font-size: 14px; }
+  .supportText { font-size: 12px; }
+  .waveTop { height: 50vh; }
+  .waveBottom { height: 50vh; }
+}
 
-  .title {
-    font-size: 1.75rem;
-    margin-left: 0;
-    margin-top: 20px;
-    margin-bottom: 1rem;
-  }
-
-  .layout {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  /* Form */
-  .left {
-    width: 100%;
-    padding: 20px 16px 32px;
-    margin-top: 0;
-    border-radius: 12px;
-  }
-
-  .sectionTitle {
-    font-size: 22px;
-    margin-bottom: 20px;
-  }
-
-  .sectionTitleSpaced {
-    font-size: 22px;
-    margin-top: 32px;
-    margin-bottom: 20px;
-  }
-
-  /* Campos em coluna única em mobile */
-  .formRow {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .formField {
-    margin-bottom: 16px;
-  }
-
-  .label {
-    font-size: 11px;
-    letter-spacing: 1px;
-  }
-
-  .input {
-    font-size: 15px;
-    padding: 12px 14px;
-  }
-
-  /* Entrega em coluna */
-  .deliveryOptions {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .deliveryOption {
-    padding: 16px 18px;
-    gap: 10px;
-  }
-
-  .deliveryOptionHeader {
-    font-size: 18px;
-  }
-
-  .deliveryMeta {
-    font-size: 14px;
-  }
-
-  .deliveryPrice {
-    font-size: 16px;
-  }
-
-  /* Pagamento */
-  .paymentTabs {
-    gap: 6px;
-  }
-
-  .paymentTab {
-    font-size: 13px;
-    padding: 7px 12px;
-  }
-
-  /* Coluna direita — resumo do pedido */
-  .right {
-    width: 100%;
-    position: static;
-    margin: 0;
-  }
-
-  .orderCard {
-    border-radius: 12px;
-  }
-
-  .productRow {
-    height: auto;
-    padding: 1rem;
-  }
-
-  .productName {
-    font-size: 16px;
-  }
-
-  .inStock {
-    font-size: 14px;
-  }
-
-  .summaryRows {
-    padding: 1rem;
-  }
-
-  .summaryRow span,
-  .summaryRowFree {
-    font-size: 14px;
-  }
-
-  .totalRow {
-    font-size: 20px;
-  }
-
-  .totalValue {
-    font-size: 1.4rem;
-  }
-
-  .checkoutBtn {
-    font-size: 18px;
-    padding: 0.85rem;
-  }
-
-  .supportCard {
-    border-radius: 12px;
-    padding: 0.85rem 1rem;
-  }
-
-  .supportIcon {
-    font-size: 24px;
-  }
-
-  .supportTitle {
-    font-size: 16px;
-  }
-
-  .supportText {
-    font-size: 13px;
-  }
+.container::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: inherit;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
 }
