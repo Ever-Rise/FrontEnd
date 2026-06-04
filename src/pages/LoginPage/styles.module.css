@@ -1,411 +1,422 @@
-.email{
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+.page {
   position: relative;
-  width: 100%;
-  height: auto;
+  min-height: 100vh;
+  background: #ffffff;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  background-color: #1a1f3a;
-  background-image:
-  radial-gradient(ellipse at top left, rgba(99,102,241,0.45) 0%, transparent 52%),
-  radial-gradient(ellipse at bottom right, rgba(37,99,235,0.4) 0%, transparent 52%);
+  align-items: center;
+  justify-content: center;
+  gap: clamp(40px, 5vw, 88px);
+  padding: clamp(32px, 4vw, 56px);
+  max-width: 1480px;
+  margin: 0 auto;
 }
 
-.info{
-  width: 39%;
-  height: 600px;
-  text-align: center;
-  font-size: 17px;
-  color: white;
-  border-radius: 5px;
-  padding-top: 50px;
-  margin-top: 50px;
-}
+/* ========================= */
+/* CARD LOGIN */
+/* ========================= */
 
-#login-title{
+.loginCard {
+  flex: 0 1 620px;
   width: 100%;
-  font-size: 65px;
-  color: white;
-  text-align: center;
-}
-
-header p{
-  width: 100%;
-  font-size: 20px;
-  color: white;
-  text-align: center;
-}
-
-.acao_login{
-  width: 100%;
-  height: 600px;
-  background-color: #1a1f3a;
-  background-image:
-  radial-gradient(ellipse at top left, rgba(99,102,241,0.45) 0%, transparent 52%),
-  radial-gradient(ellipse at bottom right, rgba(37,99,235,0.4) 0%, transparent 52%);
-  margin-top: 50px;
-  padding-top: 50px;
-  border-radius: 10px;
+  max-width: 620px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: clamp(40px, 4.5vw, 56px) clamp(36px, 4vw, 48px);
   box-shadow:
-  0 1px 2px rgba(0,0,0,0.07),
-  0 4px 8px rgba(0,0,0,0.07),
-  0 12px 24px rgba(0,0,0,0.08),
-  0 24px 48px rgba(0,0,0,0.06);
+    0 18px 45px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
-.acao_login fieldset {
-  border: none;
-  padding: 0;
-  margin: 0;
+.cardHeader {
+  margin-bottom: 32px;
 }
 
-.linha{
+.cardHeader h1 {
+  font-size: clamp(32px, 3.5vw, 44px);
+  line-height: 1.2;
+  color: #000b58;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.cardHeader p {
+  font-size: clamp(17px, 1.8vw, 19px);
+  line-height: 1.55;
+  color: #000b58;
+  font-weight: 400;
+}
+
+.divider {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 20px;
-  margin-left: 50px;
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
-.linha::before,
-.linha::after{
-  content: '';
-  width: 140px;
-  flex: none;
-  border-top: 1px solid white;
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #000b58;
 }
 
-.lambel_email{
+.divider span {
+  color: #000b58;
+  font-size: clamp(16px, 1.6vw, 18px);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.form {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start; 
-  margin-top: 20px;
-  margin-left: 50px;
 }
 
-.lambel_email label{
-  color: white;
-  font-size: 20px;
+.field {
+  margin-bottom: 26px;
 }
 
-.lambel_email input{
-  border-radius: 5px;
-  padding-left: 10px;
-  width: 500px;
-  height: 30px;
+.field label {
+  display: block;
+  font-size: clamp(18px, 1.8vw, 20px);
+  color: #000b58;
+  margin-bottom: 10px;
+  font-weight: 600;
 }
 
-.lambel_senha {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 20px;
-  margin-left: 50px;
-}
-
-.lambel_senha label {
-  color: white;
-  font-size: 20px;
-  text-align: left;  
-}
-
-.inputWrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 500px;
-}
-
-.inputWrapper input {
+.field input {
   width: 100%;
-  padding-right: 40px;
+  min-height: 60px;
+  height: 60px;
+  border-radius: 14px;
+  border: 2px solid #b8b8b8;
+  padding: 0 20px;
+  background: #ffffff;
+  font-size: clamp(17px, 1.7vw, 18px);
+  font-family: inherit;
+  color: #1a1a1a;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.olho {
+.field input::placeholder {
+  color: #9a9a9a;
+}
+
+.field input:focus {
+  border-color: #000b58;
+  box-shadow: 0 0 0 4px rgba(0, 11, 88, 0.12);
+}
+
+.field input:focus-visible,
+.primaryBtn:focus-visible,
+.googleBtn:focus-visible,
+.togglePassword:focus-visible,
+.forgotLink:focus-visible,
+.footer a:focus-visible,
+.remember:focus-within .checkmark {
+  outline: 3px solid #000b58;
+  outline-offset: 2px;
+}
+
+.passwordWrapper {
+  position: relative;
+}
+
+.passwordWrapper input {
+  padding-right: 60px;
+}
+
+.togglePassword {
   position: absolute;
+  top: 50%;
   right: 10px;
-  cursor: pointer;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
 }
 
-.olho img {
-  width: 20px;
-  height: 20px;
+.togglePassword img {
+  width: 24px;
+  height: 24px;
 }
 
-.recuperar{
-  width: 500px;
-  height: 50px;
+.options {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 17px;
-  margin-left: 50px;
+  gap: 16px;
+  margin-bottom: 28px;
 }
 
-.recuperar a{
-  color: white;
-}
-
-.criar{
-  position: relative;
-  width: 500px;
-  height: 30px;
-  background-color: #2D55FB;
-  color: white;
-  border-radius: 5px;
-  font-size: 17px;
-}
-
-.google{
-  display: flex;          
+.remember {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  width: 500px;
-  height: 30px;
-  background-color: #D1E9FF;
-  color: #2D55FB;
-  border-radius: 5px;
-  margin-top: 20px;
-  margin-left: 50px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px;
+  margin: -10px;
   cursor: pointer;
+}
+
+.remember input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkmark {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #000b58;
+  border-radius: 4px;
+  background: #ffffff;
+}
+
+.remember input:checked + .checkmark {
+  background: #000b58;
+  box-shadow: inset 0 0 0 4px #ffffff;
+}
+
+.forgotLink {
+  color: #000b58;
+  text-decoration: none;
+  font-size: clamp(16px, 1.6vw, 18px);
+  font-weight: 600;
+  padding: 10px 4px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.forgotLink:hover {
+  text-decoration: underline;
+}
+
+.primaryBtn,
+.googleBtn {
+  width: 100%;
+  min-height: 60px;
+  height: 60px;
   border: none;
-  font-size: 17px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: clamp(17px, 1.7vw, 19px);
+  font-weight: 600;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.google img{
-  width: 15px;
-  height: 15px;
+.primaryBtn {
+  background: #000b58;
+  color: #ffffff;
+  margin-bottom: 18px;
 }
 
-.log_in{
-  margin-top: 10px;
+.primaryBtn:hover {
+  opacity: 0.92;
 }
 
-.derma_login{
-  color: #2D55FB;
+.googleBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #f1f1f1;
+  color: #111111;
+  margin-bottom: 28px;
 }
 
-.imagem{
-  width: 50%;
-  height: 822px;
-  background-image: url(../../assets/images/Login/ImageLogin.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
+.googleBtn img {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
 }
 
-/* ===== TABLET RESPONSIVE — 481px até 1024px ===== */
-@media (min-width: 481px) and (max-width: 1024px) {
-
-  .email {
-    flex-direction: row;
-    align-items: stretch;
-    justify-content: space-between;
-    min-height: 100vh;
-    overflow: hidden;
-  }
-
-  /* .info é o wrapper do formulário — ocupa metade esquerda */
-  .info {
-    display: flex ;
-    width: 50%;
-    height: auto;
-    min-height: 100vh;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    align-items: center;
-    justify-content: center;
-    order: 1;
-  }
-
-
-  /* .acao_login fica dentro do .info, ocupa todo o espaço dele */
-  .acao_login {
-    width: 100%;
-    height: auto;
-    min-height: unset;
-    margin-top: 0;
-    padding: 30px 20px;
-    border-radius: 0;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: transparent;
-    box-shadow: none;
-  }
-
-  /* Imagem ocupa metade direita */
-  .imagem {
-    width: 50%;
-    height: 800px;
-    background-size: cover;
-    background-position: center;
-    border-radius: 10px;
-    flex-shrink: 0;
-    margin-top: 100px;
-    order: 2;
-  }
-
-  .linha {
-  margin-left: 20px;
-  font-size: 16px;
-  width: 90%;
-  max-width: 320px;
-  justify-content: flex-start; /* alinha igual aos outros */
+.googleBtn:hover {
+  background: #e8e8e8;
 }
 
-  .linha::before,
-  .linha::after {
-    width: 70px;
-  }
+.footer {
+  text-align: center;
+  font-size: clamp(16px, 1.6vw, 18px);
+  color: #6b6b6b;
+  line-height: 1.55;
+}
 
-  .criar {
-  width: 90%;
-  max-width: 320px;
+.footer a {
+  color: #000b58;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* ========================= */
+/* IMAGEM */
+/* ========================= */
+
+.imageCard {
+  flex: 0 1 660px;
+  width: 100%;
+  max-width: 660px;
+  margin: 0;
+  aspect-ratio: 660 / 820;
+  max-height: min(820px, 88vh);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 18px 16px 28px rgba(0, 76, 120, 0.22);
+}
+
+.imageCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  margin-left: 20px; /* mesmo margin dos outros */
-  margin-top: 10px;
 }
 
-  .lambel_email,
-  .lambel_senha {
-    margin-left: 20px;
-  }
+/* ========================= */
+/* EFEITOS DECORATIVOS */
+/* ========================= */
 
-  .lambel_email input,
-  .inputWrapper,
-  .criar {
-    width: 90%;
-    max-width: 320px;
-  }
-
-  .inputWrapper input {
-    width: 100%;
-  }
-
-  .recuperar {
-    width: 90%;
-    max-width: 320px;
-    margin-left: 20px;
-  }
-
-  .google {
-    width: 90%;
-    max-width: 320px;
-    margin-left: 20px;
-  }
+.effectTopLeft,
+.effectBottomLeft,
+.effectTopRight,
+.effectBottomRight {
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* ===== MOBILE RESPONSIVE — max-width: 480px ===== */
-@media (max-width: 480px) {
-  .email {
+.effectTopLeft {
+  top: 48px;
+  left: -24px;
+  width: 200px;
+  height: 14px;
+  background: linear-gradient(90deg, #f5b13c, #f09a00);
+  transform: rotate(52deg);
+  filter: blur(2px);
+  opacity: 0.95;
+}
+
+.effectBottomLeft {
+  bottom: 140px;
+  left: 180px;
+  width: 160px;
+  height: 12px;
+  background: linear-gradient(90deg, #d6b5ff, #9e66ff);
+  transform: rotate(48deg);
+  filter: blur(6px);
+  opacity: 0.55;
+}
+
+.effectTopRight {
+  top: -8px;
+  right: -20px;
+  width: 240px;
+  height: 14px;
+  background: linear-gradient(90deg, #8f3d7a, #b266a2);
+  transform: rotate(55deg);
+  filter: blur(3px);
+  opacity: 0.85;
+}
+
+.effectBottomRight {
+  right: -28px;
+  bottom: 200px;
+  width: 170px;
+  height: 12px;
+  background: linear-gradient(90deg, #ffb63f, #ffcb6a);
+  transform: rotate(50deg);
+  filter: blur(2px);
+  opacity: 0.9;
+}
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media (max-width: 1024px) {
+  .content {
     flex-direction: column;
-    align-items: center;
-    padding: 20px 16px;
-    min-height: 100vh;
+    justify-content: flex-start;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 
-  .imagem {
-    display: none;
+  .loginCard {
+    max-width: 620px;
   }
 
-  .info {
-    width: 100%;
-    height: auto;
-    margin-top: 10px;
-    padding-top: 10px;
+  .imageCard {
+    max-width: 620px;
+    max-height: 480px;
+    aspect-ratio: 4 / 5;
   }
 
-  #login-title {
-    font-size: 36px;
+  .effectBottomLeft {
+    left: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginCard {
+    padding: 32px 24px;
+    border-radius: 18px;
   }
 
-  header p {
+  .cardHeader h1 {
+    font-size: 30px;
+  }
+
+  .cardHeader p {
+    font-size: 17px;
+  }
+
+  .field input,
+  .primaryBtn,
+  .googleBtn {
+    min-height: 56px;
+    height: 56px;
+  }
+
+  .options {
+    gap: 12px;
+  }
+
+  .forgotLink {
     font-size: 16px;
-    padding: 0 10px;
+    text-align: right;
+    max-width: 65%;
   }
 
-  .acao_login {
-    width: 100%;
-    height: auto;
-    margin-top: 20px;
-    padding: 30px 16px;
-    box-sizing: border-box;
-  }
-
-  .linha {
-    margin-left: 0;
-    justify-content: center;
-  }
-
-  .linha::before,
-  .linha::after {
-    width: 60px;
-  }
-
-  .lambel_email,
-  .lambel_senha {
-    margin-left: 0;
-    margin-top: 20px;
-    width: 100%;
-    padding: 0 10px;
-    box-sizing: border-box;
-  }
-
-  .lambel_email label,
-  .lambel_senha label {
+  .footer {
     font-size: 16px;
-    margin-bottom: 6px;
-  }
-
-  .lambel_email input {
-    width: 100%;
-    height: 40px;
-    font-size: 16px;
-    box-sizing: border-box;
-  }
-
-  .inputWrapper {
-    width: 100%;
-  }
-
-  .inputWrapper input {
-    height: 40px;
-    font-size: 16px;
-    box-sizing: border-box;
-    border-radius: 5px;
-    padding-left: 10px;
-  }
-
-  .recuperar {
-    width: 100%;
-    margin-left: 0;
-    padding: 0 10px;
-    box-sizing: border-box;
-    font-size: 15px;
-  }
-
-  .criar {
-    width: calc(100% - 20px);
-    margin-left: 10px;
-    height: 40px;
-    font-size: 16px;
-  }
-
-  .google {
-    width: calc(100% - 20px);
-    margin-left: 10px;
-    height: 40px;
-    font-size: 16px;
-  }
-
-  .log_in {
-    text-align: center;
-    padding: 0 10px;
   }
 }

@@ -1,95 +1,102 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useRegisterWizard } from './hooks/useRegisterWizard';
+import StepIdentity from "./steps/StepIdentity";
+import StepCredentials from "./steps/StepCredentials";
 import styles from './styles.module.css';
-import Assistente from '../../assets/icons/cadastro/assistente.svg';
-import Mensagem from '../../assets/icons/cadastro/mensagem.svg';
-import Interrogacao from '../../assets/icons/cadastro/interrogacao.svg';
-import Seta from '../../assets/icons/cadastro/seta.svg';
 
-const RegisterPage = () => {
+// Substitua pelo caminho correto da sua imagem do guincho/paciente
+import imagemLateral from '../../assets/images/Register/imagem_principal.png'; 
+
+export default function RegisterPage() {
+  const { etapaAtual, avancarEtapa, voltarEtapa } = useRegisterWizard();
+  
+  // Estados locais para controlar a visualização das senhas do subcomponente
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  // Mock simulado do 'register' do react-hook-form para o visual funcionar sem quebrar
+  const mockRegister = (name) => ({
+    name,
+    onChange: (e) => console.log(`Digitando no campo: ${name}`),
+  });
+
+  // Mock de erros vazio para não travar a renderização visual
+  const mockErrors = {};
+
+  const handleSubmitFinal = (e) => {
+    e.preventDefault();
+    alert('Cadastro finalizado com sucesso! (Simulação Visual)');
+  };
+
   return (
-    <main className={styles.cadastro}>
-      <section className={styles.infos} aria-labelledby="cadastro-titulo">
+    <div className={styles.container}>
+      {/* Linhas decorativas de fundo */}
+      <div className={`${styles.line} ${styles.lineOrange1}`}></div>
+      <div className={`${styles.line} ${styles.linePurple1}`}></div>
+      <div className={`${styles.line} ${styles.lineOrange2}`}></div>
+      <div className={`${styles.line} ${styles.linePurple2}`}></div>
 
-        <article className={styles.acao_cadastro}>
-          <header>
-            <h1 id="cadastro-titulo">Cadastre-se agora</h1>
-            <p>Junte-se a Ever Rise e evolua com tecnologia.</p>
-          </header>
+      <div className={styles.mainContent}>
+        
+        {/* Lado Esquerdo: Card de Formulário */}
+        <div className={styles.card}>
+          <h1 className={styles.title}>Cadastro</h1>
 
-          <form noValidate>
-            <div className={styles.lambel_nome}>
-              <label htmlFor="nome">Nome Completo:</label>
-              <input
-                type="text"
-                id="nome"
-                name="nome"
-                maxLength={30}
-                size={50}
-                placeholder="Nome Completo"
-                autoComplete="name"
-                required
-              />
+          <form onSubmit={etapaAtual === 2 ? handleSubmitFinal : avancarEtapa}>
+            <div className={styles.formContent}>
+              
+              {/* ============ ETAPA 1 ============ */}
+              {etapaAtual === 1 && (
+                <>
+                  <StepIdentity 
+                    styles={styles} 
+                    register={mockRegister} 
+                    errors={mockErrors} 
+                  />
+                  <button type="submit" className={styles.buttonSubmit}>
+                    Continuar Cadastro &gt;
+                  </button>
+                </>
+              )}
+
+              {/* ============ ETAPA 2 ============ */}
+              {etapaAtual === 2 && (
+                <>
+                  <StepCredentials 
+                    styles={styles} 
+                    register={mockRegister} 
+                    errors={mockErrors}
+                    showPassword={showPassword}
+                    setShowPassword={setShowPassword}
+                    showConfirmPassword={showConfirmPassword}
+                    setShowConfirmPassword={setShowConfirmPassword}
+                  />
+                  
+                  <div className={styles.buttonGroup}>
+                    <button type="button" onClick={voltarEtapa} className={styles.buttonBack}>
+                      &lt; Voltar anterior
+                    </button>
+                    <button type="submit" className={styles.buttonSubmit}>
+                      Finalizar Cadastro
+                    </button>
+                  </div>
+                </>
+              )}
+
             </div>
-
-            <div className={styles.lambel_email_cadas}>
-              <label htmlFor="email">E-mail:</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                maxLength={50}
-                size={50}
-                placeholder="E-mail"
-                autoComplete="email"
-                required
-              />
-            </div>
-
-            <div className={styles.lambel_senha_cadas}>
-              <label htmlFor="senha">Senha:</label>
-              <input
-                type="password"
-                id="senha"
-                name="senha"
-                maxLength={30}
-                size={50}
-                placeholder="Senha"
-                autoComplete="new-password"
-                required
-              />
-            </div>
-
-            <nav className={styles.voltar} aria-label="Navegação de retorno">
-              <a href="/login">
-                <img src={Seta} alt="" aria-hidden="true" />
-                Voltar para login
-              </a>
-              <hr />
-            </nav>
           </form>
-        </article>
+        </div>
 
-        <aside className={styles.suporte_container} aria-label="Suporte prioritário">
-          <h2 className={styles.suporte_titulo}>Suporte Prioritário</h2>
-          <nav className={styles.suporte} aria-label="Canais de suporte">
-            <a href="#" aria-label="Falar com assistente virtual">
-              <img src={Assistente} alt="Assistente virtual" />
-            </a>
-            <a href="#" aria-label="Enviar mensagem">
-              <img src={Mensagem} alt="Mensagem" />
-            </a>
-            <a href="#" aria-label="Central de ajuda">
-              <img src={Interrogacao} alt="Ajuda" />
-            </a>
-          </nav>
-        </aside>
+        {/* Lado Direito: Imagem Ilustrativa do Produto */}
+        <div className={styles.imageContainer}>
+          <img 
+            src={imagemLateral} 
+            alt="EverRise Patient Transfer Device" 
+            className={styles.image}
+          />
+        </div>
 
-      </section>
-
-      <figure className={styles.imagem} aria-hidden="true" role="presentation" />
-    </main>
+      </div>
+    </div>
   );
-};
-
-export default RegisterPage;
-
+}

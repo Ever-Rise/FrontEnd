@@ -1,61 +1,62 @@
 import React from 'react';
 import styles from './styles.module.css';
-import Assistente from '../../assets/icons/cadastro/assistente.svg';
-import Mensagem from '../../assets/icons/cadastro/mensagem.svg';
-import Interrogacao from '../../assets/icons/cadastro/interrogacao.svg';
-import Seta from '../../assets/icons/cadastro/seta.svg';
+import { Link } from 'react-router-dom';
+import imagemLateral from '../../assets/images/Forgot/imagem_principal.png';
 
 const ForgotPasswordPage = () => {
   return (
-    <main className={styles.recuperar_senha}>
-      <article className={styles.infos_email}>
-        <section className={styles.acao_recuperar} aria-labelledby="forgot-password-title">
-          <header>
-            <h1 id="forgot-password-title">Esqueceu sua senha?</h1>
-            <p>Informe seu e-mail e enviaremos instruções para recuperar sua senha.</p>
-          </header>
+    <div className={styles.container}>
+      {/* Linhas decorativas de fundo */}
+      <div className={`${styles.line} ${styles.lineOrange1}`}></div>
+      <div className={`${styles.line} ${styles.linePurple1}`}></div>
+      <div className={`${styles.line} ${styles.lineOrange2}`}></div>
+      <div className={`${styles.line} ${styles.linePurple2}`}></div>
+      <div className={`${styles.line} ${styles.linePurple3}`}></div>
 
-          <form className={styles.lambel_email_recuperar} noValidate>
-            <label htmlFor="email">E-mail:</label>
-            <input
-              id="email"
-              type="email"
-              name="email"
-              maxLength={30}
-              size={50}
-              placeholder="E-mail"
-              aria-required="true"
-              autoComplete="email"
-            />
+      {/* Conteúdo Principal Dividido */}
+      <div className={styles.mainContent}>
+        
+        {/* Lado Esquerdo: Card de Formulário */}
+        <div className={styles.card}>
+          <h1 className={styles.title}>Esqueceu sua senha?</h1>
+          
+          <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
+            <div className={styles.inputGroup}>
+              <label htmlFor="email" className={styles.label}>E-mail</label>
+              <input 
+                id="email"
+                type="email" 
+                placeholder="Insira seu email" 
+                className={styles.input} 
+                required
+              />
+            </div>
+            
+            <button type="submit" className={styles.buttonSubmit}>
+              Enviar código
+            </button>
           </form>
 
-          <nav className={styles.voltar_recuperar} aria-label="Navegação de retorno">
-            <a href="#">
-              <img src={Seta} alt="" aria-hidden="true" />
-              Voltar para login
-            </a>
-            <hr />
-          </nav>
+          <div className={styles.dividerContainer}>
+            <div className={styles.lineDivider}></div>
+          </div>
 
-          <aside className={styles.suporte_section} aria-labelledby="suporte-titulo">
-            <h2 id="suporte-titulo">Suporte Prioritário</h2>
-            <nav className={styles.suporte_recuperar} aria-label="Canais de suporte">
-              <a href="#" aria-label="Falar com assistente">
-                <img src={Assistente} alt="" aria-hidden="true" />
-              </a>
-              <a href="#" aria-label="Enviar mensagem">
-                <img src={Mensagem} alt="" aria-hidden="true" />
-              </a>
-              <a href="#" aria-label="Perguntas frequentes">
-                <img src={Interrogacao} alt="" aria-hidden="true" />
-              </a>
-            </nav>
-          </aside>
-        </section>
-      </article>
+          <Link to="/login" className={styles.buttonBack}>
+            &lt; Voltar para login
+          </Link>
+        </div>
 
-      <figure className={styles.imagem} aria-hidden="true" role="presentation" />
-    </main>
+        {/* Lado Direito: Imagem */}
+        <div className={styles.imageContainer}>
+          <img 
+            src={imagemLateral} 
+            alt="Pessoa utilizando equipamento de transferência" 
+            className={styles.image}
+          />
+        </div>
+
+      </div>
+    </div>
   );
 };
 

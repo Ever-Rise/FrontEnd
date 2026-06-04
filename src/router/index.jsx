@@ -1,9 +1,10 @@
 import React, { Component, Suspense, lazy } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "../App";
 import Loader from "../components/common/Loader";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
+import { REGISTER_PATH, getRegisterStep2Url } from "./registerRoutes";
 
 
 const LandingPage = lazy(() => import("../pages/LandingPage"));
@@ -118,7 +119,13 @@ const router = createBrowserRouter([
                 element: <PublicRoute />,
                 children: [
                     { path: "/login", element: withSuspense(LoginPage) },
-                    { path: "/register", element: withSuspense(RegisterPage) },
+                    { path: REGISTER_PATH, element: withSuspense(RegisterPage) },
+                    {
+                        path: "/register/etapa-2",
+                        element: (
+                            <Navigate to={getRegisterStep2Url()} replace />
+                        ),
+                    },
                     {
                         path: "/forgot-password",
                         element: withSuspense(ForgotPasswordPage),

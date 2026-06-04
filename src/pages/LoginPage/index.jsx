@@ -1,97 +1,95 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
-import Olho from "../../assets/icons/login/eye.svg";
-import Google from "../../assets/icons/cadastro/Google - Original.svg";
+import eyeIcon from "../../assets/icons/login/eye.svg";
+import googleIcon from "../../assets/icons/cadastro/Google - Original.svg";
+import loginImage from "../../assets/images/Login/Imagem_principal.png";
 
 const LoginPage = () => {
-    return (
-        <main className={styles.email}>
-            <section className={styles.info} aria-labelledby="login-title">
-                <section className={styles.acao_login}>
-                    <header>
-                        <h1 id="login-title">Bem-Vindo de volta</h1>
-                        <p>
-                            Insira seu e-mail e senha para acessar a sua conta.
-                        </p>
-                    </header>
+  const [showPassword, setShowPassword] = useState(false);
 
-                    <form noValidate>
-                        <fieldset>
-                            <legend className={styles.linha}>
-                                Continuar com e-mail
-                            </legend>
+  return (
+    <main className={styles.page}>
+      <div className={styles.effectTopLeft} aria-hidden="true" />
+      <div className={styles.effectBottomLeft} aria-hidden="true" />
+      <div className={styles.effectTopRight} aria-hidden="true" />
+      <div className={styles.effectBottomRight} aria-hidden="true" />
 
-                            <div className={styles.lambel_email}>
-                                <label htmlFor="email">E-mail:</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    maxLength={30}
-                                    size={50}
-                                    placeholder="Insira seu e-mail"
-                                    autoComplete="email"
-                                    required
-                                />
-                            </div>
+      <div className={styles.content}>
+        <section className={styles.loginCard} aria-labelledby="login-title">
+          <header className={styles.cardHeader}>
+            <h1 id="login-title">Bem vindo de volta</h1>
+            <p>Insira seu e-mail e senha para acessar sua conta.</p>
+          </header>
 
-                            <div className={styles.lambel_senha}>
-                                <label htmlFor="senha">Senha:</label>
-                                <div className={styles.inputWrapper}>
-                                    <input
-                                        type="password"
-                                        id="senha"
-                                        name="senha"
-                                        maxLength={30}
-                                        size={50}
-                                        placeholder="Insira sua Senha"
-                                        autoComplete="current-password"
-                                        required
-                                    />
-                                    <button
-                                        type="button"
-                                        className={styles.olho}
-                                        aria-label="Mostrar ou ocultar senha"
-                                    >
-                                        <img
-                                            src={Olho}
-                                            alt=""
-                                            aria-hidden="true"
-                                        />
-                                    </button>
-                                </div>
-                            </div>
+          <div className={styles.divider}>
+            <span>Continuar com e-mail</span>
+          </div>
 
-                            <div className={styles.recuperar}>
-                                <label>
-                                    <input type="checkbox" name="lembrar" />{" "}
-                                    Lembrar senha
-                                </label>
-                                <a href="#">Esqueceu sua senha?</a>
-                            </div>
-                        </fieldset>
+          <form className={styles.form} noValidate>
+            <div className={styles.field}>
+              <label htmlFor="login-email">E-mail</label>
+              <input
+                id="login-email"
+                type="email"
+                name="email"
+                placeholder="Insira seu email"
+                autoComplete="email"
+              />
+            </div>
 
-                        <button type="submit" className={styles.criar}>
-                            Criar conta
-                        </button>
-                    </form>
+            <div className={styles.field}>
+              <label htmlFor="login-password">Password</label>
+              <div className={styles.passwordWrapper}>
+                <input
+                  id="login-password"
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="Senha"
+                  autoComplete="current-password"
+                />
+                <button
+                  type="button"
+                  className={styles.togglePassword}
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
+                >
+                  <img src={eyeIcon} alt="" aria-hidden="true" />
+                </button>
+              </div>
+            </div>
 
-                    <div className={styles.social}>
-                        <button type="button" className={styles.google}>
-                            <img src={Google} alt="" aria-hidden="true" />
-                            Continuar com Google
-                        </button>
-                    </div>
+            <div className={styles.options}>
+              <label className={styles.remember}>
+                <input type="checkbox" name="remember" />
+                <span className={styles.checkmark} aria-hidden="true" />
+              </label>
+              <Link to="/forgot-password" className={styles.forgotLink}>
+                Esqueceu sua senha
+              </Link>
+            </div>
 
-                    <p className={styles.log_in}>
-                        Já tem uma conta? <a href="/login">Log in</a>
-                    </p>
-                </section>
-            </section>
+            <button type="submit" className={styles.primaryBtn}>
+              Criar conta
+            </button>
 
-            <aside className={styles.imagem} aria-hidden="true" />
-        </main>
-    );
+            <button type="button" className={styles.googleBtn}>
+              <img src={googleIcon} alt="" aria-hidden="true" />
+              <span>Continue with Google</span>
+            </button>
+
+            <p className={styles.footer}>
+              Não tem uma conta? <Link to="/register">Cadastre-se</Link>
+            </p>
+          </form>
+        </section>
+
+        <figure className={styles.imageCard}>
+          <img src={loginImage} alt="Paciente utilizando equipamento de mobilidade em ambiente residencial" />
+        </figure>
+      </div>
+    </main>
+  );
 };
 
 export default LoginPage;

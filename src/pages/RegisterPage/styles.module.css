@@ -1,324 +1,232 @@
-.cadastro{
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+.container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.mainContent {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 80px;
+  width: 100%;
+  max-width: 1400px;
+  z-index: 10;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  padding: 64px 72px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 40px 80px rgba(3, 15, 102, 0.08);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  color: #030f66;
+  font-size: 46px;
+  font-weight: 700;
+  margin: 0 0 40px 0;
+  letter-spacing: -1px;
+}
+
+.formContent {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Estrutura dos Campos de Input (Alinhado com StepIdentify e StepCredentials) */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+}
+
+.field label {
+  color: #030f66;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.field input {
+  width: 100%;
+  height: 64px;
+  border: 2.5px solid #4a4a4a;
+  border-radius: 10px;
+  padding: 0 20px;
+  font-size: 17px;
+  color: #111111;
+  outline: none;
+  background: #ffffff;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field input:focus {
+  border-color: #030f66;
+  box-shadow: 0 0 0 5px rgba(3, 15, 102, 0.15);
+}
+
+/* Customização do Input de Senha com o Botão de Olho */
+.passwordWrapper {
   position: relative;
   width: 100%;
-  height: auto;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  background-color: #1a1f3a;
-  background-image:
-  radial-gradient(ellipse at top left, rgba(99,102,241,0.45) 0%, transparent 52%),
-  radial-gradient(ellipse at bottom right, rgba(37,99,235,0.4) 0%, transparent 52%);
-}
-
-.infos{
-  width: 39%;
-  height: 600px;
-  text-align: center;
-  font-size: 17px;
-  color: white;
-  padding-top: 50px;
-  margin-top: 50px;
-  background-color: #1a1f3a;
-  background-image:
-  radial-gradient(ellipse at top left, rgba(99,102,241,0.45) 0%, transparent 52%),
-  radial-gradient(ellipse at bottom right, rgba(37,99,235,0.4) 0%, transparent 52%);
-  border-radius: 10px;
-  box-shadow:
-  0 1px 2px rgba(0,0,0,0.07),
-  0 4px 8px rgba(0,0,0,0.07),
-  0 12px 24px rgba(0,0,0,0.08),
-  0 24px 48px rgba(0,0,0,0.06);
-}
-
-.acao_cadastro h1{
-  width: 100%;
-  font-size: 55px;
-  color: white;
-  text-align: center;
-}
-
-.acao_cadastro p{
-  width: 100%;
-  font-size: 20px;
-  color: white;
-  text-align: center;
-}
-
-.lambel_nome{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start; 
-  margin-top: 20px;
-  margin-left: 50px;
-}
-
-.lambel_nome label{
-  color: white;
-  font-size: 20px;
-}
-
-.lambel_nome input{
-  border-radius: 5px;
-  padding-left: 10px;
-  width: 500px;
-  height: 30px;
-}
-
-.lambel_email_cadas{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start; 
-  margin-top: 20px;
-  margin-left: 50px;
-}
-
-.lambel_email_cadas label{
-  color: white;
-  font-size: 20px;
-}
-
-.lambel_email_cadas input{
-  border-radius: 5px;
-  padding-left: 10px;
-  width: 500px;
-  height: 30px;
-}
-
-.lambel_senha_cadas{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start; 
-  margin-top: 20px;
-  margin-left: 50px;
-}
-
-.lambel_senha_cadas label{
-  color: white;
-  font-size: 20px;
-}
-
-.lambel_senha_cadas input{
-  border-radius: 5px;
-  padding-left: 10px;
-  width: 500px;
-  height: 30px;
-}
-
-.voltar{
-  margin-top: 20px;
-  width: 70%;
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   align-items: center;
-  margin-left: 80px;
-
-  & img{
-    width: 10px;
-    height: 10px;
-  }
-
-  & a{
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  & hr{
-    width: 100%;
-  }
 }
 
-h4{
-  margin-top: 40px;
+.passwordWrapper input {
+  padding-right: 60px; /* Abre espaço para o ícone no canto direito */
 }
 
-.suporte{
-  width: 100px;
+.togglePassword {
+  position: absolute;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-left: 250px;
-  margin-top: 5px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
 }
 
-.imagem{
-  width: 50%;
-  height: 822px;
-  background-image: url(../../assets/images/cadastro/imagecadastro.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
+.togglePassword img {
+  width: 26px;
+  height: 26px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
 }
 
-/* ===== TABLET RESPONSIVE — 481px até 1024px ===== */
-@media (min-width: 481px) and (max-width: 1024px) {
-  .cadastro {
-    flex-direction: row;
-    align-items: center;
-    padding: 20px 16px;
-    min-height: 100vh;
-    gap: 16px;
-  }
-
-  .imagem {
-    width: 45%;
-    height: 600px;
-    background-size: cover;
-    background-position: center;
-    border-radius: 10px;
-    flex-shrink: 0;
-  }
-
-  .infos {
-    width: 50%;
-    height: auto;
-    margin-top: 0;
-    padding: 30px 20px;
-    box-sizing: border-box;
-    flex-shrink: 1;
-  }
-
-  .acao_cadastro h1 {
-    font-size: 36px;
-  }
-
-  .acao_cadastro p {
-    font-size: 15px;
-    padding: 0 8px;
-  }
-
-  .lambel_nome,
-  .lambel_email_cadas,
-  .lambel_senha_cadas {
-    margin-left: 0;
-    margin-top: 16px;
-    width: 100%;
-    align-items: stretch;
-    padding: 0 10px;
-    box-sizing: border-box;
-  }
-
-  .lambel_nome label,
-  .lambel_email_cadas label,
-  .lambel_senha_cadas label {
-    font-size: 16px;
-    text-align: left;
-    margin-bottom: 6px;
-  }
-
-  .lambel_nome input,
-  .lambel_email_cadas input,
-  .lambel_senha_cadas input {
-    width: 100%;
-    height: 38px;
-    font-size: 15px;
-    box-sizing: border-box;
-  }
-
-  .voltar {
-    width: 90%;
-    margin-left: 0;
-    margin-top: 16px;
-  }
-
-  .suporte {
-    margin-left: 0;
-    justify-content: center;
-    width: 100%;
-    margin-top: 10px;
-
-    & img{
-      margin-left: 10px;
-    }
-  }
-
-  h4 {
-    margin-top: 20px;
-  }
+.togglePassword:hover img {
+  opacity: 1;
 }
 
-/* ===== MOBILE RESPONSIVE — max-width: 480px ===== */
-@media (max-width: 480px) {
-  .cadastro {
+/* Erros de validação */
+.fieldError {
+  color: #d32f2f;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* Botões */
+.buttonSubmit {
+  width: 100%;
+  height: 64px;
+  background-color: #030f66;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.buttonSubmit:hover {
+  background-color: #020a47;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.buttonBack {
+  width: 100%;
+  height: 64px;
+  background: none;
+  border: 2.5px solid #030f66;
+  color: #030f66;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.buttonBack:hover {
+  background-color: rgba(3, 15, 102, 0.05);
+}
+
+/* Lado Direito: Imagem */
+.imageContainer {
+  flex: 1;
+  max-width: 680px;
+  display: flex;
+  align-items: center;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  min-height: 650px;
+  object-fit: cover;
+  border-radius: 0px;
+}
+
+/* Linhas Decorativas de Fundo */
+.line {
+  position: absolute;
+  transform: rotate(-35deg);
+  border-radius: 99px;
+  pointer-events: none;
+}
+
+.lineOrange1 { width: 20px; height: 300px; background: linear-gradient(to bottom, #e28743, #eab676); top: -40px; left: 3%; }
+.linePurple1 { width: 18px; height: 450px; background: linear-gradient(to bottom, #4b0082, #7b1fa2); top: -80px; left: 15%; }
+.lineOrange2 { width: 24px; height: 260px; background: #f0a500; top: 10%; right: 8%; }
+.linePurple2 { width: 20px; height: 360px; background: #6a1b9a; top: -5%; right: 18%; }
+
+/* Responsividade */
+@media (max-width: 1150px) {
+  .mainContent {
     flex-direction: column;
     align-items: center;
-    padding: 20px 16px;
-    min-height: 100vh;
+    gap: 40px;
   }
-
-  .imagem {
-    display: none;
-  }
-
-  .infos {
+  
+  .imageContainer {
     width: 100%;
-    height: auto;
-    margin-top: 20px;
-    padding: 30px 20px;
-    box-sizing: border-box;
+    max-width: 600px;
   }
 
-  .acao_cadastro h1 {
-    font-size: 32px;
+  .image {
+    min-height: auto;
+    max-height: 450px;
   }
+}
 
-  .acao_cadastro p {
-    font-size: 15px;
-    padding: 0 10px;
-  }
-
-  .lambel_nome,
-  .lambel_email_cadas,
-  .lambel_senha_cadas {
-    margin-left: 0;
-    margin-top: 20px;
-    width: 100%;
-    align-items: stretch;
-    padding: 0 10px;
-    box-sizing: border-box;
-  }
-
-  .lambel_nome label,
-  .lambel_email_cadas label,
-  .lambel_senha_cadas label {
-    font-size: 16px;
-    text-align: left;
-    margin-bottom: 6px;
-  }
-
-  .lambel_nome input,
-  .lambel_email_cadas input,
-  .lambel_senha_cadas input {
-    width: 100%;
-    height: 40px;
-    font-size: 16px;
-    box-sizing: border-box;
-  }
-
-  .voltar {
-    width: 90%;
-    margin-left: 0;
-    margin-top: 20px;
-  }
-
-  .suporte {
-    margin-left: 0;
-    justify-content: center;
-    width: 100%;
-    margin-top: 10px;
-
-    & img{
-      margin-left: 10px;
-    }
-  }
-
-  h4 {
-    margin-top: 20px;
-  }
+@media (max-width: 600px) {
+  .container { padding: 16px; }
+  .card { padding: 44px 24px; border-radius: 16px; }
+  .title { font-size: 34px; }
+  .field label { font-size: 16px; }
+  .field input { height: 56px; font-size: 16px; }
+  .buttonSubmit, .buttonBack { height: 56px; font-size: 16px; }
 }

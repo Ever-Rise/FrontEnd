@@ -16,6 +16,8 @@ const RegisterForm = ({ onSubmit }) => {
     defaultValues: {
       name: '',
       email: '',
+      confirmEmail: '',
+      phone: '',
       password: '',
       confirmPassword: '',
     },
@@ -26,6 +28,14 @@ const RegisterForm = ({ onSubmit }) => {
       <form className={styles.form} onSubmit={handleSubmit((data) => onSubmit?.(data))} noValidate>
         <Input id='name' label='Nome completo' error={errors.name?.message} {...register('name')} />
         <Input id='email' label='E-mail' type='email' error={errors.email?.message} {...register('email')} />
+        <Input
+          id='confirmEmail'
+          label='Confirmar e-mail'
+          type='email'
+          error={errors.confirmEmail?.message}
+          {...register('confirmEmail')}
+        />
+        <Input id='phone' label='Telefone' type='tel' error={errors.phone?.message} {...register('phone')} />
         <Input id='password' label='Senha' type='password' error={errors.password?.message} {...register('password')} />
         <Input
           id='confirmPassword'
