@@ -33,7 +33,7 @@ import ods12 from "../../assets/images/SobreNos/ODS12.svg";
 import ods17 from "../../assets/images/SobreNos/ODS17.svg";
 
 // Ícones Redes Sociais
-import instagramSvg from "../../assets/icons/SobreNos/instagram.svg";
+import instagramSvg from "../../assets/icons/SobreNos/Instagram.svg";
 import linkedinSvg from "../../assets/icons/SobreNos/linkedin.svg";
 import githubSvg from "../../assets/icons/SobreNos/github.svg";
 
