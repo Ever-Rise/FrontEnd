@@ -111,35 +111,36 @@
   align-items: center;
   overflow: hidden;
   background: var(--navy);
+  justify-content: center;
 }
 
 /* Placeholder para a imagem de fundo do hero */
 .heroImage {
   position: absolute;
-  inset: 0;
+  inset: 0; /* top: 0; right: 0; bottom: 0; left: 0 */
   width: 100%;
   height: 100%;
-  background: #1a2540; /* fallback quando src="" */
-  object-fit: cover;
+  overflow: hidden; /* impede o vazamento */
 }
 
-.heroOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(10, 15, 30, 0.88) 0%,
-    rgba(27, 59, 138, 0.55) 60%,
-    rgba(47, 107, 255, 0.15) 100%
-  );
-  z-index: 1;
+.heroImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* cobre sem distorcer */
+  object-position: center;
+  display: block; /* remove espaço inline embaixo da img */
 }
+
+
 
 .heroContent {
   position: relative;
   z-index: 2;
-  max-width: 680px;
+  max-width: 1000px;
   padding: 160px 60px 80px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .heroBadge {
@@ -164,6 +165,8 @@
   line-height: 1.15;
   letter-spacing: -0.03em;
   margin: 0 0 20px;
+  text-align: center;
+  
 }
 
 .heroSubtitle {
@@ -172,6 +175,8 @@
   line-height: 1.65;
   margin: 0 0 40px;
   max-width: 520px;
+  text-align: center;
+  
 }
 
 .heroCtas {
@@ -181,7 +186,7 @@
 }
 
 .btnPrimary {
-  background: var(--blue);
+  background-color: #FD742C;
   color: var(--white);
   border: none;
   padding: 16px 36px;
@@ -190,11 +195,11 @@
   font-weight: 700;
   cursor: pointer;
   transition: background 0.2s, transform 0.15s;
-  box-shadow: 0 4px 20px rgba(47, 107, 255, 0.4);
+  box-shadow: 0 4px 20px rgba(255, 217, 0, 0.4);
 }
 
 .btnPrimary:hover {
-  background: var(--blue-mid);
+ background-color: #FD742C;
   transform: translateY(-2px);
 }
 
@@ -222,87 +227,128 @@
 .futureCare {
   background: var(--white);
   padding: 80px 60px;
+ 
 }
 
-.futureCareInner {
+/* .futureCareInner {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 64px;
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  background: var(--white);
+  background-color: black;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow);
   padding: 60px;
-}
+} */
 
-.futureCareLeft {
+/* .futureCareLeft {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  background-color: black;
+} */
+
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-xl);
+  /* remova o overflow: hidden daqui */
+}
+
+.guinchoImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-xl); /* coloque o border-radius na própria img */
+}
+
+.imageOverlayText {
+  position: absolute;
+  top: -50px; /* agora funciona sem ser cortado */
+  left: 0;
+  right: 0;
+  padding: 2rem;
 }
 
 .futureCareTitle {
+  color: #000000; /* branco para contrastar com a imagem */
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-size: 60px;
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: -0.03em;
-  color: var(--text-dark);
-  margin: 0;
+  margin: 0 0 0.75rem 0;
+  
 }
 
 .futureCareText {
+  color: rgba(145, 145, 145, 0.85);
   font-size: 0.97rem;
-  color: var(--text-muted);
   line-height: 1.75;
   margin: 0;
-}
+  width: 50%;
+}   
+
 
 /* Metrics */
 .metricsGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-top: 8px;
+  gap: 80px;
+  margin-top: -40px;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
 }
 
 .metricCard {
-  background: var(--offwhite);
+  
   border-radius: var(--radius-lg);
   padding: 20px 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  border: 1px solid rgba(47, 107, 255, 0.1);
-  transition: box-shadow 0.2s, transform 0.2s;
+   display: flex;
+  flex-direction: row;      /* ícone à esquerda, texto à direita */
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.metricCard:hover {
-  box-shadow: var(--shadow);
-  transform: translateY(-3px);
-}
+
 
 /* Placeholder para ícone das métricas */
 .metricIcon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: rgba(47, 107, 255, 0.15);
-  margin-bottom: 4px;
+  width: 100px;  /* quadrado maior */
+  height: 10px;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.metricIcon img {
+  width: 400px;  /* aumente conforme quiser */
+  height: 400px;
+  object-fit: contain;
+}
+
+
+.metricTextGroup {
+  display: flex;
+  flex-direction: column;   /* valor em cima, label embaixo */
 }
 
 .metricValue {
   font-family: var(--font-display);
-  font-size: 1.6rem;
+  font-size: 30px;
   font-weight: 800;
-  color: var(--blue);
+  color: black;
   letter-spacing: -0.03em;
 }
 
 .metricLabel {
-  font-size: 0.82rem;
+  font-size: 20px;
   color: var(--text-muted);
   font-weight: 500;
 }
@@ -316,12 +362,12 @@
 
 /* Placeholder para a imagem do guincho/cuidadora */
 .guinchoImage {
+  position: relative;
   width: 100%;
-  height: 420px;
+  height: auto; /* deixa a altura ser proporcional à imagem */
   border-radius: var(--radius-xl);
-  object-fit: cover;
-  background: #dde6f8; /* fallback quando src="" */
   display: block;
+  background: #dde6f8;
 }
 
 /* ══════════════════════════════════════

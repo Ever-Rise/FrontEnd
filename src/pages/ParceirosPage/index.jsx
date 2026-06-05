@@ -1,4 +1,11 @@
 import styles from "./styles.module.css";
+import HeroImg from '../../assets/images/Parceirosimg/imagemHero2.svg'
+import Guincho1 from '../../assets/images/Parceirosimg/guinchoQuarto.svg'
+import Pessoas from '../../assets/images/Parceirosimg/iconeParceiros.svg'
+import Coracao from '../../assets/images/Parceirosimg/coracao.svg'
+import cidade from '../../assets/images/Parceirosimg/cidades.svg'
+import indice from '../../assets/images/Parceirosimg/indice.svg'
+
 
 /* ─────────────────────────────────────────
    NAVBAR
@@ -28,10 +35,11 @@ function Hero() {
   return (
     <section className={styles.hero}>
       <Navbar />
-      <div className={styles.heroImage} aria-hidden="true" />
+      <div className={styles.heroImage} aria-hidden="true">
+        <img src={HeroImg} alt="" />
+      </div>
       <div className={styles.heroOverlay} />
       <div className={styles.heroContent}>
-        <span className={styles.heroBadge}>Programa de Parcerias</span>
         <h1 className={styles.heroTitle}>
           Seja um parceiro e leve seu serviço a outro nível
         </h1>
@@ -51,10 +59,10 @@ function Hero() {
    2. FUTURE CARE
 ───────────────────────────────────────── */
 const metrics = [
-  { value: "+50", label: "parceiros ativos" },
-  { value: "+10mil", label: "vidas impactadas" },
-  { value: "+120", label: "cidades atendidas" },
-  { value: "98%", label: "satisfação" },
+  { value: "+50",    label: "parceiros ativos",  icon: Pessoas },
+  { value: "+10mil", label: "vidas impactadas",  icon: Coracao },
+  { value: "+120",   label: "cidades atendidas", icon: cidade  },
+  { value: "98%",    label: "satisfação",        icon: indice  },
 ];
 
 function FutureCare() {
@@ -62,33 +70,42 @@ function FutureCare() {
     <section className={styles.futureCare}>
       <div className={styles.futureCareInner}>
         <div className={styles.futureCareLeft}>
-          <h2 className={styles.futureCareTitle}>
-            <span className={styles.highlight}>Juntos,</span> construímos o futuro do cuidado
-          </h2>
-          <p className={styles.futureCareText}>
-            A EverRise conecta profissionais e empresas que compartilham o mesmo
-            propósito: transformar vidas através de serviços de saúde acessíveis,
-            humanizados e de alta qualidade. Quando você se torna parceiro, vai além
-            de um contrato — passa a fazer parte de um ecossistema comprometido com
-            o bem-estar real das pessoas.
-          </p>
+
+          <div className={styles.imageWrapper}>
+            <img
+              src={Guincho1}
+              alt="Cuidadora e paciente"
+              className={styles.guinchoImage}
+            />
+            <div className={styles.imageOverlayText}>
+              <h2 className={styles.futureCareTitle}>
+                <span className={styles.highlight}>Juntos,</span> construímos <br />
+                o futuro do cuidado
+              </h2>
+              <p className={styles.futureCareText}>
+                A EverRise conecta profissionais e empresas que compartilham o mesmo
+                propósito: transformar vidas através de serviços de saúde acessíveis,
+                humanizados e de alta qualidade. Quando você se torna parceiro, vai além
+                de um contrato — passa a fazer parte de um ecossistema comprometido com
+                o bem-estar real das pessoas.
+              </p>
+            </div>
+          </div>
+
           <div className={styles.metricsGrid}>
             {metrics.map((m, i) => (
               <div key={i} className={styles.metricCard}>
-                <div className={styles.metricIcon} aria-hidden="true" />
-                <strong className={styles.metricValue}>{m.value}</strong>
-                <span className={styles.metricLabel}>{m.label}</span>
+                <div className={styles.metricIcon}>
+                  <img src={m.icon} className={styles.icone} />
+                </div>
+                <div className={styles.metricTextGroup}>
+                  <strong className={styles.metricValue}>{m.value}</strong>
+                  <span className={styles.metricLabel}>{m.label}</span>
+                </div>
               </div>
             ))}
           </div>
-        </div>
-        <div className={styles.futureCareRight}>
-          {/* Imagem do guincho com cuidadora e paciente */}
-          <img
-            src=""
-            alt="Cuidadora e paciente"
-            className={styles.guinchoImage}
-          />
+
         </div>
       </div>
     </section>
