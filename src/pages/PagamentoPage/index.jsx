@@ -5,15 +5,20 @@ import confirm from '../../assets/icons/PagamentoPage/confirm.svg';
 import caminhao from '../../assets/icons/PagamentoPage/caminhao.svg';
 import email from '../../assets/icons/PagamentoPage/email.png';
 
-const ManualPage = () => {
+const PagamentoPage = () => {
   const navigate = useNavigate();
 
   return (
     <main className={styles.container} role='main'>
+      {/* Ondas de background — idênticas ao CarregamentoPagamentoPage */}
+      <div className={styles.waveTop} />
+      <div className={styles.waveBottom} />
+
       <div className={styles.content}>
 
-        <div className={styles.confirmation}>
-          <img src={confirm} alt='Confirmação de pagamento' />
+        {/* Ícone de confirmação */}
+        <div className={styles.iconWrapper}>
+          <img src={confirm} alt='Confirmação de pagamento' className={styles.confirmIcon} />
         </div>
 
         <h1 className={styles.title}>Compra realizada com sucesso!</h1>
@@ -22,51 +27,55 @@ const ManualPage = () => {
           Seu pedido foi confirmado e já está em processamento.
         </p>
 
-        <div className={styles.fundo}>
-          <div className={styles.info}>
-            <div className={styles.pedido}>
-              <h2 className={styles.pd}>PEDIDO</h2>
-              <p className={styles.cod}>#123456</p>
+        {/* Card branco com detalhes do pedido */}
+        <div className={styles.infoCard}>
+          <div className={styles.infoRow}>
+            <div className={styles.infoCell}>
+              <span className={styles.infoLabel}>PEDIDO</span>
+              <span className={styles.infoValueBlue}>#123456</span>
             </div>
-            <div className={styles.produto}>
-              <h2 className={styles.pd}>PRODUTO</h2>
-              <p className={styles.guincho}>Guincho Ever Rise</p>
+            <div className={styles.infoDividerV} />
+            <div className={styles.infoCell}>
+              <span className={styles.infoLabel}>PRODUTO</span>
+              <span className={styles.infoValue}>Guincho Ever Rise</span>
             </div>
           </div>
 
-          <div className={styles.separador} />
+          <div className={styles.infoDividerH} />
 
-          <div className={styles.entrega}>
-            <h2 className={styles.entregaTitulo}>ENDEREÇO DE ENTREGA</h2>
-            <p className={styles.rua}>Av. Paulista, 1000 - São Paulo, SP</p>
+          <div className={styles.infoCell} style={{ padding: '20px 28px' }}>
+            <span className={styles.infoLabel}>ENDEREÇO DE ENTREGA</span>
+            <span className={styles.infoValue}>Av. Paulista, 1000 - São Paulo, SP</span>
           </div>
 
-          <div className={styles.separador} />
+          <div className={styles.infoDividerH} />
 
-          <div className={styles.entrega}>
-            <h2 className={styles.entregaTitulo}>PREVISÃO DE ENTREGA</h2>
-            <div className={styles.carrinho}>
-              <img src={caminhao} alt="caminhão" className={styles.caminhao} />
-              <p className={styles.dias}>2-5 Dias úteis</p>
+          <div className={styles.infoCell} style={{ padding: '20px 28px' }}>
+            <span className={styles.infoLabel}>PREVISÃO DE ENTREGA</span>
+            <div className={styles.deliveryRow}>
+              <img src={caminhao} alt="caminhão" className={styles.truckIcon} />
+              <span className={styles.infoValue}>2-5 dias úteis</span>
             </div>
           </div>
         </div>
 
-        <div className={styles.gmail}>
-          <img src={email} alt="email" className={styles.foto} />
-          <p className={styles.atualizacoes}>Você receberá atualizações por e-mail</p>
+        {/* Aviso de e-mail */}
+        <div className={styles.emailRow}>
+          <img src={email} alt="email" className={styles.emailIcon} />
+          <span className={styles.emailText}>Você receberá atualizações por e-mail</span>
         </div>
 
+        {/* Botões */}
         <div className={styles.buttons}>
           <button
-            className={styles.fundoButton}
+            className={styles.btnPrimary}
             type='button'
             onClick={() => navigate('/rastreio')}
           >
-            <span className={styles.button1}>Acompanhar pedido</span>
+            Acompanhar pedido →
           </button>
           <button
-            className={styles.button2}
+            className={styles.btnSecondary}
             type='button'
             onClick={() => navigate('/')}
           >
@@ -79,4 +88,4 @@ const ManualPage = () => {
   );
 };
 
-export default ManualPage;
+export default PagamentoPage;
