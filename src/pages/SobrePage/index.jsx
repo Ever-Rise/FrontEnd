@@ -33,27 +33,125 @@ import ods12 from "../../assets/images/SobreNos/ODS12.svg";
 import ods17 from "../../assets/images/SobreNos/ODS17.svg";
 
 // Ícones Redes Sociais
-import instagramSvg from "../../assets/icons/SobreNos/Instagram.svg";
+import instagramSvg from "../../assets/icons/SobreNos/insta.svg";
 import linkedinSvg from "../../assets/icons/SobreNos/linkedin.svg";
 import githubSvg from "../../assets/icons/SobreNos/github.svg";
 
+// Decorações de fundo
+import decoracao1 from "../../assets/images/SobreNos/DecoracoesFundo/DotFrame.png";
+import decoracao2 from "../../assets/images/SobreNos/DecoracoesFundo/DotFrameLaranja.png"; 
+import decoracao3 from "../../assets/images/SobreNos/DecoracoesFundo/Group398.png";
+import decoracao4 from "../../assets/images/SobreNos/DecoracoesFundo/Oval.png";
+import decoracao5 from "../../assets/images/SobreNos/DecoracoesFundo/Oval(1).png";
+import decoracao6 from "../../assets/images/SobreNos/DecoracoesFundo/Group399.png";
+import decoracao7 from "../../assets/images/SobreNos/DecoracoesFundo/Oval(2).png";
+
 export default function SobreNos() {
   const equipe = [
-    { nome: "Anderson Reis", cargo: "PO e Full Stack", foto: fotoAnderson, linkedin: "https://www.linkedin.com/in/joao2007pedro/", twitter: "#", instagram: "#" },
-    { nome: "João Pedro",    cargo: "Full Stack",      foto: fotoJoao,     linkedin: "#", twitter: "#", instagram: "#" },
-    { nome: "Nalbert Henri", cargo: "Full Stack",      foto: fotoNalbert,  linkedin: "https://linkedin.com/in/seu-usuario", twitter: "#", instagram: "#" },
-    { nome: "Maria Eduarda", cargo: "Full Stack",      foto: fotoMariaEduarda, linkedin: "https://linkedin.com/in/seu-usuario", twitter: "#", instagram: "#" },
-    { nome: "Leticia Andrade", cargo: "Full Stack",    foto: fotoLeticia,  linkedin: "https://linkedin.com/in/seu-usuario", twitter: "#", instagram: "#" },
-    { nome: "Kaue Rodrigues",  cargo: "Full Stack",    foto: fotoKaue,     linkedin: "https://linkedin.com/in/seu-usuario", twitter: "#", instagram: "#" },
-    { nome: "João Victor",     cargo: "Full Stack",    foto: fotoJoaoVitor,linkedin: "https://linkedin.com/in/seu-usuario", twitter: "#", instagram: "#" },
-    { nome: "Rafaela Cintra",  cargo: "Full Stack",    foto: fotoRafaella, linkedin: "https://linkedin.com/in/seu-usuario", twitter: "#", instagram: "#" },
-  ];
+  {
+    nome: "Anderson Reis",
+    cargo: "PO e Full Stack",
+    foto: fotoAnderson,
+    descricao:
+      "Responsável pela liderança do projeto e desenvolvimento completo da plataforma.",
+    linkedin: "https://www.linkedin.com/in/joao2007pedro/",
+    github: "https://github.com/seuusuario",
+    instagram: "#",
+  },
+
+  {
+    nome: "João Pedro",
+    cargo: "SM e Full Stack",
+    foto: fotoJoao,
+    descricao:
+      "Atua na organização da equipe e implementação das funcionalidades do sistema.",
+    linkedin: "#",
+    github: "https://github.com/seuusuario",
+    instagram: "#",
+  },
+
+  {
+    nome: "Nalbert Henri",
+    cargo: "Front-End",
+    foto: fotoNalbert,
+    descricao:
+      "Desenvolvedor focado na construção da interface e experiência do usuário.",
+    linkedin: "https://linkedin.com/in/seu-usuario",
+    github: "https://github.com/seuusuario",
+    instagram: "#",
+  },
+
+  {
+    nome: "Maria Eduarda",
+    cargo: "Designer",
+    foto: fotoMariaEduarda,
+    descricao:
+      "Responsável pela identidade visual, prototipação e design da plataforma.",
+    linkedin: "https://linkedin.com/in/seu-usuario",
+    github: "https://github.com/seuusuario",
+    instagram: "#",
+  },
+
+  {
+    nome: "Leticia Andrade",
+    cargo: "Front-End",
+    foto: fotoLeticia,
+    descricao:
+      "Atua no desenvolvimento visual e responsividade das páginas do projeto.",
+    linkedin: "https://linkedin.com/in/seu-usuario",
+    github: "https://github.com/seuusuario",
+    instagram: "#",
+  },
+
+  {
+    nome: "Kaue Rodrigues",
+    cargo: "Front-End",
+    foto: fotoKaue,
+    descricao:
+      "Responsável pela implementação de componentes modernos e interativos.",
+    linkedin: "https://linkedin.com/in/seu-usuario",
+    github: "https://github.com/seuusuario",
+    instagram: "#",
+  },
+  {
+    nome: "João Victor",
+    cargo: "Front-End",
+    foto: fotoJoaoVitor,
+    descricao:
+      "Focado na criação de interfaces intuitivas e acessíveis para usuários.",
+    linkedin: "https://linkedin.com/in/seu-usuario",
+    github: "https://github.com/seuusuario",
+    instagram: "#",
+  },
+  {
+    nome: "Rafaela Cintra",
+    cargo: "Front-End",
+    foto: fotoRafaella,
+    descricao:
+      "Atua na construção das telas e melhorias da experiência visual do projeto.",
+    linkedin: "https://linkedin.com/in/seu-usuario",
+    github: "https://github.com/seuusuario",
+    instagram: "#",
+  },
+];
 
   const imagensCarrossel = [foto1, foto2, foto3, foto4, foto6, foto7];
 
   return (
     <>
       <Header />
+
+      <div className={styles.pageWrapper}>
+
+        <div className={styles.decoracoes}>
+          <img src={decoracao1} className={styles.decoracao1} alt="" />
+          <img src={decoracao2} className={styles.decoracao2} alt="" />
+          <img src={decoracao3} className={styles.decoracao3} alt="" />
+          <img src={decoracao4} className={styles.decoracao4} alt="" />
+          <img src={decoracao5} className={styles.decoracao5} alt="" />
+          <img src={decoracao6} className={styles.decoracao6} alt="" />
+          <img src={decoracao7} className={styles.decoracao7} alt="" />
+        </div>
 
       {/* Hero */}
       <div className={styles.hero}>
@@ -196,14 +294,14 @@ export default function SobreNos() {
                 <div className={styles.badge}>{membro.cargo}</div>
                 <h3 className={styles.nome}>{membro.nome}</h3>
                 <p className={styles.descricao}>
-                  Visionary entrepreneur with a passion for innovation and successful startup ventures.
+                   {membro.descricao}
                 </p>
                 <div className={styles.redesSociais}>
                   <a href={membro.linkedin} target="_blank" rel="noreferrer" className={styles.socialLink}>
                     <i className="fab fa-linkedin-in"></i>
                   </a>
-                  <a href={membro.twitter} target="_blank" rel="noreferrer" className={styles.socialLink}>
-                    <i className="fab fa-x-twitter"></i>
+                  <a href={membro.github} target="_blank" rel="noreferrer" className={styles.socialLink}>
+                    <i className="fab fa-github"></i>
                   </a>
                   <a href={membro.instagram} target="_blank" rel="noreferrer" className={styles.socialLink}>
                     <i className="fab fa-instagram"></i>
@@ -270,6 +368,8 @@ export default function SobreNos() {
             </a>
           </div>
         </section>
+      </div>
+      
       </div>
 
       <Footer />

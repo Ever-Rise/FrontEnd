@@ -7,6 +7,98 @@
   box-sizing: border-box;
 }
 
+.pageWrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.decoracoes {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+.pageWrapper > *:not(.decoracoes) {
+  position: relative;
+  z-index: 2;
+}
+
+.decoracao1 {
+  position: absolute;
+
+  bottom: 450px;
+  right: 1px;
+
+  width: 180px;
+
+  opacity: 0.8;
+}
+.decoracao2 {
+  position: absolute;
+
+  bottom: 2700px;
+  left: 1px;
+
+  width: 160px;
+
+  opacity: 1;
+}
+.decoracao3 {
+  position: absolute;
+
+  bottom: 2700px;
+  right: 1px;
+
+  width: 100px;
+
+  opacity: 0.6;
+}
+.decoracao4 {
+  position: absolute;
+
+  bottom: 600px;
+  left: 1px;
+
+  width: 90px;
+
+  opacity: 0.8;
+}
+.decoracao5 {
+  position: absolute;
+
+  bottom: 3500px;
+  right: 1px;
+
+  width: 120px;
+
+  opacity: 0.8;
+}
+
+.decoracao6 {
+  position: absolute;
+
+  bottom: 2950px;
+  left: 250px;
+
+  width: 100px;
+
+  opacity: 0.6;
+}
+
+.decoracao7 {
+  position: absolute;
+
+  bottom: 3400px;
+  left: 1px;
+
+  width: 100px;
+
+  opacity: 1;
+}
+
 /* =====================
    HERO
    ===================== */
@@ -409,19 +501,28 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 50px 30px;
-  max-width: 1140px;
+  max-width: 1260px;
   width: 100%;
 }
 
 .cardEquipe {
   background: #ffffff;
-  border-radius: 16px;
-  width: 320px;
+  border-radius: 20px;
+  width: 400px;
   position: relative;
-  padding: 90px 24px 24px 24px;
+  padding: 110px 32px 32px;
   text-align: center;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  margin-top: 60px;
+  box-shadow:
+    rgba(0, 0, 0, 0.12) 0px 10px 30px;
+  margin-top: 80px;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.cardEquipe:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    rgba(0, 0, 0, 0.18) 0px 18px 40px;
 }
 
 .cardEquipe::before {
@@ -430,10 +531,14 @@
   top: 0;
   left: 0;
   bottom: 0;
-  width: 8px;
-  background: linear-gradient(180deg, #560bad 0%, #ff763b 100%);
-  border-top-left-radius: 16px;
-  border-bottom-left-radius: 16px;
+  width: 10px;
+  background: linear-gradient(
+    180deg,
+    #560bad 0%,
+    #ff763b 100%
+  );
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
 .fotoContainer {
@@ -462,7 +567,7 @@
   align-items: center;
   background-color: #0d233a;
   color: #ffffff;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   padding: 6px 14px;
   border-radius: 20px;
@@ -483,14 +588,14 @@
 
 .nome {
   color: #1a1a1a;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 700;
   margin-bottom: 10px;
 }
 
 .descricao {
   color: #666666;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.5;
   margin-bottom: 20px;
 }
