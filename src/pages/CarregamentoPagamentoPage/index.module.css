@@ -1,204 +1,216 @@
+/* ─── TOKENS DE CORES ─── */
+:root {
+  --bg:         #FDFEFF;
+  --accent:     #FEB42D;
+  --purple:     #4D00B5;
+  --dark-blue:  #1A1A1A;
+  --card-bg:    #FFFFFF;
+  --card-shadow: 0px 16px 60px rgba(77, 0, 181, 0.15), 0px 4px 16px rgba(0,0,0,0.06);
+  --text-primary: #0D0D0D;
+  --text-secondary: rgba(0,0,0,0.65);
+}
+
+/* ─── BASE ───────────────────────────────────── */
 .container {
-    width: 100%;
-    height: 100vh;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #1a2238;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg);
+  font-family: Inter, sans-serif;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Onda Superior Esquerda - Traz de volta o degradê original do Figma na pontinha */
+.waveTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 65vh; 
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1024' fill='none' preserveAspectRatio='none'%3E%3Cpath d='M0 0H1440V24C1290 44 940 124 640 424C340 724 190 924 0 1024V0Z' fill='url(%23gradTopFigma)' opacity='0.95'/%3E%3Cpath d='M0 0H1440V14C1240 29 890 94 590 354C290 614 140 774 0 824V0Z' fill='url(%23gradTopFigma)'/%3E%3Cdefs%3E%3ClinearGradient id='gradTopFigma' x1='0' y1='0' x2='1100' y2='750' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%234D00B5'/%3E%3Cstop offset='45%25' stop-color='%23FEB42D'/%3E%3Cstop offset='75%25' stop-color='%23FEB42D' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: top left;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Onda Inferior Direita - Traz de volta o degradê e a cauda suave da curva */
+.waveBottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 65vh;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1024' fill='none' preserveAspectRatio='none'%3E%3Cpath d='M1440 1024H0V1000C150 980 500 900 800 600C1100 300 1250 100 1440 0V1024Z' fill='url(%23gradBottomFigma)' opacity='0.9'/%3E%3Cpath d='M1440 1024H0V1010C200 995 550 930 850 670C1150 410 1300 250 1440 200V1024Z' fill='url(%23gradBottomFigma)'/%3E%3Cdefs%3E%3ClinearGradient id='gradBottomFigma' x1='1440' y1='200' x2='800' y2='900' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%234D00B5'/%3E%3Cstop offset='60%25' stop-color='%23FEB42D'/%3E%3Cstop offset='100%25' stop-color='%23FEB42D' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: bottom right;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── CARD CENTRAL SUPER EXPANDIDO ─── */
 .content {
-    width: 700px;
-    height: 550px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(320deg, #06283d 52%, #106ba36e 100%);
-    border: #ffffff6b solid 1px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.548);
-    border-radius: 30px;
+  width: 100%;
+  max-width: 620px;
+  background: var(--card-bg);
+  border: 1px solid rgba(77, 0, 181, 0.15);
+  box-shadow: var(--card-shadow);
+  border-radius: 28px;
+  position: relative;
+  z-index: 5;
+  padding: 60px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
 }
 
-h2 {
-    color: #fff;
-    font-size: 32px;
-    font-weight: bold;
+/* Elemento de Animação Grande */
+.iconWrapper {
+  width: 96px;
+  height: 96px;
+  background: #F4F7FB;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgba(77, 0, 181, 0.12);
+  position: relative;
+  margin-bottom: 32px;
 }
 
-p {
-    color: #fff;
-    font-size: 25px;
-    margin-top: 20px;
-    text-align: center;
+.spinRing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 76px;
+  height: 76px;
+  animation: spinLeft 1.5s linear infinite;
 }
 
+.spinRing path {
+  stroke: var(--purple) !important;
+}
+
+.syncIcon {
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  animation: spinLeft 2.5s linear infinite;
+}
+
+.syncIcon path {
+  stroke: var(--dark-blue) !important;
+}
+
+@keyframes spinLeft {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+/* Fontes Grandes e Confortáveis para Leitura */
+.title {
+  color: var(--text-primary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  text-align: center;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.description {
+  color: var(--text-secondary);
+  font-size: 20px;
+  margin: 0;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ─── LOADER / PROGRESS BAR MAXI ─── */
 .loader {
-    margin-top: 70px;
-    width: 450px;
-    height: 6px;
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
+  margin-top: 44px;
+  width: 100%;
+  max-width: 440px;
+  height: 10px;
+  background: #F0F5FB;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(77, 0, 181, 0.12);
 }
 
 .progress {
-    height: 100%;
-    width: 0%;
-    background: #3e70dd;
-    border-radius: 10px;
-    animation: carregar 5s ease forwards;
+  height: 100%;
+  width: 0%;
+  background: var(--purple);
+  border-radius: 12px;
+  animation: carregar 5s ease forwards;
 }
 
 @keyframes carregar {
-    0%   { width: 0%; }
-    15%  { width: 15%; }
-    30%  { width: 30%; }
-    45%  { width: 45%; }
-    60%  { width: 60%; }
-    75%  { width: 75%; }
-    90%  { width: 90%; }
-    100% { width: 100%; }
+  0%   { width: 0%; }
+  15%  { width: 15%; }
+  30%  { width: 35%; }
+  50%  { width: 55%; }
+  70%  { width: 75%; }
+  85%  { width: 90%; }
+  100% { width: 100%; }
 }
 
+/* ─── AMBIENTE SEGURO ENFATIZADO ─── */
 .seguranca {
-    width: 300px;
-    height: 40px;
-    margin-top: 70px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+  width: 100%;
+  max-width: 280px;
+  height: 46px;
+  margin-top: 48px;
+  background-color: #F0F5FB;
+  border: 1px solid rgba(77, 0, 181, 0.15);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
 }
 
 .seguranca img {
-    width: 25px;
-    height: 25px;
+  width: 22px;
+  height: 22px;
 }
 
 .segurancaTexto {
-    color: #053ae7;
-    font-size: 18px;
-    font-weight: 1000;
-    margin-bottom: 20px;
+  color: var(--purple);
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
 }
 
-.iconWrapper {
-    width: 90px;
-    height: 90px;
-    background: #fff;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    position: relative;
-    margin-bottom: 40px;
-}
-
-/* CÍRCULO EXTERNO */
-.spinRing {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    animation: spinLeft 1.2s linear infinite;
-}
-
-/* SETAS */
-.syncIcon {
-    width: 22px;
-    height: 22px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    animation: spinLeft 2s linear infinite;
-}
-
-/* ANIMAÇÃO DOS DOIS */
-@keyframes spinLeft {
-    from {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-
-    to {
-        transform: translate(-50%, -50%) rotate(-360deg);
-    }
-}
-
-/* ── Tablet (≤ 1024px) ── */
-@media (max-width: 1024px) {
-    .content {
-        width: 85%;
-        height: auto;
-        padding: 48px 40px;
-    }
-
-    .loader {
-        width: 80%;
-    }
-
-    h2 {
-        font-size: 26px;
-    }
-
-    p {
-        font-size: 20px;
-    }
-}
-
-/* ── Mobile (≤ 640px) ── */
+/* ─── RESPONSIVIDADE ─── */
 @media (max-width: 640px) {
-    .container {
-        padding: 1rem;
-    }
+  .container {
+    padding: 24px;
+    box-sizing: border-box;
+  }
 
-    .content {
-        width: 100%;
-        height: auto;
-        padding: 36px 24px;
-        border-radius: 20px;
-    }
+  .content {
+    width: 100%;
+    padding: 44px 28px;
+  }
 
-    .iconWrapper {
-        width: 70px;
-        height: 70px;
-        margin-bottom: 28px;
-    }
+  .title {
+    font-size: 28px;
+  }
 
-    h2 {
-        font-size: 20px;
-        text-align: center;
-    }
-
-    p {
-        font-size: 15px;
-        margin-top: 12px;
-    }
-
-    .loader {
-        width: 100%;
-        margin-top: 40px;
-    }
-
-    .seguranca {
-        width: 220px;
-        height: 36px;
-        margin-top: 40px;
-        gap: 12px;
-    }
-
-    .seguranca img {
-        width: 20px;
-        height: 20px;
-    }
-
-    .segurancaTexto {
-        font-size: 14px;
-        margin-bottom: 16px;
-    }
+  .description {
+    font-size: 17px;
+  }
 }

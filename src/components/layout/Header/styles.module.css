@@ -1,103 +1,110 @@
-/* ── HEADER BASE ── */
+/* =========================
+   HEADER
+========================= */
+
 .header {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  z-index: 1000;
   width: 100%;
-  background-color: transparent;
-  backdrop-filter: blur(50px);
-  padding: 0.7rem 1rem 0;
-  margin-top: 0;
-  font-family: "Poppins", sans-serif;
+  z-index: 1000;
+
+  padding: 12px 20px;
+
+  backdrop-filter: blur(3px);
+
+  box-sizing: border-box;
 }
 
 .container {
-  max-width: 100%;
+  width: 100%;
+  max-width: 1440px;
+
   margin: 0 auto;
-  min-height: 92px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  background-color: #ffffff;
+
+  background: #fff;
+
   border-radius: 999px;
-  padding: 0.75rem 1.25rem 0.75rem 1.5rem;
-  box-shadow: 0 2px 24px rgba(37, 99, 235, 0.07), 0 0 0 1px rgba(37, 99, 235, 0.08);
+
+  padding: 18px 32px;
+
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.04);
+
+  gap: 24px;
 }
 
-/* ── LOGO ── */
+/* =========================
+   LOGO
+========================= */
+
 .logoWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  cursor: pointer;
-  flex: 0 0 auto;
+  flex-shrink: 0;
 }
 
 .logo {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: opacity 0.25s ease;
 }
 
 .logoImage {
-  display: block;
-  width: clamp(112px, 13vw, 160px);
+  width: 150px;
   height: auto;
-  object-fit: contain;
+  display: block;
 }
 
-.logo:hover {
-  opacity: 0.75;
-}
+/* =========================
+   NAV DESKTOP
+========================= */
 
-/* ── NAV DESKTOP ── */
 .nav {
   flex: 1;
+
   display: flex;
   justify-content: center;
-  margin: 0 1rem;
 }
 
 .navList {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  gap: 20px;
-  align-items: center;
 }
 
 .navLink {
   position: relative;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 0px;
-  box-sizing: border-box;
-  text-align: left;
-  font-size: 16px;
+
+  text-decoration: none;
+
   color: #041062;
-  font-family: "Poppins", sans-serif;
+
+  font-size: 18px;
   font-weight: 700;
+
+  transition: color 0.25s ease;
 }
 
 .navLink::after {
-  content: '';
-  display: block;
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+
+  width: 0%;
   height: 2px;
-  width: 0;
+
   background: #122069;
-  border-radius: 2px;
-  margin-top: 4px;
-  transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+
+  transition: width 0.25s ease;
 }
 
 .navLink:hover::after,
@@ -106,187 +113,185 @@
 }
 
 .navLinkActive {
-  font-weight: 900;
+  color: #122069;
 }
 
-/* ── LOGIN DESKTOP ── */
+/* =========================
+   LOGIN
+========================= */
+
 .desktopLogin {
-  display: flex;
-  align-items: center;
+  flex-shrink: 0;
 }
 
 .loginLink {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  min-width: 104px;
-  padding: 0.35rem 0.8rem 0.35rem 0.35rem;
-  background: transparent;
+  gap: 10px;
+
+  padding: 8px 10px 8px 8px;
+
   border-radius: 999px;
-  color: #111111;
+
   text-decoration: none;
-  font-size: clamp(0.92rem, 0.88vw, 1rem);
-  font-weight: 800;
-  letter-spacing: 0;
-  font-family: "Poppins", sans-serif;
-  transition: opacity 0.22s ease, transform 0.18s ease;
+
+  color: #111;
+  font-weight: 700;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
 }
 
 .loginLink:hover {
   transform: translateY(-1px);
-}
-
-.loginLink:active {
-  transform: translateY(0);
-}
-
-.loginLinkActive {
-  box-shadow: none;
+  background: rgba(0, 0, 0, 0.03);
 }
 
 .loginIconWrap {
-  width: 58px;
-  height: 58px;
-  flex: 0 0 auto;
-  display: inline-flex;
+  width: 46px;
+  height: 46px;
+
+  border-radius: 50%;
+
+  display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(180deg, #6611d4 0%, #ff7b2f 100%);
-  box-shadow: 0 10px 22px rgba(102, 17, 212, 0.18);
+
+  background: linear-gradient(
+    180deg,
+    #6611d4 0%,
+    #ff7b2f 100%
+  );
 }
 
 .loginIcon {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
+  width: 24px;
+  height: 24px;
+
   filter: brightness(0) invert(1);
 }
 
 .loginChevron {
-  width: 14px;
-  height: 14px;
-  display: inline-block;
-  border: solid #111111;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg) translateY(-2px);
-  border-radius: 1px;
+  width: 8px;
+  height: 8px;
+
+  border-right: 2px solid #111;
+  border-bottom: 2px solid #111;
+
+  transform: rotate(45deg) translateY(-1px);
 }
 
-/* ── HAMBURGER ── */
+/* =========================
+   HAMBURGER
+========================= */
+
 .hamburger {
   display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  width: 40px;
-  height: 40px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  border-radius: 8px;
-  transition: background 0.2s;
-}
 
-.hamburger:hover {
-  background: rgba(37, 99, 235, 0.06);
+  width: 42px;
+  height: 42px;
+
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  gap: 5px;
+
+  flex-shrink: 0;
 }
 
 .hamburger span {
-  display: block;
   width: 24px;
   height: 2px;
-  background: #2563EB;
-  border-radius: 2px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  transform-origin: center;
+
+  background: #2563eb;
+
+  border-radius: 999px;
+
+  transition: 0.3s ease;
 }
 
-/* Animação X ao abrir */
 .hamburgerOpen span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
+
 .hamburgerOpen span:nth-child(2) {
   opacity: 0;
-  transform: scaleX(0);
 }
+
 .hamburgerOpen span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* ── MENU MOBILE ── */
+/* =========================
+   MOBILE MENU
+========================= */
+
 .mobileMenu {
   display: none;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.35s ease, opacity 0.3s ease;
-  background: #fff;
-  border-radius: 0 0 24px 24px;
-  margin: 0 1.25rem;
-  border: 1px solid rgba(37, 99, 235, 0.10);
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.08);
-  border-top: none;
-}
-
-.mobileMenuOpen {
-  max-height: 420px;
-  opacity: 1;
 }
 
 .mobileNavList {
   list-style: none;
+  padding: 0;
   margin: 0;
-  padding: 0.75rem 0 0;
-  display: flex;
-  flex-direction: column;
 }
 
 .mobileNavLink {
   display: block;
-  padding: 0.9rem 1.75rem;
+
+  padding: 16px 24px;
+
+  text-decoration: none;
+
+  color: #041062;
+
   font-size: 16px;
   font-weight: 600;
-  color: #2563EB;
-  text-decoration: none;
-  font-family: "Poppins", sans-serif;
-  text-transform: capitalize;
-  border-left: 2px solid transparent;
-  transition: all 0.25s ease;
-}
 
-.mobileNavLink:hover {
-  color: #1d4ed8;
-  background: rgba(37, 99, 235, 0.06);
-  border-left-color: #2563EB;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .mobileNavLinkActive {
-  color: #1d4ed8;
   background: rgba(37, 99, 235, 0.08);
-  border-left-color: #2563EB;
-  font-weight: 700;
 }
 
-/* wrapper do Button no mobile */
-.mobileLoginWrapper {
-  padding: 1rem 1.75rem 1.25rem;
-  display: flex;
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1100px) {
+  .navList {
+    gap: 18px;
+  }
+
+  .navLink {
+    font-size: 14px;
+  }
+
+  .logoImage {
+    width: 120px;
+  }
 }
 
-.mobileLoginLink {
-  width: 100%;
-  justify-content: center;
-}
+/* =========================
+   MOBILE
+========================= */
 
-/* ── RESPONSIVO ── */
-@media (max-width: 768px) {
+@media (max-width: 860px) {
+
   .header {
-    margin-top: 10px;
-    padding: 0 0.75rem;
+    padding: 10px 14px;
+  }
+
+  .container {
+    padding: 12px 18px;
   }
 
   .nav,
@@ -300,30 +305,75 @@
 
   .mobileMenu {
     display: block;
-    margin: 0 1rem;
+
+    width: 100%;
+    max-width: 1280px;
+
+    margin: 10px auto 0;
+
+    background: white;
+
+    border-radius: 24px;
+
+    overflow: hidden;
+
+    box-shadow:
+      0 10px 30px rgba(0,0,0,0.08);
+
+    max-height: 0;
+
+    opacity: 0;
+
+    transition:
+      max-height 0.35s ease,
+      opacity 0.25s ease;
   }
 
-  .container {
-    border-radius: 50px;
-    padding: 0.75rem 0.9rem;
-    box-shadow: 0 2px 16px rgba(37, 99, 235, 0.07), 0 0 0 1px rgba(37, 99, 235, 0.08);
+  .mobileMenuOpen {
+    max-height: 500px;
+    opacity: 1;
   }
 
-  .logo {
-    font-size: 24px;
+  .mobileLoginWrapper {
+    padding: 18px;
+  }
+
+  .mobileLoginLink {
+    width: 100%;
+    justify-content: center;
   }
 
   .logoImage {
-    width: 104px;
+    width: 110px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+  .header {
+    padding: 8px 10px;
   }
 
-  .loginIconWrap {
-    width: 42px;
-    height: 42px;
+  .container {
+    padding: 10px 14px;
+    border-radius: 22px;
   }
 
-  .loginIcon {
-    width: 24px;
-    height: 24px;
+  .logoImage {
+    width: 95px;
+  }
+
+  .hamburger {
+    width: 38px;
+    height: 38px;
+  }
+
+  .mobileNavLink {
+    font-size: 15px;
+    padding: 15px 20px;
   }
 }

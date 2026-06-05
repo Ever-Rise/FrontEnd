@@ -40,17 +40,17 @@ const Header = () => {
                         </li>
                         <li>
                             <NavLink to="/sobre" className={navLinkClassName}>
-                                Sobre Nos
+                                Sobre Nós
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/vendas" className={navLinkClassName}>
-                                Vendas
+                                Venda
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/produto" className={navLinkClassName}>
-                                Info Guincho
+                                Sobre Guincho
                             </NavLink>
                         </li>
                         <li>
@@ -90,7 +90,7 @@ const Header = () => {
                 <button
                     className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ""}`}
                     onClick={toggleMenu}
-                    aria-label="Abrir menu"
+                    aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
                 >
                     <span />
                     <span />

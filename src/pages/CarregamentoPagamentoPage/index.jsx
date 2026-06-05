@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import styles from "./index.module.css";
 import Seguranca from "../../assets/icons/CarregamentoPage/Segurança.svg";
 
-const PAGE_NAME = "Status de Pagamento";
-
 const CarregamentoPagamentoPage = () => {
     const navigate = useNavigate();
 
@@ -18,6 +16,10 @@ const CarregamentoPagamentoPage = () => {
 
     return (
         <main className={styles.container} role="main">
+            {/* Elementos de Background identicos ao do Checkout */}
+            <div className={styles.waveTop} />
+            <div className={styles.waveBottom} />
+
             <div className={styles.content}>
                 <div className={styles.iconWrapper}>
                     <svg
@@ -28,10 +30,10 @@ const CarregamentoPagamentoPage = () => {
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                     >
-                        <circle cx="40" cy="40" r="34" stroke="#e0e0e0" strokeWidth="4" />
+                        <circle cx="40" cy="40" r="34" stroke="#F0F5FB" strokeWidth="4" />
                         <path
                             d="M40 6 A34 34 0 0 1 74 40"
-                            stroke="#4B6FFF"
+                            stroke="#4D00B5" /* Roxo do projeto */
                             strokeWidth="4"
                             strokeLinecap="round"
                         />
@@ -45,11 +47,11 @@ const CarregamentoPagamentoPage = () => {
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                     >
-                        <path d="M1 4v6h6" stroke="#4B6FFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M23 20v-6h-6" stroke="#4B6FFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M1 4v6h6" stroke="#FEB42D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M23 20v-6h-6" stroke="#FEB42D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         <path
                             d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10M23 14l-4.64 4.36A9 9 0 0 1 3.51 15"
-                            stroke="#4B6FFF"
+                            stroke="#FEB42D" /* Laranja do projeto */
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -57,9 +59,9 @@ const CarregamentoPagamentoPage = () => {
                     </svg>
                 </div>
 
-                <h2>Processando seu pagamento</h2>
+                <h2 className={styles.title}>Processando seu pagamento</h2>
 
-                <p>
+                <p className={styles.description}>
                     Isso pode levar alguns segundos.
                     <br /> Não feche esta página.
                 </p>
