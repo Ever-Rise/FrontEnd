@@ -5,6 +5,7 @@ import Pessoas from '../../assets/images/Parceirosimg/iconeParceiros.svg'
 import Coracao from '../../assets/images/Parceirosimg/coracao.svg'
 import cidade from '../../assets/images/Parceirosimg/cidades.svg'
 import indice from '../../assets/images/Parceirosimg/indice.svg'
+import Scrollline from './Scrollline.jsx';
 
 
 /* ─────────────────────────────────────────
@@ -27,6 +28,8 @@ function Navbar() {
     </nav>
   );
 }
+
+
 
 /* ─────────────────────────────────────────
    1. HERO
@@ -115,6 +118,10 @@ function FutureCare() {
 /* ─────────────────────────────────────────
    3. BENEFITS
 ───────────────────────────────────────── */
+
+
+
+
 const benefits = [
   {
     title: "Parcerias estratégicas",
@@ -132,43 +139,46 @@ const benefits = [
 
 function Benefits() {
   return (
-    <section className={styles.benefits}>
-      <div className={styles.benefitsHeader}>
-        <span className={styles.benefitsEyebrow}>BENEFÍCIOS DE SER PARCEIROS</span>
-        <h2 className={styles.benefitsTitle}>
-          Mais benefício para você e mais impacto para todos
-        </h2>
-      </div>
+    <>
+      <Scrollline />
 
-      <div className={styles.benefitsTrack}>
-        {/* Wavy SVG path behind cards */}
-        <svg
-          className={styles.wavePath}
-          viewBox="0 0 1200 200"
-          preserveAspectRatio="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <path
-            d="M0,100 C150,20 300,180 500,100 C700,20 900,180 1200,100"
-            fill="none"
-            stroke="#2F6BFF"
-            strokeWidth="3"
-            strokeDasharray="10 6"
-          />
-        </svg>
-
-        <div className={styles.benefitsCards}>
-          {benefits.map((b, i) => (
-            <div key={i} className={`${styles.benefitCard} ${styles[`benefitCard${i}`]}`}>
-              <div className={styles.benefitIcon} aria-hidden="true" />
-              <h3 className={styles.benefitCardTitle}>{b.title}</h3>
-              <p className={styles.benefitCardText}>{b.text}</p>
-            </div>
-          ))}
+      {/* <section className={styles.benefits}>
+        <div className={styles.benefitsHeader}>
+          <span className={styles.benefitsEyebrow}>BENEFÍCIOS DE SER PARCEIROS</span>
+          <h2 className={styles.benefitsTitle}>
+            Mais benefício para você e mais impacto para todos
+          </h2>
         </div>
-      </div>
-    </section>
+
+        <div className={styles.benefitsTrack}>
+          <svg
+            className={styles.wavePath}
+            viewBox="0 0 1200 200"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M0,100 C150,20 300,180 500,100 C700,20 900,180 1200,100"
+              fill="none"
+              stroke="#2F6BFF"
+              strokeWidth="3"
+              strokeDasharray="10 6"
+            />
+          </svg>
+
+          <div className={styles.benefitsCards}>
+            {benefits.map((b, i) => (
+              <div key={i} className={`${styles.benefitCard} ${styles[`benefitCard${i}`]}`}>
+                <div className={styles.benefitIcon} aria-hidden="true" />
+                <h3 className={styles.benefitCardTitle}>{b.title}</h3>
+                <p className={styles.benefitCardText}>{b.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section> */}
+    </>
   );
 }
 
@@ -206,7 +216,7 @@ const steps = [
 function HowItWorks() {
   return (
     <section className={styles.howItWorks}>
-      <span className={styles.howEyebrow}>PASSO A PASSO</span>
+      {/* <span className={styles.howEyebrow}>PASSO A PASSO</span> */}
       <h2 className={styles.howTitle}>Torne-se parceiro em poucos passos</h2>
       <div className={styles.stepsRow}>
         {steps.map((s, i) => (
@@ -244,8 +254,11 @@ const testimonials = [
 function Testimonials() {
   return (
     <section className={styles.testimonials}>
-      <span className={styles.testimonialsEyebrow}>DEPOIMENTOS</span>
-      <h2 className={styles.testimonialsTitle}>Quem já é parceiro</h2>
+      <section className={styles.parteCinza}>
+      <span className={styles.testimonialsEyebrow}>QUEM JÁ É PARCEIRO</span>
+      <h2 className={styles.testimonialsTitle}>Hístorias reais que <br/>
+        nos inspiram todos <br/>
+        os dias.</h2>
       <div className={styles.testimonialsGrid}>
         {testimonials.map((t, i) => (
           <div key={i} className={styles.testimonialCard}>
@@ -266,6 +279,7 @@ function Testimonials() {
           </div>
         ))}
       </div>
+      </section>
     </section>
   );
 }
@@ -279,10 +293,10 @@ function FinalCta() {
       <div className={styles.finalCtaGlow} aria-hidden="true" />
       <div className={styles.finalCtaContent}>
         <h2 className={styles.finalCtaTitle}>
-          Pronto para crescer e transformar vidas?
+          Pronto para crescer <br/> e transformar vidas?
         </h2>
         <p className={styles.finalCtaSubtitle}>
-          Junte-se a quem já faz a diferença todos os dias.
+          Junte-se a quem já faz <br/> a diferença todos os dias.
         </p>
         <button className={styles.finalCtaBtn}>Seja parceiro →</button>
       </div>
