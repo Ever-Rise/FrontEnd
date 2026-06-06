@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import "./ScrollLine.css";
+import "./Scrollline.css";
 import iconeMao from '../../assets/images/Parceirosimg/iconeMao.svg'
 import iconeClip from '../../assets/images/Parceirosimg/iconeClip.svg'
 import iconeFoguete from '../../assets/images/Parceirosimg/iconeFoguete.svg'
