@@ -1,4 +1,6 @@
 import styles from "./styles.module.css";
+import { Footer, Header } from "../../components";
+
 import HeroImg from '../../assets/images/Parceirosimg/imagemHero2.svg'
 import Guincho1 from '../../assets/images/Parceirosimg/guinchoQuarto.svg'
 import Pessoas from '../../assets/images/Parceirosimg/iconeParceiros.svg'
@@ -7,37 +9,12 @@ import cidade from '../../assets/images/Parceirosimg/cidades.svg'
 import indice from '../../assets/images/Parceirosimg/indice.svg'
 import Scrollline from './Scrollline.jsx';
 
-
-/* ─────────────────────────────────────────
-   NAVBAR
-───────────────────────────────────────── */
-function Navbar() {
-  return (
-    <nav className={styles.navbar}>
-      <div className={styles.navLogo}>
-        <span className={styles.logoMark}>Ever</span>
-        <span className={styles.logoMarkBlue}>Rise</span>
-      </div>
-      <ul className={styles.navLinks}>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Work</a></li>
-        <li><a href="#">Pages</a></li>
-      </ul>
-      <button className={styles.navLogin}>Login</button>
-    </nav>
-  );
-}
-
-
-
 /* ─────────────────────────────────────────
    1. HERO
 ───────────────────────────────────────── */
 function Hero() {
   return (
     <section className={styles.hero}>
-      <Navbar />
       <div className={styles.heroImage} aria-hidden="true">
         <img src={HeroImg} alt="" />
       </div>
@@ -73,7 +50,6 @@ function FutureCare() {
     <section className={styles.futureCare}>
       <div className={styles.futureCareInner}>
         <div className={styles.futureCareLeft}>
-
           <div className={styles.imageWrapper}>
             <img
               src={Guincho1}
@@ -108,7 +84,6 @@ function FutureCare() {
               </div>
             ))}
           </div>
-
         </div>
       </div>
     </section>
@@ -118,72 +93,16 @@ function FutureCare() {
 /* ─────────────────────────────────────────
    3. BENEFITS
 ───────────────────────────────────────── */
-
-
-
-
-const benefits = [
-  {
-    title: "Parcerias estratégicas",
-    text: "Acesse uma rede qualificada de empresas e profissionais alinhados com o propósito de cuidar, ampliando sua presença no mercado.",
-  },
-  {
-    title: "Integração",
-    text: "Conecte seus sistemas e processos à plataforma EverRise de forma simples, garantindo fluidez operacional e experiência unificada.",
-  },
-  {
-    title: "Crescimento conjunto",
-    text: "Compartilhamos resultados, aprendizados e oportunidades para que cada parceiro cresça de forma sustentável e com impacto real.",
-  },
-];
-
 function Benefits() {
   return (
     <>
       <Scrollline />
-
-      {/* <section className={styles.benefits}>
-        <div className={styles.benefitsHeader}>
-          <span className={styles.benefitsEyebrow}>BENEFÍCIOS DE SER PARCEIROS</span>
-          <h2 className={styles.benefitsTitle}>
-            Mais benefício para você e mais impacto para todos
-          </h2>
-        </div>
-
-        <div className={styles.benefitsTrack}>
-          <svg
-            className={styles.wavePath}
-            viewBox="0 0 1200 200"
-            preserveAspectRatio="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <path
-              d="M0,100 C150,20 300,180 500,100 C700,20 900,180 1200,100"
-              fill="none"
-              stroke="#2F6BFF"
-              strokeWidth="3"
-              strokeDasharray="10 6"
-            />
-          </svg>
-
-          <div className={styles.benefitsCards}>
-            {benefits.map((b, i) => (
-              <div key={i} className={`${styles.benefitCard} ${styles[`benefitCard${i}`]}`}>
-                <div className={styles.benefitIcon} aria-hidden="true" />
-                <h3 className={styles.benefitCardTitle}>{b.title}</h3>
-                <p className={styles.benefitCardText}>{b.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
     </>
   );
 }
 
 /* ─────────────────────────────────────────
-   4. PARTNERS (logo carousel)
+   4. PARTNERS
 ───────────────────────────────────────── */
 function Partners() {
   const logos = Array.from({ length: 8 });
@@ -216,7 +135,6 @@ const steps = [
 function HowItWorks() {
   return (
     <section className={styles.howItWorks}>
-      {/* <span className={styles.howEyebrow}>PASSO A PASSO</span> */}
       <h2 className={styles.howTitle}>Torne-se parceiro em poucos passos</h2>
       <div className={styles.stepsRow}>
         {steps.map((s, i) => (
@@ -255,30 +173,25 @@ function Testimonials() {
   return (
     <section className={styles.testimonials}>
       <section className={styles.parteCinza}>
-      <span className={styles.testimonialsEyebrow}>QUEM JÁ É PARCEIRO</span>
-      <h2 className={styles.testimonialsTitle}>Hístorias reais que <br/>
-        nos inspiram todos <br/>
-        os dias.</h2>
-      <div className={styles.testimonialsGrid}>
-        {testimonials.map((t, i) => (
-          <div key={i} className={styles.testimonialCard}>
-            <div className={styles.testimonialQuote}>&ldquo;</div>
-            <p className={styles.testimonialText}>{t.text}</p>
-            <div className={styles.testimonialAuthor}>
-              {/* Foto circular — placeholder */}
-              <img
-                src=""
-                alt={t.name}
-                className={styles.testimonialPhoto}
-              />
-              <div>
-                <strong className={styles.testimonialName}>{t.name}</strong>
-                <span className={styles.testimonialRole}>{t.role}</span>
+        <span className={styles.testimonialsEyebrow}>QUEM JÁ É PARCEIRO</span>
+        <h2 className={styles.testimonialsTitle}>Hístorias reais que <br/>
+          nos inspiram todos <br/>
+          os dias.</h2>
+        <div className={styles.testimonialsGrid}>
+          {testimonials.map((t, i) => (
+            <div key={i} className={styles.testimonialCard}>
+              <div className={styles.testimonialQuote}>&ldquo;</div>
+              <p className={styles.testimonialText}>{t.text}</p>
+              <div className={styles.testimonialAuthor}>
+                <img src="" alt={t.name} className={styles.testimonialPhoto} />
+                <div>
+                  <strong className={styles.testimonialName}>{t.name}</strong>
+                  <span className={styles.testimonialRole}>{t.role}</span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       </section>
     </section>
   );
@@ -310,6 +223,7 @@ function FinalCta() {
 export default function App() {
   return (
     <main className={styles.root}>
+      <Header />
       <Hero />
       <FutureCare />
       <Benefits />
