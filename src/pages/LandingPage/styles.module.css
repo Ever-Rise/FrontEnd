@@ -84,7 +84,7 @@
         var(--color-gold),
         var(--color-orange)
     );
-    -webkit-background-clip: text;
+    -webkit-background-clip: border-box;
     -webkit-text-fill-color: transparent;
 }
 
