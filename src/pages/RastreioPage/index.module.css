@@ -431,3 +431,478 @@
   border-radius: 8px;
   padding: 6px 10px;
 }
+
+.itemCell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.driverLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.payMethod {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.payIco {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────
+   RESPONSIVIDADE
+────────────────────────────────────────── */
+
+/* Tablet Landscape (1024px) */
+@media (max-width: 1024px) {
+  .page {
+    padding: 24px 40px 40px;
+  }
+
+  .mainGrid {
+    grid-template-columns: 260px 1fr;
+    gap: 16px;
+  }
+
+  .pageTitle {
+    font-size: 32px;
+    margin-top: 40px;
+  }
+
+  .sectionLabel {
+    font-size: 24px;
+  }
+
+  .infoHdrLabel {
+    font-size: 20px;
+  }
+
+  .payName {
+    font-size: 24px;
+  }
+
+  .tableTitle {
+    font-size: 22px;
+  }
+
+  .items th,
+  .items td {
+    font-size: 14px;
+  }
+}
+
+/* Tablet Portrait (768px) */
+@media (max-width: 768px) {
+  .page {
+    padding: 20px 24px 32px;
+  }
+
+  .inner {
+    max-width: 100%;
+  }
+
+  .mainGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .pageHeaderRow {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .pageTitle {
+    font-size: 26px;
+    margin-top: 30px;
+  }
+
+  .headerBtns {
+    width: 100%;
+    flex-direction: column;
+    margin-top: 0;
+  }
+
+  .hbtn {
+    width: 100%;
+    justify-content: center;
+    font-size: 13px;
+    padding: 11px 16px;
+  }
+
+  .outerCard {
+    padding: 16px;
+  }
+
+  .tlCard {
+    padding: 20px;
+  }
+
+  .sectionLabel {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .tlLabel {
+    font-size: 16px;
+  }
+
+  .tlTitle {
+    font-size: 16px;
+  }
+
+  .tlMeta {
+    font-size: 14px;
+  }
+
+  .infoRow {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .infoCard {
+    padding: 18px;
+  }
+
+  .infoHdr {
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .infoIco {
+    width: 32px;
+    height: 32px;
+  }
+
+  .infoHdrLabel {
+    font-size: 18px;
+  }
+
+  .addrLine {
+    font-size: 16px;
+  }
+
+  .payName {
+    font-size: 20px;
+  }
+
+  .payTotalLbl {
+    font-size: 22px;
+  }
+
+  .payTotalVal {
+    font-size: 26px;
+  }
+
+  .mapIframe {
+    height: 300px;
+  }
+
+  .tableCard {
+    padding: 18px;
+    margin-top: 16px;
+  }
+
+  .tableTitle {
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+
+  .items th,
+  .items td {
+    font-size: 13px;
+    padding-top: 12px;
+  }
+
+  .items th {
+    padding-bottom: 10px;
+  }
+
+  .driverRow {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .driverThumb {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .driverName {
+    font-size: 14px;
+  }
+
+  .driverLbl {
+    font-size: 11px;
+  }
+}
+
+/* Mobile (640px) */
+@media (max-width: 640px) {
+  .page {
+    padding: 16px 16px 24px;
+    background-size: 100% 50vh, 100% 50vh;
+  }
+
+  .pageTitle {
+    font-size: 22px;
+    margin-top: 24px;
+  }
+
+  .breadcrumb {
+    font-size: 13px;
+  }
+
+  .headerBtns {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hbtn {
+    padding: 10px 14px;
+    font-size: 12px;
+    border-radius: 8px;
+  }
+
+  .outerCard {
+    padding: 12px;
+    border-radius: 16px;
+  }
+
+  .tlCard {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .sectionLabel {
+    font-size: 18px;
+    margin-bottom: 14px;
+  }
+
+  .tlLabel {
+    font-size: 14px;
+  }
+
+  .tlTitle {
+    font-size: 14px;
+  }
+
+  .tlMeta {
+    font-size: 12px;
+  }
+
+  .tlItem:not(:last-child)::after {
+    left: 8px;
+  }
+
+  .tlIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .infoCard {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .infoHdr {
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .infoIco {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+
+  .infoHdrLabel {
+    font-size: 16px;
+  }
+
+  .addrLine {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .payName {
+    font-size: 18px;
+  }
+
+  .paySub {
+    font-size: 12px;
+  }
+
+  .payMethod {
+    gap: 10px;
+  }
+
+  .payIco {
+    font-size: 20px;
+  }
+
+  .payTotalRow {
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+
+  .payTotalLbl {
+    font-size: 14px;
+  }
+
+  .payTotalVal {
+    font-size: 20px;
+  }
+
+  .mapIframe {
+    height: 240px;
+  }
+
+  .tableCard {
+    padding: 14px;
+    margin-top: 12px;
+    border-radius: 14px;
+  }
+
+  .tableTitle {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .items th {
+    font-size: 11px;
+    padding-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .items td {
+    font-size: 12px;
+    padding-top: 10px;
+  }
+
+  .items td:not(:first-child) {
+    text-align: right;
+  }
+
+  .itemIconBox {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .loteBadge {
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 6px;
+  }
+
+  .driverThumb {
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
+  }
+
+  .driverName {
+    font-size: 13px;
+  }
+
+  .driverLbl {
+    font-size: 10px;
+  }
+
+  .driverCall {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+}
+
+/* Mobile Small (480px) */
+@media (max-width: 480px) {
+  .page {
+    padding: 12px 12px 20px;
+  }
+
+  .pageTitle {
+    font-size: 18px;
+    margin-top: 20px;
+  }
+
+  .breadcrumb {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .pageHeaderRow {
+    gap: 8px;
+  }
+
+  .headerBtns {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .hbtn {
+    padding: 9px 12px;
+    font-size: 11px;
+  }
+
+  .outerCard {
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .tlCard {
+    padding: 12px;
+  }
+
+  .sectionLabel {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .infoCard {
+    padding: 12px;
+  }
+
+  .infoHdr {
+    gap: 6px;
+  }
+
+  .infoIco {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+
+  .infoHdrLabel {
+    font-size: 14px;
+  }
+
+  .tableCard {
+    padding: 10px;
+  }
+
+  .tableTitle {
+    font-size: 14px;
+  }
+
+  .items {
+    font-size: 10px;
+  }
+
+  .mapIframe {
+    height: 200px;
+  }
+}

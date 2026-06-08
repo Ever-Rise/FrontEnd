@@ -213,7 +213,7 @@
 
 .btnPrimary {
   flex: 1;
-  height: 52px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -222,7 +222,7 @@
   background: var(--accent);
   color: #fff;
   font-weight: 800;
-  font-size: 16px;
+  font-size: 18px;
   font-family: Inter, sans-serif;
   cursor: pointer;
   letter-spacing: 0.2px;
@@ -238,7 +238,7 @@
 
 .btnSecondary {
   flex: 1;
-  height: 52px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -247,7 +247,7 @@
   border: 1.5px solid rgba(77, 0, 181, 0.3);
   color: var(--purple);
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   font-family: Inter, sans-serif;
   cursor: pointer;
   transition: border-color 0.2s, background 0.2s;
@@ -259,40 +259,381 @@
 }
 
 /* ─── RESPONSIVIDADE ─── */
+
+/* Desktop Large (1440px+) */
+@media (max-width: 1440px) {
+  .content {
+    max-width: 640px;
+    padding: 48px 44px;
+  }
+}
+
+/* Tablet Landscape (1024px) */
 @media (max-width: 1024px) {
+  .container {
+    padding: 20px 16px;
+  }
+
   .content {
     max-width: 560px;
     padding: 40px 36px;
   }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .description {
+    font-size: 16px;
+    margin-bottom: 28px;
+  }
+
+  .infoCell {
+    padding: 18px 24px;
+  }
+
+  .infoLabel {
+    font-size: 10px;
+  }
+
+  .infoValue {
+    font-size: 15px;
+  }
+
+  .emailRow {
+    padding: 11px 16px;
+    margin-bottom: 24px;
+  }
+
+  .emailIcon {
+    width: 18px;
+    height: 16px;
+  }
+
+  .emailText {
+    font-size: 13px;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    height: 56px;
+    font-size: 16px;
+  }
+
+  .waveTop {
+    height: 60vh;
+  }
+
+  .waveBottom {
+    height: 60vh;
+  }
 }
 
-@media (max-width: 640px) {
+/* Tablet Portrait (768px) */
+@media (max-width: 768px) {
   .container {
-    padding: 24px 16px;
-    align-items: flex-start;
-    padding-top: 40px;
+    padding: 16px 12px;
+    align-items: center;
+    padding-top: 30px;
+    min-height: calc(100vh + 40px);
   }
 
   .content {
-    padding: 36px 20px;
+    max-width: 100%;
+    padding: 36px 28px;
+    border-radius: 24px;
+  }
+
+  .title {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+
+  .description {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  .iconWrapper {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 24px;
     border-radius: 20px;
   }
 
-  .title { font-size: 24px; }
-  .description { font-size: 15px; }
+  .confirmIcon {
+    width: 40px;
+    height: 40px;
+  }
 
-  .infoRow { flex-direction: column; }
-  .infoDividerV { display: none; }
-  .infoCell { padding: 16px 20px; }
+  .infoCard {
+    margin-bottom: 20px;
+  }
 
-  .buttons { flex-direction: column; }
+  .infoRow {
+    flex-direction: column;
+  }
+
+  .infoDividerV {
+    display: none;
+  }
+
+  .infoDividerH {
+    height: 1px;
+    margin: 0;
+  }
+
+  .infoCell {
+    padding: 16px 22px;
+  }
+
+  .infoLabel {
+    font-size: 10px;
+    letter-spacing: 1.2px;
+  }
+
+  .infoValue {
+    font-size: 14px;
+  }
+
+  .emailRow {
+    padding: 12px 16px;
+    margin-bottom: 22px;
+    border-radius: 12px;
+  }
+
+  .emailIcon {
+    width: 18px;
+    height: 16px;
+  }
+
+  .emailText {
+    font-size: 13px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
 
   .btnPrimary,
   .btnSecondary {
     width: 100%;
-    flex: unset;
+    height: 56px;
+    font-size: 16px;
+    border-radius: 9px;
   }
 
-  .waveTop   { width: 55%; height: 72vh; }
-  .waveBottom { width: 55%; height: 72vh; }
+  .waveTop {
+    width: 70%;
+    height: 55vh;
+  }
+
+  .waveBottom {
+    width: 70%;
+    height: 55vh;
+  }
+}
+
+/* Mobile (640px) */
+@media (max-width: 640px) {
+  .container {
+    padding: 12px 12px;
+    align-items: center;
+    padding-top: 20px;
+    width: 100vw;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .content {
+    padding: 32px 20px;
+    border-radius: 20px;
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  .description {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .iconWrapper {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 20px;
+    border-radius: 16px;
+  }
+
+  .confirmIcon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .infoCard {
+    margin-bottom: 16px;
+  }
+
+  .infoRow {
+    flex-direction: column;
+  }
+
+  .infoCell {
+    padding: 14px 18px;
+  }
+
+  .infoLabel {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .infoValue {
+    font-size: 13px;
+  }
+
+  .infoValueBlue {
+    font-size: 15px;
+  }
+
+  .deliveryRow {
+    gap: 6px;
+  }
+
+  .truckIcon {
+    width: 16px;
+  }
+
+  .emailRow {
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+  }
+
+  .emailIcon {
+    width: 16px;
+    height: 14px;
+  }
+
+  .emailText {
+    font-size: 12px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    height: 52px;
+    font-size: 15px;
+    border-radius: 8px;
+  }
+
+  .btnPrimary:hover {
+    transform: translateY(-1px);
+  }
+
+  .waveTop {
+    width: 60%;
+    height: 50vh;
+  }
+
+  .waveBottom {
+    width: 60%;
+    height: 50vh;
+  }
+}
+
+/* Mobile Small (480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 8px 8px;
+    padding-top: 16px;
+  }
+
+  .content {
+    padding: 28px 16px;
+    border-radius: 16px;
+  }
+
+  .title {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  .description {
+    font-size: 13px;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .iconWrapper {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+  }
+
+  .confirmIcon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .infoCard {
+    margin-bottom: 12px;
+  }
+
+  .infoCell {
+    padding: 12px 14px;
+    gap: 4px;
+  }
+
+  .infoLabel {
+    font-size: 8px;
+    letter-spacing: 0.8px;
+  }
+
+  .infoValue {
+    font-size: 12px;
+  }
+
+  .emailRow {
+    padding: 9px 12px;
+    margin-bottom: 14px;
+    gap: 8px;
+  }
+
+  .emailIcon {
+    width: 14px;
+    height: 12px;
+  }
+
+  .emailText {
+    font-size: 11px;
+  }
+
+  .buttons {
+    gap: 8px;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    height: 48px;
+    font-size: 14px;
+  }
+
+  .waveTop {
+    width: 50%;
+    height: 45vh;
+  }
+
+  .waveBottom {
+    width: 50%;
+    height: 45vh;
+  }
 }
