@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles.module.css";
 import Header from "../../components/layout/Header";
-import heroBg from "../../assets/images/ManualPage/heroBackground.jpg";
+import heroBg from "./heroBackground.jpg.png";
 
 // ── data ────────────────────────────────────────────────────────
 const features = [
@@ -142,20 +142,6 @@ export default function EverRise() {
                         <button className={styles.btnSecondary}>
                             Fale com a gente
                         </button>
-                    </div>
-                </div>
-                <div className={styles.heroImage}>
-                    <div className={styles.heroIllustration}>
-                        <div className={styles.heroDevice}>
-                            <div className={styles.heroDeviceInner}>
-                                <span className={styles.heroDeviceIcon}>
-                                    ♿
-                                </span>
-                                <span className={styles.heroDeviceLabel}>
-                                    EverRise Lift System
-                                </span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
