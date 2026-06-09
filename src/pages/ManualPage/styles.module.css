@@ -76,6 +76,9 @@ body {
     justify-content: center;
     padding: 100px 60px;
     min-height: calc(100vh - 90px);
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.42)),
+        linear-gradient(135deg, #24124d 0%, #6c21d9 48%, #f47c20 100%);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -89,7 +92,9 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background:
+        radial-gradient(circle at 22% 20%, rgba(255, 255, 255, 0.16), transparent 28%),
+        radial-gradient(circle at 78% 70%, rgba(244, 124, 32, 0.18), transparent 30%);
     z-index: 1;
 }
 
