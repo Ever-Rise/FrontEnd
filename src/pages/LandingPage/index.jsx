@@ -290,7 +290,6 @@ function LandingPage() {
                 <Header />
             </div>
 
-
             <section className={styles.heroContainer}>
                 <h1
                     className={styles.heroTitle}

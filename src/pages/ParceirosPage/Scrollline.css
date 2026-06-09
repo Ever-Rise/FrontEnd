@@ -11,6 +11,7 @@ body {
   color: #111;
   font-family: "DM Sans", "Helvetica Neue", Arial, sans-serif;
   overflow-x: hidden;
+  height: 100vh;
 }
 
 /* ─── Hero Section ─── */
@@ -175,7 +176,8 @@ body {
   border-radius: 18px;
   opacity: 0.7;
 }
-.dot-grid2{
+
+.dot-grid2 {
   position: absolute;
   width: 150px;
   height: 150px;
@@ -185,9 +187,7 @@ body {
     transparent;
   opacity: 0.85;
   pointer-events: none;
-
 }
-
 
 .dot-grid--sm {
   width: 80px;
@@ -205,8 +205,8 @@ body {
     rgba(220, 210, 255, 0.9);
 }
 
-.dot-grid--purple2{
-  transform:rotate(-80deg);
+.dot-grid--purple2 {
+  transform: rotate(-80deg);
   background:
     radial-gradient(circle, rgba(88, 28, 220, 0.85) 2px, transparent 2.5px) 0 0 / 14px 14px,
     rgba(220, 210, 255, 0.9);
@@ -224,7 +224,7 @@ body {
 .circle-outline--orange {
   border: 5px solid rgba(255, 160, 69, 0.55);
   background: transparent;
-  width:300px;
+  width: 300px;
   height: 300px;
 }
 
@@ -278,9 +278,14 @@ body {
   .card { width: clamp(120px, 42vw, 180px); padding: 10px 12px; }
   .card h3 { font-size: clamp(0.65rem, 2.8vw, 0.85rem); }
   .card p  { font-size: clamp(0.55rem, 2vw, 0.7rem); line-height: 1.5; }
-  .card--1 { top: 4%;  left: 0.5%; }
-  .card--2 { top: 33%; right: 0.5%; }
-  .card--3 { top: 62%; left: 1%; }
+
+  /* ✅ CORRIGIDO: era max-height: 10vh — agora altura adequada */
+  .line-section { min-height: 180vh; }
+
+  /* ✅ CORRIGIDO: posições dos cards ajustadas para a nova altura */
+  .card--1 { top: 5%;  left: 0.5%; }
+  .card--2 { top: 38%; right: 0.5%; }
+  .card--3 { top: 68%; left: 1%; }
 }
 
 /* ══════════════════════════════════════
