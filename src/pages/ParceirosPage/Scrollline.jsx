@@ -40,20 +40,41 @@ export default function ScrollLine() {
   return (
     <div className="page-wrapper">
 
-      {/* Texto original do hero do Scrollline */}
-    <section className="hero-section">
+     
+
+      <section className="hero-section">
         <div className="eyebrow-wrapper">
-            <div className="eyebrow-decor" />
-            <div className="eyebrow-square" />
-            <h1 className="hero-title">BENEFICIOS DE SER PARCEIRO</h1>
+          <div className="eyebrow-decor" />
+          <div className="eyebrow-square" />
+          <h1 className="hero-title">BENEFICIOS DE SER PARCEIRO</h1>
         </div>
         <p className="hero-sub">Mais benefício para você e <br /> mais impacto para todos</p>
-    </section>
+      </section>
 
       <section className="line-section" ref={containerRef}>
+         {/* Pontos laranjas — topo direito */}
+      <span className="dot-grid2" style={{ top: '120px', right: '18px', transform: 'rotate(-8deg)' }} aria-hidden="true" />
+
+      {/* Círculo laranja — esquerda meio */}
+      <span className="circle-outline circle-outline--orange" style={{ top: '32%', left: '280px',  borderWidth: '30px' }} aria-hidden="true" />
+
+      {/* Círculo laranja — direita inferior */}
+      <span className="circle-outline circle-outline--orange" style={{ top: '72%', right: '-28px', borderWidth: '30px',  width: '200px', height: '200px' }} aria-hidden="true" />
+
+      {/* Pontos laranjas — inferior esquerdo */}
+      <span className="dot-grid dot-grid--sm" style={{ bottom: '880px', left: '18px', transform: 'rotate(10deg)' }} aria-hidden="true" />
+
+      {/* Pontos roxos — inferior esquerdo abaixo dos laranjas */}
+      <span className="dot-grid dot-grid--sm dot-grid--purple2" style={{ bottom: '110px', left: '402px', transform: 'rotate(6deg)' }} aria-hidden="true" />
+
+      {/* Pontos roxos — inferior direito */}
+      <span className="dot-grid dot-grid--sm dot-grid--purple" style={{ bottom: '1050px', right: '18px', transform: 'rotate(-10deg)' }} aria-hidden="true" />
+
+      {/* Quadrado roxo — inferior direito */}
+      <span className="dot-grid dot-grid--purple" style={{ bottom: '200px', right: '400px', transform: 'rotate(-14deg)' }} aria-hidden="true" />
 
         <div className="card card--left card--1">
-          <div className="card-icon"> <img src={iconeMao} alt="" /></div>
+          <div className="card-icon"><img src={iconeMao} alt="" /></div>
           <h3>Parcerias estratégicas</h3>
           <p>Acesse uma rede qualificada de empresas e profissionais alinhados com o propósito de cuidar, ampliando sua presença no mercado.</p>
         </div>
@@ -105,7 +126,6 @@ export default function ScrollLine() {
           />
         </svg>
       </section>
-
 
     </div>
   );

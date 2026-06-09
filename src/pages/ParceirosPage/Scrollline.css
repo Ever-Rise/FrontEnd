@@ -156,6 +156,78 @@ body {
   margin: 0;
 }
 
+/* ─── Dot Grids ─── */
+.dot-grid {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle, rgba(255, 160, 69, 0.9) 2px, transparent 2.5px) 0 0 / 14px 14px,
+    rgba(255, 239, 220, 0.9);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.dot-grid--lg {
+  width: 100px;
+  height: 100px;
+  border-radius: 18px;
+  opacity: 0.7;
+}
+.dot-grid2{
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle, rgba(255, 160, 69, 0.9) 2px, transparent 2.5px) 0 0 / 14px 14px,
+    transparent;
+  opacity: 0.85;
+  pointer-events: none;
+
+}
+
+
+.dot-grid--sm {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  opacity: 0.75;
+  background:
+    radial-gradient(circle, rgba(255, 160, 69, 0.9) 2px, transparent 2.5px) 0 0 / 20px 20px,
+    rgba(255, 239, 220, 0.9);
+}
+
+.dot-grid--purple {
+  background:
+    radial-gradient(circle, rgba(88, 28, 220, 0.85) 2px, transparent 2.5px) 0 0 / 14px 14px,
+    rgba(220, 210, 255, 0.9);
+}
+
+.dot-grid--purple2{
+  transform:rotate(-80deg);
+  background:
+    radial-gradient(circle, rgba(88, 28, 220, 0.85) 2px, transparent 2.5px) 0 0 / 14px 14px,
+    rgba(220, 210, 255, 0.9);
+}
+
+/* ─── Círculos laranja (apenas contorno) ─── */
+.circle-outline {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.circle-outline--orange {
+  border: 5px solid rgba(255, 160, 69, 0.55);
+  background: transparent;
+  width:300px;
+  height: 300px;
+}
+
 /* ─── Animação float ─── */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -170,10 +242,7 @@ body {
    TABLET (max 1024px)
 ══════════════════════════════════════ */
 @media (max-width: 1024px) {
-  .card {
-    width: clamp(200px, 35vw, 320px);
-  }
-
+  .card { width: clamp(200px, 35vw, 320px); }
   .card--1 { top: 5%;  left: 2%; }
   .card--2 { top: 33%; right: 2%; }
   .card--3 { top: 62%; left: 4%; }
@@ -183,76 +252,32 @@ body {
    MOBILE (max 768px)
 ══════════════════════════════════════ */
 @media (max-width: 768px) {
-  .hero-section {
-    min-height: 40vh;
-    padding: 40px 20px;
-  }
-
-  .hero-title {
-    font-size: clamp(0.65rem, 3.5vw, 1rem);
-    white-space: normal;
-    text-align: center;
-  }
-
-  .eyebrow-square {
-    width: clamp(30px, 8vw, 50px);
-    height: clamp(30px, 8vw, 50px);
-    left: -16px;
-  }
-
-  .hero-sub {
-    font-size: clamp(1rem, 5vw, 1.6rem);
-  }
-
-  .line-section {
-    min-height: 320vh;
-  }
-
-  .card {
-    width: clamp(140px, 40vw, 220px);
-    padding: clamp(12px, 3vw, 20px);
-    min-height: unset;
-  }
-
-  .card-icon {
-    width: clamp(32px, 7vw, 48px);
-    height: clamp(32px, 7vw, 48px);
-    margin-bottom: 8px;
-  }
-
-  .card-icon img {
-    width: clamp(20px, 5vw, 32px);
-    height: clamp(20px, 5vw, 32px);
-  }
-
+  .hero-section { min-height: 40vh; padding: 40px 20px; }
+  .hero-title { font-size: clamp(0.65rem, 3.5vw, 1rem); white-space: normal; text-align: center; }
+  .eyebrow-square { width: clamp(30px, 8vw, 50px); height: clamp(30px, 8vw, 50px); left: -16px; }
+  .hero-sub { font-size: clamp(1rem, 5vw, 1.6rem); }
+  .line-section { min-height: 320vh; }
+  .card { width: clamp(140px, 40vw, 220px); padding: clamp(12px, 3vw, 20px); min-height: unset; }
+  .card-icon { width: clamp(32px, 7vw, 48px); height: clamp(32px, 7vw, 48px); margin-bottom: 8px; }
+  .card-icon img { width: clamp(20px, 5vw, 32px); height: clamp(20px, 5vw, 32px); }
   .card h3 { font-size: clamp(0.7rem, 2.5vw, 1rem); }
   .card p  { font-size: clamp(0.6rem, 1.8vw, 0.8rem); }
-
   .card--1 { top: 4%;  left: 1%; }
   .card--2 { top: 33%; right: 1%; }
   .card--3 { top: 62%; left: 2%; }
+  .circle-outline { width: 56px; height: 56px; }
+  .dot-grid--sm { width: 40px; height: 40px; }
 }
 
 /* ══════════════════════════════════════
    SMALL MOBILE (max 480px)
 ══════════════════════════════════════ */
 @media (max-width: 480px) {
-  .hero-title {
-    font-size: clamp(0.6rem, 3.8vw, 0.85rem);
-  }
-
-  .hero-sub {
-    font-size: clamp(0.9rem, 5.5vw, 1.3rem);
-  }
-
-  .card {
-    width: clamp(120px, 42vw, 180px);
-    padding: 10px 12px;
-  }
-
+  .hero-title { font-size: clamp(0.6rem, 3.8vw, 0.85rem); }
+  .hero-sub { font-size: clamp(0.9rem, 5.5vw, 1.3rem); }
+  .card { width: clamp(120px, 42vw, 180px); padding: 10px 12px; }
   .card h3 { font-size: clamp(0.65rem, 2.8vw, 0.85rem); }
   .card p  { font-size: clamp(0.55rem, 2vw, 0.7rem); line-height: 1.5; }
-
   .card--1 { top: 4%;  left: 0.5%; }
   .card--2 { top: 33%; right: 0.5%; }
   .card--3 { top: 62%; left: 1%; }
@@ -262,10 +287,7 @@ body {
    LARGE DESKTOP (min 1440px)
 ══════════════════════════════════════ */
 @media (min-width: 1440px) {
-  .card {
-    width: clamp(320px, 25vw, 420px);
-  }
-
+  .card { width: clamp(320px, 25vw, 420px); }
   .hero-title { font-size: clamp(2rem, 2.8vw, 3rem); }
   .hero-sub   { font-size: clamp(2.5rem, 3.5vw, 4rem); }
 }
@@ -274,11 +296,7 @@ body {
    4K (min 2560px)
 ══════════════════════════════════════ */
 @media (min-width: 2560px) {
-  .card {
-    width: clamp(400px, 20vw, 600px);
-    padding: 60px 50px;
-  }
-
+  .card { width: clamp(400px, 20vw, 600px); padding: 60px 50px; }
   .card h3 { font-size: 2rem; }
   .card p  { font-size: 1.2rem; }
   .hero-title { font-size: 4rem; }

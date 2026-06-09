@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./styles.module.css";
 import { Footer, Header } from "../../components";
 
@@ -8,11 +9,13 @@ import Coracao from '../../assets/images/Parceirosimg/coracao.svg'
 import cidade from '../../assets/images/Parceirosimg/cidades.svg'
 import indice from '../../assets/images/Parceirosimg/indice.svg'
 import Scrollline from './Scrollline.jsx';
+import BluenotesParceiros from './ContatoParc.jsx';
+
 
 /* ─────────────────────────────────────────
    1. HERO
 ───────────────────────────────────────── */
-function Hero() {
+function Hero({ onParceiro }) {
   return (
     <section className={styles.hero}>
       <div className={styles.heroImage} aria-hidden="true">
@@ -27,7 +30,9 @@ function Hero() {
           Unindo expertise para transformar cada experiência em cuidado real.
         </p>
         <div className={styles.heroCtas}>
-          <button className={styles.btnPrimary}>Quero ser parceiro</button>
+          <button className={styles.btnPrimary} onClick={onParceiro}>
+            Quero ser parceiro
+          </button>
           <button className={styles.btnOutline}>Fale com a gente</button>
         </div>
       </div>
@@ -200,7 +205,7 @@ function Testimonials() {
 /* ─────────────────────────────────────────
    7. FINAL CTA
 ───────────────────────────────────────── */
-function FinalCta() {
+function FinalCta({ onParceiro }) {
   return (
     <section className={styles.finalCta}>
       <div className={styles.finalCtaGlow} aria-hidden="true" />
@@ -211,7 +216,9 @@ function FinalCta() {
         <p className={styles.finalCtaSubtitle}>
           Junte-se a quem já faz <br/> a diferença todos os dias.
         </p>
-        <button className={styles.finalCtaBtn}>Seja parceiro →</button>
+        <button className={styles.finalCtaBtn} onClick={onParceiro}>
+          Seja parceiro →
+        </button>
       </div>
     </section>
   );
@@ -221,16 +228,22 @@ function FinalCta() {
    APP ROOT
 ───────────────────────────────────────── */
 export default function App() {
+  const [pagina, setPagina] = useState("home");
+
+  if (pagina === "parceiro") {
+    return <BluenotesParceiros />;
+  }
+
   return (
     <main className={styles.root}>
       <Header />
-      <Hero />
+      <Hero onParceiro={() => setPagina("parceiro")} />
       <FutureCare />
       <Benefits />
       <Partners />
       <HowItWorks />
       <Testimonials />
-      <FinalCta />
+      <FinalCta onParceiro={() => setPagina("parceiro")} />
     </main>
   );
 }
