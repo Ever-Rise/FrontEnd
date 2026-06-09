@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import './ContatoParc.css'
 import { Footer, Header } from "../../components";
 
@@ -28,7 +29,7 @@ const regioes = ["Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul", "Todo o 
 export default function BluenotesParceiros() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
-
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     // Step 1
     nomeEmpresa: "", cnpj: "", segmento: "", tamanho: "", site: "", descricao: "",
@@ -74,6 +75,9 @@ export default function BluenotesParceiros() {
         <div className="main">
           {/* LEFT */}
           <div className="left">
+            <div>
+              <button className="pagina" onClick={() => navigate(-1)}>Voltar</button>
+            </div>
             <p className="eyebrow">Torne-se um parceiro</p>
             <h1 className="headline">
               Vamos crescer
@@ -203,9 +207,9 @@ export default function BluenotesParceiros() {
                 {step === 3 && (
                   <div className="form-section">
                     <h2>Sobre sua empresa</h2>
-                    <p className="form-desc">Conte mais sobre o seu negócio e como ele se conecta com a Bluenotes.</p>
+                    <p className="form-desc">Conte mais sobre o seu negócio e como ele se conecta com a EverRise.</p>
                     <div className="field field-full">
-                      <label>Como você conheceu a Bluenotes?</label>
+                      <label>Como você conheceu a EverRise?</label>
                       <div className="field-select-wrap">
                         <select value={form.comoConheceu} onChange={set("comoConheceu")}>
                           <option value="">Selecione uma opção</option>
@@ -277,7 +281,7 @@ export default function BluenotesParceiros() {
                     <div className="checkbox-row">
                       <input type="checkbox" id="aceite" checked={form.aceite} onChange={set("aceite")} />
                       <label htmlFor="aceite">
-                        Confirmo que todas as informações fornecidas são verdadeiras e autorizo a Bluenotes a entrar em contato através dos dados informados.
+                        Confirmo que todas as informações fornecidas são verdadeiras e autorizo a EverRise a entrar em contato através dos dados informados.
                       </label>
                     </div>
                     <div className="form-actions">
@@ -335,23 +339,6 @@ export default function BluenotesParceiros() {
             </div>
           </div>
         </div>
-
-        {/* FOOTER */}
-        <footer className="footer">
-          <div className="footer-logo">
-            <LogoIcon />
-            Bluenotes
-          </div>
-          <span className="footer-copy">© 2024 Bluenotes. Todos os direitos reservados.</span>
-          <div className="footer-social">
-            {/* LinkedIn */}
-            <a href="#"><svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M2 2h4v14H2zM4 0a2 2 0 110 4A2 2 0 014 0zM8 6h3.5v2h.1C12 7 13.2 6 15 6c3.3 0 4 2.2 4 5v5h-4v-4.5c0-1.1-.02-2.5-1.5-2.5-1.5 0-1.7 1.2-1.7 2.4V16H8V6z" transform="scale(0.9)"/></svg></a>
-            {/* Instagram */}
-            <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-            {/* YouTube */}
-            <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
-          </div>
-        </footer>
       </div>
     </>
   );

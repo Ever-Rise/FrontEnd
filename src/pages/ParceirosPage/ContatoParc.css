@@ -1,10 +1,10 @@
 
-  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     background: #fff;
     color: #1a1a2e;
   }
@@ -39,6 +39,19 @@
   .headline { font-family: 'Sora', sans-serif; font-size: 44px; font-weight: 800; line-height: 1.1; color: #1a1a2e; margin-bottom: 4px; }
   .headline-accent { color: #f59e0b; }
   .subtext { font-size: 15px; color: #6b7280; margin: 16px 0 36px; line-height: 1.6; max-width: 440px; }
+
+  .pagina{
+
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+     display: flex; align-items: center; gap: 8px;
+    background: #5b21b6; color: #fff; border: none;
+    padding: 12px 32px; border-radius: 8px; font-size: 14px; font-weight: 600;
+    cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background .2s;
+    margin-bottom: 20px;
+
+  }
 
   /* STEPPER */
   .stepper { display: flex; align-items: flex-start; gap: 0; margin-bottom: 40px; position: relative; }
