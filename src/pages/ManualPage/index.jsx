@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles.module.css";
 import Header from "../../components/layout/Header";
-import heroBg from "./heroBackground.jpg.png";
+import heroBg from "../../assets/images/ManualPage/heroBackground.jpg";
 
 // ── data ────────────────────────────────────────────────────────
 const features = [
@@ -122,10 +122,7 @@ export default function EverRise() {
             </div>
 
             {/* HERO */}
-            <section
-                className={styles.hero}
-                style={{ backgroundImage: `url(${heroBg})` }}
-            >
+            <section className={styles.hero}>
                 <div className={styles.heroText}>
                     <h1 className={styles.heroTitle}>
                         O futuro da mobilidade assistida

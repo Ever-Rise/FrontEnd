@@ -11,10 +11,6 @@ import indice from '../../assets/images/Parceirosimg/indice.svg'
 import Scrollline from './Scrollline.jsx';
 import BluenotesParceiros from './ContatoParc.jsx';
 
-
-/* ─────────────────────────────────────────
-   1. HERO
-───────────────────────────────────────── */
 function Hero({ onParceiro }) {
   return (
     <section className={styles.hero}>
@@ -40,9 +36,6 @@ function Hero({ onParceiro }) {
   );
 }
 
-/* ─────────────────────────────────────────
-   2. FUTURE CARE
-───────────────────────────────────────── */
 const metrics = [
   { value: "+50",    label: "parceiros ativos",  icon: Pessoas },
   { value: "+10mil", label: "vidas impactadas",  icon: Coracao },
@@ -95,9 +88,6 @@ function FutureCare() {
   );
 }
 
-/* ─────────────────────────────────────────
-   3. BENEFITS
-───────────────────────────────────────── */
 function Benefits() {
   return (
     <>
@@ -106,9 +96,6 @@ function Benefits() {
   );
 }
 
-/* ─────────────────────────────────────────
-   4. PARTNERS
-───────────────────────────────────────── */
 function Partners() {
   const logos = Array.from({ length: 8 });
   return (
@@ -127,9 +114,6 @@ function Partners() {
   );
 }
 
-/* ─────────────────────────────────────────
-   5. HOW IT WORKS
-───────────────────────────────────────── */
 const steps = [
   { number: "01", title: "Cadastro", text: "Preencha o formulário com os dados da sua empresa e área de atuação." },
   { number: "02", title: "Análise", text: "Nossa equipe revisa seu perfil e verifica o alinhamento com os nossos valores." },
@@ -144,10 +128,11 @@ function HowItWorks() {
       <div className={styles.stepsRow}>
         {steps.map((s, i) => (
           <div key={i} className={styles.stepCard}>
-            <div className={styles.stepTop}>
-              <div className={styles.stepIcon} aria-hidden="true" />
-              <span className={styles.stepNumber}>{s.number}</span>
+          <div className={styles.stepTop}>
+            <div className={styles.stepIcon} aria-hidden="true">
+              <span className={styles.stepNumber}>{s.number}</span>  {/* 👈 movido para dentro */}
             </div>
+          </div>
             <div className={styles.stepConnector} />
             <h3 className={styles.stepTitle}>{s.title}</h3>
             <p className={styles.stepText}>{s.text}</p>
@@ -158,9 +143,6 @@ function HowItWorks() {
   );
 }
 
-/* ─────────────────────────────────────────
-   6. TESTIMONIALS
-───────────────────────────────────────── */
 const testimonials = [
   {
     name: "Fernanda Almeida",
@@ -202,9 +184,6 @@ function Testimonials() {
   );
 }
 
-/* ─────────────────────────────────────────
-   7. FINAL CTA
-───────────────────────────────────────── */
 function FinalCta({ onParceiro }) {
   return (
     <section className={styles.finalCta}>
@@ -231,7 +210,7 @@ export default function App() {
   const [pagina, setPagina] = useState("home");
 
   if (pagina === "parceiro") {
-    return <BluenotesParceiros />;
+    return <BluenotesParceiros onVoltar={() => setPagina("home")} />; // 👈 alteração aqui
   }
 
   return (

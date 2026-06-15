@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import './ContatoParc.css'
 import { Footer, Header } from "../../components";
-
 
 const LogoIcon = () => (
   <svg viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,18 +24,14 @@ const tamanhos = ["Microempresa (1–9)", "Pequena (10–49)", "Média (50–249
 const comoConheceu = ["Google / Busca orgânica", "LinkedIn", "Indicação", "Evento", "Redes sociais", "Outro"];
 const regioes = ["Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul", "Todo o Brasil", "Internacional"];
 
-export default function BluenotesParceiros() {
+export default function BluenotesParceiros({ onVoltar }) {  // 👈 recebe onVoltar
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
-  const navigate = useNavigate();
+
   const [form, setForm] = useState({
-    // Step 1
     nomeEmpresa: "", cnpj: "", segmento: "", tamanho: "", site: "", descricao: "",
-    // Step 2
     nomeContato: "", cargo: "", email: "", telefone: "", linkedin: "",
-    // Step 3
     comoConheceu: "", motivacao: "", solucoes: "", regioes: "",
-    // Step 4
     aceite: false,
   });
 
@@ -68,15 +62,10 @@ export default function BluenotesParceiros() {
   return (
     <>
       <div className="page">
-        {/* NAV */}
-        {/* <Header /> */}
-
-        {/* MAIN */}
         <div className="main">
-          {/* LEFT */}
           <div className="left">
             <div>
-              <button className="pagina" onClick={() => navigate(-1)}>Voltar</button>
+              <button className="pagina" onClick={onVoltar}>Voltar</button>  {/* 👈 usa onVoltar */}
             </div>
             <p className="eyebrow">Torne-se um parceiro</p>
             <h1 className="headline">
@@ -88,7 +77,6 @@ export default function BluenotesParceiros() {
               entrará em contato para darmos início à parceria.
             </p>
 
-            {/* STEPPER */}
             <div className="stepper">
               {steps.map((s, i) => (
                 <div key={s.id} className="step-item">
@@ -109,7 +97,6 @@ export default function BluenotesParceiros() {
               ))}
             </div>
 
-            {/* FORM CONTENT */}
             {!submitted ? (
               <>
                 {step === 1 && (
@@ -310,7 +297,6 @@ export default function BluenotesParceiros() {
             )}
           </div>
 
-          {/* SIDEBAR */}
           <div className="sidebar">
             <div className="sidebar-card">
               <h3>Por que se tornar um parceiro Bluenotes?</h3>

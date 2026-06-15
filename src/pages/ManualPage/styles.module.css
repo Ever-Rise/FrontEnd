@@ -73,11 +73,9 @@ body {
 .hero {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    padding: 118px 20px 48px;
-    background-color: #ffffff;
-    background-repeat: no-repeat;
+    justify-content: center;
+    padding: 100px 60px;
+    min-height: calc(100vh - 90px);
     background-size: cover;
     background-position: center right;
     position: relative;
@@ -87,7 +85,11 @@ body {
 .hero::before {
     content: "";
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
     z-index: 1;
     background: linear-gradient(
         90deg,
