@@ -160,10 +160,10 @@ export default function SobreGuincho() {
             inteligente criado para transformar mobilidade e cuidado
           </p>
           <div className={styles.heroButtons}>
-            <a href="#" className={`${styles.btn} ${styles.primary}`}>
+            <a href="/parceiros" className={`${styles.btn} ${styles.primary}`}>
               Quero ser parceiro
             </a>
-            <a href="#" className={`${styles.btn} ${styles.secondary}`}>
+            <a href="/parceiros" className={`${styles.btn} ${styles.secondary}`}>
               Fale com a gente
             </a>
           </div>

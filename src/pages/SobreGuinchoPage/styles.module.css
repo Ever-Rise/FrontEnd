@@ -315,6 +315,7 @@
   margin-top: 40px;
   position: relative;
   padding-bottom: 80px;
+  background: #fff;
 }
 
 .linhasConectoras {
@@ -876,7 +877,6 @@
 }
 
 Footer {
-    position: relative;
     margin-top: -100px; /* Faz o footer subir apenas aqui */
     z-index: 3;
 }
