@@ -16,3 +16,5 @@ const SobreGuinchoPage = () => {
         </div>
     );
 }
+
+export default SobreGuinchoPage;
