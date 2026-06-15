@@ -8,7 +8,12 @@ import Pessoas from '../../assets/images/Parceirosimg/iconeParceiros.svg'
 import Coracao from '../../assets/images/Parceirosimg/coracao.svg'
 import cidade from '../../assets/images/Parceirosimg/cidades.svg'
 import indice from '../../assets/images/Parceirosimg/indice.svg'
+import FernandaPhoto from '../../assets/images/Parceirosimg/MulherTestimonials.svg'
+import MarcosPhoto from '../../assets/images/Parceirosimg/HomemTestimonials.svg'
 import Scrollline from './Scrollline.jsx';
+import Logo1 from '../../assets/images/Parceirosimg/senacLogo.svg'
+import Logo2 from '../../assets/images/Parceirosimg/logoProa.svg'
+import Logo3 from '../../assets/images/Parceirosimg/logoDexmove.svg'
 import BluenotesParceiros from './ContatoParc.jsx';
 
 function Hero({ onParceiro }) {
@@ -18,7 +23,7 @@ function Hero({ onParceiro }) {
         <img src={HeroImg} alt="" />
       </div>
       <div className={styles.heroOverlay} />
-      <div className={styles.heroContent}>
+      <div className={styles.heroContent}>  
         <h1 className={styles.heroTitle}>
           Seja um parceiro e leve seu serviço a outro nível
         </h1>
@@ -97,18 +102,29 @@ function Benefits() {
 }
 
 function Partners() {
-  const logos = Array.from({ length: 8 });
+  const logos = [Logo1, Logo2, Logo3];
+
   return (
     <section className={styles.partners}>
-      <h2 className={styles.partnersTitle}>
-        Parceiros que fecham com a <span className={styles.highlight}>EverRise</span>
-      </h2>
+      <div className={styles.partnersEyebrowWrapper}>
+        <div className={styles.partnersEyebrowDecor} />
+        <div className={styles.partnersEyebrowSquare} />
+        <h2 className={styles.partnersEyebrowTitle}>
+          PARCEIROS QUE FECHAM COM A <span className={styles.highlight}>EVERRISE</span>
+        </h2>
+      </div>
       <div className={styles.partnersBelt}>
         <div className={styles.partnersBeltInner}>
-          {[...logos, ...logos].map((_, i) => (
-            <div key={i} className={styles.logoBox} aria-label={`Logo parceiro ${(i % 8) + 1}`} />
+          {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
+            <div key={i} className={styles.logoBox} aria-label={`Logo parceiro ${(i % logos.length) + 1}`}>
+              <img
+                  src={logo}
+                  alt={`Parceiro ${(i % logos.length) + 1}`}
+                  className={`${styles.logoImg} ${styles[`logoImg${i % logos.length}`]}`}
+                />
+            </div>
           ))}
-        </div>
+       </div>
       </div>
     </section>
   );
@@ -130,7 +146,7 @@ function HowItWorks() {
           <div key={i} className={styles.stepCard}>
           <div className={styles.stepTop}>
             <div className={styles.stepIcon} aria-hidden="true">
-              <span className={styles.stepNumber}>{s.number}</span>  {/* 👈 movido para dentro */}
+              <span className={styles.stepNumber}>{s.number}</span> 
             </div>
           </div>
             <div className={styles.stepConnector} />
@@ -148,11 +164,13 @@ const testimonials = [
     name: "Fernanda Almeida",
     role: "Diretora Comercial — CuidarBem",
     text: "Desde que nos tornamos parceiros da EverRise, nossa visibilidade no mercado triplicou. A integração foi tranquila e o suporte é genuíno.",
+    photo: FernandaPhoto
   },
   {
     name: "Marcos Teixeira",
     role: "CEO — MoveVida Saúde",
     text: "A parceria trouxe clientes que antes não chegavam até nós. O ecossistema deles é sério, comprometido e faz a diferença no dia a dia.",
+    photo: MarcosPhoto
   },
 ];
 
@@ -170,7 +188,7 @@ function Testimonials() {
               <div className={styles.testimonialQuote}>&ldquo;</div>
               <p className={styles.testimonialText}>{t.text}</p>
               <div className={styles.testimonialAuthor}>
-                <img src="" alt={t.name} className={styles.testimonialPhoto} />
+                <img src={t.photo} alt={t.name} className={styles.testimonialPhoto} />
                 <div>
                   <strong className={styles.testimonialName}>{t.name}</strong>
                   <span className={styles.testimonialRole}>{t.role}</span>
@@ -223,6 +241,7 @@ export default function App() {
       <HowItWorks />
       <Testimonials />
       <FinalCta onParceiro={() => setPagina("parceiro")} />
+      <Footer />
     </main>
   );
 }

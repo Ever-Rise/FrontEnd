@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 import { useState, useEffect, useRef } from "react";
 import "./styles.css";
+=======
+import React from "react";
+import styles from "./styles.module.css";
+import Header from "../../components/layout/Header";
+import heroBg from "../../assets/images/ManualPage/heroBackground.jpg";
+>>>>>>> 5f2348656b67eeb1bf9adf21d15b99614b68e3aa
 
 const componentes = [
   {
@@ -141,6 +148,7 @@ function useInView(threshold = 0.15) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
+<<<<<<< HEAD
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([entry]) => {
@@ -150,6 +158,184 @@ function useInView(threshold = 0.15) {
         }
       },
       { threshold }
+=======
+            {/* HERO */}
+            <section className={styles.hero}>
+                <div className={styles.heroText}>
+                    <h1 className={styles.heroTitle}>
+                        O futuro da mobilidade assistida
+                    </h1>
+                    <p className={styles.heroSubtitle}>
+                        Tecnologia, engenharia e inovação integradas em um
+                        guincho inteligente criado para transformar mobilidade e
+                        cuidado.
+                    </p>
+                    <div className={styles.heroButtons}>
+                        <button className={styles.btnPrimary}>
+                            Quero ser parceiro
+                        </button>
+                        <button className={styles.btnSecondary}>
+                            Fale com a gente
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            {/* POR QUE A EVER RISE? */}
+            <section id="why" className={styles.whySection}>
+                <div className={styles.pillWrap}>
+                    <span className={styles.pill}>
+                        <span className={styles.pillDot} />
+                        Porque conhecer a Ever Rise?
+                    </span>
+                </div>
+                <h2 className={styles.sectionTitle}>
+                    Tecnologia que transforma mobilidade em autonomia.
+                </h2>
+                <div className={styles.cardsRow}>
+                    {features.map((f) => (
+                        <div key={f.title} className={styles.featureCard}>
+                            <span className={styles.featureIcon}>{f.icon}</span>
+                            <div className={styles.featureTitle}>{f.title}</div>
+                            <p className={styles.featureDesc}>{f.desc}</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* COMPONENTES */}
+            <section id="components" className={styles.componentsSection}>
+                <div className={styles.pillWrap}>
+                    <span className={styles.pill}>
+                        <span className={styles.pillDot} />
+                        Cada detalhe pensado com precisão
+                    </span>
+                </div>
+                <p className={styles.componentsSubtitle}>
+                    Explore os componentes internos e descubra como engenharia,
+                    hardware e estrutura trabalham juntos
+                </p>
+                <div className={styles.techGrid}>
+                    {techComponents.map((t) => (
+                        <div key={t.title} className={styles.techCard}>
+                            <span className={styles.techCardIcon}>
+                                {t.icon}
+                            </span>
+                            <div className={styles.techCardTitle}>
+                                {t.title}
+                            </div>
+                            <p className={styles.techCardDesc}>{t.desc}</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* ESPECIFICAÇÕES */}
+            <section id="specs" className={styles.specsSection}>
+                <div className={styles.pillWrap}>
+                    <span className={styles.pill}>
+                        <span className={styles.pillDot} />
+                        Especificações
+                    </span>
+                </div>
+                <h2 className={styles.sectionTitle}>
+                    Excelência em Engenharia para o Cuidado e Dignidade
+                </h2>
+                <div className={styles.specsGrid}>
+                    {specs.map((s) => (
+                        <div key={s.title} className={styles.specItem}>
+                            <div className={styles.specIconCircle}>
+                                {s.icon}
+                            </div>
+                            <div className={styles.specItemTitle}>
+                                {s.title}
+                            </div>
+                            <ul className={styles.specList}>
+                                {s.items.map((item) => (
+                                    <li key={item}>{item}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* TECNOLOGIA QUE MOVE O FUTURO */}
+            <section className={styles.techMoveSection}>
+                <h2 className={styles.techMoveTitle}>
+                    Tecnologia que move o <span>futuro</span>
+                </h2>
+                <p className={styles.techMoveSubtitle}>
+                    Integração de hardware inteligente, inteligência artificial
+                    e software avançado para entregar performance, segurança e
+                    autonomia em cada movimento.
+                </p>
+                <div className={styles.techMoveGrid}>
+                    {techMoves.slice(0, 3).map((t) => (
+                        <div key={t.title} className={styles.techMoveCard}>
+                            <span className={styles.techMoveCardIcon}>
+                                {t.icon}
+                            </span>
+                            <div className={styles.techMoveCardTitle}>
+                                {t.title}
+                            </div>
+                            <p className={styles.techMoveCardDesc}>{t.desc}</p>
+                        </div>
+                    ))}
+                </div>
+                <div className={styles.techMoveGridBottom}>
+                    {techMoves.slice(3).map((t) => (
+                        <div key={t.title} className={styles.techMoveCard}>
+                            <span className={styles.techMoveCardIcon}>
+                                {t.icon}
+                            </span>
+                            <div className={styles.techMoveCardTitle}>
+                                {t.title}
+                            </div>
+                            <p className={styles.techMoveCardDesc}>{t.desc}</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* CONTATO */}
+            <section id="contact" className={styles.contactSection}>
+                <div className={styles.contactText}>
+                    <h2 className={styles.contactTitle}>
+                        Excelência que você sente,{" "}
+                        <span>confiança que você vê</span>
+                    </h2>
+                    <p className={styles.contactSubtitle}>
+                        EverRise movendo vidas com segurança, tecnologia e
+                        propósito.
+                    </p>
+                    <div className={styles.contactLabel}>
+                        Fale com a EverRise
+                    </div>
+                    <p className={styles.contactDesc}>
+                        Estamos prontos para falar com você
+                    </p>
+                    <ul className={styles.contactInfoList}>
+                        {contactInfo.map((c) => (
+                            <li key={c.text}>
+                                <span>{c.icon}</span>
+                                <span>{c.text}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <div className={styles.contactImage}>
+                    <div className={styles.contactVisual}>🏥</div>
+                </div>
+            </section>
+
+            {/* FOOTER */}
+            <footer className={styles.footer}>
+                © 2024 <strong>EverRise</strong>. Todos os direitos reservados.
+                Mobilidade com dignidade.
+            </footer>
+        </>
+>>>>>>> 5f2348656b67eeb1bf9adf21d15b99614b68e3aa
     );
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();

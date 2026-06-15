@@ -323,25 +323,76 @@ body {
 
 .partnersTitle {
   font-family: var(--font-display);
-  font-size: clamp(1.4rem, 3vw, 2.5rem);
+  font-size: 60px;
   font-weight: 800;
   text-align: center;
   color: var(--text-dark);
   letter-spacing: -0.03em;
   margin: 0 0 48px;
+  margin-bottom: 200px;
+}
+
+.partnersEyebrowWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin: 0 auto 48px;
+  display: flex;
+  justify-content: center;
+}
+
+.partnersEyebrowDecor {
+  position: absolute;
+  width: 60%;
+  height: 70%;
+  background: linear-gradient(90deg, #FD742C, #FEB42D);
+  border-radius: 20px;
+  z-index: 2;
+}
+
+.partnersEyebrowSquare {
+  position: absolute;
+  left: 335px;
+  width: 70px;
+  height: 70px;
+  background: #041062;
+  border-radius: 14px;
+  z-index: 1;
+}
+
+.partnersEyebrowTitle {
+  position: relative;
+  z-index: 3;
+  font-size: clamp(0.75rem, 2.5vw, 2.5rem);
+  font-weight: 800;
+  color: #ffffff;
+  padding: 10px 24px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.partnersEyebrowTitle .highlight {
+  color: #ffffff;
 }
 
 .partnersBelt {
   overflow: hidden;
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  width: 100%;
+  
 }
 
 .partnersBeltInner {
   display: flex;
   gap: 24px;
   width: max-content;
-  animation: scrollLogos 28s linear infinite;
+  animation: scrollLogos 12s linear infinite;
+  
+}
+.logoBox {
+  min-width: 200px;  /* ← garante que cada box ocupe espaço fixo */
+  flex-shrink: 0;
 }
 
 @keyframes scrollLogos {
@@ -350,14 +401,24 @@ body {
 }
 
 .logoBox {
-  width: 160px;
-  height: 100px;
+  margin-bottom: 80px;
+  margin-top: 50px;
+  width: 200px;
+  height: 200px;
   border-radius: 14px;
-  background: var(--offwhite);
-  border: 1px solid rgba(47,107,255,0.1);
+  background-color: transparent;
   flex-shrink: 0;
   transition: border-color 0.2s;
+
 }
+
+.logoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+}
+
 
 .logoBox:hover { border-color: var(--blue); }
 
