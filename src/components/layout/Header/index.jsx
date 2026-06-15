@@ -49,7 +49,7 @@ const Header = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/produto" className={navLinkClassName}>
+                            <NavLink to="/sobre-guincho" className={navLinkClassName}>
                                 Sobre Guincho
                             </NavLink>
                         </li>
@@ -133,11 +133,11 @@ const Header = () => {
                     </li>
                     <li>
                         <NavLink
-                            to="/produto"
+                            to="/sobre-guincho"
                             className={mobileNavLinkClassName}
                             onClick={closeMenu}
                         >
-                            Info Guincho
+                            Sobre Guincho
                         </NavLink>
                     </li>
                     <li>
