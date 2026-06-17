@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { Footer, Header } from "../../components";
 
+
 // Imagens Hero
-import heroImagem from "../../assets/images/SobreGuincho/hero-imagem.png";
+import heroVideo from '../../assets/images/SobreGuincho/video_Hero.mp4'; // Ajuste o caminho se necessário
 
 // Seção Guincho (imagem principal com labels)
 import secaoImg from "../../assets/images/SobreGuincho/secao-guincho.png";
@@ -39,6 +40,11 @@ import contatoImg from "../../assets/images/SobreGuincho/contato.jpg";
 import acessivelIcon from "../../assets/icons/SobreGuincho/icon_acessivel.svg";
 import autonomoIcon from "../../assets/icons/SobreGuincho/icon_autonomo.svg";
 import seguroIcon from "../../assets/icons/SobreGuincho/icon_seguro.svg";
+
+// Decorações 
+import decoracao1 from "../../assets/images/SobreGuincho/decoracaoFundo/decoraca1.svg"
+import decoracao2 from "../../assets/images/SobreGuincho/decoracaoFundo/circuloroxo.svg"
+import decoracao3 from "../../assets/images/SobreGuincho/decoracaoFundo/circuloAmarelo.svg"
 
 const features = [
   {
@@ -148,31 +154,65 @@ export default function SobreGuincho() {
     <>
       <Header />
 
-      {/* ── HERO ── */}
-      <section className={styles.hero}>
-        <div className={styles.heroText}>
-          <h1>
-            <span className={styles.linha1}>O futuro da mobilidade</span>
-            <span className={styles.linha2}>assistida</span>
-          </h1>
-          <p>
-            Tecnologia, engenharia e inovação integradas em um guincho
-            inteligente criado para transformar mobilidade e cuidado
-          </p>
-          <div className={styles.heroButtons}>
-            <a href="/parceiros" className={`${styles.btn} ${styles.primary}`}>
-              Quero ser parceiro
-            </a>
-            <a href="/parceiros" className={`${styles.btn} ${styles.secondary}`}>
-              Fale com a gente
-            </a>
-          </div>
-        </div>
+      <div className={styles.pageWrapper}>
+              <div className={styles.decoracoes}>
+                <img src={decoracao1} className={styles.decoracao1} alt="" />
+                <img src={decoracao1} className={styles.decoracao2} alt="" />
+                <img src={decoracao2} className={styles.decoracao3} alt="" />
+                <img src={decoracao3} className={styles.decoracao4} alt="" />
+              </div>
+      
 
-        <div className={styles.heroImage}>
-          <img src={heroImagem} alt="Guincho inteligente" />
-        </div>
-      </section>
+      {/* ── HERO ── */}
+          <div className={styles.heroContainer}>
+            {/* 1ª Tela: Vídeo e Alerta Inicial */}
+            <section className={styles.videoSection}>
+              <video 
+                className={styles.videoElement}
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+              >
+                <source src={heroVideo} type="video/mp4" />
+              </video>
+
+              <div className={styles.scrollAlert}>
+                <p>Role para descobrir</p>
+                <div className={styles.mouseIcon}>
+                  <div className={styles.wheel}></div>
+                </div>
+              </div>
+            </section>
+
+            {/* 2ª Tela: Texto Centralizado e Transição Suave */}
+            <section className={styles.textSection}>
+              <div className={styles.heroText}>
+                <h1>
+                  <span className={styles.linha1}>O futuro da mobilidade</span>
+                  <span className={styles.linha2}>assistida</span>
+                </h1>
+                <p>
+                  Tecnologia, engenharia e inovação integradas em um guincho
+                  inteligente criado para transformar mobilidade e cuidado
+                </p>
+                <div className={styles.heroButtons}>
+                  <a href="/parceiros" className={`${styles.btn} ${styles.primary}`}>
+                    Quero ser parceiro
+                  </a>
+                  <a href="/parceiros" className={`${styles.btn} ${styles.secondary}`}>
+                    Fale com a gente
+                  </a>
+                </div>
+              </div>
+              
+              {/* Indução para continuar scrollando */}
+              <div className={styles.continueScrolling}>
+                <span>Continue explorando</span>
+                <div className={styles.arrowDown}></div>
+              </div>
+            </section>
+          </div>
 
       {/* ── FEATURES / PILARES ── */}
       <section className={styles.features}>
@@ -219,108 +259,96 @@ export default function SobreGuincho() {
 
       {/* ── HARDWARE COMPONENTES ── */}
       <section className={styles.hardwareSection}>
-
-        <svg
-          className={styles.linhasConectoras}
-          viewBox="0 0 1200 800"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M 600,400 C 200,400 200,200 200,10"
-            fill="none"
-            stroke="#FD742C"
-            strokeWidth="4"
-          />
-          <path
-            d="M 600,400 C 450,400 450,400 250,400"
-            fill="none"
-            stroke="#FD742C"
-            strokeWidth="4"
-          />
-          <path
-            d="M 600,400 C 450,400 450,650 250,650"
-            fill="none"
-            stroke="#FD742C"
-            strokeWidth="4"
-          />
-          <path
-            d="M 600,400 C 750,400 750,150 950,150"
-            fill="none"
-            stroke="#4D00B5"
-            strokeWidth="4"
-          />
-          <path
-            d="M 600,400 C 750,400 750,400 950,400"
-            fill="none"
-            stroke="#4D00B5"
-            strokeWidth="4"
-          />
-          <path
-            d="M 600,400 C 750,400 750,650 950,650"
-            fill="none"
-            stroke="#4D00B5"
-            strokeWidth="4"
-          />
-        </svg>
-
         <header className={styles.hardwareHeader}>
           <div className={styles.decorationHardware}></div>
           <h2>Tecnologia embarcada de alta performance</h2>
         </header>
 
-        {/* Linha 1 */}
-        <div className={styles.cardLinha1}>
-          {hardwareCardsTop.map((card) => (
-            <div className={styles.cardHardware} key={card.title}>
-              <div className={styles.contentHardware}>
-                <h1>{card.title}</h1>
-                <p>{card.text}</p>
-              </div>
-              <img className={styles.espImage} src={card.image} alt={card.title} />
-            </div>
-          ))}
-        </div>
+        <div className={styles.hardwareGrid}>
+          {/* SVG Responsivo usando porcentagens para conectar exatamente os centros */}
+          <svg 
+              className={styles.linhasConectoras} 
+              viewBox="0 0 1200 800" 
+              preserveAspectRatio="none"
+            >
+              {/* Conexões da Esquerda (Laranja) - Desenhadas do centro para fora */}
+              <path d="M 600,400 C 400,400 350,150 200,150" className={styles.linhaAnimada} stroke="#FD742C" />
+              <path d="M 600,400 C 400,400 400,400 200,400" className={styles.linhaAnimada} stroke="#FD742C" />
+              <path d="M 600,400 C 400,400 350,650 200,650" className={styles.linhaAnimada} stroke="#FD742C" />
+              
+              {/* Conexões da Direita (Roxo) - Desenhadas do centro para fora */}
+              <path d="M 600,400 C 800,400 850,150 1000,150" className={styles.linhaRoxaAnimada} stroke="#4D00B5" />
+              <path d="M 600,400 C 800,400 800,400 1000,400" className={styles.linhaRoxaAnimada} stroke="#4D00B5" />
+              <path d="M 600,400 C 800,400 850,650 1000,650" className={styles.linhaRoxaAnimada} stroke="#4D00B5" />
+            </svg>
 
-        {/* Linha 2 */}
-        <div className={styles.cardLinha2}>
-          <div className={styles.cardHardware}>
-            <div className={styles.contentHardware}>
-              <h1>{hardwareCardsMiddle[0].title}</h1>
-              <p>{hardwareCardsMiddle[0].text}</p>
+          {/* Linha 1 */}
+          <div className={`${styles.cardWrapper} ${styles.posTopLeft}`}>
+            <div className={styles.cardHardware}>
+              <div className={styles.contentHardware}>
+                <h1>{hardwareCardsTop[0].title}</h1>
+                <p>{hardwareCardsTop[0].text}</p>
+              </div>
+              <img className={styles.espImage} src={hardwareCardsTop[0].image} alt={hardwareCardsTop[0].title} />
             </div>
-            <img
-              className={styles.espImage}
-              src={hardwareCardsMiddle[0].image}
-              alt={hardwareCardsMiddle[0].title}
-            />
           </div>
 
-          <img className={styles.logoHardware} src={logoHardware} alt="EverRise logo" />
-
-          <div className={styles.cardHardware}>
-            <div className={styles.contentHardware}>
-              <h1>{hardwareCardsMiddle[1].title}</h1>
-              <p>{hardwareCardsMiddle[1].text}</p>
-            </div>
-            <img
-              className={styles.espImage}
-              src={hardwareCardsMiddle[1].image}
-              alt={hardwareCardsMiddle[1].title}
-            />
-          </div>
-        </div>
-
-        {/* Linha 3 */}
-        <div className={styles.cardLinha3}>
-          {hardwareCardsBottom.map((card) => (
-            <div className={styles.cardHardware} key={card.title}>
+          <div className={`${styles.cardWrapper} ${styles.posTopRight}`}>
+            <div className={styles.cardHardware}>
               <div className={styles.contentHardware}>
-                <h1>{card.title}</h1>
-                <p>{card.text}</p>
+                <h1>{hardwareCardsTop[1].title}</h1>
+                <p>{hardwareCardsTop[1].text}</p>
               </div>
-              <img className={styles.espImage} src={card.image} alt={card.title} />
+              <img className={styles.espImage} src={hardwareCardsTop[1].image} alt={hardwareCardsTop[1].title} />
             </div>
-          ))}
+          </div>
+
+          {/* Linha 2 */}
+          <div className={`${styles.cardWrapper} ${styles.posMiddleLeft}`}>
+            <div className={styles.cardHardware}>
+              <div className={styles.contentHardware}>
+                <h1>{hardwareCardsMiddle[0].title}</h1>
+                <p>{hardwareCardsMiddle[0].text}</p>
+              </div>
+              <img className={styles.espImage} src={hardwareCardsMiddle[0].image} alt={hardwareCardsMiddle[0].title} />
+            </div>
+          </div>
+
+          {/* Logo Central */}
+          <div className={styles.logoWrapper}>
+            <img className={styles.logoHardware} src={logoHardware} alt="EverRise logo" />
+          </div>
+
+          <div className={`${styles.cardWrapper} ${styles.posMiddleRight}`}>
+            <div className={styles.cardHardware}>
+              <div className={styles.contentHardware}>
+                <h1>{hardwareCardsMiddle[1].title}</h1>
+                <p>{hardwareCardsMiddle[1].text}</p>
+              </div>
+              <img className={styles.espImage} src={hardwareCardsMiddle[1].image} alt={hardwareCardsMiddle[1].title} />
+            </div>
+          </div>
+
+          {/* Linha 3 */}
+          <div className={`${styles.cardWrapper} ${styles.posBottomLeft}`}>
+            <div className={styles.cardHardware}>
+              <div className={styles.contentHardware}>
+                <h1>{hardwareCardsBottom[0].title}</h1>
+                <p>{hardwareCardsBottom[0].text}</p>
+              </div>
+              <img className={styles.espImage} src={hardwareCardsBottom[0].image} alt={hardwareCardsBottom[0].title} />
+            </div>
+          </div>
+
+          <div className={`${styles.cardWrapper} ${styles.posBottomRight}`}>
+            <div className={styles.cardHardware}>
+              <div className={styles.contentHardware}>
+                <h1>{hardwareCardsBottom[1].title}</h1>
+                <p>{hardwareCardsBottom[1].text}</p>
+              </div>
+              <img className={styles.espImage} src={hardwareCardsBottom[1].image} alt={hardwareCardsBottom[1].title} />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -428,6 +456,7 @@ export default function SobreGuincho() {
           </div>
         </div>
       </section>
+      </div>
 
       <Footer />
     </>
