@@ -1,232 +1,347 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+.page {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background: #fdfdfd;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .container {
-  min-height: 100vh;
+  position: relative;
+  z-index: 2;
   width: 100%;
+  max-width: 1440px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  gap: 32px;
+}
+
+/* ========================= */
+/* SESSÃO DO FORMULÁRIO (ESQUERDA) */
+/* ========================= */
+.formSection {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
-  font-family: 'Poppins', sans-serif;
-  position: relative;
-  overflow: hidden;
-  padding: 40px;
-  box-sizing: border-box;
+  height: 100%;
 }
 
-.mainContent {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  gap: 80px;
+.formCard {
   width: 100%;
-  max-width: 1400px;
-  z-index: 10;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  max-width: 540px;
+  /* Fundo semitransparente (Glassmorphism) */
+  background: rgba(255, 255, 255, 0.20);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 3px solid rgba(255, 255, 255, 0.5);
   border-radius: 24px;
-  padding: 64px 72px;
-  width: 100%;
-  max-width: 600px;
-  box-shadow: 0 40px 80px rgba(3, 15, 102, 0.08);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: 40px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.title {
-  color: #030f66;
-  font-size: 46px;
+.cardHeader h1 {
+  color: #041062;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 48px;
+  font-style: normal;
   font-weight: 700;
-  margin: 0 0 40px 0;
-  letter-spacing: -1px;
+  line-height: 86px; /* 87.5% */
+  letter-spacing: 0,5px;
 }
 
-.formContent {
+.cardHeader p {
+    color: #041062;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 86px; /* 87.5% */
+    letter-spacing: 0,5px;
+}
+
+.form {
   display: flex;
   flex-direction: column;
-  gap: 28px;
 }
 
-/* Estrutura dos Campos de Input (Alinhado com StepIdentify e StepCredentials) */
+/* ========================= */
+/* INPUTS E CAMPOS (Igual ao Login) */
+/* ========================= */
 .field {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  text-align: left;
+  margin-bottom: 16px;
 }
 
 .field label {
-  color: #030f66;
-  font-size: 18px;
+  display: block;
+  font-size: 14px;
+  color: #000b58;
+  margin-bottom: 6px;
   font-weight: 600;
 }
 
 .field input {
   width: 100%;
-  height: 64px;
-  border: 2.5px solid #4a4a4a;
-  border-radius: 10px;
-  padding: 0 20px;
-  font-size: 17px;
-  color: #111111;
+  height: 52px;
+  border-radius: 12px;
+  border: 1px solid #c2c2c2;
+  padding: 0 16px;
+  background: transparent;
+  font-size: 15px;
+  font-family: inherit;
+  color: #1a1a1a;
   outline: none;
-  background: #ffffff;
+  transition: all 0.2s ease;
   box-sizing: border-box;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .field input:focus {
-  border-color: #030f66;
-  box-shadow: 0 0 0 5px rgba(3, 15, 102, 0.15);
+  border-color: #000b58;
+  box-shadow: 0 0 0 3px rgba(0, 11, 88, 0.1);
 }
 
-/* Customização do Input de Senha com o Botão de Olho */
 .passwordWrapper {
   position: relative;
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.passwordWrapper input {
-  padding-right: 60px; /* Abre espaço para o ícone no canto direito */
 }
 
 .togglePassword {
   position: absolute;
-  right: 16px;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+
+.fieldError {
+  color: #d93025;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 4px;
+  display: block;
+}
+
+/* ========================= */
+/* BOTÕES */
+/* ========================= */
+.buttonGroup {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  width: 100%; /* Garante tamanho total por padrão */
+  height: 52px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  transition: opacity 0.2s, background-color 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  box-sizing: border-box; /* Previne que bordas alterem o tamanho total */
 }
 
-.togglePassword img {
-  width: 26px;
-  height: 26px;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
+/* Quando estiverem juntos no grupo, dividem o espaço igualmente */
+.buttonGroup .primaryBtn,
+.buttonGroup .secondaryBtn {
+  flex: 1; 
+  margin-top: 0; /* Remove margem extra dentro do grupo */
 }
 
-.togglePassword:hover img {
-  opacity: 1;
-}
-
-/* Erros de validação */
-.fieldError {
-  color: #d32f2f;
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 4px;
-}
-
-/* Botões */
-.buttonSubmit {
-  width: 100%;
-  height: 64px;
-  background-color: #030f66;
+.primaryBtn {
+  background: #000b58;
   color: #ffffff;
   border: none;
-  border-radius: 10px;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 12px;
-  transition: background-color 0.2s ease;
+  margin-top: 16px;
 }
 
-.buttonSubmit:hover {
-  background-color: #020a47;
+.secondaryBtn {
+background: transparent;
+  color: #000b58;
+  border: 2px solid #000b58;
 }
 
-.buttonGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
+.primaryBtn:hover { background: #020a47; }
+.secondaryBtn:hover { background: rgba(0, 11, 88, 0.05); }
+
+.footer {
+  text-align: center;
+  font-size: 14px;
+  color: #6b6b6b;
+  margin-top: 24px;
 }
 
-.buttonBack {
-  width: 100%;
-  height: 64px;
-  background: none;
-  border: 2.5px solid #030f66;
-  color: #030f66;
-  border-radius: 10px;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+.footer a {
+  color: #000b58;
+  font-weight: 700;
+  text-decoration: none;
 }
 
-.buttonBack:hover {
-  background-color: rgba(3, 15, 102, 0.05);
-}
-
-/* Lado Direito: Imagem */
-.imageContainer {
+/* ========================= */
+/* SESSÃO DA IMAGEM (DIREITA) */
+/* ========================= */
+.imageSection {
   flex: 1;
-  max-width: 680px;
+  height: 100%;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 
-.image {
+.imageCard {
+  width: 100%;
+  max-width: 660px;
+  height: calc(100vh - 48px);
+  border-radius: 24px;
+  overflow: hidden;
+  margin: 0;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.imageCard img {
   width: 100%;
   height: 100%;
-  min-height: 650px;
   object-fit: cover;
-  border-radius: 0px;
 }
 
-/* Linhas Decorativas de Fundo */
-.line {
+/* ========================= */
+/* EFEITOS DE FUNDO (Cores do login, posições exclusivas do Register) */
+/* ========================= */
+.effect {
   position: absolute;
-  transform: rotate(-35deg);
-  border-radius: 99px;
-  pointer-events: none;
+  border-radius: 999px;
+  z-index: 1;
+  animation: float 8s ease-in-out infinite;
 }
 
-.lineOrange1 { width: 20px; height: 300px; background: linear-gradient(to bottom, #e28743, #eab676); top: -40px; left: 3%; }
-.linePurple1 { width: 18px; height: 450px; background: linear-gradient(to bottom, #4b0082, #7b1fa2); top: -80px; left: 15%; }
-.lineOrange2 { width: 24px; height: 260px; background: #f0a500; top: 10%; right: 8%; }
-.linePurple2 { width: 20px; height: 360px; background: #6a1b9a; top: -5%; right: 18%; }
+.effectReg1 {
+  top: 0%;
+  left: 10%;
+  width: 120px;
+  height: 24px;
+  background: linear-gradient(90deg, #4D00B5 0%, #FEB42D 100%);
+  transform: rotate(-45deg);
+}
 
-/* Responsividade */
-@media (max-width: 1150px) {
-  .mainContent {
+.effectReg2 {
+  top: 15%;
+  left: 40%;
+  width: 180px;
+  height: 18px;
+  background: linear-gradient(90deg, #8f3d7a, #4D00B5);
+  transform: rotate(45deg);
+  animation-delay: 0.5s;
+}
+
+.effectReg3 {
+  bottom: 15%;
+  left: 25%;
+  width: 200px;
+  height: 12px;
+  background: linear-gradient(90deg, #d6b5ff, #9e66ff);
+  transform: rotate(50deg);
+  animation-delay: 2s;
+}
+
+.effectReg4 {
+  bottom: 3%;
+  right: 2%;
+  width: 150px;
+  height: 16px;
+  background: linear-gradient(90deg, #ffb63f, #ffcb6a);
+  transform: rotate(45deg);
+  animation-delay: 3s;
+}
+
+.effectReg5 {
+  top: 45%;
+  left: 5%;
+  width: 140px;
+  height: 14px;
+  background: linear-gradient(90deg, #4D00B5 0%, #FEB42D 100%);
+  transform: rotate(42deg);
+  animation-delay: 4s;
+}
+
+.effectReg6 {
+  top: 8%;
+  right: 1%;
+  width: 190px;
+  height: 16px;
+  background: linear-gradient(90deg, #4D00B5 0%, #FEB42D 100%);
+  transform: rotate(48deg);
+  animation-delay: 1.5s;
+}
+
+.effectReg7 {
+  bottom: -5%;
+  left: 60%;
+  width: 220px;
+  height: 20px;
+  background: linear-gradient(90deg, #9e66ff, #d6b5ff);
+  transform: rotate(45deg);
+  animation-delay: 2.5s;
+}
+
+.effectReg8 {
+  top: 40%;
+  right: 1%;
+  width: 160px;
+  height: 12px;
+  background: linear-gradient(90deg, #f5b13c, #f09a00);
+  transform: rotate(50deg);
+  animation-delay: 0.5s;
+}
+
+.effectReg9 {
+  top: 80%;
+  left: -2%;
+  width: 130px;
+  height: 10px;
+  background: linear-gradient(90deg, #ffb63f, #ffcb6a);
+  transform: rotate(47deg);
+  animation-delay: 3.5s;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(45deg); }
+  50% { transform: translateY(-30px) rotate(50deg); }
+  100% { transform: translateY(0px) rotate(45deg); }
+}
+
+/* ========================= */
+/* RESPONSIVIDADE */
+/* ========================= */
+@media (max-width: 1024px) {
+  .container {
     flex-direction: column;
-    align-items: center;
-    gap: 40px;
+    justify-content: center;
   }
-  
-  .imageContainer {
-    width: 100%;
-    max-width: 600px;
+  .imageSection {
+    display: none;
   }
-
-  .image {
-    min-height: auto;
-    max-height: 450px;
+  .formCard {
+    padding: 32px 24px;
   }
-}
-
-@media (max-width: 600px) {
-  .container { padding: 16px; }
-  .card { padding: 44px 24px; border-radius: 16px; }
-  .title { font-size: 34px; }
-  .field label { font-size: 16px; }
-  .field input { height: 56px; font-size: 16px; }
-  .buttonSubmit, .buttonBack { height: 56px; font-size: 16px; }
 }

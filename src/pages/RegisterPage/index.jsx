@@ -1,26 +1,24 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useRegisterWizard } from './hooks/useRegisterWizard';
 import StepIdentity from "./steps/StepIdentity";
 import StepCredentials from "./steps/StepCredentials";
 import styles from './styles.module.css';
 
-// Substitua pelo caminho correto da sua imagem do guincho/paciente
+// Substitua pelo caminho correto da sua imagem
 import imagemLateral from '../../assets/images/Register/imagem_principal.png'; 
 
 export default function RegisterPage() {
   const { etapaAtual, avancarEtapa, voltarEtapa } = useRegisterWizard();
   
-  // Estados locais para controlar a visualização das senhas do subcomponente
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // Mock simulado do 'register' do react-hook-form para o visual funcionar sem quebrar
   const mockRegister = (name) => ({
     name,
     onChange: (e) => console.log(`Digitando no campo: ${name}`),
   });
 
-  // Mock de erros vazio para não travar a renderização visual
   const mockErrors = {};
 
   const handleSubmitFinal = (e) => {
@@ -29,21 +27,27 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className={styles.container}>
-      {/* Linhas decorativas de fundo */}
-      <div className={`${styles.line} ${styles.lineOrange1}`}></div>
-      <div className={`${styles.line} ${styles.linePurple1}`}></div>
-      <div className={`${styles.line} ${styles.lineOrange2}`}></div>
-      <div className={`${styles.line} ${styles.linePurple2}`}></div>
+    <main className={styles.page}>
+      {/* Elementos decorativos (Posições exclusivas do Cadastro) */}
+      <div className={`${styles.effect} ${styles.effectReg1}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectReg2}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectReg3}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectReg4}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectReg5}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectReg6}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectReg7}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectReg8}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectReg9}`} aria-hidden="true" />
 
-      <div className={styles.mainContent}>
-        
-        {/* Lado Esquerdo: Card de Formulário */}
-        <div className={styles.card}>
-          <h1 className={styles.title}>Cadastro</h1>
+      <div className={styles.container}>
+        <section className={styles.formSection}>
+          <div className={styles.formCard}>
+            <header className={styles.cardHeader}>
+              <h1>Crie sua conta</h1>
+              <p>Preencha os dados abaixo para iniciar ({etapaAtual} de 2).</p>
+            </header>
 
-          <form onSubmit={etapaAtual === 2 ? handleSubmitFinal : avancarEtapa}>
-            <div className={styles.formContent}>
+            <form className={styles.form} onSubmit={etapaAtual === 2 ? handleSubmitFinal : avancarEtapa} noValidate>
               
               {/* ============ ETAPA 1 ============ */}
               {etapaAtual === 1 && (
@@ -53,9 +57,9 @@ export default function RegisterPage() {
                     register={mockRegister} 
                     errors={mockErrors} 
                   />
-                  <button type="submit" className={styles.buttonSubmit}>
-                    Continuar Cadastro &gt;
-                  </button>
+                  <button type="submit" className={styles.primaryBtn}>
+                      Continuar Cadastro
+                    </button>
                 </>
               )}
 
@@ -73,30 +77,33 @@ export default function RegisterPage() {
                   />
                   
                   <div className={styles.buttonGroup}>
-                    <button type="button" onClick={voltarEtapa} className={styles.buttonBack}>
-                      &lt; Voltar anterior
+                    <button type="button" onClick={voltarEtapa} className={styles.secondaryBtn}>
+                      Voltar
                     </button>
-                    <button type="submit" className={styles.buttonSubmit}>
+                    <button type="submit" className={styles.primaryBtn}>
                       Finalizar Cadastro
                     </button>
                   </div>
                 </>
               )}
 
-            </div>
-          </form>
-        </div>
+            </form>
 
-        {/* Lado Direito: Imagem Ilustrativa do Produto */}
-        <div className={styles.imageContainer}>
-          <img 
-            src={imagemLateral} 
-            alt="EverRise Patient Transfer Device" 
-            className={styles.image}
-          />
-        </div>
+            <p className={styles.footer}>
+              Já possui uma conta? <Link to="/login">Entrar</Link>
+            </p>
+          </div>
+        </section>
 
+        <section className={styles.imageSection}>
+          <figure className={styles.imageCard}>
+            <img 
+              src={imagemLateral} 
+              alt="EverRise Patient Transfer Device" 
+            />
+          </figure>
+        </section>
       </div>
-    </div>
+    </main>
   );
 }

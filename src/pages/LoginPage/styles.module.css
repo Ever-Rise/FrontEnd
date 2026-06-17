@@ -282,7 +282,7 @@
   width: 200px;
   height: 12px;
   background: linear-gradient(90deg, #d6b5ff, #9e66ff);
-  transform: rotate(-50deg);
+  transform: rotate(50deg);
   animation-delay: 2s;
 }
 
