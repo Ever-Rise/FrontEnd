@@ -1,28 +1,395 @@
-import styles from "./styles.module.css";
-import {
-    BenefitsSection,
-    CtaSection,
-    FaqSection,
-    HeroSection,
-    PlansSection,
-    TestimonialsSection,
-    UseCasesSection,
-} from "./components";
-import Header from "../../components/layout/Header";
-import Footer from "../../components/layout/Footer";
+import { useState, useEffect, useRef } from "react";
+import "./styles.css";
+import { Footer, Header } from "../../components";
 
-export default function VendasPage() {
-    return (
-        <main className={styles.page} style={{ paddingTop: "76px" }}>
-            <Header />
-            <HeroSection />
-            <BenefitsSection />
-            <PlansSection />
-            <UseCasesSection />
-            <TestimonialsSection />
-            <FaqSection />
-            <CtaSection />
-            <Footer />
-        </main>
-    );
+/* ─── placeholder images via picsum ─── */
+const IMG = {
+  hero: "https://images.unsplash.com/photo-1576765607924-3f7b8410a787?w=800&q=80",
+  product1: "https://images.unsplash.com/photo-1583912086096-8c60d75a53f9?w=600&q=80",
+  product2: "https://images.unsplash.com/photo-1581093806997-124204d9fa9d?w=600&q=80",
+  product3: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80",
+  winch: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=500&q=80",
+  sala1: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80",
+  sala2: "https://images.unsplash.com/photo-1584467735815-f778f274e296?w=600&q=80",
+  corredor1: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=600&q=80",
+  corredor2: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&q=80",
+  quarto1: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=600&q=80",
+  quarto2: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&q=80",
+  banheiro1: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80",
+  banheiro2: "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=600&q=80",
+  avatar1: "https://i.pravatar.cc/60?img=1",
+  avatar2: "https://i.pravatar.cc/60?img=2",
+  avatar3: "https://i.pravatar.cc/60?img=3",
+  avatar4: "https://i.pravatar.cc/60?img=4",
+  footer: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
+};
+
+/* ─── TESTIMONIALS ─── */
+const testimonials = [
+  { name: "Dr. Sarah Pinto", role: "Fisioterapeuta", text: "O Guincho EverRise transformou completamente a rotina dos nossos pacientes. A segurança e o conforto são incomparáveis.", img: IMG.avatar1 },
+  { name: "Dr. André Faro", role: "Geriatra", text: "Recomendo fortemente para qualquer ambiente de cuidado. A facilidade de uso e a estabilidade são excepcionais.", img: IMG.avatar2 },
+  { name: "Dr. Sarah Pinto", role: "Enfermeira Chefe", text: "A diferença no dia a dia dos cuidadores é enorme. Menos esforço físico e mais segurança para os pacientes.", img: IMG.avatar3 },
+  { name: "Dr. André Faro", role: "Médico Intensivista", text: "Equipamento de alta qualidade. O modelo 3D interativo me ajudou a tomar a decisão de compra com confiança.", img: IMG.avatar4 },
+];
+
+/* ─── CARE ROOMS ─── */
+const rooms = [
+  { id: "01", label: "Sala", desc: "Transferências seguras da cadeira para a cama ou poltronas", imgs: [IMG.sala1, IMG.sala2] },
+  { id: "02", label: "Corredor", desc: "Mobilidade prática entre ambientes sem esforço", imgs: [IMG.corredor1, IMG.corredor2] },
+  { id: "03", label: "Quarto", desc: "Mais conforto e segurança na rotina de cuidados.", imgs: [IMG.quarto1, IMG.quarto2] },
+  { id: "04", label: "Banheiro", desc: "Transferência com dignidade e máxima segurança", imgs: [IMG.banheiro1, IMG.banheiro2] },
+];
+
+/* ─── FAQ ─── */
+const faqs = [
+  "Que serviço a Ever Rise oferece?",
+  "Que serviço a Ever Rise oferece?",
+  "Que serviço a Ever Rise oferece?",
+];
+
+/* ─── PLANS ─── */
+const plans = [
+  { price: "$0/m", label: "Plano Gratuito", features: ["Acesso básico", "Suporte por email", "1 usuário"], cta: "Começar grátis", highlight: false },
+  { price: "$14,99/m", label: "Plano Pro", features: ["Acesso completo", "Suporte prioritário", "5 usuários", "Relatórios avançados"], cta: "Assinar Pro", highlight: true },
+  { price: "$29,99/m", label: "Plano Business", features: ["Tudo do Pro", "Suporte 24/7", "Usuários ilimitados", "API dedicada"], cta: "Assinar Business", highlight: false },
+];
+
+/* ═══════════════════════════════════════════════════
+   SECTION: HERO with scroll-to-fullscreen video
+═══════════════════════════════════════════════════ */
+function HeroSection() {
+  const sectionRef = useRef(null);
+  const [progress, setProgress] = useState(0); // 0→1: expanding; >1: leaving
+
+  useEffect(() => {
+    const onScroll = () => {
+      const el = sectionRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const sectionH = el.offsetHeight;
+      const scrolled = -rect.top;
+      const p = Math.max(0, Math.min(1, scrolled / (sectionH * 0.5)));
+      setProgress(p);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scale = 1 + progress * 1.2;
+  const borderRadius = Math.max(0, 24 - progress * 24);
+  const opacity = progress < 0.9 ? 1 : 1 - (progress - 0.9) * 10;
+
+  return (
+    <section className="hero-section" ref={sectionRef}>
+      <div className="hero-sticky">
+        <div className="hero-content-row" style={{ opacity: progress > 0.3 ? 0 : 1 - progress * 3 }}>
+          <div className="hero-text">
+            <p className="hero-eyebrow">Mobilidade com segurança e dignidade</p>
+            <p className="hero-desc">
+              O guincho de transferência foi projetado para oferecer segurança, conforto, e praticidade na rotina de quem cuida e de quem é cuidado.
+            </p>
+            <button className="btn-primary">Ver em 3D</button>
+          </div>
+          <div
+            className="hero-video-wrapper"
+            style={{
+              transform: `scale(${scale})`,
+              borderRadius: `${borderRadius}px`,
+              opacity,
+            }}
+          >
+            <video autoPlay muted loop playsInline className="hero-video">
+              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+        {/* fullscreen overlay video */}
+        <div
+          className="hero-video-fullscreen"
+          style={{ opacity: progress > 0.3 ? Math.min(1, (progress - 0.3) * 3) : 0, pointerEvents: progress > 0.5 ? "all" : "none" }}
+        >
+          <video autoPlay muted loop playsInline>
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+      {/* spacer so page scrolls */}
+      <div style={{ height: "200vh" }} />
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION: "Projetado para o que realmente importa"
+   – horizontal scroll through 3 images
+═══════════════════════════════════════════════════ */
+function ProjectedSection() {
+  const sectionRef = useRef(null);
+  const [index, setIndex] = useState(0);
+
+  const slides = [
+    { title: "Movimento suave", desc: "Sistema de elevação preciso que reduz o cansaço físico do cuidador garantindo uma transição segura e confortável para o paciente, sem movimentos bruscos ou intensos.", img: IMG.product1 },
+    { title: "Design Ergonômico", desc: "Pensado para se adaptar a diferentes ambientes e rotinas de cuidado, oferecendo flexibilidade e praticidade no dia a dia.", img: IMG.product2 },
+    { title: "Tecnologia Avançada", desc: "Sensores inteligentes e controles intuitivos que garantem a máxima segurança durante todas as transferências.", img: IMG.product3 },
+  ];
+
+  useEffect(() => {
+    const onScroll = () => {
+      const el = sectionRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const scrolled = -rect.top;
+      const sectionH = el.offsetHeight;
+      const newIndex = Math.min(slides.length - 1, Math.floor((scrolled / sectionH) * slides.length * 1.1));
+      setIndex(Math.max(0, newIndex));
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <section className="projected-section" ref={sectionRef}>
+      <div className="projected-sticky">
+        <div className="badge-pill">
+            <div className="partnersEyebrowSquare"></div>
+            <h2 className="titulo-segunda">TECNOLOGIA QUE TRANSFORMA</h2></div>
+        <h2 className="section-title">Projetado para o que realmente importa</h2>
+        <div className="projected-layout">
+          <div className="projected-left">
+            {slides.map((s, i) => (
+              <div key={i} className={`projected-text-item ${i === index ? "active" : ""}`}>
+                <span className="icon-bullet">⚡</span>
+                <div>
+                  <strong>{s.title}</strong>
+                  <p>{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="projected-right">
+            <div className="projected-images">
+              {slides.map((s, i) => (
+                <img
+                  key={i}
+                  src={s.img}
+                  alt={s.title}
+                  className={`projected-img ${i === index ? "active" : ""}`}
+                />
+              ))}
+            </div>
+            <div className="projected-dots">
+              {slides.map((_, i) => (
+                <span key={i} className={`dot ${i === index ? "active" : ""}`} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style={{ height: `${slides.length * 80}vh` }} />
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION: Guincho 3D
+═══════════════════════════════════════════════════ */
+function Winch3DSection() {
+  return (
+    <section className="winch3d-section">
+      <div className="badge-pill orange">COMEÇA DE TODOS OS ÂNGULOS</div>
+      <h2 className="section-title">Guincho 3D</h2>
+      <p className="section-sub">Interaja com o modelo 3D e veja cada detalhe do guincho.</p>
+      <div className="winch3d-viewer">
+        <img src={IMG.winch} alt="Guincho 3D" className="winch-img" />
+        <div className="winch3d-controls">
+          <div className="control-item"><span className="control-icon">↔</span><p>Arraste para rotacionar</p></div>
+          <div className="control-item"><span className="control-icon">🖱</span><p>Passe o mouse para interagir</p></div>
+          <div className="control-item"><span className="control-icon">⊕</span><p>Scroll para aproximar</p></div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION: Cuidado em todos os momentos (tabs)
+═══════════════════════════════════════════════════ */
+function CareSection() {
+  const [active, setActive] = useState(0);
+
+  return (
+    <section className="care-section">
+      <div className="badge-pill">EXPERIÊNCIA INTERATIVA</div>
+      <h2 className="section-title">Cuidado em todos os momentos.</h2>
+      <p className="section-sub">Navegue e descubra como o guincho se adapta a diferentes ambientes da casa, proporcionando transferência seguras e confortáveis.</p>
+
+      <div className="care-layout">
+        <div className="care-tabs">
+          {rooms.map((r, i) => (
+            <button key={i} className={`care-tab ${i === active ? "active" : ""}`} onClick={() => setActive(i)}>
+              <span className="tab-num">{r.id}</span>
+              <div>
+                <strong>{r.label}</strong>
+                <p>{r.desc}</p>
+              </div>
+            </button>
+          ))}
+        </div>
+        <div className="care-images">
+          <div className="care-winch-label">
+            <span>Guincho EverRise</span>
+          </div>
+          <div className="care-imgs-grid">
+            {rooms[active].imgs.map((img, i) => (
+              <img key={`${active}-${i}`} src={img} alt={rooms[active].label} className="care-img fade-in" />
+            ))}
+          </div>
+          <div className="care-winch-label secondary">
+            <span>Guincho Generico</span>
+          </div>
+          <button className="btn-outline-small">Salte para explorar os ambientes</button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION: Testimonials
+═══════════════════════════════════════════════════ */
+function TestimonialsSection() {
+  return (
+    <section className="testimonials-section">
+      <div className="badge-pill">Depoimentos</div>
+      <h2 className="section-title">Ratificado por profissionais da área da saúde</h2>
+      <div className="testimonials-grid">
+        {testimonials.map((t, i) => (
+          <div key={i} className="testimonial-card">
+            <p className="testimonial-text">"{t.text}"</p>
+            <div className="testimonial-author">
+              <img src={t.img} alt={t.name} />
+              <div>
+                <strong>{t.name}</strong>
+                <span>{t.role}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION: Plans
+═══════════════════════════════════════════════════ */
+function PlansSection() {
+  return (
+    <section className="plans-section">
+      <div className="badge-pill orange">Planos acessíveis para todas as necessidades</div>
+      <div className="plans-grid">
+        {plans.map((p, i) => (
+          <div key={i} className={`plan-card ${p.highlight ? "highlight" : ""}`}>
+            <div className="plan-price">{p.price}</div>
+            <div className="plan-label">{p.label}</div>
+            <ul className="plan-features">
+              {p.features.map((f, j) => <li key={j}>{f}</li>)}
+            </ul>
+            <button className={p.highlight ? "btn-primary" : "btn-outline"}>{p.cta}</button>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION: FAQ
+═══════════════════════════════════════════════════ */
+function FAQSection() {
+  const [open, setOpen] = useState(null);
+  return (
+    <section className="faq-section">
+      <div className="badge-pill">Perguntas frequentes</div>
+      <h2 className="section-title">Encontre respostas para perguntas frequentes sobre nossos serviços, preços e suporte para ajudá-lo a tomar decisões informadas com confiança</h2>
+      <div className="faq-list">
+        {faqs.map((q, i) => (
+          <div key={i} className={`faq-item ${open === i ? "open" : ""}`} onClick={() => setOpen(open === i ? null : i)}>
+            <div className="faq-q">
+              <span>{q}</span>
+              <span className="faq-icon">{open === i ? "−" : "+"}</span>
+            </div>
+            {open === i && <div className="faq-a">O Guincho EverRise oferece transferência segura, confortável e digna para pacientes com mobilidade reduzida, adaptando-se a diferentes ambientes do lar e instituições de saúde.</div>}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION: Footer CTA
+═══════════════════════════════════════════════════ */
+function FooterCTA() {
+  return (
+    <section className="footer-cta">
+      <div className="footer-cta-content">
+        <div className="footer-cta-text">
+          <h2>O amor continua.<br />O esforço não precisa continuar</h2>
+          <button className="btn-primary large">Conheça agora</button>
+        </div>
+        <img src={IMG.footer} alt="Cuidador" className="footer-cta-img" />
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════════ */
+function Navbar() {
+  return (
+    <nav className="navbar">
+      <div className="navbar-inner">
+        <div className="navbar-logo">
+          <span className="logo-icon">⬡</span>
+          <span className="logo-text">everRise</span>
+        </div>
+        <div className="navbar-links">
+          <a href="#">Home</a>
+          <a href="#">Como funciona</a>
+          <a href="#">Produtos</a>
+          <a href="#">Web Suporte</a>
+          <a href="#">Simulação</a>
+          <a href="#">Comunidade</a>
+        </div>
+        <button className="btn-primary small">Login</button>
+      </div>
+    </nav>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════ */
+
+
+/* ═══════════════════════════════════════════════════
+   APP
+═══════════════════════════════════════════════════ */
+export default function App() {
+  return (
+    <div className="app">
+      <Header />
+      <HeroSection />
+      <ProjectedSection />
+      <Winch3DSection />
+      <CareSection />
+      <TestimonialsSection />
+      <PlansSection />
+      <FAQSection />
+      <FooterCTA />
+      <Footer />
+    </div>
+  );
 }
