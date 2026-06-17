@@ -1,125 +1,164 @@
+<<<<<<< HEAD
+import { useState, useEffect, useRef } from "react";
+import "./styles.css";
+=======
 import React from "react";
 import styles from "./styles.module.css";
 import Header from "../../components/layout/Header";
+import heroBg from "../../assets/images/ManualPage/heroBackground.jpg";
+>>>>>>> 5f2348656b67eeb1bf9adf21d15b99614b68e3aa
 
-// ── data ────────────────────────────────────────────────────────
-const features = [
-    {
-        icon: "🛡️",
-        title: "Acessível",
-        desc: "Construído com materiais acessíveis: PETG, EVA Foam, componentes de mercado. Pensado para famílias reais, não para hospitais de alto padrão.",
-    },
-    {
-        icon: "🕹️",
-        title: "Autônomo",
-        desc: "Controlado remotamente via plataforma web. O paciente ou cuidador opera o guincho de qualquer lugar, sem depender de profissional presente.",
-    },
-    {
-        icon: "🔒",
-        title: "Seguro",
-        desc: "Sensor FSR 402, trava mecânica e botão físico failsafe que funciona sem internet. Segurança que não depende de nenhuma conexão.",
-    },
+const componentes = [
+  {
+    icon: "🔄",
+    titulo: "Eixo de rotação prateado e preto",
+    descricao:
+      "Permite rotação precisa do mastro e braço de elevação, garantindo reposicionamento seguro do paciente em diferentes ângulos.",
+    tag: "Estrutura principal",
+  },
+  {
+    icon: "🖥",
+    titulo: "Unidade de controle BP-8 135",
+    descricao:
+      "Painel compacto com botões de ação e conexão integrada — gerencia todas as funções do equipamento com precisão.",
+    tag: "Controle e conectividade",
+  },
+  {
+    icon: "🔋",
+    titulo: "Bateria extra de 3800 mAh",
+    descricao:
+      "Mastro vertical com bateria recarregável integrada e slot de extensão para operações de longa duração sem interrupção.",
+    tag: "Autonomia energética",
+  },
+  {
+    icon: "🤝",
+    titulo: "Alça de fixação do sling reforçada",
+    descricao:
+      "Sistema de encaixe com trava dupla de segurança, distribuindo carga uniformemente para o conforto e proteção do paciente.",
+    tag: "Segurança do paciente",
+  },
+  {
+    icon: "📡",
+    titulo: "Roteador Wi-Fi integrado",
+    descricao:
+      "Conexão de dados estável para monitoramento remoto 24/7, transmissão de dados biométricos e atualizações de firmware.",
+    tag: "Conectividade",
+  },
 ];
 
-const techComponents = [
-    {
-        icon: "🖥️",
-        title: "Raspberry Pi 4",
-        desc: "Processamento potente e eficiente para máxima performance.",
-    },
-    {
-        icon: "📡",
-        title: "ESP32",
-        desc: "Microcontrolador de alta performance para comunicação e controle inteligente.",
-    },
-    {
-        icon: "🎯",
-        title: "Sensor de Pressão FSR 402",
-        desc: "Detecção precisa de pressão para segurança total nas transferências.",
-    },
-    {
-        icon: "📷",
-        title: "Câmera USB",
-        desc: "Monitoramento em tempo real para mais controle e tranquilidade.",
-    },
-    {
-        icon: "⚙️",
-        title: "Motores e Sistema de Tração",
-        desc: "Movimentos suaves, estáveis e seguros em qualquer situação.",
-    },
-    {
-        icon: "🔋",
-        title: "Fonte de Alimentação",
-        desc: "Energia estável e confiável para operação contínua e segura.",
-    },
+const funcionalidades = [
+  {
+    icon: "🤖",
+    titulo: "Controle automático",
+    descricao: "Algoritmos preditivos para movimentação suave sem intervenção manual constante.",
+  },
+  {
+    icon: "⚖️",
+    titulo: "Ajuste de força",
+    descricao: "Distribuição inteligente de torque baseada na massa e centro de gravidade do paciente.",
+  },
+  {
+    icon: "📱",
+    titulo: "Painel digital",
+    descricao: "Interface OLED de alta definição com dados biométricos em tempo real.",
+  },
+  {
+    icon: "🛡",
+    titulo: "Monitoramento",
+    descricao: "Vigilância contínua 24/7 com alerta direto à central de enfermagem.",
+  },
+  {
+    icon: "📻",
+    titulo: "Sensores IR",
+    descricao: "Detecção de obstáculos e proximidade com precisão milimétrica infravermelha.",
+  },
 ];
 
-const specs = [
-    {
-        icon: "🏗️",
-        title: "Estrutura e Base",
-        items: ["MDF (base e estrutura)", "Ferro (suporte e reforço)"],
-    },
-    {
-        icon: "🎨",
-        title: "Revestimento e Design",
-        items: [
-            "PETG (carcaça impressa 3D)",
-            "EVA Foam (revestimento de proteção)",
-        ],
-    },
-    {
-        icon: "✅",
-        title: "Sistema de Segurança",
-        items: [
-            "Cinto de Segurança de Alta Tenacidade",
-            "Estabilidade Operacional",
-        ],
-    },
+const alertas = [
+  {
+    tipo: "s",
+    label: "SAFETY_HOLD",
+    code: "CODE 042",
+    titulo: "Equipamento pausado por segurança",
+    descricao: "Verificar sensores de obstrução lateral antes de retomar a operação.",
+  },
+  {
+    tipo: "e",
+    label: "EMERGÊNCIA",
+    code: "CODE 911",
+    titulo: "Parada imediata acionada",
+    descricao: "Liberar botão de emergência rotacional para reestabelecer operação.",
+  },
+  {
+    tipo: "o",
+    label: "SOBRECARGA",
+    code: "CODE 088",
+    titulo: "Peso acima do limite detectado",
+    descricao: "Reduzir carga para menos de 250 kg antes de continuar.",
+  },
+  {
+    tipo: "op",
+    label: "OPERACIONAL",
+    code: "CODE 001",
+    titulo: "Sistema pronto para uso",
+    descricao: "Todos os sistemas verificados. Continuar operação normalmente.",
+  },
 ];
 
-const techMoves = [
-    {
-        icon: "⟨⟩",
-        title: "Algoritmo PID",
-        desc: "Precisão e estabilidade para movimentos suaves e controle em tempo real.",
-    },
-    {
-        icon: "🤖",
-        title: "Módulos de IA Embarcados",
-        desc: "Inteligência embarcada para decisões autônomas com alta performance.",
-    },
-    {
-        icon: "🎤",
-        title: "Reconhecimento de Voz",
-        desc: "Interação natural e intuitiva através de comandos de voz inteligentes.",
-    },
-    {
-        icon: "👁️",
-        title: "Visão Computacional",
-        desc: "Câmeras e IA trabalhando juntas para identificar obstáculos em tempo real.",
-    },
-    {
-        icon: "🖥️",
-        title: "Interface Web Responsiva",
-        desc: "Acesse, monitore e controle de qualquer lugar com uma interface moderna e rápida.",
-    },
+const manutencao = [
+  {
+    icon: "🔋",
+    titulo: "Carregamento",
+    descricao: "Carregar por 4h após cada turno. Ciclo de bateria Li-ion otimizado.",
+    btn: "Ver protocolo de energia",
+  },
+  {
+    icon: "💧",
+    titulo: "Limpeza",
+    descricao: "Usar apenas álcool isopropílico 70%. Evitar contato direto com o painel.",
+    btn: "Guia de esterilização",
+  },
+  {
+    icon: "📦",
+    titulo: "Armazenamento",
+    descricao: "Manter em local seco entre 15°C e 30°C. Travar rodas ao guardar.",
+    btn: "Condições ideais",
+  },
 ];
 
-const contactInfo = [
-    { icon: "📞", text: "(11) 00000-0000" },
-    { icon: "✉️", text: "everisepirororo@gmail.com" },
-    { icon: "📷", text: "@EverRise" },
+const faqs = [
+  {
+    pergunta: "Quanto tempo dura a bateria em uso contínuo?",
+    resposta:
+      "A bateria principal oferece até 8 horas de uso contínuo. Com a bateria extra de 3800 mAh acoplada, a autonomia pode chegar a 12 horas. Recomenda-se sempre carregar ao término de cada turno.",
+  },
+  {
+    pergunta: "O que fazer em caso de queda de energia durante o uso?",
+    resposta:
+      "O sistema possui bateria de emergência integrada que mantém o equipamento operacional por até 20 minutos adicionais. Durante esse período, abaixe o paciente com segurança e transfira para superfície estável.",
+  },
+  {
+    pergunta: "Como calibrar os sensores de peso?",
+    resposta:
+      'Acesse Configurações → Calibração no painel BP-8 135. Retire qualquer carga do sling, pressione "Calibrar Zero" e aguarde 10 segundos. Repita com peso de referência de 50 kg para calibração completa.',
+  },
 ];
 
-// ── component ────────────────────────────────────────────────────
-export default function EverRise() {
-    return (
-        <>
-            <div className={styles.content}>
-                <Header />
-            </div>
+function useInView(threshold = 0.15) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
 
+<<<<<<< HEAD
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
+      { threshold }
+=======
             {/* HERO */}
             <section className={styles.hero}>
                 <div className={styles.heroText}>
@@ -138,20 +177,6 @@ export default function EverRise() {
                         <button className={styles.btnSecondary}>
                             Fale com a gente
                         </button>
-                    </div>
-                </div>
-                <div className={styles.heroImage}>
-                    <div className={styles.heroIllustration}>
-                        <div className={styles.heroDevice}>
-                            <div className={styles.heroDeviceInner}>
-                                <span className={styles.heroDeviceIcon}>
-                                    ♿
-                                </span>
-                                <span className={styles.heroDeviceLabel}>
-                                    EverRise Lift System
-                                </span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -310,5 +335,220 @@ export default function EverRise() {
                 Mobilidade com dignidade.
             </footer>
         </>
+>>>>>>> 5f2348656b67eeb1bf9adf21d15b99614b68e3aa
     );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+
+  return [ref, visible];
+}
+
+function AnimatedSection({ children, className = "", delay = 0 }) {
+  const [ref, visible] = useInView();
+  return (
+    <div
+      ref={ref}
+      className={`fade-up ${visible ? "visible" : ""} ${className}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
+}
+
+function SectionTitle({ children }) {
+  const [ref, visible] = useInView();
+  return (
+    <div ref={ref} className={`sec-title fade-up ${visible ? "visible" : ""}`}>
+      <h2>{children}</h2>
+      <div className="title-line" />
+    </div>
+  );
+}
+
+export default function ManualEverRise() {
+  const [faqAberto, setFaqAberto] = useState(null);
+  const [heroVisible, setHeroVisible] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setHeroVisible(true), 80);
+    return () => clearTimeout(t);
+  }, []);
+
+  return (
+    <div className="manual-wrap">
+      {/* HERO */}
+      <section className="hero">
+        <div className="hero-bg-decor">
+          <div className="hero-ring ring-1" />
+          <div className="hero-ring ring-2" />
+          <div className="hero-dots" />
+          <div className="hero-pill" />
+        </div>
+        <div className={`hero-content ${heroVisible ? "hero-in" : ""}`}>
+          <h1 className="hero-title">
+            Manual Inteligente <span className="brand">EverRise</span>
+          </h1>
+          <p className="hero-sub">
+            Tudo o que você precisa para operar o sistema com máxima precisão e segurança
+            no ambiente hospitalar de alta performance.
+          </p>
+          <div className="hero-btns">
+            <button className="btn-amber">
+              <span className="btn-icon">💬</span> Abrir chat com Fin
+            </button>
+            <button className="btn-dark">Explorar Recursos</button>
+          </div>
+        </div>
+      </section>
+
+      <div className="content-pad">
+        {/* INÍCIO RÁPIDO */}
+        <AnimatedSection className="quick-start">
+          <div className="qs-left">
+            <p className="qs-label">— Início Rápido</p>
+            {[
+              {
+                n: 1,
+                titulo: "Montar",
+                desc: "Posicione a base articulada e certifique-se de que os braços extensores estejam travados.",
+              },
+              {
+                n: 2,
+                titulo: "Ligar",
+                desc: "Pressione o botão principal por 3 segundos para iniciar o diagnóstico automático.",
+              },
+              {
+                n: 3,
+                titulo: "Conectar",
+                desc: "Sincronize com a rede hospitalar para monitoramento remoto centralizado.",
+              },
+            ].map((s) => (
+              <div className="qs-step" key={s.n}>
+                <div className="step-num">{s.n}</div>
+                <div>
+                  <h4>{s.titulo}</h4>
+                  <p>{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="qs-right">
+            <div className="qs-imgs-row">
+              <div className="qs-img">🔧<span>Montagem</span></div>
+              <div className="qs-img">🔌<span>Ativação</span></div>
+            </div>
+            <div className="qs-img qs-img-full">📶<span>Conexão à rede</span></div>
+          </div>
+        </AnimatedSection>
+
+        {/* COMPONENTES */}
+        <SectionTitle>Componentes Principais</SectionTitle>
+        <div className="comps-list">
+          {componentes.map((c, i) => (
+            <AnimatedSection key={i} delay={i * 60}>
+              <div className="comp-card">
+                <div className="comp-icon">{c.icon}</div>
+                <div className="comp-info">
+                  <h4>{c.titulo}</h4>
+                  <p>{c.descricao}</p>
+                  <span className="comp-tag">{c.tag}</span>
+                </div>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+
+        {/* FUNCIONALIDADES */}
+        <SectionTitle>Funcionalidades de Elite</SectionTitle>
+        <div className="feat-grid">
+          {funcionalidades.map((f, i) => (
+            <AnimatedSection key={i} delay={i * 70}>
+              <div className="feat-card">
+                <span className="feat-icon">{f.icon}</span>
+                <h4>{f.titulo}</h4>
+                <p>{f.descricao}</p>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+
+        {/* ALERTAS */}
+        <SectionTitle>Monitoramento de Segurança</SectionTitle>
+        <div className="alerts-grid">
+          {alertas.map((a, i) => (
+            <AnimatedSection key={i} delay={i * 60}>
+              <div className={`alert-card alert-${a.tipo}`}>
+                <div className="alert-top">
+                  <span className="alert-lbl">{a.label}</span>
+                  <span className="alert-code">{a.code}</span>
+                </div>
+                <h4>{a.titulo}</h4>
+                <p>{a.descricao}</p>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+
+        {/* MANUTENÇÃO */}
+        <SectionTitle>Ciclo de Manutenção</SectionTitle>
+        <div className="maint-grid">
+          {manutencao.map((m, i) => (
+            <AnimatedSection key={i} delay={i * 80}>
+              <div className="maint-card">
+                <span className="maint-icon">{m.icon}</span>
+                <h4>{m.titulo}</h4>
+                <p>{m.descricao}</p>
+                <button className="maint-btn">{m.btn}</button>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+
+        {/* FAQ */}
+        <SectionTitle>Perguntas Frequentes</SectionTitle>
+        <div className="faq-list">
+          {faqs.map((f, i) => (
+            <AnimatedSection key={i} delay={i * 60}>
+              <div className={`faq-item ${faqAberto === i ? "open" : ""}`}>
+                <button
+                  className="faq-q"
+                  onClick={() => setFaqAberto(faqAberto === i ? null : i)}
+                  aria-expanded={faqAberto === i}
+                >
+                  <span>{f.pergunta}</span>
+                  <span className="faq-chevron">{faqAberto === i ? "▲" : "▼"}</span>
+                </button>
+                <div className="faq-a">
+                  <p>{f.resposta}</p>
+                </div>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <AnimatedSection>
+          <div className="cta-banner">
+            <div className="cta-bg-ring cta-ring-1" />
+            <div className="cta-bg-ring cta-ring-2" />
+            <h2>Ainda precisa de ajuda especializada?</h2>
+            <p>
+              Nossa equipe de engenharia e o assistente Fin estão disponíveis 24/7 para
+              garantir que sua operação nunca pare.
+            </p>
+            <div className="cta-contacts">
+              <div className="cta-contact">📞 0800 555 2000</div>
+              <div className="cta-contact">✉️ suporte@everrise.med</div>
+            </div>
+            <button className="btn-amber cta-cta-btn">💬 Falar com Fin agora</button>
+            <div className="enc-badge">🔒 AES Encryption Active</div>
+          </div>
+        </AnimatedSection>
+      </div>
+
+      <div className="bottom-space" />
+    </div>
+  );
 }

@@ -2,97 +2,97 @@ import React from 'react';
 import eyeIcon from '../../../assets/icons/login/eye.svg';
 
 const PasswordField = ({
-    styles,
-    id,
-    label,
-    placeholder,
-    autoComplete,
-    register,
-    error,
-    show,
-    onToggle,
+  styles,
+  id,
+  label,
+  placeholder,
+  autoComplete,
+  register,
+  error,
+  show,
+  onToggle,
 }) => (
-    <div className={styles.field}>
-        <label htmlFor={id}>{label}</label>
-        <div className={styles.passwordWrapper}>
-            <input
-                id={id}
-                type={show ? 'text' : 'password'}
-                placeholder={placeholder}
-                autoComplete={autoComplete}
-                aria-invalid={Boolean(error)}
-                aria-describedby={error ? `${id}-error` : undefined}
-                {...register}
-            />
-            <button
-                type="button"
-                className={styles.togglePassword}
-                onClick={onToggle}
-                aria-label={show ? 'Ocultar senha' : 'Mostrar senha'}
-            >
-                <img src={eyeIcon} alt="" aria-hidden="true" />
-            </button>
-        </div>
-        {error && (
-            <span id={`${id}-error`} className={styles.fieldError} role="alert">
-                {error.message}
-            </span>
-        )}
+  <div className={styles.field}>
+    <label htmlFor={id}>{label}</label>
+    <div className={styles.passwordWrapper}>
+      <input
+        id={id}
+        type={show ? 'text' : 'password'}
+        placeholder={placeholder}
+        autoComplete={autoComplete}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? `${id}-error` : undefined}
+        {...register}
+      />
+      <button
+        type="button"
+        className={styles.togglePassword}
+        onClick={onToggle}
+        aria-label={show ? 'Ocultar senha' : 'Mostrar senha'}
+      >
+        <img src={eyeIcon} alt="" aria-hidden="true" />
+      </button>
     </div>
+    {error && (
+      <span id={`${id}-error`} className={styles.fieldError} role="alert">
+        {error.message}
+      </span>
+    )}
+  </div>
 );
 
 const StepCredentials = ({
-    styles,
-    register,
-    errors,
-    showPassword,
-    setShowPassword,
-    showConfirmPassword,
-    setShowConfirmPassword,
+  styles,
+  register,
+  errors,
+  showPassword,
+  setShowPassword,
+  showConfirmPassword,
+  setShowConfirmPassword,
 }) => (
-    <>
-        <div className={styles.field}>
-            <label htmlFor="register-phone">Telefone</label>
-            <input
-                id="register-phone"
-                type="tel"
-                placeholder="+11 99999-9999"
-                autoComplete="tel"
-                aria-invalid={Boolean(errors.phone)}
-                aria-describedby={errors.phone ? 'register-phone-error' : undefined}
-                {...register('phone')}
-            />
-            {errors.phone && (
-                <span id="register-phone-error" className={styles.fieldError} role="alert">
-                    {errors.phone.message}
-                </span>
-            )}
-        </div>
+  <>
+    <div className={styles.field}>
+      <label htmlFor="register-phone">Telefone</label>
+      <input
+        id="register-phone"
+        type="tel"
+        placeholder="+55 (11) 99999-9999"
+        autoComplete="tel"
+        aria-invalid={Boolean(errors.phone)}
+        aria-describedby={errors.phone ? 'register-phone-error' : undefined}
+        {...register('phone')}
+      />
+      {errors.phone && (
+        <span id="register-phone-error" className={styles.fieldError} role="alert">
+          {errors.phone.message}
+        </span>
+      )}
+    </div>
 
-        <PasswordField
-            styles={styles}
-            id="register-password"
-            label="Senha"
-            placeholder="Senha"
-            autoComplete="new-password"
-            register={register('password')}
-            error={errors.password}
-            show={showPassword}
-            onToggle={() => setShowPassword((prev) => !prev)}
-        />
+    <PasswordField
+      styles={styles}
+      id="register-password"
+      label="Senha"
+      placeholder="Crie uma senha"
+      autoComplete="new-password"
+      register={register('password')}
+      error={errors.password}
+      show={showPassword}
+      onToggle={() => setShowPassword((prev) => !prev)}
+    />
 
-        <PasswordField
-            styles={styles}
-            id="register-confirm-password"
-            label="Confirmar senha"
-            placeholder="Confirmar senha"
-            autoComplete="new-password"
-            register={register('confirmPassword')}
-            error={errors.confirmPassword}
-            show={showConfirmPassword}
-            onToggle={() => setShowConfirmPassword((prev) => !prev)}
-        />
-    </>
+    <PasswordField
+      styles={styles}
+      id="register-confirm-password"
+      label="Confirmar senha"
+      placeholder="Repita a senha"
+      autoComplete="new-password"
+      register={register('confirmPassword')}
+      error={errors.confirmPassword}
+      show={showConfirmPassword}
+      onToggle={() => setShowConfirmPassword((prev) => !prev)}
+    />
+  </>
 );
 
 export default StepCredentials;

@@ -9,7 +9,7 @@ import { REGISTER_PATH, getRegisterStep2Url } from "./registerRoutes";
 
 const LandingPage = lazy(() => import("../pages/LandingPage"));
 const SobrePage = lazy(() => import("../pages/SobrePage"));
-const ProdutoPage = lazy(() => import("../pages/ProdutoPage"));
+const SobreGuinchoPage = lazy(() => import("../pages/SobreGuinchoPage"));
 const VendasPage = lazy(() => import("../pages/VendasPage"));
 const ParceirosPage = lazy(() => import("../pages/ParceirosPage"));
 const LoginPage = lazy(() => import("../pages/LoginPage"));
@@ -112,7 +112,7 @@ const router = createBrowserRouter([
         children: [
             { path: "/", element: withSuspense(LandingPage) },
             { path: "/sobre", element: withSuspense(SobrePage) },
-            { path: "/produto", element: withSuspense(ProdutoPage) },
+            { path: "/sobre-guincho", element: withSuspense(SobreGuinchoPage) },
             { path: "/vendas", element: withSuspense(VendasPage) },
             { path: "/parceiros", element: withSuspense(ParceirosPage) },
             {
