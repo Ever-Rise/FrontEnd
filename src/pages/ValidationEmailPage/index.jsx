@@ -23,9 +23,6 @@ const ValidationEmailPage = () => {
       <div className={`${styles.effect} ${styles.effectVal10}`} aria-hidden="true" />
       <div className={`${styles.effect} ${styles.effectVal11}`} aria-hidden="true" />
       <div className={`${styles.effect} ${styles.effectVal12}`} aria-hidden="true" />
-      <div className={`${styles.effect} ${styles.effectVal13}`} aria-hidden="true" />
-      <div className={`${styles.effect} ${styles.effectVal14}`} aria-hidden="true" />
-      <div className={`${styles.effect} ${styles.effectVal15}`} aria-hidden="true" />
 
       <div className={styles.container}>
         <div className={styles.formCard}>
