@@ -3,7 +3,7 @@ import "./styles.css";
 import React from "react";
 import styles from "./styles.module.css";
 import Header from "../../components/layout/Header";
-import heroBg from "../../assets/images/ManualPage/heroBackground.jpg";
+
 
 const componentes = [
   {
