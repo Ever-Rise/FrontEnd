@@ -1,12 +1,9 @@
-<<<<<<< HEAD
 import { useState, useEffect, useRef } from "react";
 import "./styles.css";
-=======
 import React from "react";
 import styles from "./styles.module.css";
 import Header from "../../components/layout/Header";
 import heroBg from "../../assets/images/ManualPage/heroBackground.jpg";
->>>>>>> 5f2348656b67eeb1bf9adf21d15b99614b68e3aa
 
 const componentes = [
   {
