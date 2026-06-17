@@ -117,7 +117,7 @@ const LoginPage = () => {
               </div>
 
               <button type="submit" className={styles.primaryBtn} disabled={loading}>
-                {loading ? "Carregando..." : "Criar conta"}
+                {loading ? "Carregando..." : "Entrar  "}
               </button>
 
               <button type="button" className={styles.googleBtn}>
