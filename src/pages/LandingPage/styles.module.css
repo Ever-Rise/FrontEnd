@@ -71,13 +71,13 @@
   position: absolute;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 9px;
-  opacity: 0.55;
+  gap: 14px;
+  opacity: 0.6;
 }
 
 .dotGrid span {
-  width: 4px;
-  height: 4px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: var(--orange);
   display: block;
@@ -90,17 +90,45 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
-  padding: 86px 24px 110px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
   text-align: center;
 }
 
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+}
+
 .heroTitle {
-  margin: 0 auto;   
-  max-width: 760px;
-  font-size: 67px;
-  line-height: 0.85;
+  margin: 0 auto;
+  max-width: 860px;
+  font-size: 82px;
+  line-height: 0.9;
   font-weight: 800;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  min-height: 1.8em;
+}
+
+.typingCursor {
+  display: inline-block;
+  color: var(--orange);
+  font-weight: 300;
+  margin-left: 2px;
+  animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .navyText {
@@ -122,9 +150,9 @@
 }
 
 .heroSubtitle {
-  margin: 26px auto 0;
-  max-width: 560px;
-  font-size: 16.5px;
+  margin: 32px auto 0;
+  max-width: 620px;
+  font-size: 20px;
   line-height: 1.65;
   color: var(--gray-text);
 }
@@ -191,46 +219,53 @@
   z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 84px;
+  gap: 100px;
   align-items: center;
-  max-width: 1280px;
+  min-height: 100vh;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 40px 14px 100px;
+  padding: 100px 80px;
+}
+
+.founderLeft {
+  position: relative;
+  z-index: 1;
 }
 
 .founderHeading {
-  font-size: 52px;
+  font-size: 62px;
   font-weight: 800;
   line-height: 1.0;
   color: var(--navy);
-  margin: 0 0 22px;
+  margin: 0 0 32px;
 }
 
 .founderText {
-  font-size: 17.5px;
-  line-height: 1.85;
+  font-size: 19px;
+  line-height: 1.9;
   color: var(--gray-text);
-  margin: 0 0 18px;
+  margin: 0 0 22px;
 }
 
 .founderImageWrap {
   position: relative;
-  border-radius: 20px;
+  z-index: 1;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 30px 60px rgba(20, 10, 90, 0.18);
+  box-shadow: 0 40px 80px rgba(20, 10, 90, 0.22);
 }
 
 .founderImageWrap img {
   display: block;
   width: 100%;
-  height: 420px;
+  height: 560px;
   object-fit: cover;
 }
 
 .founderPortrait {
   position: relative;
   width: 100%;
-  height: 420px;
+  height: 620px;
   background: linear-gradient(155deg, var(--purple-deep) 0%, var(--navy-deep) 100%);
   display: flex;
   align-items: center;
@@ -240,37 +275,39 @@
 
 .founderQuote {
   position: absolute;
-  left: 18px;
-  right: 18px;
-  bottom: 18px;
-  padding: 16px 18px;
-  border-radius: 14px;
-  background: rgba(13, 10, 70, 0.72);
-  backdrop-filter: blur(6px);
+  left: 22px;
+  right: 22px;
+  bottom: 22px;
+  padding: 22px 24px;
+  border-radius: 16px;
+  background: rgba(13, 10, 70, 0.75);
+  backdrop-filter: blur(8px);
   color: var(--white);
 }
 
 .founderQuote p {
-  margin: 0 0 10px;
-  font-size: 13px;
+  margin: 0 0 12px;
+  font-size: 15px;
   font-style: italic;
-  line-height: 1.5;
-  opacity: 0.9;
+  line-height: 1.6;
+  opacity: 0.92;
 }
 
 .founderQuoteName {
-  font-size: 14.5px;
+  font-size: 16px;
   font-weight: 700;
 }
 
 .founderQuoteRole {
-  font-size: 12.5px;
+  font-size: 13.5px;
   opacity: 0.75;
 }
 
 @media (max-width: 880px) {
   .founder {
     grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 60px 24px;
   }
 }
 
@@ -281,7 +318,12 @@
   z-index: 1;
   overflow: hidden;
   background: var(--gray-bg);
-  padding: 80px 24px 96px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
   text-align: center;
 }
 
@@ -302,14 +344,15 @@
   position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  max-width: 920px;
+  max-width: 1000px;
+  width: 100%;
   margin: 0 auto;
-  gap: 24px;
+  gap: 32px;
 }
 
 .stepsLine {
   position: absolute;
-  top: 30px;
+  top: 38px;
   left: 8%;
   right: 8%;
   height: 1.5px;
@@ -324,8 +367,8 @@
 }
 
 .stepIcon {
-  width: 62px;
-  height: 62px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   background: var(--white);
   border: 1.5px solid #f0c9a4;
@@ -337,31 +380,31 @@
 }
 
 .stepNumber {
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background: var(--orange);
   color: var(--white);
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 14px 0 16px;
+  margin: 16px 0 18px;
 }
 
 .stepTitle {
-  font-size: 19px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--navy);
-  margin: 0 0 8px;
+  margin: 0 0 10px;
 }
 
 .stepDesc {
-  font-size: 13.5px;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--gray-text);
-  max-width: 230px;
+  max-width: 260px;
 }
 
 @media (max-width: 880px) {
@@ -380,9 +423,13 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
-  max-width: 1180px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 96px 24px 110px;
+  padding: 80px 24px;
 }
 
 .audienceHeadingWrap {
@@ -421,13 +468,13 @@
 .cardsRow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
+  gap: 30px;
 }
 
 .card {
   position: relative;
-  border-radius: 18px;
-  padding: 26px 24px 30px;
+  border-radius: 20px;
+  padding: 36px 30px 40px;
   background: linear-gradient(165deg, var(--purple-deep) 0%, var(--navy-deep) 100%);
   color: var(--white);
   box-shadow: 0 24px 48px rgba(30, 10, 90, 0.22);
@@ -436,59 +483,59 @@
 }
 
 .cardIcon {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
   background: var(--cream);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--orange);
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 }
 
 .cardTitle {
-  font-size: 19px;
+  font-size: 22px;
   font-weight: 700;
-  margin: 0 0 4px;
+  margin: 0 0 6px;
 }
 
 .cardLabel {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.06em;
   color: var(--orange-light);
-  margin: 0 0 14px;
+  margin: 0 0 16px;
 }
 
 .cardText {
-  font-size: 13.5px;
+  font-size: 15px;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.72);
-  margin: 0 0 20px;
+  margin: 0 0 24px;
 }
 
 .cardList {
   list-style: none;
-  margin: 0 0 22px;
+  margin: 0 0 28px;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   flex: 1;
 }
 
 .cardList li {
   display: flex;
   align-items: center;
-  gap: 9px;
-  font-size: 13.5px;
+  gap: 10px;
+  font-size: 15px;
   color: rgba(255, 255, 255, 0.88);
 }
 
 .cardCheck {
-  width: 17px;
-  height: 17px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
   color: var(--orange-light);
 }
@@ -496,10 +543,10 @@
 .cardButton {
   align-self: stretch;
   text-align: center;
-  padding: 11px 0;
-  border-radius: 9px;
+  padding: 14px 0;
+  border-radius: 10px;
   border: none;
-  font-size: 13.5px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--white);
   background: linear-gradient(180deg, #fa8a3c, var(--orange));
@@ -507,7 +554,7 @@
 }
 
 .cardLink {
-  font-size: 13.5px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--white);
   text-decoration: none;
@@ -567,8 +614,8 @@
 }
 
 .playButton {
-  width: 84px;
-  height: 84px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   background: var(--orange);
   border: 5px solid #6e5bd6;
@@ -586,45 +633,64 @@
   position: relative;
   z-index: 1;
   background: var(--gray-bg);
-  padding: 90px 24px 100px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
   text-align: center;
+  overflow: hidden;
 }
 
-.testimonialsRow {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+/* ── Carousel ── */
+.carouselViewport {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 52px;
+  cursor: grab;
+}
+
+.carouselViewport:active {
+  cursor: grabbing;
+}
+
+.carouselTrack {
+  display: flex;
   gap: 22px;
-  max-width: 1100px;
-  margin: 48px auto 0;
-  text-align: left;
+  width: max-content;
+  will-change: transform;
 }
 
 .testimonialCard {
   background: var(--white);
-  border-radius: 14px;
-  padding: 22px 22px 24px;
+  border-radius: 18px;
+  padding: 30px 28px 32px;
   box-shadow: 0 14px 30px rgba(20, 10, 90, 0.06);
+  width: 380px;
+  flex-shrink: 0;
+  text-align: left;
 }
 
 .stars {
   display: flex;
-  gap: 3px;
+  gap: 4px;
   color: var(--orange);
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .testimonialText {
-  font-size: 13.5px;
+  font-size: 15px;
   line-height: 1.7;
   color: var(--gray-text);
   font-style: italic;
-  margin: 0 0 18px;
+  margin: 0 0 22px;
 }
 
 .testimonialPerson {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .avatarCircle {
@@ -639,20 +705,14 @@
 }
 
 .testimonialName {
-  font-size: 13.5px;
+  font-size: 14.5px;
   font-weight: 700;
   color: var(--navy);
 }
 
 .testimonialRole {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--gray-text-light);
-}
-
-@media (max-width: 880px) {
-  .testimonialsRow {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* ============================= pricing ================================== */
@@ -661,24 +721,30 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
-  max-width: 1100px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 100px 24px 90px;
+  padding: 80px 24px;
   text-align: center;
 }
 
 .pricingRow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 28px;
   margin-top: 50px;
   align-items: start;
+  width: 100%;
 }
 
 .pricingCard {
   position: relative;
-  border-radius: 18px;
-  padding: 34px 26px 30px;
+  border-radius: 20px;
+  padding: 40px 30px 36px;
   background: linear-gradient(165deg, var(--purple-deep) 0%, var(--navy-deep) 100%);
   color: var(--white);
   box-shadow: 0 24px 48px rgba(30, 10, 90, 0.2);
@@ -705,47 +771,47 @@
 }
 
 .planName {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.04em;
   color: rgba(255, 255, 255, 0.85);
-  margin: 0 0 8px;
+  margin: 0 0 10px;
 }
 
 .planPrice {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 800;
   margin: 0;
 }
 
 .planPriceCustom {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
   font-style: italic;
   margin: 0;
 }
 
 .planPriceNote {
-  font-size: 11px;
+  font-size: 12px;
   color: rgba(255, 255, 255, 0.6);
-  margin: 2px 0 24px;
+  margin: 4px 0 28px;
 }
 
 .planFeatures {
   list-style: none;
-  margin: 0 0 26px;
+  margin: 0 0 30px;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 15px;
   text-align: left;
 }
 
 .planFeatures li {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13.5px;
+  gap: 10px;
+  font-size: 14.5px;
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -757,10 +823,10 @@
 .planButton {
   display: block;
   width: 100%;
-  padding: 12px 0;
-  border-radius: 9px;
+  padding: 14px 0;
+  border-radius: 10px;
   border: none;
-  font-size: 13.5px;
+  font-size: 14.5px;
   font-weight: 600;
   color: var(--white);
   background: linear-gradient(180deg, #fa8a3c, var(--orange));
@@ -783,7 +849,12 @@
   z-index: 1;
   overflow: hidden;
   text-align: center;
-  padding: 90px 24px 100px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
   background: linear-gradient(135deg, #0c0a4d 0%, #1e0e72 45%, #4b0fae 100%);
   color: var(--white);
 }
