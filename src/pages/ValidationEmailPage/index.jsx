@@ -1,76 +1,83 @@
 import React from 'react';
-import styles from './styles.module.css';
-import Relogio from '../../assets/icons/validação/relogio.svg';
-import Seta from '../../assets/icons/cadastro/seta.svg';
-import Email from '../../assets/icons/validação/email.svg';
 import { Link } from 'react-router-dom';
-
-const PAGE_NAME = 'Validação';
+import styles from './styles.module.css';
 
 const ValidationEmailPage = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Código validado / E-mail reenviado!");
+  };
+
   return (
+    <main className={styles.page}>
+      {/* 15 Elementos decorativos para preencher a tela sem imagem */}
+      <div className={`${styles.effect} ${styles.effectVal1}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectVal2}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectVal3}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectVal4}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectVal5}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectVal6}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectVal7}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectVal8}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectVal9}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectVal10}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectVal11}`} aria-hidden="true" />
+      <div className={`${styles.effect} ${styles.effectVal12}`} aria-hidden="true" />
+
       <div className={styles.container}>
-      {/* Linhas decorativas de fundo */}
-      <div className={`${styles.line} ${styles.lineOrange1}`}></div>
-      <div className={`${styles.line} ${styles.linePurple1}`}></div>
-      <div className={`${styles.line} ${styles.lineOrange2}`}></div>
-      <div className={`${styles.line} ${styles.linePurple2}`}></div>
-      <div className={`${styles.line} ${styles.linePurple3}`}></div>
+        <div className={styles.formCard}>
+          <header className={styles.cardHeader}>
+            <div className={styles.iconContainer}>
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                className={styles.icon}
+              >
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <h1>Valide seu e-mail</h1>
+            <p>
+              Enviamos um link de validação para o e-mail <strong>seuemail@gmail.com</strong>. 
+              Insira o código abaixo ou clique no link recebido para confirmar seu cadastro.
+            </p>
+          </header>
 
-      {/* Card Principal */}
-      <div className={styles.card}>
-        {/* Ícone de Email */}
-        <div className={styles.iconContainer}>
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor" 
-            strokeWidth="2" 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            className={styles.icon}
-          >
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-            <polyline points="22,6 12,13 2,6"></polyline>
-          </svg>
-        </div>
+          <form className={styles.form} onSubmit={handleSubmit} noValidate>
+            
+            <div className={styles.field}>
+              <input 
+                id="codigo"
+                type="text" 
+                name="codigo"
+                placeholder="Insira o código" 
+                aria-label="Insira o código de validação"
+                required
+              />
+            </div>
+            
+            <button type="submit" className={styles.primaryBtn}>
+              Reenviar e-mail de validação
+            </button>
 
-        <h1 className={styles.title}>Valide seu e-mail</h1>
-        
-        <p className={styles.description}>
-          Enviamos um link de validação para o e-mail <strong>seuemail@gmail.com</strong>. 
-          Clique no link para confirmar o seu Cadastro
-        </p>
+          </form>
 
-        <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
-          <div className={styles.inputWrapper}>
-            <input 
-              type="text" 
-              placeholder="Insira código" 
-              className={styles.input} 
-              aria-label="Insira o código de validação"
-            />
+          <div className={styles.divider}>
+            <span>ou</span>
           </div>
-          
-          <button type="submit" className={styles.buttonSubmit}>
-            Reenviar e-mail de validação
-          </button>
-        </form>
 
-        <div className={styles.dividerContainer}>
-          <div className={styles.lineDivider}></div>
-          <span className={styles.dividerText}>ou</span>
-          <div className={styles.lineDivider}></div>
+          <Link to="/forgot-password" className={styles.secondaryBtn}>
+            &lt; Alterar e-mail
+          </Link>
         </div>
-
-        <button className={styles.buttonBack}>
-        <Link to="/forgot-password" className={styles.buttonBack}>
-          &lt; Alterar e-mail
-        </Link>
-        </button>
       </div>
-    </div>
+    </main>
   );
 };
 
