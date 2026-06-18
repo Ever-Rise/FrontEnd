@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import styles from "./styles.module.css";
+import { Footer, Header } from "../../components";
+
 
 /* ============================================================
    small inline icons (no external assets needed)
@@ -174,32 +176,7 @@ function SectionDecor({ rings = [], dots = [], dashes = [] }) {
    navbar
    ============================================================ */
 
-function Navbar() {
-  const links = ["Home", "Sobre nós", "Vendas", "Info Guincho", "Parceiros", "Sustentabilidade"];
-  return (
-    <header className={styles.nav}>
-      <div className={styles.logo}>
-        <LogoMark />
-        <span className={styles.logoEver}>Ever</span>
-        <span className={styles.logoRise}>Rise</span>
-      </div>
-      <ul className={styles.navLinks}>
-        {links.map((l) => (
-          <li key={l}>
-            <a href="#">{l}</a>
-          </li>
-        ))}
-      </ul>
-      <div className={styles.navRight}>
-        <span className={styles.avatar}>
-          <IconPerson />
-        </span>
-        <span className={styles.loginText}>Login</span>
-        <IconChevronDown />
-      </div>
-    </header>
-  );
-}
+   <Header />
 
 /* ============================================================
    hero
@@ -621,6 +598,9 @@ function CTA() {
     </section>
   );
 }
+
+
+<Footer />
 
 /* ============================================================
    app

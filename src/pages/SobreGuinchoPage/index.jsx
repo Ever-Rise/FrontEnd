@@ -458,7 +458,7 @@ export default function SobreGuincho() {
       </section>
       </div>
 
-      <Footer />
+      <Footer className={styles.customFooter} />
     </>
   );
 }
