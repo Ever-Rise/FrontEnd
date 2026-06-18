@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import styles from "./styles.module.css";
+import Header from "../../components/layout/Header";
 
 /* ============================================================
    small inline icons (no external assets needed)
@@ -174,32 +175,7 @@ function SectionDecor({ rings = [], dots = [], dashes = [] }) {
    navbar
    ============================================================ */
 
-function Navbar() {
-  const links = ["Home", "Sobre nós", "Vendas", "Info Guincho", "Parceiros", "Sustentabilidade"];
-  return (
-    <header className={styles.nav}>
-      <div className={styles.logo}>
-        <LogoMark />
-        <span className={styles.logoEver}>Ever</span>
-        <span className={styles.logoRise}>Rise</span>
-      </div>
-      <ul className={styles.navLinks}>
-        {links.map((l) => (
-          <li key={l}>
-            <a href="#">{l}</a>
-          </li>
-        ))}
-      </ul>
-      <div className={styles.navRight}>
-        <span className={styles.avatar}>
-          <IconPerson />
-        </span>
-        <span className={styles.loginText}>Login</span>
-        <IconChevronDown />
-      </div>
-    </header>
-  );
-}
+
 
 /* ============================================================
    hero
@@ -207,6 +183,8 @@ function Navbar() {
 
 function Hero() {
   return (
+    
+
     <section className={styles.hero}>
       <SectionDecor
         rings={[
@@ -216,18 +194,12 @@ function Hero() {
         dots={[{ pos: { top: "8%", right: "6%" } }]}
         dashes={[{ pos: { top: "44%", left: "3%" } }]}
       />
+
       <h1 className={styles.heroTitle}>
-        <span className={styles.navyText}>Controle total </span>
-        <span className={styles.orangeGrad}>do seu</span>
-        <br />
-        <span className={styles.purpleGrad}>
-          guincho, sem
-          <br />
-          complicação
-        </span>
+        <span className={styles.navyText}>Controle total do seu guincho, sem compilação </span>
       </h1>
       <p className={styles.heroSubtitle}>
-        O EVERISE conecta famílias, clínicas e ONGs a um sistema simples de rastreamento e
+        O Ever Rise conecta famílias, clínicas e ONGs a um sistema simples de rastreamento e
         gestão em tempo real, de qualquer lugar.
       </p>
       <div className={styles.heroActions}>
@@ -250,13 +222,10 @@ function FounderStory() {
       <div>
         <h2 className={styles.founderHeading}>Criado por quem viveu o problema</h2>
         <p className={styles.founderText}>
-          Rafa construiu o EVERISE depois de enfrentar, na pele, a dificuldade de gerenciar
-          um serviço de guincho com informações fragmentadas, comunicação falha e clientes
-          sem respostas.
+          A história do Ever Rise não começou em uma prancheta isolada, mas sim na vivência prática de um problema real. Depois de enfrentar na pele a dificuldade de gerenciar um serviço de guincho, lidando com informações fragmentadas, comunicação falha e clientes sem respostas, ela se uniu aos seus amigos para mudar essa realidade.
         </p>
         <p className={styles.founderText}>
-          O produto nasceu da necessidade real — e foi desenhado para quem precisa de
-          clareza, não de mais complexidade.
+          Juntos, eles uniram forças, ideias e competências para construir o Ever Rise. O produto nasceu dessa necessidade genuína e foi totalmente desenhado para quem precisa de clareza, segurança e eficiência, sem espaço para complexidade desnecessária
         </p>
       </div>
       <div className={styles.founderImageWrap}>
@@ -298,7 +267,7 @@ function Steps() {
       title: "Controlar",
       desc: "Gestão completa via dashboard intuitivo com KPIs de alta precisão.",
     },
-  ];
+  ];  
 
   return (
     <section className={styles.steps}>
@@ -629,7 +598,6 @@ function CTA() {
 export default function App() {
   return (
     <div className={styles.page}>
-      <Navbar />
       <Hero />
       <FounderStory />
       <Steps />
