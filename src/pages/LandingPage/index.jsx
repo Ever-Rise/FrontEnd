@@ -222,10 +222,10 @@ function FounderStory() {
       <div>
         <h2 className={styles.founderHeading}>Criado por quem viveu o problema</h2>
         <p className={styles.founderText}>
-          A história do Ever Rise não começou em uma prancheta isolada, mas sim na vivência prática de um problema real. Depois de enfrentar na pele a dificuldade de gerenciar um serviço de guincho, lidando com informações fragmentadas, comunicação falha e clientes sem respostas, ela se uniu aos seus amigos para mudar essa realidade.
+          A história da Ever Rise não começou em uma prancheta isolada, mas sim na vivência prática de um problema real. Depois da Rafa e Dona Lidia (Sua mãe) enfrentar na pele a dificuldade de gerenciar um guincho, lidando com equipamento sem segurança. Ela se uniu aos seus amigos para mudar essa realidade.
         </p>
         <p className={styles.founderText}>
-          Juntos, eles uniram forças, ideias e competências para construir o Ever Rise. O produto nasceu dessa necessidade genuína e foi totalmente desenhado para quem precisa de clareza, segurança e eficiência, sem espaço para complexidade desnecessária
+          Juntos, eles uniram forças, ideias e competências para construir a Ever Rise. O produto nasceu dessa necessidade genuína e foi totalmente desenhado para quem precisa de clareza, segurança e eficiência, sem espaço para complexidade desnecessária
         </p>
       </div>
       <div className={styles.founderImageWrap}>
