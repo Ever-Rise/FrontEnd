@@ -465,7 +465,7 @@ export default function App() {
     <>
 
       <div className={styles.page}>
-
+        
         {/* ── HERO ── */}
         <section className={styles.hero}>
           <div className={styles.decorLayer} aria-hidden="true">
