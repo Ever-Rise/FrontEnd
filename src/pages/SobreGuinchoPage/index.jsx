@@ -34,7 +34,7 @@ import interfaceIcon from "../../assets/icons/SobreGuincho/icon_interface.svg";
 import telefoneIcon from "../../assets/icons/SobreGuincho/icon_telefone.svg";
 import emailIcon from "../../assets/icons/SobreGuincho/icon_email.svg";
 import instagramIcon from "../../assets/icons/SobreGuincho/icon_instagram.svg";
-import contatoImg from "../../assets/images/SobreGuincho/contato.jpg";
+import contatoImg from "../../assets/images/SobreGuincho/contato1.png";
 
 // Cards de features
 import acessivelIcon from "../../assets/icons/SobreGuincho/icon_acessivel.svg";
@@ -415,35 +415,38 @@ export default function SobreGuincho() {
       <section className={styles.everriseContact}>
         <div className={styles.container}>
           <div className={styles.contentSide}>
-            <h2 className={styles.title}>
-              Excelência que você sente,{" "}
-              <span className={styles.highlight}>confiança</span> que você vê
-            </h2>
-            <p className={styles.subtitle}>
-              EverRise movendo vidas com segurança, tecnologia e propósito
-            </p>
+            <div className={styles.textWrapper}>
+              <h2 className={styles.title}>
+                Excelência que você sente,<br />
+                <span className={styles.highlight}>confiança</span> que você vê.
+              </h2>
+              <p className={styles.subtitle}>
+                EverRise movendo vidas com segurança, tecnologia e propósito.
+              </p>
+            </div>
 
             <div className={styles.ctaBox}>
-              <h3>Fale com a EverRise</h3>
-              <p>Estamos prontos para falar com você</p>
+              <div className={styles.ctaHeader}>
+                <h3>Fale com a EverRise</h3>
+                <p>Nossa equipe está pronta para atender você.</p>
+              </div>
+
               <ul className={styles.contactList}>
                 <li>
                   <div className={styles.contactIconWrapper}>
-                    <img src={telefoneIcon} alt="" aria-hidden="true" />
+                    <img src={telefoneIcon} alt="Telefone" aria-hidden="true" />
                   </div>
                   <span className={styles.text}>(11) 00000-0000</span>
                 </li>
                 <li>
                   <div className={styles.contactIconWrapper}>
-                    <img src={emailIcon} alt="" aria-hidden="true" />
+                    <img src={emailIcon} alt="E-mail" aria-hidden="true" />
                   </div>
-                  <span className={styles.text}>
-                    everrisorganizacional@gmail.com
-                  </span>
+                  <span className={styles.text}>everrisorganizacional@gmail.com</span>
                 </li>
                 <li>
                   <div className={styles.contactIconWrapper}>
-                    <img src={instagramIcon} alt="" aria-hidden="true" />
+                    <img src={instagramIcon} alt="Instagram" aria-hidden="true" />
                   </div>
                   <span className={styles.text}>@everrise.oficial</span>
                 </li>
@@ -456,6 +459,7 @@ export default function SobreGuincho() {
           </div>
         </div>
       </section>
+
       </div>
 
       <Footer className={styles.customFooter} />

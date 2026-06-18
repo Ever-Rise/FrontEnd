@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import headerLogo from "../../../assets/images/Header/logo_sem_fundo.png";
@@ -16,8 +16,20 @@ const Header = () => {
     const mobileNavLinkClassName = ({ isActive }) =>
         `${styles.mobileNavLink} ${isActive ? styles.mobileNavLinkActive : ""}`;
 
+    const [isScrolled, setIsScrolled] = useState(false);
+
+        useEffect(() => {
+            const handleScroll = () => {
+                setIsScrolled(window.scrollY > 0);
+            };
+
+            window.addEventListener("scroll", handleScroll);
+
+            return () => window.removeEventListener("scroll", handleScroll);
+        }, []);
+
     return (
-        <header className={styles.header}>
+        <header className={`${styles.header} ${isScrolled ? styles.headerScrolled : ""}`}>
             <div className={styles.container}>
                 {/* Logo */}
                 <div className={styles.logoWrapper}>
