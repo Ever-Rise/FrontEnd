@@ -150,9 +150,10 @@ function ProjectedSection() {
   return (
     <section className="projected-section" ref={sectionRef}>
       <div className="projected-sticky">
-        <div className="badge-pill">
-            <div className="partnersEyebrowSquare"></div>
-            <h2 className="titulo-segunda">TECNOLOGIA QUE TRANSFORMA</h2></div>
+      <div className="badge-wrapper">
+        <div className="partnersEyebrowSquare"></div>
+        <div className="badge-pill">TECNOLOGIA QUE TRANSFORMA</div>
+      </div>
         <h2 className="section-title">Projetado para o que realmente importa</h2>
         <div className="projected-layout">
           <div className="projected-left">

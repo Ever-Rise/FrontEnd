@@ -242,9 +242,9 @@ img { display: block; max-width: 100%; object-fit: cover; }
   opacity: 0.35;
   transition: opacity 0.4s;
 }
-.projected-text-item.active { opacity: 1; }
-.projected-text-item strong { display: block; font-size: 18px; font-weight: 700; margin-bottom: 6px; color: var(--black); }
-.projected-text-item p { font-size: 14px; color: var(--gray-600); line-height: 1.6; }
+.projected-text-item.active {  opacity: 1; }
+.projected-text-item strong { display: block; font-size: 34px; font-weight: 700; margin-bottom: 6px; color: var(--black); }
+.projected-text-item p { font-size: 20px; color: var(--gray-600); line-height: 1.6; width: 700px; }
 .icon-bullet {
   background: var(--purple-light);
   color: var(--white);
@@ -257,27 +257,44 @@ img { display: block; max-width: 100%; object-fit: cover; }
   flex-shrink: 0;
   font-size: 14px;
   margin-top: 2px;
+  margin-left:-200px;
 }
 
-.badge-pill{
-  
-  background: linear-gradient(90deg, #FD742C, #FEB42D);
-  width: 60%;
+.badge-wrapper {
+  position: relative;        /* pai relativo para o quadrado se posicionar */
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.titulo-segunda{
-  width: 100%;
-  font-size: 30px;
-}
 .partnersEyebrowSquare {
-  position: absolute;
-  left: 40px;
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   background: #041062;
   border-radius: 14px;
-  z-index: 0;
-  bottom: 570px;
+  position: absolute;        /* fica em cima do badge */
+  left: 100px;                /* ligeiramente para fora à esquerda */
+  z-index: 1;                /* na frente do badge laranja */
+}
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;  
+  background: linear-gradient(90deg, #FD742C, #FEB42D);
+  border-radius: 50px;
+  font-size: 40px;
+  font-weight: 1000;
+  color: white;
+  z-index: 2;
+  margin-bottom: 0;
+  text-align: center;
+  margin-left: 130px;
+}
+
+.section-title{
+  margin-top: 30px;
+  text-align: center;
+  color: #1B3B8A;
 }
 
 
@@ -294,6 +311,7 @@ img { display: block; max-width: 100%; object-fit: cover; }
   transform: translateX(60px);
   transition: opacity 0.5s, transform 0.5s;
   box-shadow: var(--shadow);
+  
 }
 .projected-img.active {
   opacity: 1;
@@ -316,6 +334,7 @@ img { display: block; max-width: 100%; object-fit: cover; }
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
+  height: 120vh;
 }
 .winch3d-viewer {
   background: linear-gradient(135deg, #f5f0ff 0%, #fff5f0 100%);
