@@ -54,12 +54,26 @@ const plans = [
   { price: "$29,99/m", label: "Plano Business", features: ["Tudo do Pro", "Suporte 24/7", "Usuários ilimitados", "API dedicada"], cta: "Assinar Business", highlight: false },
 ];
 
+/* ─── Reusable section header: badge + blue square + title ─── */
+function SectionHeader({ badge, title, sub, squareStyle }) {
+  return (
+    <div className="section-header">
+      <div className="badge-wrapper">
+        <div className="partnersEyebrowSquare" style={squareStyle} />
+        <div className="badge-pill">{badge}</div>
+      </div>
+      {title && <h2 className="section-title">{title}</h2>}
+      {sub && <p className="section-sub">{sub}</p>}
+    </div>
+  );
+}
+
 /* ═══════════════════════════════════════════════════
-   SECTION: HERO with scroll-to-fullscreen video
+   SECTION: HERO
 ═══════════════════════════════════════════════════ */
 function HeroSection() {
   const sectionRef = useRef(null);
-  const [progress, setProgress] = useState(0); // 0→1: expanding; >1: leaving
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const onScroll = () => {
@@ -92,18 +106,13 @@ function HeroSection() {
           </div>
           <div
             className="hero-video-wrapper"
-            style={{
-              transform: `scale(${scale})`,
-              borderRadius: `${borderRadius}px`,
-              opacity,
-            }}
+            style={{ transform: `scale(${scale})`, borderRadius: `${borderRadius}px`, opacity }}
           >
             <video autoPlay muted loop playsInline className="hero-video">
               <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
-        {/* fullscreen overlay video */}
         <div
           className="hero-video-fullscreen"
           style={{ opacity: progress > 0.3 ? Math.min(1, (progress - 0.3) * 3) : 0, pointerEvents: progress > 0.5 ? "all" : "none" }}
@@ -113,7 +122,6 @@ function HeroSection() {
           </video>
         </div>
       </div>
-      {/* spacer so page scrolls */}
       <div style={{ height: "200vh" }} />
     </section>
   );
@@ -121,7 +129,6 @@ function HeroSection() {
 
 /* ═══════════════════════════════════════════════════
    SECTION: "Projetado para o que realmente importa"
-   – horizontal scroll through 3 images
 ═══════════════════════════════════════════════════ */
 function ProjectedSection() {
   const sectionRef = useRef(null);
@@ -150,11 +157,12 @@ function ProjectedSection() {
   return (
     <section className="projected-section" ref={sectionRef}>
       <div className="projected-sticky">
-      <div className="badge-wrapper">
-        <div className="partnersEyebrowSquare"></div>
-        <div className="badge-pill">TECNOLOGIA QUE TRANSFORMA</div>
-      </div>
-        <h2 className="section-title">Projetado para o que realmente importa</h2>
+        <SectionHeader
+          badge="TECNOLOGIA QUE TRANSFORMA"
+          title="Projetado para o que realmente importa"
+          squareStyle={{ left: "170px" }}
+
+        />
         <div className="projected-layout">
           <div className="projected-left">
             {slides.map((s, i) => (
@@ -197,9 +205,12 @@ function ProjectedSection() {
 function Winch3DSection() {
   return (
     <section className="winch3d-section">
-      <div className="badge-pill orange">COMEÇA DE TODOS OS ÂNGULOS</div>
-      <h2 className="section-title">Guincho 3D</h2>
-      <p className="section-sub">Interaja com o modelo 3D e veja cada detalhe do guincho.</p>
+      <SectionHeader
+        badge="COMEÇA DE TODOS OS ÂNGULOS"
+        title="Guincho 3D"
+        sub="Interaja com o modelo 3D e veja cada detalhe do guincho."
+        squareStyle={{ left: "160px" }}
+      />
       <div className="winch3d-viewer">
         <img src={IMG.winch} alt="Guincho 3D" className="winch-img" />
         <div className="winch3d-controls">
@@ -220,10 +231,12 @@ function CareSection() {
 
   return (
     <section className="care-section">
-      <div className="badge-pill">EXPERIÊNCIA INTERATIVA</div>
-      <h2 className="section-title">Cuidado em todos os momentos.</h2>
-      <p className="section-sub">Navegue e descubra como o guincho se adapta a diferentes ambientes da casa, proporcionando transferência seguras e confortáveis.</p>
-
+      <SectionHeader
+        badge="EXPERIÊNCIA INTERATIVA"
+        title="Cuidado em todos os momentos."
+        sub="Navegue e descubra como o guincho se adapta a diferentes ambientes da casa, proporcionando transferências seguras e confortáveis."
+        squareStyle={{ left: "220px" }}
+      />
       <div className="care-layout">
         <div className="care-tabs">
           {rooms.map((r, i) => (
@@ -261,8 +274,11 @@ function CareSection() {
 function TestimonialsSection() {
   return (
     <section className="testimonials-section">
-      <div className="badge-pill">Depoimentos</div>
-      <h2 className="section-title">Ratificado por profissionais da área da saúde</h2>
+      <SectionHeader
+        badge="DEPOIMENTOS"
+        title="Ratificado por profissionais da área da saúde"
+        squareStyle={{ left: "660px" }}
+      />
       <div className="testimonials-grid">
         {testimonials.map((t, i) => (
           <div key={i} className="testimonial-card">
@@ -287,7 +303,10 @@ function TestimonialsSection() {
 function PlansSection() {
   return (
     <section className="plans-section">
-      <div className="badge-pill orange">Planos acessíveis para todas as necessidades</div>
+      <SectionHeader
+        badge="PLANOS ACESSÍVEIS PARA TODAS AS NECESSIDADES"
+        title="Escolha o plano ideal para você"
+      />
       <div className="plans-grid">
         {plans.map((p, i) => (
           <div key={i} className={`plan-card ${p.highlight ? "highlight" : ""}`}>
@@ -311,8 +330,11 @@ function FAQSection() {
   const [open, setOpen] = useState(null);
   return (
     <section className="faq-section">
-      <div className="badge-pill">Perguntas frequentes</div>
-      <h2 className="section-title">Encontre respostas para perguntas frequentes sobre nossos serviços, preços e suporte para ajudá-lo a tomar decisões informadas com confiança</h2>
+      <SectionHeader
+        badge="PERGUNTAS FREQUENTES"
+        title="Encontre respostas para perguntas frequentes sobre nossos serviços, preços e suporte"
+        squareStyle={{ left: "70px" }}
+      />
       <div className="faq-list">
         {faqs.map((q, i) => (
           <div key={i} className={`faq-item ${open === i ? "open" : ""}`} onClick={() => setOpen(open === i ? null : i)}>
@@ -320,7 +342,11 @@ function FAQSection() {
               <span>{q}</span>
               <span className="faq-icon">{open === i ? "−" : "+"}</span>
             </div>
-            {open === i && <div className="faq-a">O Guincho EverRise oferece transferência segura, confortável e digna para pacientes com mobilidade reduzida, adaptando-se a diferentes ambientes do lar e instituições de saúde.</div>}
+            {open === i && (
+              <div className="faq-a">
+                O Guincho EverRise oferece transferência segura, confortável e digna para pacientes com mobilidade reduzida, adaptando-se a diferentes ambientes do lar e instituições de saúde.
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -347,31 +373,6 @@ function FooterCTA() {
 
 /* ═══════════════════════════════════════════════════
    NAVBAR
-═══════════════════════════════════════════════════ */
-function Navbar() {
-  return (
-    <nav className="navbar">
-      <div className="navbar-inner">
-        <div className="navbar-logo">
-          <span className="logo-icon">⬡</span>
-          <span className="logo-text">everRise</span>
-        </div>
-        <div className="navbar-links">
-          <a href="#">Home</a>
-          <a href="#">Como funciona</a>
-          <a href="#">Produtos</a>
-          <a href="#">Web Suporte</a>
-          <a href="#">Simulação</a>
-          <a href="#">Comunidade</a>
-        </div>
-        <button className="btn-primary small">Login</button>
-      </div>
-    </nav>
-  );
-}
-
-/* ═══════════════════════════════════════════════════
-   FOOTER
 ═══════════════════════════════════════════════════ */
 
 
