@@ -219,12 +219,14 @@
   z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 100px;
+  /* ↑ MUDANÇA: gap aumentado para separar mais os dois lados */
+  gap: 140px;
   align-items: center;
   min-height: 100vh;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 100px 80px;
+  /* ↑ MUDANÇA: padding lateral aumentado para dar mais espaço */
+  padding: 120px 100px;
 }
 
 .founderLeft {
@@ -255,11 +257,13 @@
   box-shadow: 0 40px 80px rgba(20, 10, 90, 0.22);
 }
 
+/* ↑ MUDANÇA: agora aceita img real — troque o placeholder pelo seu arquivo */
 .founderImageWrap img {
   display: block;
   width: 100%;
-  height: 560px;
+  height: 620px;
   object-fit: cover;
+  border-radius: 24px;
 }
 
 .founderPortrait {
@@ -306,6 +310,7 @@
 @media (max-width: 880px) {
   .founder {
     grid-template-columns: 1fr;
+    gap: 60px;
     min-height: auto;
     padding: 60px 24px;
   }
@@ -328,14 +333,15 @@
 }
 
 .sectionHeading {
-  font-size: 30px;
+  font-size: 50px;
   font-weight: 800;
   color: var(--navy);
   margin: 0 0 10px;
 }
 
+
 .sectionSubheading {
-  font-size: 15px;
+  font-size: 35px;
   color: var(--gray-text-light);
   margin: 0 0 56px;
 }
@@ -471,8 +477,39 @@
   gap: 30px;
 }
 
-.card {
+/* ── Card flip interaction ── */
+.cardFlipWrapper {
+  perspective: 1200px;
+  height: 100%;
+  min-height: 420px;
+}
+
+.cardFlipInner {
   position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.cardFlipped .cardFlipInner {
+  transform: rotateY(180deg);
+}
+
+.cardFront,
+.cardBack {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.cardBack {
+  transform: rotateY(180deg);
+}
+
+.card {
   border-radius: 20px;
   padding: 36px 30px 40px;
   background: linear-gradient(165deg, var(--purple-deep) 0%, var(--navy-deep) 100%);
@@ -480,6 +517,19 @@
   box-shadow: 0 24px 48px rgba(30, 10, 90, 0.22);
   display: flex;
   flex-direction: column;
+  height: 100%;
+}
+
+.cardBack.card {
+  justify-content: center;
+  gap: 28px;
+}
+
+.cardBackText {
+  font-size: 17px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0;
 }
 
 .cardIcon {
@@ -492,6 +542,10 @@
   justify-content: center;
   color: var(--orange);
   margin-bottom: 22px;
+}
+
+.cardBack .cardIcon {
+  margin-bottom: 0;
 }
 
 .cardTitle {
@@ -569,6 +623,7 @@
   }
 }
 
+
 /* ============================= video / scroll-driven ==================== */
 
 .videoSection {
@@ -577,12 +632,26 @@
   height: 230vh;
 }
 
+.videoStickyWrap {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  overflow: hidden;
+  background: var(--white);
+}
+
 .videoIntro {
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: 84px 24px 0;
-  transition: opacity 0.15s linear;
+  padding: 0 24px;
+  transition: opacity 0.12s linear, transform 0.12s linear;
+  max-width: 640px;
 }
 
 .videoIntro p {
@@ -593,20 +662,12 @@
   color: var(--gray-text);
 }
 
-.videoStickyWrap {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
 .videoBox {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background: linear-gradient(150deg, #b9b9ea, #9a9bdc);
-  box-shadow: 0 40px 80px rgba(30, 20, 90, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -626,7 +687,6 @@
   color: var(--white);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
 }
-
 /* ============================= testimonials ============================ */
 
 .testimonials {
@@ -643,11 +703,18 @@
   overflow: hidden;
 }
 
+.carouselDouble {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  margin-top: 52px;
+}
+
 /* ── Carousel ── */
 .carouselViewport {
   width: 100%;
   overflow: hidden;
-  margin-top: 52px;
   cursor: grab;
 }
 
@@ -657,40 +724,40 @@
 
 .carouselTrack {
   display: flex;
-  gap: 22px;
+  gap: 18px;
   width: max-content;
   will-change: transform;
 }
 
 .testimonialCard {
   background: var(--white);
-  border-radius: 18px;
-  padding: 30px 28px 32px;
-  box-shadow: 0 14px 30px rgba(20, 10, 90, 0.06);
-  width: 380px;
+  border-radius: 14px;
+  padding: 20px 22px 22px;
+  box-shadow: 0 8px 20px rgba(20, 10, 90, 0.06);
+  width: 280px;
   flex-shrink: 0;
   text-align: left;
 }
 
 .stars {
   display: flex;
-  gap: 4px;
+  gap: 3px;
   color: var(--orange);
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .testimonialText {
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: 13px;
+  line-height: 1.6;
   color: var(--gray-text);
   font-style: italic;
-  margin: 0 0 22px;
+  margin: 0 0 14px;
 }
 
 .testimonialPerson {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .avatarCircle {
@@ -705,13 +772,13 @@
 }
 
 .testimonialName {
-  font-size: 14.5px;
+  font-size: 12.5px;
   font-weight: 700;
   color: var(--navy);
 }
 
 .testimonialRole {
-  font-size: 13px;
+  font-size: 11.5px;
   color: var(--gray-text-light);
 }
 

@@ -228,6 +228,34 @@ const testimonials = [
   },
 ];
 
+const testimonialsRow2 = [
+  {
+    text: "A integração com nosso sistema foi perfeita. Em menos de 24 horas já tínhamos visibilidade total da frota.",
+    name: "Patrícia Mendes",
+    role: "CargoPrime",
+  },
+  {
+    text: "O dashboard é intuitivo e o suporte responde rapidíssimo. Melhor investimento que fizemos este ano.",
+    name: "Thiago Alves",
+    role: "VelozLog",
+  },
+  {
+    text: "Usamos para monitorar nossas ambulâncias. A precisão do rastreamento é impressionante.",
+    name: "Dra. Camila Ferreira",
+    role: "Clínica Saúde Total",
+  },
+  {
+    text: "Como ONG, precisávamos de transparência para nossos doadores. O EVERISE nos deu exatamente isso.",
+    name: "João Pedro Nunes",
+    role: "Instituto Esperança",
+  },
+  {
+    text: "Reduziu nosso custo operacional em 30% no primeiro mês. Os alertas automáticos fazem toda a diferença.",
+    name: "Sílvia Rocha",
+    role: "TransRota Sul",
+  },
+];
+
 const plans = [
   {
     name: "ESSENCIAL",
@@ -262,40 +290,37 @@ const plans = [
 ];
 
 /* ============================================================
-   Infinite Testimonials Carousel
+   Infinite Testimonials Carousel — single row
    ============================================================ */
 
-function TestimonialsCarousel() {
+function TestimonialsCarouselRow({ items, direction = "left" }) {
   const trackRef = useRef(null);
   const animRef = useRef(null);
   const posRef = useRef(0);
   const pausedRef = useRef(false);
-  const cardWidthRef = useRef(380);
-  const gapRef = useRef(22);
 
-  // Duplicate testimonials for seamless loop
-  const items = [...testimonials, ...testimonials, ...testimonials];
+  const allItems = [...items, ...items, ...items];
+  const speed = direction === "left" ? 0.35 : -0.35;
 
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
 
-    const speed = 0.6; // px per frame
-
     function getLoopWidth() {
       const cards = track.querySelectorAll(`.${styles.testimonialCard}`);
       if (cards.length === 0) return 0;
       const cardW = cards[0].offsetWidth;
-      const gap = gapRef.current;
-      return (cardW + gap) * testimonials.length;
+      const gap = 22;
+      return (cardW + gap) * items.length;
     }
 
     function animate() {
       if (!pausedRef.current) {
         posRef.current -= speed;
         const loopW = getLoopWidth();
-        if (loopW > 0 && posRef.current <= -loopW) {
-          posRef.current += loopW;
+        if (loopW > 0) {
+          if (posRef.current <= -loopW) posRef.current += loopW;
+          if (posRef.current > 0) posRef.current -= loopW;
         }
         track.style.transform = `translateX(${posRef.current}px)`;
       }
@@ -303,11 +328,8 @@ function TestimonialsCarousel() {
     }
 
     animRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      if (animRef.current) cancelAnimationFrame(animRef.current);
-    };
-  }, []);
+    return () => { if (animRef.current) cancelAnimationFrame(animRef.current); };
+  }, [speed, items.length]);
 
   return (
     <div
@@ -316,12 +338,10 @@ function TestimonialsCarousel() {
       onMouseLeave={() => { pausedRef.current = false; }}
     >
       <div className={styles.carouselTrack} ref={trackRef}>
-        {items.map((t, idx) => (
+        {allItems.map((t, idx) => (
           <div className={styles.testimonialCard} key={idx}>
             <div className={styles.stars}>
-              {Array.from({ length: 5 }).map((_, i) => (
-                <IconStar key={i} />
-              ))}
+              {Array.from({ length: 5 }).map((_, i) => <IconStar key={i} />)}
             </div>
             <p className={styles.testimonialText}>"{t.text}"</p>
             <div className={styles.testimonialPerson}>
@@ -333,6 +353,67 @@ function TestimonialsCarousel() {
             </div>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   Audience Card with flip interaction
+   ============================================================ */
+
+function AudienceCard({ c }) {
+  const [flipped, setFlipped] = React.useState(false);
+
+  return (
+    <div
+      className={`${styles.cardFlipWrapper} ${flipped ? styles.cardFlipped : ""}`}
+      onMouseEnter={() => setFlipped(true)}
+      onMouseLeave={() => setFlipped(false)}
+    >
+      <div className={styles.cardFlipInner}>
+        {/* FRONT */}
+        <div className={`${styles.card} ${styles.cardFront}`}>
+          <span className={styles.cardIcon}>{c.icon}</span>
+          <h3 className={styles.cardTitle}>{c.title}</h3>
+          <p className={styles.cardLabel}>{c.label}</p>
+          <p className={styles.cardText}>{c.text}</p>
+          <ul className={styles.cardList}>
+            {c.items.map((item) => (
+              <li key={item}>
+                <IconCheck className={styles.cardCheck} />
+                {item}
+              </li>
+            ))}
+          </ul>
+          {c.action?.type === "button" && (
+            <button className={styles.cardButton}>{c.action.label}</button>
+          )}
+          {c.action?.type === "link" && (
+            <a className={styles.cardLink} href="#">
+              {c.action.label} <IconArrowRight />
+            </a>
+          )}
+        </div>
+
+        {/* BACK */}
+        <div className={`${styles.card} ${styles.cardBack}`}>
+          <span className={styles.cardIcon}>{c.icon}</span>
+          <h3 className={styles.cardTitle}>{c.title}</h3>
+          <p className={styles.cardBackText}>
+            {c.title === "Família" && "Seus entes queridos merecem o máximo em segurança. Com alertas em tempo real e botão de pânico, você fica tranquilo onde quer que esteja."}
+            {c.title === "Clínicas" && "Cada segundo importa na saúde. Nosso sistema garante SLA rigoroso e rastreabilidade total, mantendo sua operação em conformidade e seus pacientes seguros."}
+            {c.title === "ONGs" && "Missões sociais exigem confiança. Com relatórios automáticos e dashboards transparentes, seus doadores acompanham cada passo do impacto gerado."}
+          </p>
+          {c.action?.type === "button" && (
+            <button className={styles.cardButton}>{c.action.label}</button>
+          )}
+          {c.action?.type === "link" && (
+            <a className={styles.cardLink} href="#">
+              {c.action.label} <IconArrowRight />
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -357,18 +438,24 @@ function VideoShowcase() {
 
       const vw = window.innerWidth;
       const vh = window.innerHeight;
-      const startWidth = Math.min(900, vw * 0.78);
+      const startWidth = Math.min(860, vw * 0.80);
       const startHeight = startWidth * (9 / 16);
       const width = startWidth + (vw - startWidth) * progress;
       const height = startHeight + (vh - startHeight) * progress;
-      const radius = 28 * (1 - progress);
+      const radius = 24 * (1 - progress);
 
       box.style.width = `${width}px`;
       box.style.height = `${height}px`;
       box.style.borderRadius = `${radius}px`;
 
       if (intro) {
-        intro.style.opacity = `${Math.max(0, 1 - progress * 2.2)}`;
+        // Fade text out quickly as scroll begins
+        const textOpacity = Math.max(0, 1 - progress * 4);
+        intro.style.opacity = `${textOpacity}`;
+        intro.style.transform = `translateY(${-progress * 50}px)`;
+        intro.style.pointerEvents = progress > 0.2 ? "none" : "";
+        // Collapse intro height once invisible so it doesn't push box down
+        intro.style.marginBottom = progress > 0.3 ? `-${intro.offsetHeight * Math.min(1, (progress - 0.3) / 0.3)}px` : "";
       }
     }
 
@@ -401,14 +488,14 @@ function VideoShowcase() {
 
   return (
     <section className={styles.videoSection} ref={sectionRef}>
-      <div className={styles.videoIntro} ref={introRef}>
-        <h2 className={styles.sectionHeading}>Veja o EVERISE em ação</h2>
-        <p>
-          Descubra como nossa plataforma simplifica a gestão de guinchos e frotas através de
-          uma interface intuitiva e automações poderosas.
-        </p>
-      </div>
       <div className={styles.videoStickyWrap}>
+        <div className={styles.videoIntro} ref={introRef}>
+          <h2 className={styles.sectionHeading}>Veja o EVERISE em ação</h2>
+          <p>
+            Descubra como nossa plataforma simplifica a gestão de guinchos e frotas através de
+            uma interface intuitiva e automações poderosas.
+          </p>
+        </div>
         <div className={styles.videoBox} ref={boxRef}>
           <button className={styles.playButton} aria-label="Reproduzir vídeo de demonstração">
             <IconPlay />
@@ -463,9 +550,8 @@ function TypingHeadline({ text, className }) {
 export default function App() {
   return (
     <>
-
       <div className={styles.page}>
-        
+
         {/* ── HERO ── */}
         <section className={styles.hero}>
           <div className={styles.decorLayer} aria-hidden="true">
@@ -521,6 +607,9 @@ export default function App() {
           </div>
 
           <div className={styles.founderImageWrap}>
+            {/* Troque o comentário abaixo pela sua imagem real:
+                <img src="/sua-imagem.jpg" alt="Rafa, fundadora da EVERISE" />
+                Enquanto isso, o placeholder abaixo será exibido. */}
             <div className={styles.founderPortrait}>
               <DotGrid style={{ top: "20px", left: "20px" }} />
               <IconPortrait />
@@ -563,6 +652,11 @@ export default function App() {
         <section className={styles.audience}>
           <div className={styles.decorLayer} aria-hidden="true">
             <DotGrid style={{ top: 0, right: "4%" }} />
+            <DotGrid style={{ bottom: "10%", left: "2%" }} count={42} cols={7} />
+            <span className={styles.ringPeach} style={{ width: 160, height: 160, bottom: "-40px", right: "-60px" }} />
+            <span className={styles.ringNavy} style={{ width: 70, height: 70, top: "30%", right: "2%" }} />
+            <span className={styles.dash} style={{ top: "15%", left: "5%" }} />
+            <span className={styles.dash} style={{ bottom: "25%", right: "8%", transform: "rotate(90deg)" }} />
           </div>
 
           <div className={styles.audienceHeadingWrap}>
@@ -577,28 +671,7 @@ export default function App() {
 
           <div className={styles.cardsRow}>
             {audienceCards.map((c) => (
-              <div className={styles.card} key={c.title}>
-                <span className={styles.cardIcon}>{c.icon}</span>
-                <h3 className={styles.cardTitle}>{c.title}</h3>
-                <p className={styles.cardLabel}>{c.label}</p>
-                <p className={styles.cardText}>{c.text}</p>
-                <ul className={styles.cardList}>
-                  {c.items.map((item) => (
-                    <li key={item}>
-                      <IconCheck className={styles.cardCheck} />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                {c.action?.type === "button" && (
-                  <button className={styles.cardButton}>{c.action.label}</button>
-                )}
-                {c.action?.type === "link" && (
-                  <a className={styles.cardLink} href="#">
-                    {c.action.label} <IconArrowRight />
-                  </a>
-                )}
-              </div>
+              <AudienceCard key={c.title} c={c} />
             ))}
           </div>
         </section>
@@ -608,8 +681,22 @@ export default function App() {
 
         {/* ── TESTIMONIALS ── */}
         <section className={styles.testimonials}>
+          <div className={styles.decorLayer} aria-hidden="true">
+            <DotGrid style={{ top: "6%", left: "2%" }} count={42} cols={7} />
+            <DotGrid style={{ bottom: "6%", right: "2%" }} count={42} cols={7} />
+            <span className={styles.ringPeach} style={{ width: 180, height: 180, top: "-50px", right: "-60px" }} />
+            <span className={styles.ringNavy} style={{ width: 80, height: 80, top: "-20px", right: "-20px" }} />
+            <span className={styles.ringPeach} style={{ width: 140, height: 140, bottom: "-40px", left: "-50px" }} />
+            <span className={styles.dash} style={{ top: "20%", right: "6%" }} />
+            <span className={styles.dash} style={{ bottom: "20%", left: "6%", transform: "rotate(90deg)" }} />
+          </div>
+
           <h2 className={styles.sectionHeading}>O que dizem nossos parceiros</h2>
-          <TestimonialsCarousel />
+
+          <div className={styles.carouselDouble}>
+            <TestimonialsCarouselRow items={testimonials} direction="left" />
+            <TestimonialsCarouselRow items={testimonialsRow2} direction="right" />
+          </div>
         </section>
 
         {/* ── PRICING ── */}
