@@ -139,6 +139,7 @@ const router = createBrowserRouter([
                         path: "/sustentabilidade",
                         element: withSuspense(SustentabilidadePage),
                     },
+                    { path: "/manual", element: withSuspense(ManualPage) },
                 ],
             },
             {
@@ -170,7 +171,6 @@ const router = createBrowserRouter([
                     },
                     { path: "/controle", element: withSuspense(ControlePage) },
                     { path: "/relatorio", element: withSuspense(RelatorioPage) },
-                    { path: "/manual", element: withSuspense(ManualPage) },
                     {
                         path: "/pagamento",
                         element: withSuspense(PagamentoPage),

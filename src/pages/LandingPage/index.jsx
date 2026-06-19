@@ -3,6 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import styles from "./styles.module.css";
 import Header from "../../components/layout/Header";
+import Footer from "../../components/layout/Footer";
 
 const glassCards = [
     {
@@ -285,10 +286,8 @@ function LandingPage() {
     }, []);
 
     return (
-        <>
-            <div className={styles.content}>
-                <Header />
-            </div>
+        <div className={styles.pageRoot}>
+            <Header />
 
             <section className={styles.heroContainer}>
                 <h1
@@ -742,7 +741,9 @@ function LandingPage() {
                     </div>
                 </div>
             </section>
-        </>
+
+            <Footer />
+        </div>
     );
 }
 

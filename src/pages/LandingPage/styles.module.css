@@ -47,6 +47,24 @@
     line-height: 1.6;
 }
 
+/* Espaçamento para compensar Header fixo e evitar sobreposição */
+.pageRoot {
+    position: relative;
+    padding-top: 110px; /* espaço padrão para header fixo */
+}
+
+@media (max-width: 860px) {
+    .pageRoot {
+        padding-top: 92px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pageRoot {
+        padding-top: 76px;
+    }
+}
+
 :global(img) {
     display: block;
     max-width: 100%;
