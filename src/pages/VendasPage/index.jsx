@@ -1,30 +1,30 @@
 import { useState, useEffect, useRef } from "react";
 import "./styles.css";
 import { Footer, Header } from "../../components";
-import GuinchoCrianca from '../../assets/images/Vendas/FotoDaCriancaQuarto.svg'
-import MulherGuincho from '../../assets/images/Vendas/Mulhernoquarto.svg'
-import Praticidade from '../../assets/images/Vendas/Praticidade.svg'
-import Guincho3d from '../../assets/images/Vendas/guincho3d.svg'
-import EverriseSala from '../../assets/images/Vendas/EverriseSala.svg'
-import GenericoSala from '../../assets/images/Vendas/GenericoSala.svg'
-import EverriseCorredor from '../../assets/images/Vendas/EverriseCorredor.svg'
-import GenericoCorredor from '../../assets/images/Vendas/GenericoCorredor.svg'
-import EverriseQuarto from '../../assets/images/Vendas/EverriseQuarto.svg'
-import GenericoQuarto from '../../assets/images/Vendas/GenericoQuarto.svg'
+import GuinchoCrianca from '../../assets/images/Vendas/FotoDaCriancaQuarto.svg';
+import MulherGuincho from '../../assets/images/Vendas/Mulhernoquarto.svg';
+import Praticidade from '../../assets/images/Vendas/Praticidade.svg';
+import Guincho3d from '../../assets/images/Vendas/guincho3d.svg';
+import EverriseSala from '../../assets/images/Vendas/EverriseSala.svg';
+import GenericoSala from '../../assets/images/Vendas/GenericoSala.svg';
+import EverriseCorredor from '../../assets/images/Vendas/EverriseCorredor.svg';
+import GenericoCorredor from '../../assets/images/Vendas/GenericoCorredor.svg';
+import EverriseQuarto from '../../assets/images/Vendas/EverriseQuarto.svg';
+import GenericoQuarto from '../../assets/images/Vendas/GenericoQuarto.svg';
 
-/* ─── placeholder images via picsum ─── */
+/* ─── IMAGES ─── */
 const IMG = {
   hero: "https://images.unsplash.com/photo-1576765607924-3f7b8410a787?w=800&q=80",
-  GuinchoCrianca: GuinchoCrianca,
-  MulherGuincho: MulherGuincho,
-  Praticidade: Praticidade,
-  Guincho3d: Guincho3d,
-  EverriseSala: EverriseSala,
-  GenericoSala: GenericoSala,
-  EverriseCorredor: EverriseCorredor,
-  GenericoCorredor: GenericoCorredor,
-  EverriseQuarto: EverriseQuarto,
-  GenericoQuarto: GenericoQuarto,
+  GuinchoCrianca,
+  MulherGuincho,
+  Praticidade,
+  Guincho3d,
+  EverriseSala,
+  GenericoSala,
+  EverriseCorredor,
+  GenericoCorredor,
+  EverriseQuarto,
+  GenericoQuarto,
   banheiro1: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80",
   banheiro2: "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=600&q=80",
   avatar1: "https://i.pravatar.cc/60?img=1",
@@ -64,7 +64,7 @@ const plans = [
   { price: "$29,99/m", label: "Plano Business", features: ["Tudo do Pro", "Suporte 24/7", "Usuários ilimitados", "API dedicada"], cta: "Assinar Business", highlight: false },
 ];
 
-/* ─── Reusable section header: badge + blue square + title ─── */
+/* ─── SECTION HEADER ─── */
 function SectionHeader({ badge, title, sub, squareStyle }) {
   return (
     <div className="section-header">
@@ -78,9 +78,7 @@ function SectionHeader({ badge, title, sub, squareStyle }) {
   );
 }
 
-/* ═══════════════════════════════════════════════════
-   SECTION: HERO
-═══════════════════════════════════════════════════ */
+/* ─── HERO ─── */
 function HeroSection() {
   const sectionRef = useRef(null);
   const [progress, setProgress] = useState(0);
@@ -137,9 +135,7 @@ function HeroSection() {
   );
 }
 
-/* ═══════════════════════════════════════════════════
-   SECTION: "Projetado para o que realmente importa"
-═══════════════════════════════════════════════════ */
+/* ─── PROJECTED ─── */
 function ProjectedSection() {
   const sectionRef = useRef(null);
   const [index, setIndex] = useState(0);
@@ -170,12 +166,7 @@ function ProjectedSection() {
         <SectionHeader
           badge="TECNOLOGIA QUE TRANSFORMA"
           title="Projetado para o que realmente importa"
-<<<<<<< HEAD
           squareStyle={{ left: "210px", transform: "translateX(0)" }}
-=======
-          squareStyle={{ left: "170px" }}
-
->>>>>>> 4aaf91141650df48171a3af8a0ae30e1e112d3de
         />
         <div className="projected-layout">
           <div className="projected-left">
@@ -213,9 +204,7 @@ function ProjectedSection() {
   );
 }
 
-/* ═══════════════════════════════════════════════════
-   SECTION: Guincho 3D
-═══════════════════════════════════════════════════ */
+/* ─── WINCH 3D ─── */
 function Winch3DSection() {
   return (
     <section className="winch3d-section">
@@ -223,11 +212,7 @@ function Winch3DSection() {
         badge="COMEÇA DE TODOS OS ÂNGULOS"
         title="Guincho 3D"
         sub="Interaja com o modelo 3D e veja cada detalhe do guincho."
-<<<<<<< HEAD
         squareStyle={{ left: "200px", transform: "translateX(0)" }}
-=======
-        squareStyle={{ left: "160px" }}
->>>>>>> 4aaf91141650df48171a3af8a0ae30e1e112d3de
       />
       <div className="winch3d-viewer">
         <img src={IMG.Guincho3d} alt="Guincho 3D" className="winch-img" />
@@ -241,9 +226,7 @@ function Winch3DSection() {
   );
 }
 
-/* ═══════════════════════════════════════════════════
-   SECTION: Cuidado em todos os momentos (tabs)
-═══════════════════════════════════════════════════ */
+/* ─── CARE ─── */
 function CareSection() {
   const [active, setActive] = useState(0);
 
@@ -253,11 +236,7 @@ function CareSection() {
         badge="EXPERIÊNCIA INTERATIVA"
         title="Cuidado em todos os momentos."
         sub="Navegue e descubra como o guincho se adapta a diferentes ambientes da casa, proporcionando transferências seguras e confortáveis."
-<<<<<<< HEAD
         squareStyle={{ left: "250px", transform: "translateX(0)" }}
-=======
-        squareStyle={{ left: "220px" }}
->>>>>>> 4aaf91141650df48171a3af8a0ae30e1e112d3de
       />
       <div className="care-layout">
         <div className="care-tabs">
@@ -272,37 +251,31 @@ function CareSection() {
           ))}
         </div>
         <div className="care-images">
-        <div className="care-compare-grid">
-          <div className="care-compare-col">
-            <div className="care-winch-label">Guincho EverRise</div>
-            <img src={rooms[active].imgs[0]} alt={rooms[active].label} className="care-img fade-in" />
+          <div className="care-compare-grid">
+            <div className="care-compare-col">
+              <div className="care-winch-label">Guincho EverRise</div>
+              <img src={rooms[active].imgs[0]} alt={rooms[active].label} className="care-img fade-in" />
+            </div>
+            <div className="care-compare-col">
+              <div className="care-winch-label">Guincho Generico</div>
+              <img src={rooms[active].imgs[1]} alt={rooms[active].label} className="care-img fade-in" />
+            </div>
           </div>
-          <div className="care-compare-col">
-            <div className="care-winch-label">Guincho Generico</div>
-            <img src={rooms[active].imgs[1]} alt={rooms[active].label} className="care-img fade-in" />
-          </div>
+          <button className="btn-outline-small">Salte para explorar os ambientes</button>
         </div>
-        <button className="btn-outline-small">Salte para explorar os ambientes</button>
-</div>
       </div>
     </section>
   );
 }
 
-/* ═══════════════════════════════════════════════════
-   SECTION: Testimonials
-═══════════════════════════════════════════════════ */
+/* ─── TESTIMONIALS ─── */
 function TestimonialsSection() {
   return (
     <section className="testimonials-section">
       <SectionHeader
         badge="DEPOIMENTOS"
         title="Ratificado por profissionais da área da saúde"
-<<<<<<< HEAD
         squareStyle={{ left: "680px", transform: "translateX(0)" }}
-=======
-        squareStyle={{ left: "660px" }}
->>>>>>> 4aaf91141650df48171a3af8a0ae30e1e112d3de
       />
       <div className="testimonials-grid">
         {testimonials.map((t, i) => (
@@ -322,19 +295,14 @@ function TestimonialsSection() {
   );
 }
 
-/* ═══════════════════════════════════════════════════
-   SECTION: Plans
-═══════════════════════════════════════════════════ */
+/* ─── PLANS ─── */
 function PlansSection() {
   return (
     <section className="plans-section">
       <SectionHeader
         badge="PLANOS ACESSÍVEIS PARA TODAS AS NECESSIDADES"
         title="Escolha o plano ideal para você"
-<<<<<<< HEAD
         squareStyle={{ left: "40px", transform: "translateX(0)" }}
-=======
->>>>>>> 4aaf91141650df48171a3af8a0ae30e1e112d3de
       />
       <div className="plans-grid">
         {plans.map((p, i) => (
@@ -352,9 +320,7 @@ function PlansSection() {
   );
 }
 
-/* ═══════════════════════════════════════════════════
-   SECTION: FAQ
-═══════════════════════════════════════════════════ */
+/* ─── FAQ ─── */
 function FAQSection() {
   const [open, setOpen] = useState(null);
   return (
@@ -362,11 +328,7 @@ function FAQSection() {
       <SectionHeader
         badge="PERGUNTAS FREQUENTES"
         title="Encontre respostas para perguntas frequentes sobre nossos serviços, preços e suporte"
-<<<<<<< HEAD
         squareStyle={{ left: "100px", transform: "translateX(0)" }}
-=======
-        squareStyle={{ left: "70px" }}
->>>>>>> 4aaf91141650df48171a3af8a0ae30e1e112d3de
       />
       <div className="faq-list">
         {faqs.map((q, i) => (
@@ -387,9 +349,7 @@ function FAQSection() {
   );
 }
 
-/* ═══════════════════════════════════════════════════
-   SECTION: Footer CTA
-═══════════════════════════════════════════════════ */
+/* ─── FOOTER CTA ─── */
 function FooterCTA() {
   return (
     <section className="footer-cta">
@@ -404,38 +364,7 @@ function FooterCTA() {
   );
 }
 
-/* ═══════════════════════════════════════════════════
-   NAVBAR
-═══════════════════════════════════════════════════ */
-<<<<<<< HEAD
-function Navbar() {
-  return (
-    <nav className="navbar">
-      <div className="navbar-inner">
-        <div className="navbar-logo">
-          <span className="logo-icon">⬡</span>
-          <span className="logo-text">everRise</span>
-        </div>
-        <div className="navbar-links">
-          <a href="#">Home</a>
-          <a href="#">Como funciona</a>
-          <a href="#">Produtos</a>
-          <a href="#">Web Suporte</a>
-          <a href="#">Simulação</a>
-          <a href="#">Comunidade</a>
-        </div>
-        <button className="btn-primary small">Login</button>
-      </div>
-    </nav>
-  );
-}
-=======
-
->>>>>>> 4aaf91141650df48171a3af8a0ae30e1e112d3de
-
-/* ═══════════════════════════════════════════════════
-   APP
-═══════════════════════════════════════════════════ */
+/* ─── APP ─── */
 export default function App() {
   return (
     <div className="app">
