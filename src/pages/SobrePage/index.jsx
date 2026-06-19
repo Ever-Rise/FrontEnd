@@ -54,9 +54,9 @@ export default function SobreNos() {
     foto: fotoAnderson,
     descricao:
       "Responsável pela liderança do projeto e desenvolvimento completo da plataforma.",
-    linkedin: "https://www.linkedin.com/in/joao2007pedro/",
-    github: "https://github.com/seuusuario",
-    instagram: "#",
+    linkedin: "https://www.linkedin.com/in/euandersonreis/",
+    github: "https://github.com/EuAndersonDev",
+    instagram: "https://www.instagram.com/Anderson_Reis04",
   },
 
   {
@@ -65,9 +65,9 @@ export default function SobreNos() {
     foto: fotoJoao,
     descricao:
       "Atua na organização da equipe e implementação das funcionalidades do sistema.",
-    linkedin: "#",
-    github: "https://github.com/seuusuario",
-    instagram: "#",
+    linkedin: "https://www.linkedin.com/in/joao2007pedro/",
+    github: "https://github.com/Joao2007Pedro",
+    instagram: "https://www.instagram.com/_.joao7.__?igsh=NjZ5d2x3Y3JzZTRj",
   },
 
   {
@@ -76,9 +76,9 @@ export default function SobreNos() {
     foto: fotoNalbert,
     descricao:
       "Desenvolvedor focado na construção da interface e experiência do usuário.",
-    linkedin: "https://linkedin.com/in/seu-usuario",
-    github: "https://github.com/seuusuario",
-    instagram: "#",
+    linkedin: "https://www.linkedin.com/in/nalbert-henri/",
+    github: "https://github.com/NalbertHenri",
+    instagram: "https://www.instagram.com/nalbert.henri/",
   },
 
   {
@@ -87,9 +87,8 @@ export default function SobreNos() {
     foto: fotoMariaEduarda,
     descricao:
       "Responsável pela identidade visual, prototipação e design da plataforma.",
-    linkedin: "https://linkedin.com/in/seu-usuario",
-    github: "https://github.com/seuusuario",
-    instagram: "#",
+    linkedin: "https://www.linkedin.com/in/maria-eduarda-carvalho-131954217/",
+    github: "https://github.com/dudacstech",
   },
 
   {
@@ -98,9 +97,9 @@ export default function SobreNos() {
     foto: fotoLeticia,
     descricao:
       "Atua no desenvolvimento visual e responsividade das páginas do projeto.",
-    linkedin: "https://linkedin.com/in/seu-usuario",
-    github: "https://github.com/seuusuario",
-    instagram: "#",
+    linkedin: "https://www.linkedin.com/in/let%C3%ADciaandradeads/",
+    github: "https://github.com/andradebjl24-cmyk",
+    instagram: "https://www.instagram.com/lelety011?igsh=MW40aWJqZXd5YzFhYQ==",
   },
 
   {
@@ -109,9 +108,9 @@ export default function SobreNos() {
     foto: fotoKaue,
     descricao:
       "Responsável pela implementação de componentes modernos e interativos.",
-    linkedin: "https://linkedin.com/in/seu-usuario",
-    github: "https://github.com/seuusuario",
-    instagram: "#",
+    linkedin: "https://www.linkedin.com/in/kau%C3%AA-rodrigues-de-sousa/",
+    github: "https://github.com/kauesousa1",
+    instagram: "https://www.instagram.com/kaue.ssousa?igsh=MWNmaGl2OHJqYjljdQ%3D%3D&utm_source=qr",
   },
   {
     nome: "João Victor",
@@ -119,9 +118,9 @@ export default function SobreNos() {
     foto: fotoJoaoVitor,
     descricao:
       "Focado na criação de interfaces intuitivas e acessíveis para usuários.",
-    linkedin: "https://linkedin.com/in/seu-usuario",
-    github: "https://github.com/seuusuario",
-    instagram: "#",
+    linkedin: "https://www.linkedin.com/in/joaovictorsanmed/",
+    github: "https://github.com/Joao-v-Medeiros",
+    instagram: "https://www.instagram.com/joao.mdeiross?igsh=MWljZGE2ZXA1OGxs",
   },
   {
     nome: "Rafaela Cintra",
@@ -129,9 +128,9 @@ export default function SobreNos() {
     foto: fotoRafaella,
     descricao:
       "Atua na construção das telas e melhorias da experiência visual do projeto.",
-    linkedin: "https://linkedin.com/in/seu-usuario",
-    github: "https://github.com/seuusuario",
-    instagram: "#",
+    linkedin: "https://www.linkedin.com/in/rafaella-cintra/",
+    github: "https://github.com/RafaCintra31",
+    instagram: "https://www.instagram.com/rafthiscintra?igsh=MWE1azZsdWplbG9sag%3D%3D&utm_source=qr",
   },
 ];
 

@@ -343,7 +343,7 @@ body {
 
 .partnersEyebrowDecor {
   position: absolute;
-  width: 60%;
+  width: 70%;
   height: 70%;
   background: linear-gradient(90deg, #FD742C, #FEB42D);
   border-radius: 20px;
@@ -352,7 +352,7 @@ body {
 
 .partnersEyebrowSquare {
   position: absolute;
-  left: 335px;
+  left: 200px;
   width: 70px;
   height: 70px;
   background: #041062;
