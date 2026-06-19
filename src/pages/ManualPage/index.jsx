@@ -116,11 +116,7 @@ function useInView() {
       },
       { threshold: 0.1 }
     );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
+    if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
@@ -129,7 +125,6 @@ function useInView() {
 
 function FadeUp({ children, delay = 0, className = "" }) {
   const [ref, visible] = useInView();
-
   return (
     <div
       ref={ref}
@@ -149,10 +144,7 @@ export default function ManualEverRise() {
   const [activeStatus, setActiveStatus] = useState(0);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setHeroVisible(true);
-    }, 100);
-
+    const timer = setTimeout(() => setHeroVisible(true), 100);
     return () => clearTimeout(timer);
   }, []);
 
@@ -160,39 +152,33 @@ export default function ManualEverRise() {
 
   return (
     <div className="manual">
-      {/* ================= HERO (somente headline) ================= */}
+
+      {/* ===== HERO ===== */}
       <section className="hero">
         <div className="hero-bg" />
-
         <div className={`container hero-content ${heroVisible ? "show" : ""}`}>
-          <span className="hero-tag">Manual Inteligente · EverRise 2025</span>
-
           <h1>
             Controle total do seu equipamento
             <span> sem complicação</span>
           </h1>
-
           <p>
             Tudo que você precisa para monitorar, operar e gerenciar
             recursos com precisão.
           </p>
-
           <div className="hero-buttons">
             <button className="btn-primary">
-              Abrir suporte
-              <FiArrowRight />
+              Abrir suporte <FiArrowRight />
             </button>
             <button className="btn-secondary">Explorar recursos</button>
           </div>
         </div>
-
         <div className="hero-scroll-cue">
           <span>Veja o painel</span>
           <div className="scroll-line" />
         </div>
       </section>
 
-      {/* ================= PAINEL / DASHBOARD ================= */}
+      {/* ===== PAINEL ===== */}
       <section className="panel" ref={panelRef}>
         <div className={`container panel-grid ${panelVisible ? "show" : ""}`}>
           <div className="panel-text">
@@ -203,7 +189,6 @@ export default function ManualEverRise() {
               equipamento em tempo real, direto do manual.
             </p>
           </div>
-
           <div className="dashboard">
             <div className="dashboard-main">
               <span>Status atual</span>
@@ -213,18 +198,15 @@ export default function ManualEverRise() {
                 Sistema ativo
               </div>
             </div>
-
             <div className="dashboard-row">
               <div className="dashboard-small">
                 <span>Bateria</span>
                 <h3>87%</h3>
               </div>
-
               <div className="dashboard-small">
                 <span>Monitoramento</span>
                 <h3>24/7</h3>
               </div>
-
               <div className="dashboard-small">
                 <span>Conexão</span>
                 <h3>Online</h3>
@@ -234,17 +216,16 @@ export default function ManualEverRise() {
         </div>
       </section>
 
-      {/* ================= FEATURES ================= */}
+      {/* ===== FEATURES 2x2 ===== */}
       <section className="features">
         <div className="container">
           <div className="section-title">
             <span>RECURSOS</span>
             <h2>Funcionalidades do sistema</h2>
           </div>
-
           <div className="features-grid">
             {funcionalidades.map((item, index) => (
-              <FadeUp key={index} delay={index * 120}>
+              <FadeUp key={index} delay={index * 100}>
                 <div className="feature-card">
                   <div className="feature-icon">{item.icon}</div>
                   <h3>{item.titulo}</h3>
@@ -256,7 +237,7 @@ export default function ManualEverRise() {
         </div>
       </section>
 
-      {/* ================= MONITORAMENTO DE SEGURANÇA ================= */}
+      {/* ===== SEGURANÇA ===== */}
       <section className="security" ref={securityRef}>
         <div className={`container security-wrap ${securityVisible ? "show" : ""}`}>
           <div className="section-title section-title-left">
@@ -264,35 +245,33 @@ export default function ManualEverRise() {
             <h2>Monitoramento de segurança</h2>
           </div>
 
-          <div className="security-console">
-            <div className="security-list">
-              {statusSeguranca.map((item, index) => (
-                <button
-                  key={item.code}
-                  className={`security-item tone-${item.tone} ${
-                    activeStatus === index ? "active" : ""
-                  }`}
-                  onClick={() => setActiveStatus(index)}
-                >
-                  <span className="security-item-icon">{item.icon}</span>
-                  <span className="security-item-text">
-                    <strong>{item.titulo}</strong>
-                    <small>CODE: {item.code}</small>
-                  </span>
-                </button>
-              ))}
-            </div>
+          {/* Fileira de status clicáveis */}
+          <div className="sec-tabs">
+            {statusSeguranca.map((item, index) => (
+              <button
+                key={item.code}
+                className={`sec-tab tone-${item.tone} ${activeStatus === index ? "active" : ""}`}
+                onClick={() => setActiveStatus(index)}
+              >
+                <span className="sec-tab-icon">{item.icon}</span>
+                <span className="sec-tab-label">
+                  <strong>{item.titulo}</strong>
+                  <small>CODE {item.code}</small>
+                </span>
+              </button>
+            ))}
+          </div>
 
-            <div className={`security-detail tone-${selected.tone}`}>
-              <div className="security-detail-top">
-                <span className="security-detail-code">CODE: {selected.code}</span>
-                <span className="security-detail-icon">{selected.icon}</span>
-              </div>
-
+          {/* Painel de detalhe */}
+          <div className={`sec-detail tone-${selected.tone}`}>
+            <div className="sec-detail-left">
+              <span className="sec-detail-code">CODE: {selected.code}</span>
               <h3>{selected.titulo}</h3>
-              <p className="security-detail-resumo">{selected.resumo}</p>
-
-              <div className="security-detail-proc">
+              <p>{selected.resumo}</p>
+            </div>
+            <div className="sec-detail-right">
+              <div className="sec-detail-icon">{selected.icon}</div>
+              <div className="sec-detail-proc">
                 <span>Procedimento</span>
                 <p>{selected.procedimento}</p>
               </div>
@@ -301,29 +280,23 @@ export default function ManualEverRise() {
         </div>
       </section>
 
-      {/* ================= CICLO DE MANUTENÇÃO ================= */}
+      {/* ===== MANUTENÇÃO ===== */}
       <section className="maintenance" ref={maintenanceRef}>
         <div className={`container ${maintenanceVisible ? "show" : ""}`}>
           <div className="section-title section-title-left">
             <span>CUIDADOS</span>
             <h2>Ciclo de manutenção</h2>
           </div>
-
           <div className="maintenance-grid">
             {manutencao.map((item, index) => (
-              <FadeUp key={item.titulo} delay={index * 120} className="maintenance-card-wrap">
+              <FadeUp key={item.titulo} delay={index * 120}>
                 <div className="maintenance-card">
                   <div className="maintenance-icon">{item.icon}</div>
                   <h3>{item.titulo}</h3>
                   <p>{item.texto}</p>
-
                   <div className="maintenance-bar">
-                    <div
-                      className="maintenance-bar-fill"
-                      style={{ width: `${item.progresso}%` }}
-                    />
+                    <div className="maintenance-bar-fill" style={{ width: `${item.progresso}%` }} />
                   </div>
-
                   <button className="maintenance-cta">{item.cta}</button>
                 </div>
               </FadeUp>
@@ -332,77 +305,67 @@ export default function ManualEverRise() {
         </div>
       </section>
 
-      {/* ================= SUPORTE ================= */}
+      {/* ===== SUPORTE ===== */}
       <section className="support">
-        <div className="container support-wrap">
-          <div className="support-text">
-            <h2>Ainda precisa de ajuda especializada?</h2>
-            <p>
-              Nossa equipe de engenharia e o assistente Fin estão disponíveis
-              24/7 para garantir que sua operação nunca pare.
-            </p>
-
-            <div className="support-contacts">
-              <div className="support-contact">
-                <span className="support-contact-icon">
-                  <FiPhone />
-                </span>
-                <div>
-                  <small>TELEFONE</small>
-                  <strong>0800 555 2000</strong>
+        <div className="container">
+          <div className="support-card">
+            <div className="support-text">
+              <h2>Ainda precisa de ajuda especializada?</h2>
+              <p>
+                Nossa equipe de engenharia e o assistente Fin estão disponíveis
+                24/7 para garantir que sua operação nunca pare.
+              </p>
+              <div className="support-contacts">
+                <div className="support-contact">
+                  <span className="support-contact-icon"><FiPhone /></span>
+                  <div>
+                    <small>TELEFONE</small>
+                    <strong>0800 555 2000</strong>
+                  </div>
+                </div>
+                <div className="support-contact">
+                  <span className="support-contact-icon"><FiMail /></span>
+                  <div>
+                    <small>E-MAIL</small>
+                    <strong>suporte@everrise.med</strong>
+                  </div>
                 </div>
               </div>
-
-              <div className="support-contact">
-                <span className="support-contact-icon">
-                  <FiMail />
-                </span>
-                <div>
-                  <small>E-MAIL</small>
-                  <strong>suporte@everrise.med</strong>
-                </div>
-              </div>
-            </div>
-
-            <button className="btn-support">
-              <FiMessageCircle />
-              Falar com Fin agora
-            </button>
-          </div>
-
-          <div className="support-chat">
-            <div className="support-chat-header">
-              <span className="support-chat-avatar">
+              <button className="btn-support">
                 <FiMessageCircle />
-              </span>
-              <div>
-                <strong>Fin</strong>
-                <small>Online agora</small>
-              </div>
-            </div>
-
-            <div className="support-chat-body">
-              <div className="bubble bubble-bot">
-                Olá! Identifiquei que você está revisando o Guia de
-                Segurança. Deseja que eu explique o código 042?
-              </div>
-              <div className="bubble bubble-user">
-                Sim, por favor. O que significa exatamente?
-              </div>
-              <div className="bubble bubble-bot bubble-typing">
-                <span /> <span /> <span />
-              </div>
-            </div>
-
-            <div className="support-chat-input">
-              <input type="text" placeholder="Escreva sua dúvida..." disabled />
-              <button>
-                <FiSend />
+                Falar com Fin agora
               </button>
+            </div>
+
+            <div className="support-chat">
+              <div className="support-chat-header">
+                <span className="support-chat-avatar"><FiMessageCircle /></span>
+                <div>
+                  <strong>Fin</strong>
+                  <small>Online agora</small>
+                </div>
+              </div>
+              <div className="support-chat-body">
+                <div className="bubble bubble-bot">
+                  Olá! Identifiquei que você está revisando o Guia de Segurança.
+                  Deseja que eu explique o código 042?
+                </div>
+                <div className="bubble bubble-user">
+                  Sim, por favor. O que significa exatamente?
+                </div>
+                <div className="bubble bubble-bot bubble-typing">
+                  <span /><span /><span />
+                </div>
+              </div>
+              <div className="support-chat-input">
+                <input type="text" placeholder="Escreva sua dúvida..." disabled />
+                <button><FiSend /></button>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
     </div>
   );
 }
