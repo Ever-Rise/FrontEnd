@@ -60,8 +60,8 @@ img { display: block; max-width: 100%; object-fit: cover; }
   color: var(--gray-600);
   border: 1.5px solid var(--gray-300, #D1D5DB);
   border-radius: 50px;
-  padding: 8px 20px;
-  font-size: 13px;
+  padding: 10px 24px;
+  font-size: 15px;
   cursor: pointer;
   margin-top: 16px;
   display: flex;
@@ -93,13 +93,49 @@ img { display: block; max-width: 100%; object-fit: cover; }
   color: var(--black);
   line-height: 1.2;
   margin-bottom: 16px;
+  margin-top: 16px;
+  text-align: center;
+  color: #1B3B8A;
 }
 .section-sub {
-  font-size: clamp(14px, 1.6vw, 16px);
+  font-size: clamp(16px, 1.8vw, 20px);
   color: var(--gray-600);
-  max-width: 600px;
-  line-height: 1.6;
+  max-width: 700px;
+  line-height: 1.7;
   margin-bottom: 40px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Badge wrapper ── */
+.badge-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.partnersEyebrowSquare {
+  width: clamp(50px, 8vw, 100px);
+  height: clamp(50px, 8vw, 100px);
+  background: #041062;
+  border-radius: 14px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(clamp(10px, 4vw, 40px));
+  z-index: 1;
+}
+
+/* Section header block */
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
 }
 
 /* ──────────────────────────────────────────
@@ -147,6 +183,8 @@ img { display: block; max-width: 100%; object-fit: cover; }
 }
 
 .hero-content-row {
+  position: absolute;
+  inset: 0;
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
@@ -154,57 +192,29 @@ img { display: block; max-width: 100%; object-fit: cover; }
   display: flex;
   align-items: center;
   gap: clamp(32px, 5vw, 60px);
-  transition: opacity 0.1s;
   z-index: 2;
-  position: relative;
+  pointer-events: auto;
+  transition: opacity 0.05s linear;
 }
 
 .hero-text { flex: 1; min-width: 0; }
 
 .hero-eyebrow {
-  font-size: clamp(24px, 4vw, 40px);
+  font-size: clamp(28px, 5vw, 52px);
   font-weight: 800;
   color: var(--black);
-  line-height: 1.25;
+  line-height: 1.2;
   margin-bottom: 20px;
-  width: 100%;
-  max-width: 800px;
+  max-width: 700px;
+  text-align: center;
 }
+
 .hero-desc {
-  font-size: clamp(16px, 2.5vw, 30px);
+  font-size: clamp(15px, 2vw, 22px);
   color: var(--gray-600);
   line-height: 1.7;
-  margin-bottom: 32px;
-  min-width: 0;
-}
-
-.hero-video-wrapper {
-  width: clamp(240px, 33vw, 400px);
-  height: clamp(160px, 22vw, 260px);
-  overflow: hidden;
-  transform-origin: center center;
-  transition: border-radius 0.05s;
-  flex-shrink: 0;
-  position: relative;
-  z-index: 3;
-}
-.hero-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hero-video-fullscreen {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  background: #000;
-  transition: opacity 0.2s;
-}
-.hero-video-fullscreen video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 560px;
+  text-align: center;
 }
 
 /* ──────────────────────────────────────────
@@ -234,7 +244,6 @@ img { display: block; max-width: 100%; object-fit: cover; }
   margin-top: 32px;
 }
 
-/* Left column — text items */
 .projected-left {
   flex: 1;
   min-width: 0;
@@ -280,58 +289,6 @@ img { display: block; max-width: 100%; object-fit: cover; }
   margin-left: clamp(-60px, -12vw, -200px);
 }
 
-/* ── Badge wrapper — always centered ── */
-.badge-wrapper {
-  position: relative;
-  display: flex;          /* full-width row so it can center */
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-/* The orange pill sits on top (z-index: 2) */
-.badge-pill {
-  position: relative;
-  z-index: 2;
-  margin-left: 0;         /* override old offset — centering handles it */
-}
-
-.partnersEyebrowSquare {
-  width: clamp(50px, 8vw, 100px);
-  height: clamp(50px, 8vw, 100px);
-  background: #041062;
-  border-radius: 14px;
-  position: absolute;
-  /* sit ~60% of its own width to the right of the pill's left edge */
-  /* We use translate trick: center + nudge right by half the pill width */
-  left: 50%;
-  transform: translateX(clamp(10px, 4vw, 40px));
-  z-index: 1;
-}
-
-/* Section header block — centralised across every section */
-.section-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-}
-
-.section-title {
-  margin-top: 16px;
-  text-align: center;
-  color: #1B3B8A;
-}
-
-.section-sub {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Right column — images (wider) */
 .projected-right {
   flex: 1.6;
   width: 58%;
@@ -379,14 +336,13 @@ img { display: block; max-width: 100%; object-fit: cover; }
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
-  max-height:1200px;
+  
 }
-
 .winch-img {
   width: 600px;
   margin: 0 auto 40px;
   filter: drop-shadow(0 20px 40px rgba(107,47,217,0.2));
-  height: 600px;
+  height: auto;
 }
 .winch3d-controls {
   display: flex;
@@ -403,8 +359,8 @@ img { display: block; max-width: 100%; object-fit: cover; }
    CARE SECTION
 ────────────────────────────────────────── */
 .care-section {
-  padding: clamp(60px, 8vw, 100px) clamp(24px, 6vw, 80px);
-  max-width: 1200px;
+  padding: clamp(60px, 8vw, 100px) clamp(8px, 2vw, 24px);
+  max-width: 1600px;
   margin: 0 auto;
 }
 .care-layout {
@@ -413,24 +369,25 @@ img { display: block; max-width: 100%; object-fit: cover; }
   align-items: flex-start;
 }
 .care-tabs {
-  flex: 0 0 clamp(220px, 28vw, 340px);
+   flex: 0 0 clamp(220px, 26vw, 420px);
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-
 .care-compare-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(10px, 1.5vw, 16px);
+  gap: clamp(12px, 2vw, 20px);
+  width: 100%;
 }
 
 .care-compare-col {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
+  min-width: 0;
 }
-
 .care-tab {
   background: none;
   border: none;
@@ -446,7 +403,7 @@ img { display: block; max-width: 100%; object-fit: cover; }
 .care-tab:hover { background: var(--gray-50); }
 .care-tab.active { background: var(--gray-100); }
 .tab-num {
-  font-size: clamp(16px, 2vw, 22px);
+  font-size: clamp(20px, 2.5vw, 28px);
   font-weight: 800;
   color: var(--gray-300, #D1D5DB);
   min-width: 36px;
@@ -454,15 +411,30 @@ img { display: block; max-width: 100%; object-fit: cover; }
   transition: color 0.2s;
 }
 .care-tab.active .tab-num { color: var(--purple); }
-.care-tab strong { display: block; font-size: clamp(13px, 1.5vw, 16px); font-weight: 700; color: var(--black); margin-bottom: 4px; }
-.care-tab p { font-size: clamp(11px, 1.2vw, 13px); color: var(--gray-600); line-height: 1.5; }
-
-.care-images { flex: 1; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.care-tab strong {
+  display: block;
+  font-size: clamp(18px, 2vw, 24px); /* era clamp(16px, 1.8vw, 20px) */
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 6px;
+}
+.care-tab p {
+  font-size: clamp(14px, 1.6vw, 18px); /* era clamp(13px, 1.4vw, 16px) */
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+.care-images {
+  flex: 2.5; /* era 1.5 — ocupa muito mais espaço */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
 .care-winch-label {
-  font-size: clamp(15px, 1.8vw, 20px);
+  font-size: clamp(20px, 2.4vw, 28px); /* era clamp(18px, 2vw, 24px) */
   font-weight: 800;
   color: var(--black);
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 .care-winch-label.secondary { margin-top: 16px; }
 .care-imgs-grid {
@@ -472,7 +444,7 @@ img { display: block; max-width: 100%; object-fit: cover; }
 }
 .care-img {
   width: 100%;
-  height: clamp(140px, 16vw, 220px);
+  height: clamp(260px, 28vw, 420px); /* altura maior também */
   border-radius: var(--radius);
   object-fit: cover;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
@@ -491,30 +463,41 @@ img { display: block; max-width: 100%; object-fit: cover; }
   padding: clamp(60px, 8vw, 100px) clamp(24px, 6vw, 80px);
   text-align: center;
 }
-.testimonials-section .section-title { text-align: center; }
 .testimonials-section .section-sub { margin: 0 auto 48px; }
 .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: clamp(12px, 2vw, 20px);
-  max-width: 1200px;
+  gap: clamp(16px, 2.5vw, 28px);
+  max-width: 1400px;
   margin: 0 auto;
 }
 .testimonial-card {
   background: var(--white);
   border-radius: var(--radius);
-  padding: clamp(18px, 2.5vw, 28px) clamp(14px, 2vw, 24px);
+  padding: clamp(24px, 3vw, 40px) clamp(20px, 2.5vw, 32px);
   text-align: left;
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-.testimonial-text { font-size: clamp(12px, 1.3vw, 14px); color: var(--gray-600); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+.testimonial-text {
+  font-size: clamp(15px, 1.6vw, 18px);
+  color: var(--gray-600);
+  line-height: 1.8;
+  margin-bottom: 24px;
+  font-style: italic;
+}
 .testimonial-author { display: flex; align-items: center; gap: 12px; }
-.testimonial-author img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
-.testimonial-author strong { display: block; font-size: clamp(12px, 1.3vw, 14px); color: var(--black); }
-.testimonial-author span { font-size: clamp(10px, 1.1vw, 12px); color: var(--gray-400); }
-
+.testimonial-author img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; }
+.testimonial-author strong {
+  display: block;
+  font-size: clamp(15px, 1.6vw, 18px);
+  color: var(--black);
+}
+.testimonial-author span {
+  font-size: clamp(13px, 1.3vw, 15px);
+  color: var(--gray-400);
+}
 /* ──────────────────────────────────────────
    PLANS
 ────────────────────────────────────────── */
@@ -566,7 +549,6 @@ img { display: block; max-width: 100%; object-fit: cover; }
   margin: 0 auto;
   text-align: center;
 }
-.faq-section .section-title { font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; }
 .faq-list { margin-top: 40px; display: flex; flex-direction: column; gap: 4px; }
 .faq-item {
   border: 1.5px solid var(--gray-200);
@@ -580,17 +562,17 @@ img { display: block; max-width: 100%; object-fit: cover; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: clamp(14px, 2vw, 18px) clamp(16px, 2.5vw, 24px);
-  font-size: clamp(13px, 1.5vw, 15px);
+  padding: clamp(16px, 2.2vw, 22px) clamp(18px, 2.8vw, 28px);
+  font-size: clamp(15px, 1.8vw, 18px);
   font-weight: 500;
   color: var(--black);
 }
 .faq-icon { color: var(--purple); font-size: 20px; font-weight: 300; flex-shrink: 0; margin-left: 16px; }
 .faq-a {
-  padding: 0 clamp(16px, 2.5vw, 24px) clamp(14px, 2vw, 18px);
-  font-size: clamp(12px, 1.4vw, 14px);
+  padding: 0 clamp(18px, 2.8vw, 28px) clamp(16px, 2.2vw, 22px);
+  font-size: clamp(14px, 1.6vw, 16px);
   color: var(--gray-600);
-  line-height: 1.7;
+  line-height: 1.8;
   text-align: left;
   animation: fadeIn 0.2s ease;
 }
@@ -655,32 +637,26 @@ img { display: block; max-width: 100%; object-fit: cover; }
 @media (max-width: 1024px) {
   .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
   .plans-grid { grid-template-columns: repeat(2, 1fr); }
-
   .projected-layout { gap: 40px; }
   .projected-text-item p { max-width: 100%; }
   .icon-bullet { margin-left: -40px; }
-
   .hero-eyebrow { max-width: 100%; }
 }
 
 /* ── Tablet portrait (≤768px) ── */
 @media (max-width: 768px) {
-  /* Navbar */
   .navbar-links { display: none; }
   .navbar-inner { gap: 16px; }
 
-  /* Hero */
   .hero-content-row {
     flex-direction: column;
     padding: 24px 20px;
     gap: 24px;
     text-align: center;
   }
-  .hero-video-wrapper { width: 100%; height: clamp(180px, 50vw, 280px); }
   .hero-eyebrow { font-size: clamp(22px, 5vw, 32px); }
   .hero-desc { font-size: clamp(14px, 3.5vw, 18px); }
 
-  /* Projected — stack vertically */
   .projected-sticky {
     position: relative;
     top: auto;
@@ -703,62 +679,46 @@ img { display: block; max-width: 100%; object-fit: cover; }
   .badge-pill { font-size: clamp(13px, 4vw, 18px); }
   .partnersEyebrowSquare { display: none; }
   .badge-wrapper { justify-content: center; }
-
   .section-title { font-size: clamp(20px, 5vw, 28px); margin-top: 16px; }
 
-  /* Care */
   .care-layout { flex-direction: column; }
   .care-tabs { flex: none; width: 100%; }
   .care-imgs-grid { grid-template-columns: 1fr; }
   .care-img { height: clamp(160px, 45vw, 240px); }
 
-  /* Testimonials */
   .testimonials-grid { grid-template-columns: 1fr 1fr; }
-
-  /* Plans */
   .plans-grid { grid-template-columns: 1fr; }
 
-  /* Footer CTA */
   .footer-cta-content { flex-direction: column; }
   .footer-cta-img { width: 100%; height: clamp(160px, 50vw, 240px); }
-
-  /* Footer */
   .footer-inner { flex-direction: column; gap: 24px; }
   .footer-links { gap: 24px; }
 }
 
 /* ── Mobile (≤480px) ── */
 @media (max-width: 480px) {
-  /* Hero */
   .hero-sticky { height: auto; min-height: calc(100vh - 64px); padding: 32px 0; }
   .hero-eyebrow { font-size: clamp(20px, 6vw, 28px); }
   .hero-desc { font-size: clamp(13px, 4vw, 16px); }
 
-  /* Projected */
   .projected-images { height: clamp(180px, 60vw, 280px); }
   .projected-text-item strong { font-size: clamp(15px, 4.5vw, 20px); }
   .projected-text-item p { font-size: 13px; }
 
-  /* Testimonials */
   .testimonials-grid { grid-template-columns: 1fr; }
 
-  /* Plans */
   .plan-card { padding: 24px 18px; }
   .plan-price { font-size: clamp(22px, 6vw, 28px); }
 
-  /* Buttons */
   .btn-primary.large { width: 100%; justify-content: center; }
   .btn-outline { width: 100%; justify-content: center; }
 
-  /* FAQ */
   .faq-q { font-size: 13px; }
 
-  /* Footer */
   .footer-links { flex-direction: column; gap: 20px; }
   .footer-cta { padding: 40px 20px; }
   .footer-cta-text h2 { font-size: clamp(20px, 6vw, 28px); }
 
-  /* Winch */
   .winch3d-section { height: auto; padding: 60px 20px; }
   .winch3d-controls { gap: 20px; }
 }

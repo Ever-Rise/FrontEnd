@@ -88,49 +88,78 @@ function HeroSection() {
       const el = sectionRef.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
-      const sectionH = el.offsetHeight;
       const scrolled = -rect.top;
-      const p = Math.max(0, Math.min(1, scrolled / (sectionH * 0.5)));
+      const totalScroll = el.offsetHeight - window.innerHeight;
+      const p = Math.max(0, Math.min(1, scrolled / totalScroll));
       setProgress(p);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scale = 1 + progress * 1.2;
-  const borderRadius = Math.max(0, 24 - progress * 24);
-  const opacity = progress < 0.9 ? 1 : 1 - (progress - 0.9) * 10;
+  const textOpacity = Math.max(0, 1 - progress / 0.3);
+
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+
+  const initW = Math.min(500, vw * 0.5);
+  const initH = initW * 0.6;
+
+  const videoW = initW + (vw - initW) * progress;
+  const videoH = initH + (vh - initH) * progress;
+  const borderRadius = 24 * (1 - progress);
+  const videoLeft = (vw - videoW) / 2;
 
   return (
     <section className="hero-section" ref={sectionRef}>
       <div className="hero-sticky">
-        <div className="hero-content-row" style={{ opacity: progress > 0.3 ? 0 : 1 - progress * 3 }}>
-          <div className="hero-text">
-            <p className="hero-eyebrow">Mobilidade com segurança e dignidade</p>
-            <p className="hero-desc">
-              O guincho de transferência foi projetado para oferecer segurança, conforto, e praticidade na rotina de quem cuida e de quem é cuidado.
-            </p>
-            <button className="btn-primary">Ver em 3D</button>
-          </div>
-          <div
-            className="hero-video-wrapper"
-            style={{ transform: `scale(${scale})`, borderRadius: `${borderRadius}px`, opacity }}
-          >
-            <video autoPlay muted loop playsInline className="hero-video">
-              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
-            </video>
-          </div>
-        </div>
+
+        {/* Vídeo — atrás do texto (z-index baixo) */}
         <div
-          className="hero-video-fullscreen"
-          style={{ opacity: progress > 0.3 ? Math.min(1, (progress - 0.3) * 3) : 0, pointerEvents: progress > 0.5 ? "all" : "none" }}
+          style={{
+            position: "absolute",
+            width: videoW,
+            height: videoH,
+            top: "50%",
+            left: videoLeft,
+            transform: "translateY(-50%)",
+            borderRadius,
+            overflow: "hidden",
+            zIndex: 1,
+            willChange: "width, height, border-radius, left",
+            alignItems:"center"
+          }}
         >
-          <video autoPlay muted loop playsInline>
+          <video autoPlay muted loop playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}>
             <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
           </video>
         </div>
+
+        {/* Texto centralizado — na frente do vídeo */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            textAlign: "center",
+            padding: "0 clamp(20px, 5vw, 80px)",
+            zIndex: 2,
+            opacity: textOpacity,
+            pointerEvents: textOpacity < 0.05 ? "none" : "auto",
+            bottom:"300px"
+          }}
+        >
+          <p className="hero-eyebrow">Mobilidade com segurança e dignidade</p>
+          <p className="hero-desc">
+            O guincho de transferência foi projetado para oferecer segurança, conforto, e praticidade na rotina de quem cuida e de quem é cuidado.
+          </p>
+        </div>
+
       </div>
-      <div style={{ height: "200vh" }} />
+      <div style={{ height: "150vh" }} />
     </section>
   );
 }
@@ -153,7 +182,7 @@ function ProjectedSection() {
       const rect = el.getBoundingClientRect();
       const scrolled = -rect.top;
       const sectionH = el.offsetHeight;
-      const newIndex = Math.min(slides.length - 1, Math.floor((scrolled / sectionH) * slides.length * 1.1));
+      const newIndex = Math.min(slides.length - 1, Math.floor((scrolled / sectionH) * slides.length * 3));
       setIndex(Math.max(0, newIndex));
     };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -199,7 +228,7 @@ function ProjectedSection() {
           </div>
         </div>
       </div>
-      <div style={{ height: `${slides.length * 80}vh` }} />
+      <div style={{ height: `${slides.length * 60}vh` }} />
     </section>
   );
 }
@@ -236,7 +265,7 @@ function CareSection() {
         badge="EXPERIÊNCIA INTERATIVA"
         title="Cuidado em todos os momentos."
         sub="Navegue e descubra como o guincho se adapta a diferentes ambientes da casa, proporcionando transferências seguras e confortáveis."
-        squareStyle={{ left: "250px", transform: "translateX(0)" }}
+        squareStyle={{ left: "500px", transform: "translateX(0)" }}
       />
       <div className="care-layout">
         <div className="care-tabs">
