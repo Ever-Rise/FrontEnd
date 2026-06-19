@@ -1,20 +1,30 @@
 import { useState, useEffect, useRef } from "react";
 import "./styles.css";
 import { Footer, Header } from "../../components";
+import GuinchoCrianca from '../../assets/images/Vendas/FotoDaCriancaQuarto.svg'
+import MulherGuincho from '../../assets/images/Vendas/Mulhernoquarto.svg'
+import Praticidade from '../../assets/images/Vendas/Praticidade.svg'
+import Guincho3d from '../../assets/images/Vendas/guincho3d.svg'
+import EverriseSala from '../../assets/images/Vendas/EverriseSala.svg'
+import GenericoSala from '../../assets/images/Vendas/GenericoSala.svg'
+import EverriseCorredor from '../../assets/images/Vendas/EverriseCorredor.svg'
+import GenericoCorredor from '../../assets/images/Vendas/GenericoCorredor.svg'
+import EverriseQuarto from '../../assets/images/Vendas/EverriseQuarto.svg'
+import GenericoQuarto from '../../assets/images/Vendas/GenericoQuarto.svg'
 
 /* ─── placeholder images via picsum ─── */
 const IMG = {
   hero: "https://images.unsplash.com/photo-1576765607924-3f7b8410a787?w=800&q=80",
-  product1: "https://images.unsplash.com/photo-1583912086096-8c60d75a53f9?w=600&q=80",
-  product2: "https://images.unsplash.com/photo-1581093806997-124204d9fa9d?w=600&q=80",
-  product3: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80",
-  winch: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=500&q=80",
-  sala1: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80",
-  sala2: "https://images.unsplash.com/photo-1584467735815-f778f274e296?w=600&q=80",
-  corredor1: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=600&q=80",
-  corredor2: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&q=80",
-  quarto1: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=600&q=80",
-  quarto2: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&q=80",
+  GuinchoCrianca: GuinchoCrianca,
+  MulherGuincho: MulherGuincho,
+  Praticidade: Praticidade,
+  Guincho3d: Guincho3d,
+  EverriseSala: EverriseSala,
+  GenericoSala: GenericoSala,
+  EverriseCorredor: EverriseCorredor,
+  GenericoCorredor: GenericoCorredor,
+  EverriseQuarto: EverriseQuarto,
+  GenericoQuarto: GenericoQuarto,
   banheiro1: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80",
   banheiro2: "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=600&q=80",
   avatar1: "https://i.pravatar.cc/60?img=1",
@@ -34,9 +44,9 @@ const testimonials = [
 
 /* ─── CARE ROOMS ─── */
 const rooms = [
-  { id: "01", label: "Sala", desc: "Transferências seguras da cadeira para a cama ou poltronas", imgs: [IMG.sala1, IMG.sala2] },
-  { id: "02", label: "Corredor", desc: "Mobilidade prática entre ambientes sem esforço", imgs: [IMG.corredor1, IMG.corredor2] },
-  { id: "03", label: "Quarto", desc: "Mais conforto e segurança na rotina de cuidados.", imgs: [IMG.quarto1, IMG.quarto2] },
+  { id: "01", label: "Sala", desc: "Transferências seguras da cadeira para a cama ou poltronas", imgs: [IMG.EverriseSala, IMG.GenericoSala] },
+  { id: "02", label: "Corredor", desc: "Mobilidade prática entre ambientes sem esforço", imgs: [IMG.EverriseCorredor, IMG.GenericoCorredor] },
+  { id: "03", label: "Quarto", desc: "Mais conforto e segurança na rotina de cuidados.", imgs: [IMG.EverriseQuarto, IMG.GenericoQuarto] },
   { id: "04", label: "Banheiro", desc: "Transferência com dignidade e máxima segurança", imgs: [IMG.banheiro1, IMG.banheiro2] },
 ];
 
@@ -54,12 +64,26 @@ const plans = [
   { price: "$29,99/m", label: "Plano Business", features: ["Tudo do Pro", "Suporte 24/7", "Usuários ilimitados", "API dedicada"], cta: "Assinar Business", highlight: false },
 ];
 
+/* ─── Reusable section header: badge + blue square + title ─── */
+function SectionHeader({ badge, title, sub, squareStyle }) {
+  return (
+    <div className="section-header">
+      <div className="badge-wrapper">
+        <div className="partnersEyebrowSquare" style={squareStyle} />
+        <div className="badge-pill">{badge}</div>
+      </div>
+      {title && <h2 className="section-title">{title}</h2>}
+      {sub && <p className="section-sub">{sub}</p>}
+    </div>
+  );
+}
+
 /* ═══════════════════════════════════════════════════
-   SECTION: HERO with scroll-to-fullscreen video
+   SECTION: HERO
 ═══════════════════════════════════════════════════ */
 function HeroSection() {
   const sectionRef = useRef(null);
-  const [progress, setProgress] = useState(0); // 0→1: expanding; >1: leaving
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const onScroll = () => {
@@ -92,18 +116,13 @@ function HeroSection() {
           </div>
           <div
             className="hero-video-wrapper"
-            style={{
-              transform: `scale(${scale})`,
-              borderRadius: `${borderRadius}px`,
-              opacity,
-            }}
+            style={{ transform: `scale(${scale})`, borderRadius: `${borderRadius}px`, opacity }}
           >
             <video autoPlay muted loop playsInline className="hero-video">
               <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
-        {/* fullscreen overlay video */}
         <div
           className="hero-video-fullscreen"
           style={{ opacity: progress > 0.3 ? Math.min(1, (progress - 0.3) * 3) : 0, pointerEvents: progress > 0.5 ? "all" : "none" }}
@@ -113,7 +132,6 @@ function HeroSection() {
           </video>
         </div>
       </div>
-      {/* spacer so page scrolls */}
       <div style={{ height: "200vh" }} />
     </section>
   );
@@ -121,16 +139,15 @@ function HeroSection() {
 
 /* ═══════════════════════════════════════════════════
    SECTION: "Projetado para o que realmente importa"
-   – horizontal scroll through 3 images
 ═══════════════════════════════════════════════════ */
 function ProjectedSection() {
   const sectionRef = useRef(null);
   const [index, setIndex] = useState(0);
 
   const slides = [
-    { title: "Movimento suave", desc: "Sistema de elevação preciso que reduz o cansaço físico do cuidador garantindo uma transição segura e confortável para o paciente, sem movimentos bruscos ou intensos.", img: IMG.product1 },
-    { title: "Design Ergonômico", desc: "Pensado para se adaptar a diferentes ambientes e rotinas de cuidado, oferecendo flexibilidade e praticidade no dia a dia.", img: IMG.product2 },
-    { title: "Tecnologia Avançada", desc: "Sensores inteligentes e controles intuitivos que garantem a máxima segurança durante todas as transferências.", img: IMG.product3 },
+    { title: "Movimento suave", desc: "Sistema de elevação preciso que reduz o cansaço físico do cuidador garantindo uma transição segura e confortável para o paciente, sem movimentos bruscos ou intensos.", img: IMG.GuinchoCrianca },
+    { title: "Design Ergonômico", desc: "Pensado para se adaptar a diferentes ambientes e rotinas de cuidado, oferecendo flexibilidade e praticidade no dia a dia.", img: IMG.MulherGuincho },
+    { title: "Tecnologia Avançada", desc: "Sensores inteligentes e controles intuitivos que garantem a máxima segurança durante todas as transferências.", img: IMG.Praticidade },
   ];
 
   useEffect(() => {
@@ -150,11 +167,11 @@ function ProjectedSection() {
   return (
     <section className="projected-section" ref={sectionRef}>
       <div className="projected-sticky">
-      <div className="badge-wrapper">
-        <div className="partnersEyebrowSquare"></div>
-        <div className="badge-pill">TECNOLOGIA QUE TRANSFORMA</div>
-      </div>
-        <h2 className="section-title">Projetado para o que realmente importa</h2>
+        <SectionHeader
+          badge="TECNOLOGIA QUE TRANSFORMA"
+          title="Projetado para o que realmente importa"
+          squareStyle={{ left: "210px", transform: "translateX(0)" }}
+        />
         <div className="projected-layout">
           <div className="projected-left">
             {slides.map((s, i) => (
@@ -197,11 +214,14 @@ function ProjectedSection() {
 function Winch3DSection() {
   return (
     <section className="winch3d-section">
-      <div className="badge-pill orange">COMEÇA DE TODOS OS ÂNGULOS</div>
-      <h2 className="section-title">Guincho 3D</h2>
-      <p className="section-sub">Interaja com o modelo 3D e veja cada detalhe do guincho.</p>
+      <SectionHeader
+        badge="COMEÇA DE TODOS OS ÂNGULOS"
+        title="Guincho 3D"
+        sub="Interaja com o modelo 3D e veja cada detalhe do guincho."
+        squareStyle={{ left: "200px", transform: "translateX(0)" }}
+      />
       <div className="winch3d-viewer">
-        <img src={IMG.winch} alt="Guincho 3D" className="winch-img" />
+        <img src={IMG.Guincho3d} alt="Guincho 3D" className="winch-img" />
         <div className="winch3d-controls">
           <div className="control-item"><span className="control-icon">↔</span><p>Arraste para rotacionar</p></div>
           <div className="control-item"><span className="control-icon">🖱</span><p>Passe o mouse para interagir</p></div>
@@ -220,10 +240,12 @@ function CareSection() {
 
   return (
     <section className="care-section">
-      <div className="badge-pill">EXPERIÊNCIA INTERATIVA</div>
-      <h2 className="section-title">Cuidado em todos os momentos.</h2>
-      <p className="section-sub">Navegue e descubra como o guincho se adapta a diferentes ambientes da casa, proporcionando transferência seguras e confortáveis.</p>
-
+      <SectionHeader
+        badge="EXPERIÊNCIA INTERATIVA"
+        title="Cuidado em todos os momentos."
+        sub="Navegue e descubra como o guincho se adapta a diferentes ambientes da casa, proporcionando transferências seguras e confortáveis."
+        squareStyle={{ left: "250px", transform: "translateX(0)" }}
+      />
       <div className="care-layout">
         <div className="care-tabs">
           {rooms.map((r, i) => (
@@ -237,19 +259,18 @@ function CareSection() {
           ))}
         </div>
         <div className="care-images">
-          <div className="care-winch-label">
-            <span>Guincho EverRise</span>
+        <div className="care-compare-grid">
+          <div className="care-compare-col">
+            <div className="care-winch-label">Guincho EverRise</div>
+            <img src={rooms[active].imgs[0]} alt={rooms[active].label} className="care-img fade-in" />
           </div>
-          <div className="care-imgs-grid">
-            {rooms[active].imgs.map((img, i) => (
-              <img key={`${active}-${i}`} src={img} alt={rooms[active].label} className="care-img fade-in" />
-            ))}
+          <div className="care-compare-col">
+            <div className="care-winch-label">Guincho Generico</div>
+            <img src={rooms[active].imgs[1]} alt={rooms[active].label} className="care-img fade-in" />
           </div>
-          <div className="care-winch-label secondary">
-            <span>Guincho Generico</span>
-          </div>
-          <button className="btn-outline-small">Salte para explorar os ambientes</button>
         </div>
+        <button className="btn-outline-small">Salte para explorar os ambientes</button>
+</div>
       </div>
     </section>
   );
@@ -261,8 +282,11 @@ function CareSection() {
 function TestimonialsSection() {
   return (
     <section className="testimonials-section">
-      <div className="badge-pill">Depoimentos</div>
-      <h2 className="section-title">Ratificado por profissionais da área da saúde</h2>
+      <SectionHeader
+        badge="DEPOIMENTOS"
+        title="Ratificado por profissionais da área da saúde"
+        squareStyle={{ left: "680px", transform: "translateX(0)" }}
+      />
       <div className="testimonials-grid">
         {testimonials.map((t, i) => (
           <div key={i} className="testimonial-card">
@@ -287,7 +311,11 @@ function TestimonialsSection() {
 function PlansSection() {
   return (
     <section className="plans-section">
-      <div className="badge-pill orange">Planos acessíveis para todas as necessidades</div>
+      <SectionHeader
+        badge="PLANOS ACESSÍVEIS PARA TODAS AS NECESSIDADES"
+        title="Escolha o plano ideal para você"
+        squareStyle={{ left: "40px", transform: "translateX(0)" }}
+      />
       <div className="plans-grid">
         {plans.map((p, i) => (
           <div key={i} className={`plan-card ${p.highlight ? "highlight" : ""}`}>
@@ -311,8 +339,11 @@ function FAQSection() {
   const [open, setOpen] = useState(null);
   return (
     <section className="faq-section">
-      <div className="badge-pill">Perguntas frequentes</div>
-      <h2 className="section-title">Encontre respostas para perguntas frequentes sobre nossos serviços, preços e suporte para ajudá-lo a tomar decisões informadas com confiança</h2>
+      <SectionHeader
+        badge="PERGUNTAS FREQUENTES"
+        title="Encontre respostas para perguntas frequentes sobre nossos serviços, preços e suporte"
+        squareStyle={{ left: "100px", transform: "translateX(0)" }}
+      />
       <div className="faq-list">
         {faqs.map((q, i) => (
           <div key={i} className={`faq-item ${open === i ? "open" : ""}`} onClick={() => setOpen(open === i ? null : i)}>
@@ -320,7 +351,11 @@ function FAQSection() {
               <span>{q}</span>
               <span className="faq-icon">{open === i ? "−" : "+"}</span>
             </div>
-            {open === i && <div className="faq-a">O Guincho EverRise oferece transferência segura, confortável e digna para pacientes com mobilidade reduzida, adaptando-se a diferentes ambientes do lar e instituições de saúde.</div>}
+            {open === i && (
+              <div className="faq-a">
+                O Guincho EverRise oferece transferência segura, confortável e digna para pacientes com mobilidade reduzida, adaptando-se a diferentes ambientes do lar e instituições de saúde.
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -369,11 +404,6 @@ function Navbar() {
     </nav>
   );
 }
-
-/* ═══════════════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════════════ */
-
 
 /* ═══════════════════════════════════════════════════
    APP
