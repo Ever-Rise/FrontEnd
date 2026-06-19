@@ -31,7 +31,7 @@
 
 .decoracao1 {
   position: absolute;
-  top: 9.3%;
+  top: 10.3%;
   left: 1%;
   width: 100px;
   opacity: 1;
@@ -415,7 +415,8 @@
 }
 
 .icon img {
-  width: 100%;
+  width: 85%;
+  margin: auto;
 }
 
 .card h3 {
@@ -929,36 +930,40 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background-color: #ffffff;
+  background-color: #f8fafc; /* Cinza bem claro para dar contraste ao Card */
   display: flex;
   align-items: center;
   overflow: hidden;
 }
 
-.everriseContact .container {
+.container {
   display: flex;
   width: 100%;
-  max-width: 100%;
+  max-width: 1440px;
   margin: 0 auto;
-  z-index: 2;
+  min-height: 100vh;
 }
 
 .contentSide {
   width: 50%;
-  flex: 1;
-  padding: 70px;
+  padding: 5rem 4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index: 2;
+}
+
+.textWrapper {
+  margin-bottom: 3rem;
 }
 
 .title {
-  color: #000;
+  color: #0f172a;
   font-family: "Poppins", sans-serif;
-  font-size: 48px;
-  font-style: normal;
+  font-size: 3rem; /* Tamanho ajustado */
   font-weight: 700;
-  line-height: 50px;
+  line-height: 1.2;
+  margin-bottom: 1rem;
 }
 
 .highlight {
@@ -966,87 +971,91 @@
 }
 
 .subtitle {
-  color: #000;
+  color: #475569;
   font-family: "Poppins", sans-serif;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 50px;
-  margin-top: 20px;
+  font-size: 1.25rem; /* Menor que o título para criar hierarquia */
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 .ctaBox {
-  background-color: #fff;
-  border-radius: 20px;
-  padding: 40px;
-  margin-top: 20px;
-  max-width: 500px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 2.5rem;
+  max-width: 540px;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05); /* Sombra mais moderna */
+  border: 1px solid #f1f5f9;
 }
 
-.ctaBox h3 {
-  color: #000;
+.ctaHeader {
+  margin-bottom: 2rem;
+}
+
+.ctaHeader h3 {
+  color: #0f172a;
   font-family: "Poppins", sans-serif;
-  font-size: 28px;
-  font-style: normal;
+  font-size: 1.5rem;
   font-weight: 700;
-  line-height: 50px;
+  margin-bottom: 0.5rem;
 }
 
-.ctaBox p {
-  color: #000;
+.ctaHeader p {
+  color: #64748b;
   font-family: "Poppins", sans-serif;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 50px;
+  font-size: 1rem;
 }
 
 .contactList {
   list-style: none;
-  margin-top: 10px;
+  padding: 0;
+  margin: 0;
 }
 
 .contactList li {
   display: flex;
   align-items: center;
-  margin-bottom: 18px;
-  padding-bottom: 18px;
+  padding: 1rem 0;
   border-bottom: 1px solid #e2e8f0;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .contactList li:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
   border-bottom: none;
+  padding-bottom: 0;
+}
+
+.contactList li:hover {
+  transform: translateX(4px); /* Efeito sutil ao passar o mouse */
 }
 
 .contactIconWrapper {
-  width: 32px;
-  height: 32px;
-  margin-right: 16px;
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #fff7ed; /* Fundo leve combinando com a cor laranja */
+  border-radius: 50%;
   flex-shrink: 0;
 }
 
 .contactIconWrapper img,
 .contactIconWrapper svg {
-  width: 100%;
-  height: 100%;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
 }
 
 .text {
-  font-size: 1rem;
-  color: #111111;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.05rem;
+  color: #1e293b;
   font-weight: 500;
 }
 
 .imageSide {
-  flex: 1;
-  min-height: 100vh;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1056,11 +1065,61 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
-Footer {
-    margin-top: -100px; /* Faz o footer subir apenas aqui */
-    z-index: 3;
+/* Responsividade para Tablets e Celulares */
+@media (max-width: 992px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .contentSide {
+    width: 100%;
+    padding: 4rem 2rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .textWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .ctaBox {
+    text-align: left;
+    width: 100%;
+  }
+
+  .imageSide {
+    width: 100%;
+    min-height: 400px; /* Garante que a imagem apareça no mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .contentSide {
+    padding: 3rem 1.5rem;
+  }
+  
+  .ctaBox {
+    padding: 1.5rem;
+  }
+}
+
+.customFooter {
+    margin-top: -100px !important;
+  position: relative;
+  z-index: 3;
 }
 
 /* ─────────────────────────────────────────

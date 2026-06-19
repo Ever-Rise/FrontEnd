@@ -14,7 +14,7 @@ const companyLinks = [
 ];
 
 const guinchoLinks = [
-  { label: "Mais Sobre o Guincho", to: "/produto" },
+  { label: "Mais Sobre o Guincho", to: "/sobre-guincho" },
   { label: "Venda", to: "/vendas" },
   { label: "Manual do Guincho", to: "/manual" },
 ];
@@ -25,10 +25,10 @@ const socialLinks = [
   { label: "GitHub", href: "https://github.com/Ever-Rise", icon: githubIcon },
 ];
 
-const Footer = () => {
+const Footer = ({ className = "" }) => {
   return (
-    <footer className={styles.footer}>
-      <img src={footerCurve} alt="" aria-hidden="true" className={styles.topGraphic} />
+    <footer className={`${styles.footer} ${className}`}>
+      <img src={footerCurve} alt=""  aria-hidden="true" className={styles.topGraphic} />
       <div className={styles.inner}>
         <div className={styles.top}>
           <div className={styles.brandColumn}>

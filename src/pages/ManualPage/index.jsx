@@ -1,169 +1,139 @@
 import { useState, useEffect, useRef } from "react";
-import "./styles.css";
+import {
+  FiActivity,
+  FiBatteryCharging,
+  FiWifi,
+  FiShield,
+  FiArrowRight,
+  FiPauseCircle,
+  FiAlertTriangle,
+  FiAlertOctagon,
+  FiCheckCircle,
+  FiBatteryCharging as FiCharge,
+  FiDroplet,
+  FiArchive,
+  FiPhone,
+  FiMail,
+  FiSend,
+  FiMessageCircle
+} from "react-icons/fi";
 
-const componentes = [
-  {
-    icon: "🔄",
-    titulo: "Eixo de rotação prateado e preto",
-    descricao:
-      "Permite rotação precisa do mastro e braço de elevação, garantindo reposicionamento seguro do paciente em diferentes ângulos.",
-    tag: "Estrutura principal",
-  },
-  {
-    icon: "🖥",
-    titulo: "Unidade de controle BP-8 135",
-    descricao:
-      "Painel compacto com botões de ação e conexão integrada — gerencia todas as funções do equipamento com precisão.",
-    tag: "Controle e conectividade",
-  },
-  {
-    icon: "🔋",
-    titulo: "Bateria extra de 3800 mAh",
-    descricao:
-      "Mastro vertical com bateria recarregável integrada e slot de extensão para operações de longa duração sem interrupção.",
-    tag: "Autonomia energética",
-  },
-  {
-    icon: "🤝",
-    titulo: "Alça de fixação do sling reforçada",
-    descricao:
-      "Sistema de encaixe com trava dupla de segurança, distribuindo carga uniformemente para o conforto e proteção do paciente.",
-    tag: "Segurança do paciente",
-  },
-  {
-    icon: "📡",
-    titulo: "Roteador Wi-Fi integrado",
-    descricao:
-      "Conexão de dados estável para monitoramento remoto 24/7, transmissão de dados biométricos e atualizações de firmware.",
-    tag: "Conectividade",
-  },
-];
+import "./styles.css";
 
 const funcionalidades = [
   {
-    icon: "🤖",
-    titulo: "Controle automático",
-    descricao: "Algoritmos preditivos para movimentação suave sem intervenção manual constante.",
+    icon: <FiActivity />,
+    titulo: "Monitoramento inteligente",
+    descricao: "Acompanhe dados em tempo real e comportamento operacional."
   },
   {
-    icon: "⚖️",
-    titulo: "Ajuste de força",
-    descricao: "Distribuição inteligente de torque baseada na massa e centro de gravidade do paciente.",
+    icon: <FiBatteryCharging />,
+    titulo: "Gestão de energia",
+    descricao: "Controle automático para melhor autonomia."
   },
   {
-    icon: "📱",
-    titulo: "Painel digital",
-    descricao: "Interface OLED de alta definição com dados biométricos em tempo real.",
+    icon: <FiWifi />,
+    titulo: "Conectividade contínua",
+    descricao: "Sincronização estável para acompanhamento remoto."
   },
   {
-    icon: "🛡",
-    titulo: "Monitoramento",
-    descricao: "Vigilância contínua 24/7 com alerta direto à central de enfermagem.",
-  },
-  {
-    icon: "📻",
-    titulo: "Sensores IR",
-    descricao: "Detecção de obstáculos e proximidade com precisão milimétrica infravermelha.",
-  },
+    icon: <FiShield />,
+    titulo: "Segurança avançada",
+    descricao: "Proteção operacional e alertas inteligentes."
+  }
 ];
 
-const alertas = [
+const statusSeguranca = [
   {
-    tipo: "s",
-    label: "SAFETY_HOLD",
-    code: "CODE 042",
-    titulo: "Equipamento pausado por segurança",
-    descricao: "Verificar sensores de obstrução lateral antes de retomar a operação.",
+    code: "042",
+    icon: <FiPauseCircle />,
+    titulo: "SAFETY_HOLD",
+    resumo: "Equipamento pausado por segurança",
+    tone: "neutral",
+    procedimento: "Verificar sensores de obstrução lateral antes de retomar a operação."
   },
   {
-    tipo: "e",
-    label: "EMERGÊNCIA",
-    code: "CODE 911",
-    titulo: "Parada imediata acionada",
-    descricao: "Liberar botão de emergência rotacional para reestabelecer operação.",
+    code: "911",
+    icon: <FiAlertOctagon />,
+    titulo: "EMERGÊNCIA",
+    resumo: "Parada imediata acionada",
+    tone: "danger",
+    procedimento: "Liberar o botão de emergência rotacional para reiniciar o sistema."
   },
   {
-    tipo: "o",
-    label: "SOBRECARGA",
-    code: "CODE 088",
-    titulo: "Peso acima do limite detectado",
-    descricao: "Reduzir carga para menos de 250 kg antes de continuar.",
+    code: "088",
+    icon: <FiAlertTriangle />,
+    titulo: "SOBRECARGA",
+    resumo: "Peso acima do limite detectado",
+    tone: "warning",
+    procedimento: "Reduzir a carga para menos de 250kg e aguardar reset automático."
   },
   {
-    tipo: "op",
-    label: "OPERACIONAL",
-    code: "CODE 001",
-    titulo: "Sistema pronto para uso",
-    descricao: "Todos os sistemas verificados. Continuar operação normalmente.",
-  },
+    code: "001",
+    icon: <FiCheckCircle />,
+    titulo: "OPERACIONAL",
+    resumo: "Sistema pronto para uso",
+    tone: "success",
+    procedimento: "Nenhuma ação necessária. Continuar operação normal."
+  }
 ];
 
 const manutencao = [
   {
-    icon: "🔋",
+    icon: <FiCharge />,
     titulo: "Carregamento",
-    descricao: "Carregar por 4h após cada turno. Ciclo de bateria Li-ion otimizado.",
-    btn: "Ver protocolo de energia",
+    texto: "Carregar por 4h após cada turno. Ciclo de bateria Li-Ion otimizado.",
+    progresso: 70,
+    cta: "Ver protocolo de energia"
   },
   {
-    icon: "💧",
+    icon: <FiDroplet />,
     titulo: "Limpeza",
-    descricao: "Usar apenas álcool isopropílico 70%. Evitar contato direto com o painel.",
-    btn: "Guia de esterilização",
+    texto: "Utilizar apenas álcool isopropílico 70%. Evite contato direto com o painel.",
+    progresso: 45,
+    cta: "Guia de esterilização"
   },
   {
-    icon: "📦",
+    icon: <FiArchive />,
     titulo: "Armazenamento",
-    descricao: "Manter em local seco entre 15°C e 30°C. Travar rodas ao guardar.",
-    btn: "Condições ideais",
-  },
+    texto: "Manter em local seco entre 15°C e 30°C. Travar rodas ao guardar.",
+    progresso: 90,
+    cta: "Condições ideais"
+  }
 ];
 
-const faqs = [
-  {
-    pergunta: "Quanto tempo dura a bateria em uso contínuo?",
-    resposta:
-      "A bateria principal oferece até 8 horas de uso contínuo. Com a bateria extra de 3800 mAh acoplada, a autonomia pode chegar a 12 horas. Recomenda-se sempre carregar ao término de cada turno.",
-  },
-  {
-    pergunta: "O que fazer em caso de queda de energia durante o uso?",
-    resposta:
-      "O sistema possui bateria de emergência integrada que mantém o equipamento operacional por até 20 minutos adicionais. Durante esse período, abaixe o paciente com segurança e transfira para superfície estável.",
-  },
-  {
-    pergunta: "Como calibrar os sensores de peso?",
-    resposta:
-      'Acesse Configurações → Calibração no painel BP-8 135. Retire qualquer carga do sling, pressione "Calibrar Zero" e aguarde 10 segundos. Repita com peso de referência de 50 kg para calibração completa.',
-  },
-];
-
-function useInView(threshold = 0.15) {
-  const ref = useRef(null);
+function useInView() {
+  const ref = useRef();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const obs = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setVisible(true);
-          obs.disconnect();
+          observer.disconnect();
         }
       },
-      { threshold }
+      { threshold: 0.1 }
     );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   return [ref, visible];
 }
 
-function AnimatedSection({ children, className = "", delay = 0 }) {
+function FadeUp({ children, delay = 0, className = "" }) {
   const [ref, visible] = useInView();
+
   return (
     <div
       ref={ref}
-      className={`fade-up ${visible ? "visible" : ""} ${className}`}
+      className={`fade-up ${className} ${visible ? "visible" : ""}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
@@ -171,198 +141,268 @@ function AnimatedSection({ children, className = "", delay = 0 }) {
   );
 }
 
-function SectionTitle({ children }) {
-  const [ref, visible] = useInView();
-  return (
-    <div ref={ref} className={`sec-title fade-up ${visible ? "visible" : ""}`}>
-      <h2>{children}</h2>
-      <div className="title-line" />
-    </div>
-  );
-}
-
 export default function ManualEverRise() {
-  const [faqAberto, setFaqAberto] = useState(null);
   const [heroVisible, setHeroVisible] = useState(false);
+  const [panelRef, panelVisible] = useInView();
+  const [securityRef, securityVisible] = useInView();
+  const [maintenanceRef, maintenanceVisible] = useInView();
+  const [activeStatus, setActiveStatus] = useState(0);
 
   useEffect(() => {
-    const t = setTimeout(() => setHeroVisible(true), 80);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => {
+      setHeroVisible(true);
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
 
+  const selected = statusSeguranca[activeStatus];
+
   return (
-    <div className="manual-wrap">
-      {/* HERO */}
+    <div className="manual">
+      {/* ================= HERO (somente headline) ================= */}
       <section className="hero">
-        <div className="hero-bg-decor">
-          <div className="hero-ring ring-1" />
-          <div className="hero-ring ring-2" />
-          <div className="hero-dots" />
-          <div className="hero-pill" />
-        </div>
-        <div className={`hero-content ${heroVisible ? "hero-in" : ""}`}>
-          <h1 className="hero-title">
-            Manual Inteligente <span className="brand">EverRise</span>
+        <div className="hero-bg" />
+
+        <div className={`container hero-content ${heroVisible ? "show" : ""}`}>
+          <span className="hero-tag">Manual Inteligente · EverRise 2025</span>
+
+          <h1>
+            Controle total do seu equipamento
+            <span> sem complicação</span>
           </h1>
-          <p className="hero-sub">
-            Tudo o que você precisa para operar o sistema com máxima precisão e segurança
-            no ambiente hospitalar de alta performance.
+
+          <p>
+            Tudo que você precisa para monitorar, operar e gerenciar
+            recursos com precisão.
           </p>
-          <div className="hero-btns">
-            <button className="btn-amber">
-              <span className="btn-icon">💬</span> Abrir chat com Fin
+
+          <div className="hero-buttons">
+            <button className="btn-primary">
+              Abrir suporte
+              <FiArrowRight />
             </button>
-            <button className="btn-dark">Explorar Recursos</button>
+            <button className="btn-secondary">Explorar recursos</button>
+          </div>
+        </div>
+
+        <div className="hero-scroll-cue">
+          <span>Veja o painel</span>
+          <div className="scroll-line" />
+        </div>
+      </section>
+
+      {/* ================= PAINEL / DASHBOARD ================= */}
+      <section className="panel" ref={panelRef}>
+        <div className={`container panel-grid ${panelVisible ? "show" : ""}`}>
+          <div className="panel-text">
+            <span className="eyebrow">PAINEL DE CONTROLE</span>
+            <h2>Tudo sob seu comando, em uma só tela</h2>
+            <p>
+              Acompanhe status, energia, conectividade e monitoramento do seu
+              equipamento em tempo real, direto do manual.
+            </p>
+          </div>
+
+          <div className="dashboard">
+            <div className="dashboard-main">
+              <span>Status atual</span>
+              <h2>Operacional</h2>
+              <div className="status">
+                <div className="dot" />
+                Sistema ativo
+              </div>
+            </div>
+
+            <div className="dashboard-row">
+              <div className="dashboard-small">
+                <span>Bateria</span>
+                <h3>87%</h3>
+              </div>
+
+              <div className="dashboard-small">
+                <span>Monitoramento</span>
+                <h3>24/7</h3>
+              </div>
+
+              <div className="dashboard-small">
+                <span>Conexão</span>
+                <h3>Online</h3>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <div className="content-pad">
-        {/* INÍCIO RÁPIDO */}
-        <AnimatedSection className="quick-start">
-          <div className="qs-left">
-            <p className="qs-label">— Início Rápido</p>
-            {[
-              {
-                n: 1,
-                titulo: "Montar",
-                desc: "Posicione a base articulada e certifique-se de que os braços extensores estejam travados.",
-              },
-              {
-                n: 2,
-                titulo: "Ligar",
-                desc: "Pressione o botão principal por 3 segundos para iniciar o diagnóstico automático.",
-              },
-              {
-                n: 3,
-                titulo: "Conectar",
-                desc: "Sincronize com a rede hospitalar para monitoramento remoto centralizado.",
-              },
-            ].map((s) => (
-              <div className="qs-step" key={s.n}>
-                <div className="step-num">{s.n}</div>
-                <div>
-                  <h4>{s.titulo}</h4>
-                  <p>{s.desc}</p>
+      {/* ================= FEATURES ================= */}
+      <section className="features">
+        <div className="container">
+          <div className="section-title">
+            <span>RECURSOS</span>
+            <h2>Funcionalidades do sistema</h2>
+          </div>
+
+          <div className="features-grid">
+            {funcionalidades.map((item, index) => (
+              <FadeUp key={index} delay={index * 120}>
+                <div className="feature-card">
+                  <div className="feature-icon">{item.icon}</div>
+                  <h3>{item.titulo}</h3>
+                  <p>{item.descricao}</p>
                 </div>
-              </div>
+              </FadeUp>
             ))}
           </div>
-          <div className="qs-right">
-            <div className="qs-imgs-row">
-              <div className="qs-img">🔧<span>Montagem</span></div>
-              <div className="qs-img">🔌<span>Ativação</span></div>
-            </div>
-            <div className="qs-img qs-img-full">📶<span>Conexão à rede</span></div>
+        </div>
+      </section>
+
+      {/* ================= MONITORAMENTO DE SEGURANÇA ================= */}
+      <section className="security" ref={securityRef}>
+        <div className={`container security-wrap ${securityVisible ? "show" : ""}`}>
+          <div className="section-title section-title-left">
+            <span>SEGURANÇA</span>
+            <h2>Monitoramento de segurança</h2>
           </div>
-        </AnimatedSection>
 
-        {/* COMPONENTES */}
-        <SectionTitle>Componentes Principais</SectionTitle>
-        <div className="comps-list">
-          {componentes.map((c, i) => (
-            <AnimatedSection key={i} delay={i * 60}>
-              <div className="comp-card">
-                <div className="comp-icon">{c.icon}</div>
-                <div className="comp-info">
-                  <h4>{c.titulo}</h4>
-                  <p>{c.descricao}</p>
-                  <span className="comp-tag">{c.tag}</span>
-                </div>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
-
-        {/* FUNCIONALIDADES */}
-        <SectionTitle>Funcionalidades de Elite</SectionTitle>
-        <div className="feat-grid">
-          {funcionalidades.map((f, i) => (
-            <AnimatedSection key={i} delay={i * 70}>
-              <div className="feat-card">
-                <span className="feat-icon">{f.icon}</span>
-                <h4>{f.titulo}</h4>
-                <p>{f.descricao}</p>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
-
-        {/* ALERTAS */}
-        <SectionTitle>Monitoramento de Segurança</SectionTitle>
-        <div className="alerts-grid">
-          {alertas.map((a, i) => (
-            <AnimatedSection key={i} delay={i * 60}>
-              <div className={`alert-card alert-${a.tipo}`}>
-                <div className="alert-top">
-                  <span className="alert-lbl">{a.label}</span>
-                  <span className="alert-code">{a.code}</span>
-                </div>
-                <h4>{a.titulo}</h4>
-                <p>{a.descricao}</p>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
-
-        {/* MANUTENÇÃO */}
-        <SectionTitle>Ciclo de Manutenção</SectionTitle>
-        <div className="maint-grid">
-          {manutencao.map((m, i) => (
-            <AnimatedSection key={i} delay={i * 80}>
-              <div className="maint-card">
-                <span className="maint-icon">{m.icon}</span>
-                <h4>{m.titulo}</h4>
-                <p>{m.descricao}</p>
-                <button className="maint-btn">{m.btn}</button>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
-
-        {/* FAQ */}
-        <SectionTitle>Perguntas Frequentes</SectionTitle>
-        <div className="faq-list">
-          {faqs.map((f, i) => (
-            <AnimatedSection key={i} delay={i * 60}>
-              <div className={`faq-item ${faqAberto === i ? "open" : ""}`}>
+          <div className="security-console">
+            <div className="security-list">
+              {statusSeguranca.map((item, index) => (
                 <button
-                  className="faq-q"
-                  onClick={() => setFaqAberto(faqAberto === i ? null : i)}
-                  aria-expanded={faqAberto === i}
+                  key={item.code}
+                  className={`security-item tone-${item.tone} ${
+                    activeStatus === index ? "active" : ""
+                  }`}
+                  onClick={() => setActiveStatus(index)}
                 >
-                  <span>{f.pergunta}</span>
-                  <span className="faq-chevron">{faqAberto === i ? "▲" : "▼"}</span>
+                  <span className="security-item-icon">{item.icon}</span>
+                  <span className="security-item-text">
+                    <strong>{item.titulo}</strong>
+                    <small>CODE: {item.code}</small>
+                  </span>
                 </button>
-                <div className="faq-a">
-                  <p>{f.resposta}</p>
-                </div>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
+              ))}
+            </div>
 
-        {/* CTA */}
-        <AnimatedSection>
-          <div className="cta-banner">
-            <div className="cta-bg-ring cta-ring-1" />
-            <div className="cta-bg-ring cta-ring-2" />
+            <div className={`security-detail tone-${selected.tone}`}>
+              <div className="security-detail-top">
+                <span className="security-detail-code">CODE: {selected.code}</span>
+                <span className="security-detail-icon">{selected.icon}</span>
+              </div>
+
+              <h3>{selected.titulo}</h3>
+              <p className="security-detail-resumo">{selected.resumo}</p>
+
+              <div className="security-detail-proc">
+                <span>Procedimento</span>
+                <p>{selected.procedimento}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= CICLO DE MANUTENÇÃO ================= */}
+      <section className="maintenance" ref={maintenanceRef}>
+        <div className={`container ${maintenanceVisible ? "show" : ""}`}>
+          <div className="section-title section-title-left">
+            <span>CUIDADOS</span>
+            <h2>Ciclo de manutenção</h2>
+          </div>
+
+          <div className="maintenance-grid">
+            {manutencao.map((item, index) => (
+              <FadeUp key={item.titulo} delay={index * 120} className="maintenance-card-wrap">
+                <div className="maintenance-card">
+                  <div className="maintenance-icon">{item.icon}</div>
+                  <h3>{item.titulo}</h3>
+                  <p>{item.texto}</p>
+
+                  <div className="maintenance-bar">
+                    <div
+                      className="maintenance-bar-fill"
+                      style={{ width: `${item.progresso}%` }}
+                    />
+                  </div>
+
+                  <button className="maintenance-cta">{item.cta}</button>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= SUPORTE ================= */}
+      <section className="support">
+        <div className="container support-wrap">
+          <div className="support-text">
             <h2>Ainda precisa de ajuda especializada?</h2>
             <p>
-              Nossa equipe de engenharia e o assistente Fin estão disponíveis 24/7 para
-              garantir que sua operação nunca pare.
+              Nossa equipe de engenharia e o assistente Fin estão disponíveis
+              24/7 para garantir que sua operação nunca pare.
             </p>
-            <div className="cta-contacts">
-              <div className="cta-contact">📞 0800 555 2000</div>
-              <div className="cta-contact">✉️ suporte@everrise.med</div>
-            </div>
-            <button className="btn-amber cta-cta-btn">💬 Falar com Fin agora</button>
-            <div className="enc-badge">🔒 AES Encryption Active</div>
-          </div>
-        </AnimatedSection>
-      </div>
 
-      <div className="bottom-space" />
+            <div className="support-contacts">
+              <div className="support-contact">
+                <span className="support-contact-icon">
+                  <FiPhone />
+                </span>
+                <div>
+                  <small>TELEFONE</small>
+                  <strong>0800 555 2000</strong>
+                </div>
+              </div>
+
+              <div className="support-contact">
+                <span className="support-contact-icon">
+                  <FiMail />
+                </span>
+                <div>
+                  <small>E-MAIL</small>
+                  <strong>suporte@everrise.med</strong>
+                </div>
+              </div>
+            </div>
+
+            <button className="btn-support">
+              <FiMessageCircle />
+              Falar com Fin agora
+            </button>
+          </div>
+
+          <div className="support-chat">
+            <div className="support-chat-header">
+              <span className="support-chat-avatar">
+                <FiMessageCircle />
+              </span>
+              <div>
+                <strong>Fin</strong>
+                <small>Online agora</small>
+              </div>
+            </div>
+
+            <div className="support-chat-body">
+              <div className="bubble bubble-bot">
+                Olá! Identifiquei que você está revisando o Guia de
+                Segurança. Deseja que eu explique o código 042?
+              </div>
+              <div className="bubble bubble-user">
+                Sim, por favor. O que significa exatamente?
+              </div>
+              <div className="bubble bubble-bot bubble-typing">
+                <span /> <span /> <span />
+              </div>
+            </div>
+
+            <div className="support-chat-input">
+              <input type="text" placeholder="Escreva sua dúvida..." disabled />
+              <button>
+                <FiSend />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

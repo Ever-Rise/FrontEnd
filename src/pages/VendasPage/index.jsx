@@ -170,7 +170,12 @@ function ProjectedSection() {
         <SectionHeader
           badge="TECNOLOGIA QUE TRANSFORMA"
           title="Projetado para o que realmente importa"
+<<<<<<< HEAD
           squareStyle={{ left: "210px", transform: "translateX(0)" }}
+=======
+          squareStyle={{ left: "170px" }}
+
+>>>>>>> 4aaf91141650df48171a3af8a0ae30e1e112d3de
         />
         <div className="projected-layout">
           <div className="projected-left">
@@ -218,7 +223,11 @@ function Winch3DSection() {
         badge="COMEÇA DE TODOS OS ÂNGULOS"
         title="Guincho 3D"
         sub="Interaja com o modelo 3D e veja cada detalhe do guincho."
+<<<<<<< HEAD
         squareStyle={{ left: "200px", transform: "translateX(0)" }}
+=======
+        squareStyle={{ left: "160px" }}
+>>>>>>> 4aaf91141650df48171a3af8a0ae30e1e112d3de
       />
       <div className="winch3d-viewer">
         <img src={IMG.Guincho3d} alt="Guincho 3D" className="winch-img" />
@@ -244,7 +253,11 @@ function CareSection() {
         badge="EXPERIÊNCIA INTERATIVA"
         title="Cuidado em todos os momentos."
         sub="Navegue e descubra como o guincho se adapta a diferentes ambientes da casa, proporcionando transferências seguras e confortáveis."
+<<<<<<< HEAD
         squareStyle={{ left: "250px", transform: "translateX(0)" }}
+=======
+        squareStyle={{ left: "220px" }}
+>>>>>>> 4aaf91141650df48171a3af8a0ae30e1e112d3de
       />
       <div className="care-layout">
         <div className="care-tabs">
@@ -285,7 +298,11 @@ function TestimonialsSection() {
       <SectionHeader
         badge="DEPOIMENTOS"
         title="Ratificado por profissionais da área da saúde"
+<<<<<<< HEAD
         squareStyle={{ left: "680px", transform: "translateX(0)" }}
+=======
+        squareStyle={{ left: "660px" }}
+>>>>>>> 4aaf91141650df48171a3af8a0ae30e1e112d3de
       />
       <div className="testimonials-grid">
         {testimonials.map((t, i) => (
@@ -314,7 +331,10 @@ function PlansSection() {
       <SectionHeader
         badge="PLANOS ACESSÍVEIS PARA TODAS AS NECESSIDADES"
         title="Escolha o plano ideal para você"
+<<<<<<< HEAD
         squareStyle={{ left: "40px", transform: "translateX(0)" }}
+=======
+>>>>>>> 4aaf91141650df48171a3af8a0ae30e1e112d3de
       />
       <div className="plans-grid">
         {plans.map((p, i) => (
@@ -342,7 +362,11 @@ function FAQSection() {
       <SectionHeader
         badge="PERGUNTAS FREQUENTES"
         title="Encontre respostas para perguntas frequentes sobre nossos serviços, preços e suporte"
+<<<<<<< HEAD
         squareStyle={{ left: "100px", transform: "translateX(0)" }}
+=======
+        squareStyle={{ left: "70px" }}
+>>>>>>> 4aaf91141650df48171a3af8a0ae30e1e112d3de
       />
       <div className="faq-list">
         {faqs.map((q, i) => (
@@ -383,6 +407,7 @@ function FooterCTA() {
 /* ═══════════════════════════════════════════════════
    NAVBAR
 ═══════════════════════════════════════════════════ */
+<<<<<<< HEAD
 function Navbar() {
   return (
     <nav className="navbar">
@@ -404,6 +429,9 @@ function Navbar() {
     </nav>
   );
 }
+=======
+
+>>>>>>> 4aaf91141650df48171a3af8a0ae30e1e112d3de
 
 /* ═══════════════════════════════════════════════════
    APP

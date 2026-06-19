@@ -1,1039 +1,1172 @@
-:global(:root) {
-    --color-navy: #040f5e;
-    --color-purple: #4d00b5;
-    --color-purple-deep: #28006e;
-    --color-orange: #fd742c;
-    --color-orange-dark: #e66018;
-    --color-gold: #feb42d;
-    --color-white: #ffffff;
-    --color-surface: #f6f6f6;
-    --color-text-primary: #1a1a1a;
-    --color-text-secondary: #4a4a4a;
-    --color-text-muted: #666666;
-    --color-border: rgba(0, 0, 0, 0.08);
-    --font-body: "Poppins", sans-serif;
-    --font-display: "Sora", sans-serif;
-    --space-4: 1rem;
-    --space-6: 1.5rem;
-    --space-8: 2rem;
-    --space-10: 2.5rem;
-    --space-12: 3rem;
-    --shadow-card:
-        0 18px 45px rgba(0, 0, 0, 0.18), 0 6px 20px rgba(0, 0, 0, 0.1);
-    --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.05);
+/* ===================================================================
+   EVERISE — styles.module.css (com animações integradas)
+   =================================================================== */
+
+.page {
+  --navy: #15116b;
+  --navy-deep: #0b0a4a;
+  --indigo: #2a0f8a;
+  --purple: #4b0fae;
+  --purple-deep: #33059b;
+  --magenta: #c23b8c;
+  --orange: #f2691c;
+  --orange-light: #f7b23b;
+  --cream: #ffe9d2;
+  --cream-line: #ffd9b3;
+  --gray-bg: #f6f6f8;
+  --gray-text: #5c5b66;
+  --gray-text-light: #8b8a94;
+  --white: #ffffff;
+
+  position: relative;
+  font-family: "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--navy);
+  background: var(--white);
+  isolation: isolate;
 }
 
-:global(*),
-:global(*::before),
-:global(*::after) {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+.page * {
+  box-sizing: border-box;
 }
 
-:global(html) {
-    scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+.page a,
+.page button {
+  font-family: inherit;
 }
 
-:global(body) {
-    font-family: var(--font-body);
-    background-color: var(--color-white);
-    color: var(--color-text-primary);
-    min-height: 100vh;
-    width: 100%;
-    line-height: 1.6;
+/* ===================== decorative background shapes ================= */
+
+.decorLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-:global(img) {
-    display: block;
-    max-width: 100%;
+.ringNavy {
+  position: absolute;
+  border-radius: 50%;
+  border: 7px solid var(--navy);
+  opacity: 0.1;
 }
 
-:global(a) {
-    text-decoration: none;
+.ringPeach {
+  position: absolute;
+  border-radius: 50%;
+  border: 16px solid var(--cream);
+  opacity: 0.8;
 }
 
-.heroContainer {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    min-height: 100vh;
-    padding: 9rem 4.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    scroll-snap-align: start;
+.dash {
+  position: absolute;
+  height: 3px;
+  width: 56px;
+  background: var(--orange);
+  opacity: 0.55;
+  border-radius: 2px;
+}
+
+.dotGrid {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  opacity: 0.6;
+}
+
+.dotGrid span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--orange);
+  display: block;
+}
+
+/* ============================= hero =================================== */
+
+.hero {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  animation: heroFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: none; }
 }
 
 .heroTitle {
-    font-family: var(--font-display);
-    font-size: 8rem;
-    font-weight: 700;
-    line-height: 0.8;
-    letter-spacing: -0.09em;
-    margin-bottom: 2.75rem;
-    background: linear-gradient(
-        90deg,
-        var(--color-navy),
-        var(--color-purple),
-        var(--color-gold),
-        var(--color-orange)
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+  margin: 0 auto;
+  max-width: 860px;
+  font-size: 82px;
+  line-height: 0.9;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  min-height: 1.8em;
 }
 
-.heroDescription {
-    font-size: 1.6rem;
-    color: var(--color-text-secondary);
-    line-height: 1.3;
-    max-width: 820px;
-    margin-bottom: 2.5rem;
+.typingCursor {
+  display: inline-block;
+  color: var(--orange);
+  font-weight: 300;
+  margin-left: 2px;
+  animation: blink 0.75s step-end infinite;
 }
 
-.ctaGroup {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
-.btn {
-    font-family: var(--font-body);
-    font-size: 1.25rem;
-    font-weight: 500;
-    padding: 13px 28px;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition:
-        transform 200ms ease,
-        opacity 200ms ease,
-        background-color 200ms ease,
-        box-shadow 200ms ease;
+.navyText { color: var(--navy); }
+
+.orangeGrad {
+  background: linear-gradient(90deg, var(--orange-light), var(--orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.btn:hover {
-    transform: translateY(-2px);
+.purpleGrad {
+  background: linear-gradient(100deg, var(--indigo) 0%, var(--purple) 45%, var(--magenta) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.btnPrimary {
-    background-color: var(--color-orange);
-    color: var(--color-white);
-    box-shadow: 0 4px 14px rgba(253, 116, 44, 0.35);
+.heroSubtitle {
+  margin: 32px auto 0;
+  max-width: 620px;
+  font-size: 20px;
+  line-height: 1.65;
+  color: var(--gray-text);
 }
 
-.btnSecondary {
-    background-color: rgba(253, 116, 44, 0.12);
-    color: var(--color-orange);
-    border: 1px solid rgba(253, 116, 44, 0.3);
+.heroActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 38px;
 }
 
-.aboutSection {
-    width: 100%;
-    background-color: var(--color-surface);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 9rem 4.5rem;
+/* ── Scroll hint ─────────────────────────────────────────── */
+.scrollHint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.45;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+  animation: hintBounce 1.8s ease-in-out infinite;
 }
 
-.aboutContainer {
-    width: 100%;
-    max-width: 1400px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: clamp(10rem, 6vw, 4rem);
+.scrollHint:hover { opacity: 0.75; }
+
+.scrollHintMouse {
+  width: 24px;
+  height: 40px;
+  border: 2px solid var(--navy);
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 6px;
 }
 
-.aboutContent {
-    flex: 1 1 0;
-    min-width: 0;
-    max-width: 620px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+.scrollHintDot {
+  width: 4px;
+  height: 8px;
+  background: var(--orange);
+  border-radius: 2px;
+  animation: hintDot 1.8s ease-in-out infinite;
 }
 
-.aboutGlassWrapper {
-    flex: 0 0 520px;
-    width: 100%;
-    max-width: 520px;
-    height: 560px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    perspective: 1000px;
-    margin-left: auto;
+@keyframes hintBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(8px); }
 }
 
-.aboutTitle {
-    font-family: var(--font-display);
-    font-size: 4rem;
-    font-weight: 600;
-    color: var(--color-navy);
-    line-height: 0.8;
-    letter-spacing: -0.06em;
-    margin-bottom: 2.6rem;
+@keyframes hintDot {
+  0%, 100% { opacity: 1;   transform: translateY(0); }
+  50%       { opacity: 0.3; transform: translateY(10px); }
 }
 
-.aboutParagraph {
-    font-size: 1.7rem;
-    color: var(--color-text-secondary);
-    line-height: 1.8;
-    text-align: justify;
+/* ── Botões ──────────────────────────────────────────────── */
+.btnOrange,
+.btnOrangeSoft {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--white);
+  background: linear-gradient(180deg, #fa8a3c, var(--orange));
+  box-shadow: 0 10px 24px rgba(242, 105, 28, 0.28);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  animation: pulseShadow 2.4s ease-in-out infinite;
 }
 
-.aboutGlassWrapper {
-    flex: 0 0 540px;
-    width: 100%;
-    max-width: 540px;
-    height: 480px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    perspective: 1000px;
+.btnOrangeSoft {
+  background: linear-gradient(180deg, #ffb066, #f2812e);
+  box-shadow: 0 8px 18px rgba(242, 105, 28, 0.2);
+  animation: none;
 }
 
-.glassContainer {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.btnOrange:hover,
+.btnOrangeSoft:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(242, 105, 28, 0.32);
 }
 
-.glassCard {
-    position: relative;
-    width: 1000px;
-    height: 320px;
-    margin: 0 -44px;
-    border-radius: 16px;
-    background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.18),
-        rgba(255, 255, 255, 0.06)
-    );
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    box-shadow:
-        0 25px 45px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(12px);
-    transform: rotate(calc(var(--r) * 1deg));
-    overflow: hidden;
-    cursor: pointer;
-    transition:
-        transform 0.5s ease,
-        box-shadow 0.5s ease,
-        margin 0.5s ease;
+@keyframes pulseShadow {
+  0%, 100% { box-shadow: 0 10px 24px rgba(242, 105, 28, 0.28); }
+  50%       { box-shadow: 0 14px 36px rgba(242, 105, 28, 0.52), 0 0 0 8px rgba(242,105,28,0.10); }
 }
 
-.glassCard:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow:
-        0 35px 60px rgba(0, 0, 0, 0.28),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+.btnOutline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--white);
+  background: transparent;
+  transition: background 0.18s ease;
 }
 
-.glassCardImg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    filter: brightness(0.88) saturate(1.1);
-    transition:
-        transform 0.5s ease,
-        filter 0.4s ease;
+.btnOutline:hover { background: rgba(255, 255, 255, 0.1); }
+
+/* ============================= founder ================================ */
+
+.founder {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 140px;
+  align-items: center;
+  min-height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 120px 100px;
 }
 
-.glassCard:hover .glassCardImg {
-    transform: scale(1.06);
-    filter: brightness(1) saturate(1.2);
+.founderLeft {
+  position: relative;
+  z-index: 1;
 }
 
-.stepsSection {
-    width: 100%;
-    min-height: 100vh;
-    padding: 15rem 1.5rem;
-    scroll-snap-align: start;
+.founderHeading {
+  font-size: 62px;
+  font-weight: 800;
+  line-height: 1.0;
+  color: var(--navy);
+  margin: 0 0 32px;
 }
 
-.stepsHeader {
-    text-align: center;
-    max-width: 720px;
-    margin: 0 auto 3rem;
+.founderText {
+  font-size: 19px;
+  line-height: 1.9;
+  color: var(--gray-text);
+  margin: 0 0 22px;
 }
 
-.stepsMainTitle,
-.targetsMainTitle,
-.videoMainTitle,
-.reviewsMainTitle,
-.pricingMainTitle,
-.ctaTitle {
-    font-family: var(--font-display);
-    color: var(--color-navy);
-    letter-spacing: -0.03em;
+.founderImageWrap {
+  position: relative;
+  z-index: 1;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(20, 10, 90, 0.22);
+  transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s ease;
 }
 
-.stepsMainTitle {
-    font-size: clamp(2.25rem, 3.5vw, 3rem);
-    margin-bottom: 1rem;
+.founderImageWrap:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 52px 96px rgba(20, 10, 90, 0.28);
 }
 
-.stepsSubtitle {
-    color: var(--color-text-muted);
+.founderImageWrap img {
+  display: block;
+  width: 100%;
+  height: 620px;
+  object-fit: cover;
+  border-radius: 24px;
 }
 
-.stepsContainer {
-    position: relative;
-    display: flex;
-    gap: 2rem;
-    justify-content: space-between;
-    flex-wrap: wrap;
+.founderPortrait {
+  position: relative;
+  width: 100%;
+  height: 620px;
+  background: linear-gradient(155deg, var(--purple-deep) 0%, var(--navy-deep) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.stepsConnectingLine {
-    position: absolute;
-    top: 35px;
-    left: calc(10% + 35px);
-    right: calc(10% + 35px);
-    height: 2px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(253, 116, 44, 0.4),
-        transparent
-    );
-    z-index: 1;
+.founderQuote {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 22px;
+  padding: 22px 24px;
+  border-radius: 16px;
+  background: rgba(13, 10, 70, 0.75);
+  backdrop-filter: blur(8px);
+  color: var(--white);
 }
 
-.stepCard {
-    flex: 1;
-    min-width: 220px;
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 0 1rem;
+.founderQuote p {
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.6;
+  opacity: 0.92;
 }
 
-.stepIconWrapper {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto 1.5rem;
-    border-radius: 9999px;
-    background: #fff;
-    border: 1.5px solid rgba(253, 116, 44, 0.4);
-    display: grid;
-    place-items: center;
-    box-shadow: var(--shadow-sm);
+.founderQuoteName {
+  font-size: 16px;
+  font-weight: 700;
 }
 
-.stepCard:hover .stepIconWrapper {
-    border-color: var(--color-orange);
-    box-shadow: 0 0 0 6px rgba(253, 116, 44, 0.08);
+.founderQuoteRole {
+  font-size: 13.5px;
+  opacity: 0.75;
+}
+
+@media (max-width: 880px) {
+  .founder {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    min-height: auto;
+    padding: 60px 24px;
+  }
+}
+
+/* ============================= steps =================================== */
+
+.steps {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background: var(--gray-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.sectionHeading {
+  font-size: 50px;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 0 0 10px;
+  position: relative;
+  display: inline-block;
+}
+
+/* underline wipe on scroll */
+.sectionHeading::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -6px;
+  height: 4px;
+  width: 0;
+  background: linear-gradient(90deg, var(--orange), var(--orange-light));
+  border-radius: 2px;
+  transition: width 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sectionHeading.headingVisible::after { width: 100%; }
+
+.sectionSubheading {
+  font-size: 35px;
+  color: var(--gray-text-light);
+  margin: 0 0 56px;
+}
+
+.stepsRow {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  gap: 32px;
+}
+
+.stepsLine {
+  position: absolute;
+  top: 38px;
+  left: 8%;
+  right: 8%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--orange-light), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stepIcon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1.5px solid #f0c9a4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--orange);
+  box-shadow: 0 8px 20px rgba(242, 105, 28, 0.12);
+  transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease;
+}
+
+.stepIcon:hover {
+  transform: translateY(-6px) scale(1.06);
+  box-shadow: 0 16px 32px rgba(242, 105, 28, 0.22);
 }
 
 .stepNumber {
-    width: 26px;
-    height: 26px;
-    margin: 0 auto 1rem;
-    border-radius: 9999px;
-    background: var(--color-orange);
-    color: #fff;
-    display: grid;
-    place-items: center;
-    font-weight: 700;
-    font-size: 0.75rem;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px 0 18px;
 }
 
 .stepTitle {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    color: var(--color-navy);
-    margin-bottom: 0.75rem;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 10px;
 }
 
-.stepDescription {
-    color: var(--color-text-secondary);
-    line-height: 1.7;
+.stepDesc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--gray-text);
+  max-width: 260px;
 }
 
-.targetsSection {
-    width: 100%;
-    background-color: var(--color-surface);
-    min-height: 100vh;
-    padding: 10rem 1.5rem;
-    scroll-snap-align: start;
+@media (max-width: 880px) {
+  .stepsRow { grid-template-columns: 1fr; gap: 48px; }
+  .stepsLine { display: none; }
 }
 
-.targetsContainer {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+/* ============================= audience ================================ */
+
+.audience {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 24px;
 }
 
-.targetsHeader {
-    max-width: 650px;
-    margin-bottom: 2rem;
+.audienceHeadingWrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 18px;
 }
 
-.targetsMainTitle {
-    font-size: clamp(2.25rem, 4vw, 3rem);
-    margin-bottom: 1rem;
+.audienceHeading {
+  position: relative;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 0;
 }
 
-.targetsSubtitle {
-    color: var(--color-text-secondary);
-    line-height: 1.8;
+.audienceHeadingLine {
+  position: absolute;
+  left: -6%;
+  right: -6%;
+  top: 52%;
+  height: 2.5px;
+  background: var(--orange);
+  opacity: 0.85;
+  z-index: -1;
 }
 
-.cardsGrid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
+.audienceText {
+  max-width: 520px;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--gray-text);
+  margin: 0 0 52px;
 }
 
-.flipCard {
-    position: relative;
-    width: 280px;
-    height: 360px;
-    perspective: 1200px;
+.cardsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
 }
 
-.flipCardInner {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transition: transform 500ms ease;
-    transform-style: preserve-3d;
+/* ── Card flip ── */
+.cardFlipWrapper {
+  perspective: 1200px;
+  height: 100%;
+  min-height: 420px;
 }
 
-.flipCard:hover .flipCardInner {
-    transform: rotateY(180deg);
+.cardFlipInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
 }
 
-.flipBack,
-.flipFront {
-    position: absolute;
-    inset: 0;
-    border-radius: 20px;
-    backface-visibility: hidden;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.cardFlipped .cardFlipInner { transform: rotateY(180deg); }
+
+.cardFront,
+.cardBack {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
-.flipBack {
-    background: #151515;
+.cardBack { transform: rotateY(180deg); }
+
+.card {
+  border-radius: 20px;
+  padding: 36px 30px 40px;
+  background: linear-gradient(165deg, var(--purple-deep) 0%, var(--navy-deep) 100%);
+  color: var(--white);
+  box-shadow: 0 24px 48px rgba(30, 10, 90, 0.22);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: box-shadow 0.35s ease;
 }
 
-.flipBack::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        var(--color-orange),
-        var(--color-gold),
-        var(--color-orange),
-        transparent
-    );
-    animation: fc-spin 4s linear infinite;
+.cardFlipWrapper:hover .cardFront {
+  box-shadow: 0 32px 64px rgba(75, 15, 174, 0.32), 0 0 0 1px rgba(242,105,28,0.18);
 }
 
-.flipBackContent {
-    position: relative;
-    inset: 2px;
-    background: #151515;
-    border-radius: 18px;
-    padding: 2rem;
-    z-index: 1;
-    text-align: center;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+.cardBack.card {
+  justify-content: center;
+  gap: 28px;
 }
 
-@keyframes fc-spin {
-    to {
-        transform: rotateZ(360deg);
-    }
+.cardBackText {
+  font-size: 17px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0;
 }
 
-.flipFront {
-    transform: rotateY(180deg);
-    background: #151515;
-    color: #fff;
+.cardIcon {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--orange);
+  margin-bottom: 22px;
 }
 
-.flipBubbles {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
+.cardBack .cardIcon { margin-bottom: 0; }
+
+.cardTitle {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 6px;
 }
 
-.flipBubble {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(18px);
-    animation: float 2800ms infinite ease-in-out;
+.cardLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--orange-light);
+  margin: 0 0 16px;
 }
 
-.flipBubble:nth-child(1) {
-    width: 110px;
-    height: 110px;
-    background: #ffaa55;
-    top: -20px;
-    left: -20px;
+.cardText {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0 0 24px;
 }
 
-.flipBubble:nth-child(2) {
-    width: 36px;
-    height: 36px;
-    background: #ff2233;
-    top: -50px;
-    left: 160px;
-    animation-delay: -1800ms;
+.cardList {
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
 }
 
-.flipBubble:nth-child(3) {
-    width: 170px;
-    height: 170px;
-    background: #ff6633;
-    top: 30px;
-    left: 40px;
-    animation-delay: -900ms;
+.cardList li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.88);
 }
 
-@keyframes float {
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(12px);
-    }
+.cardCheck {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--orange-light);
 }
 
-.flipFrontContent {
-    position: relative;
-    inset: 0;
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.cardButton {
+  align-self: stretch;
+  text-align: center;
+  padding: 14px 0;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+  background: linear-gradient(180deg, #fa8a3c, var(--orange));
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
-.flipBadge {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.35rem 0.9rem;
-    border-radius: 9999px;
-    background: rgba(0, 0, 0, 0.4);
-    color: #fff;
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+.cardButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(242,105,28,0.3);
 }
 
-.flipInfo {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(6px);
-    border-radius: 14px;
-    padding: 1rem;
-    box-shadow: 0 0 16px 6px rgba(0, 0, 0, 0.5);
+.cardLink {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.flipInfoHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
+@media (max-width: 880px) {
+  .cardsRow { grid-template-columns: 1fr; }
 }
 
-.flipCardTitle {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 700;
-}
-
-.flipBookmark {
-    opacity: 0.8;
-}
-
-.flipFeatures {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 0.75rem;
-}
-
-.flipFeatureRow {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 0.85rem;
-}
-
-.flipCheck {
-    color: var(--color-gold);
-}
-
-.flipCardFamily .flipBubble:nth-child(1) {
-    background: #55aaff;
-}
-.flipCardFamily .flipBubble:nth-child(3) {
-    background: #3366ff;
-}
-.flipCardClinics .flipBubble:nth-child(1) {
-    background: #55dd99;
-}
-.flipCardClinics .flipBubble:nth-child(3) {
-    background: #00aa66;
-}
-.flipCardNgos .flipBubble:nth-child(1) {
-    background: #ffaa55;
-}
-.flipCardNgos .flipBubble:nth-child(3) {
-    background: #ff6633;
-}
+/* ============================= video / scroll-driven ==================== */
 
 .videoSection {
-    width: 100%;
-    min-height: 100vh;
-    padding: 5rem 1.5rem;
-    background: var(--color-surface);
-    scroll-snap-align: start;
+  position: relative;
+  z-index: 1;
+  height: 230vh;
 }
 
-.videoContainer {
-    width: 100%;
-    max-width: 820px;
-    margin: 0 auto;
+.videoStickyWrap {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  overflow: hidden;
+  background: var(--white);
 }
 
-.videoHeader {
-    text-align: center;
-    margin-bottom: 2.5rem;
+.videoIntro {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 24px;
+  transition: opacity 0.12s linear, transform 0.12s linear;
+  max-width: 640px;
+  flex-shrink: 0;
 }
 
-.videoMainTitle {
-    font-size: clamp(2.25rem, 4vw, 3rem);
-    margin-bottom: 1rem;
+.videoIntro p {
+  max-width: 540px;
+  margin: 14px auto 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--gray-text);
 }
 
-.videoSubtitle {
-    color: var(--color-text-muted);
-    line-height: 1.8;
-}
-
-.videoMockup {
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    background: #9da3db;
-    border-radius: 18px;
-    position: relative;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-}
-
-.videoOverlay {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
+.videoBox {
+  position: relative;
+  flex-shrink: 0;
+  background: linear-gradient(150deg, #b9b9ea, #9a9bdc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: width, height, border-radius;
 }
 
 .playButton {
-    width: 64px;
-    height: 64px;
-    border-radius: 16px;
-    border: 3px solid rgba(108, 99, 255, 0.9);
-    background: rgba(100, 40, 0, 0.85);
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-    transition:
-        transform 200ms ease,
-        background-color 200ms ease;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--orange);
+  border: 5px solid #6e5bd6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--white);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+  animation: playPulse 2s ease-in-out infinite;
+  transition: transform 0.2s ease;
 }
 
-.playButton:hover {
-    transform: scale(1.1);
-    background: rgba(130, 55, 0, 0.9);
+.playButton:hover { transform: scale(1.1); }
+
+@keyframes playPulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.07); }
 }
 
-.reviewsSection {
-    width: 100%;
-    min-height: 100vh;
-    padding: 5rem 1.5rem;
-    scroll-snap-align: start;
+/* ============================= stats bar ============================== */
+
+.statsBar {
+  position: relative;
+  z-index: 1;
+  background: var(--gray-bg);
+  border-top: 1.5px solid var(--cream-line);
+  border-bottom: 1.5px solid var(--cream-line);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 56px 24px;
 }
 
-.reviewsContainer {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+.statsItem {
+  flex: 1;
+  min-width: 160px;
+  max-width: 240px;
+  text-align: center;
+  padding: 16px 24px;
+  border-right: 1.5px solid var(--cream-line);
 }
 
-.reviewsHeader {
-    text-align: center;
-    margin-bottom: 2.5rem;
+.statsItem:last-child { border-right: none; }
+
+.statsNum {
+  font-size: 52px;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1;
+  display: block;
 }
 
-.reviewsMainTitle {
-    font-size: clamp(2.25rem, 4vw, 3rem);
+.statsLabel {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--gray-text);
 }
 
-.reviewsSubtitle {
-    color: var(--color-text-muted);
-    line-height: 1.8;
+/* ============================= testimonials ============================ */
+
+.testimonials {
+  position: relative;
+  z-index: 1;
+  background: var(--gray-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
+  text-align: center;
+  overflow: hidden;
 }
 
-.carouselTicker {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    padding: 1.5rem 0;
+.carouselDouble {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  margin-top: 52px;
 }
+
+.carouselViewport {
+  width: 100%;
+  overflow: hidden;
+  cursor: grab;
+}
+
+.carouselViewport:active { cursor: grabbing; }
 
 .carouselTrack {
-    display: flex;
-    gap: 1.5rem;
-    width: max-content;
-    animation: scrollInfinite 32s linear infinite;
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  will-change: transform;
 }
 
-.carouselTrack:hover {
-    animation-play-state: paused;
+.testimonialCard {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 20px 22px 22px;
+  box-shadow: 0 8px 20px rgba(20, 10, 90, 0.06);
+  width: 280px;
+  flex-shrink: 0;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-@keyframes scrollInfinite {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(calc(-50% - 12px));
-    }
+.testimonialCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(20, 10, 90, 0.12);
 }
 
-.reviewCard {
-    width: 340px;
-    background: var(--color-white);
-    border-radius: 24px;
-    padding: 2rem;
-    box-shadow: var(--shadow-card);
-    border: 1px solid var(--color-border);
-    display: flex;
-    flex-direction: column;
+.stars {
+  display: flex;
+  gap: 3px;
+  color: var(--orange);
+  margin-bottom: 10px;
 }
 
-.reviewStars {
-    color: var(--color-gold);
-    font-size: 1.125rem;
-    margin-bottom: 1rem;
+.testimonialText {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--gray-text);
+  font-style: italic;
+  margin: 0 0 14px;
 }
 
-.reviewText {
-    color: var(--color-text-secondary);
-    line-height: 1.8;
-    font-style: italic;
-    flex-grow: 1;
-    margin-bottom: 1.5rem;
+.testimonialPerson {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.reviewUser {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    border-top: 1px solid #f0f2f5;
-    padding-top: 1rem;
+.avatarCircle {
+  border-radius: 50%;
+  background: linear-gradient(160deg, #6e2bd6, var(--orange));
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
 }
 
-.userName {
-    font-family: var(--font-display);
-    font-weight: 700;
+.testimonialCard:hover .avatarCircle {
+  transform: scale(1.12) rotate(-4deg);
 }
 
-.userRole {
-    color: #777;
-    font-size: 0.75rem;
+.testimonialName {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--navy);
 }
 
-.pricingSection {
-    width: 100%;
-    min-height: 100vh;
-    padding: 5rem 1.5rem;
-    background: var(--color-surface);
-    scroll-snap-align: start;
+.testimonialRole {
+  font-size: 11.5px;
+  color: var(--gray-text-light);
 }
 
-.pricingContainer {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+/* ============================= pricing ================================== */
+
+.pricing {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 24px;
+  text-align: center;
 }
 
-.pricingHeader {
-    text-align: center;
-    margin-bottom: 2.5rem;
+.pricingRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 50px;
+  align-items: start;
+  width: 100%;
 }
 
-.pricingMainTitle {
-    font-size: clamp(2.25rem, 4vw, 3rem);
+.pricingCard {
+  position: relative;
+  border-radius: 20px;
+  padding: 40px 30px 36px;
+  background: linear-gradient(165deg, var(--purple-deep) 0%, var(--navy-deep) 100%);
+  color: var(--white);
+  box-shadow: 0 24px 48px rgba(30, 10, 90, 0.2);
+  text-align: center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+  will-change: transform;
 }
 
-.pricingSubtitle {
-    color: var(--color-text-muted);
-    line-height: 1.8;
-}
-
-.pricingGrid {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.priceCard {
-    flex: 1;
-    min-width: 280px;
-    max-width: 340px;
-    padding: 2rem 1.5rem;
-    border-radius: 24px;
-    background: linear-gradient(
-        135deg,
-        var(--color-purple),
-        var(--color-purple-deep, #28006e)
-    );
-    color: #fff;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    flex-direction: column;
-}
-
-.priceCardFeatured {
-    box-shadow: 0 20px 50px rgba(77, 0, 181, 0.25);
-    border-color: rgba(255, 255, 255, 0.12);
+.pricingCardPopular {
+  transform: translateY(-14px);
+  box-shadow: 0 30px 60px rgba(30, 10, 90, 0.3);
 }
 
 .popularBadge {
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 0.75rem 2rem;
-    border-radius: 9999px;
-    background: linear-gradient(90deg, var(--color-gold), var(--color-orange));
-    color: #fff;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-}
-
-.priceCardHeader {
-    text-align: center;
-    margin-bottom: 1.75rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background-size: 200% auto;
+  background-image: linear-gradient(90deg, #fa8a3c 0%, #f7b23b 40%, #fa8a3c 100%);
+  animation: shimmer 2.4s linear infinite;
 }
 
 .planName {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    opacity: 0.8;
-    display: block;
-    margin-bottom: 0.75rem;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 10px;
 }
 
 .planPrice {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0;
 }
 
-.currency {
-    font-size: 1rem;
-    font-weight: 600;
+.planPriceCustom {
+  font-size: 28px;
+  font-weight: 700;
+  font-style: italic;
+  margin: 0;
 }
 
-.amount {
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1;
-}
-
-.period {
-    font-size: 0.75rem;
-    opacity: 0.65;
-    margin-top: 0.5rem;
+.planPriceNote {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 4px 0 28px;
 }
 
 .planFeatures {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin: 2rem 0;
-    flex-grow: 1;
+  list-style: none;
+  margin: 0 0 30px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: left;
 }
 
-.planFeatureItem {
-    display: flex;
-    gap: 0.75rem;
-    align-items: center;
-    font-size: 0.95rem;
+.planFeatures li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
-.planBtn {
-    width: 100%;
-    text-align: center;
-    border-radius: 9999px;
-    padding: 14px;
-    font-weight: 600;
+.planCheck {
+  color: var(--orange-light);
+  flex-shrink: 0;
 }
 
-.planBtnOrange {
-    background: linear-gradient(90deg, var(--color-gold), var(--color-orange));
-    color: #fff;
+.planButton {
+  display: block;
+  width: 100%;
+  padding: 14px 0;
+  border-radius: 10px;
+  border: none;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--white);
+  background: linear-gradient(180deg, #fa8a3c, var(--orange));
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
-.planBtnTranslucent {
-    background: rgba(255, 255, 255, 0.12);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.22);
+.planButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(242,105,28,0.35);
 }
 
-.ctaSection {
-    width: 100%;
-    min-height: 100vh;
-    padding: 5rem 1.5rem;
-    scroll-snap-align: start;
-    background: radial-gradient(
-        circle at 50% 80%,
-        rgba(138, 43, 226, 0.4),
-        transparent 70%
-    );
-    color: #fff;
+@media (max-width: 880px) {
+  .pricingRow { grid-template-columns: 1fr; }
+  .pricingCardPopular { transform: none; }
 }
 
-.ctaContainer {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
+/* ============================= CTA ====================================== */
+
+.cta {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  background: linear-gradient(135deg, #0c0a4d 0%, #1e0e72 45%, #4b0fae 100%);
+  color: var(--white);
 }
 
-.ctaTitle {
-    font-size: clamp(2.75rem, 5vw, 4rem);
-    margin-bottom: 1.5rem;
+.ctaGlow {
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  right: -160px;
+  bottom: -200px;
+  background: radial-gradient(circle, rgba(170, 60, 220, 0.45), transparent 70%);
+  pointer-events: none;
 }
 
-.ctaSubtitle {
-    color: rgba(255, 255, 255, 0.78);
-    line-height: 1.7;
-    margin-bottom: 2rem;
+.ctaHeading {
+  position: relative;
+  font-size: 30px;
+  font-weight: 800;
+  margin: 0 0 14px;
 }
 
-.ctaButtons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+.ctaText {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto 36px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
 }
 
-.btnPrimaryOrange {
-    background-color: var(--color-orange);
-    color: #fff;
-    padding: 16px 36px;
-    border-radius: 12px;
+.ctaActions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
 }
 
-.btnSecondaryOutline {
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    color: rgba(255, 255, 255, 0.9);
-    padding: 15px 36px;
-    border-radius: 12px;
+/* ============================= scroll reveal =========================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@media (max-width: 900px) {
-    .aboutContainer,
-    .stepsContainer,
-    .pricingGrid,
-    .cardsGrid {
-        flex-direction: column;
-        align-items: center;
-    }
+.revealLeft  { opacity: 0; transform: translateX(-48px); transition: opacity 0.72s cubic-bezier(0.22,1,0.36,1), transform 0.72s cubic-bezier(0.22,1,0.36,1); }
+.revealRight { opacity: 0; transform: translateX(48px);  transition: opacity 0.72s cubic-bezier(0.22,1,0.36,1), transform 0.72s cubic-bezier(0.22,1,0.36,1); }
+.revealScale { opacity: 0; transform: scale(0.88);        transition: opacity 0.72s cubic-bezier(0.22,1,0.36,1), transform 0.72s cubic-bezier(0.22,1,0.36,1); }
 
-    .aboutGlassWrapper {
-        width: 100%;
-        max-width: 480px;
-        height: 280px;
-    }
+.revealVisible { opacity: 1 !important; transform: none !important; }
 
-    .glassCard {
-        width: 140px;
-        height: 185px;
-        margin: 0 -24px;
-    }
+.delay1 { transition-delay: 0.10s; }
+.delay2 { transition-delay: 0.20s; }
+.delay3 { transition-delay: 0.30s; }
+.delay4 { transition-delay: 0.40s; }
+.delay5 { transition-delay: 0.50s; }
+.delay6 { transition-delay: 0.60s; }
 
-    .aboutContent {
-        text-align: center;
-    }
+/* ============================= cursor glow ============================ */
 
-    .stepsConnectingLine {
-        display: none;
-    }
+.cursorGlow {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(242,105,28,0.07) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  mix-blend-mode: multiply;
+  transition: left 0.18s ease, top 0.18s ease;
 }
+
+/* ============================= logo mark ============================== */
+
+.logoMark {
+  width: 36px;
+  height: 36px;
+}
+
+/* ============================= dot grid =============================== */
+
+.dotGrid {
+  position: absolute;
+  display: grid;
+  gap: 14px;
+  opacity: 0.6;
+}
+
+/* ============================= avatar ================================= */
+
+/* (already defined above) */
 
 @media (max-width: 600px) {
-    .heroContainer,
-    .aboutSection,
-    .stepsSection,
-    .targetsSection,
-    .videoSection,
-    .reviewsSection,
-    .pricingSection,
-    .ctaSection {
-        padding: 3rem 1rem;
-    }
-
-    .ctaGroup,
-    .ctaButtons {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .btn,
-    .btnPrimaryOrange,
-    .btnSecondaryOutline,
-    .planBtn {
-        width: 100%;
-    }
-
-    .reviewCard {
-        width: 100%;
-        max-width: 280px;
-    }
+  .heroTitle { font-size: 34px; }
+  .ctaActions, .heroActions { flex-direction: column; }
 }
