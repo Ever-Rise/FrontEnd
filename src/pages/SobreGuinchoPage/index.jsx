@@ -7,7 +7,7 @@ import { Footer, Header } from "../../components";
 import heroVideo from '../../assets/images/SobreGuincho/video_Hero1.mp4'; // Ajuste o caminho se necessário
 
 // Seção Guincho Interativo (imagem principal com hotspots)
-import secaoImg from "../../assets/images/SobreGuincho/secao-guincho.png";
+import secaoImg from "../../assets/images/SobreGuincho/secao_guincho.png";
 
 // Hardware
 import raspberryImg from "../../assets/images/SobreGuincho/rasperry.png";
@@ -65,44 +65,39 @@ const features = [
 const hotspotsGuincho = [
   {
     id: 1,
-    x: 22,
-    y: 28,
-    title: "Motores e sistema de tração",
-    description:
-      "Responsáveis por movimentos suaves, estáveis e seguros durante toda a transferência.",
+    title: "Motor Elétrico Compacto",
+    description: "Atuador linear blindado de alta capacidade, responsável pela elevação suave e segura do paciente.",
+    x: 34, // Alinhado na junta superior/coluna vertical
+    y: 22
   },
   {
     id: 2,
-    x: 62,
-    y: 18,
-    title: "Sensor de pressão FSR 402",
-    description:
-      "Detecta a pressão aplicada em tempo real, garantindo segurança total na operação.",
+    title: "Sensor Inteligente / Câmera",
+    description: "Monitoramento por inteligência artificial que avalia o posicionamento e garante a segurança durante o movimento.",
+    x: 40, // Embutido logo abaixo da curvatura do braço superior
+    y: 19
   },
   {
     id: 3,
-    x: 78,
-    y: 50,
-    title: "Câmera USB",
-    description:
-      "Permite o monitoramento em tempo real do paciente durante todo o processo.",
+    title: "Sensor FSR Integrado",
+    description: "Sensores de força por película que medem a distribuição de peso e a pressão exercida no ponto de ancoragem.",
+    x: 32, // Na barra de suspensão do sling (cabide)
+    y: 31
   },
   {
     id: 4,
-    x: 45,
-    y: 78,
-    title: "Estrutura em MDF e Ferro",
-    description:
-      "Base resistente que garante estabilidade, durabilidade e suporte de carga.",
+    title: "Botão Failsafe / Emergência",
+    description: "Botão físico de parada imediata e alívio mecânico manual para descida segura em caso de pane elétrica.",
+    x: 35, // Botão vermelho proeminente na alça de controle traseira
+    y: 50
   },
   {
     id: 5,
-    x: 14,
-    y: 62,
-    title: "Botão Failsafe",
-    description:
-      "Botão físico de emergência que funciona mesmo sem conexão à internet.",
-  },
+    title: "Estrutura Metálica Reforçada",
+    description: "Construída em alumínio escovado e aço carbono com base expandida para máxima estabilidade anticapotamento.",
+    x: 52, // Centralizado na base estrutural inferior
+    y: 73
+  }
 ];
 
 const hardwareCardsTop = [
@@ -266,7 +261,7 @@ export default function SobreGuincho() {
                 <a href="/parceiros" className={`${styles.btn} ${styles.primary}`}>
                   Quero ser parceiro
                 </a>
-                <a href="/parceiros" className={`${styles.btn} ${styles.secondary}`}>
+                <a href="#contato" className={`${styles.btn} ${styles.secondary}`}>
                   Fale com a gente
                 </a>
               </div>
@@ -600,7 +595,7 @@ export default function SobreGuincho() {
           </section>
 
           {/* ── CONTATO + FOOTER ── */}
-          <div className={styles.contatoFooterGroup}>
+          <div className={styles.contatoFooterGroup} id="contato">
             <section className={styles.contatoSection}>
               <div className={styles.contatoCard}>
                 <h2>Entre em contato</h2>

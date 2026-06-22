@@ -10,6 +10,7 @@
 .everriseContact {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
 }
 
 .pageWrapper {
@@ -557,7 +558,7 @@
 .pos-bottom-left { top: 26px; right: 0; }
 .pos-bottom-right { top: 26px; left: 0; }
 .pos-top-left { bottom: 26px; right: 0; }
-.pos-top-right { bottom: 26px; left: 0; }
+.pos-top-right { bottom: 26px; left: 0; } 
 
 .hotspotBackdrop {
   position: fixed;
