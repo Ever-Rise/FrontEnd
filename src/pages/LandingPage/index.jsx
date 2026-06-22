@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import { Footer, Header } from "../../components";
+import fotoLipe from "../../assets/images/LandingPage/rafaELipe.jpeg"
 
 /* ============================================================
    Icons
@@ -346,7 +347,11 @@ export default function EveriseLanding() {
           <div className={styles.founderImageWrap}>
             <div className={styles.founderPortrait}>
               <DotGrid style={{ top: "20px", left: "20px" }} />
-              <IconPortrait />
+              <img 
+                src= {fotoLipe}
+                alt="Rafa - Fundadora da Ever Rise"
+                className={styles.founderImg}
+              />
             </div>
             <div className={styles.founderQuote}>
               <p>
@@ -415,7 +420,7 @@ export default function EveriseLanding() {
         {/* ── VÍDEO ── */}
         <section className={styles.videoSection}>
           <div className={styles.videoIntro}>
-            <h2 className={styles.sectionHeading}>Veja o EVERISE em ação</h2>
+            <h2 className={styles.sectionHeading}>Veja o Ever Rise em ação</h2>
             <p>
               Descubra como nossa plataforma simplifica a gestão de guinchos e frotas através de
               uma interface intuitiva e automações poderosas.
@@ -426,20 +431,6 @@ export default function EveriseLanding() {
               <IconPlay />
             </button>
           </div>
-        </section>
-
-        {/* ── STATS BAR ── */}
-        <section className={styles.statsBar}>
-          {statsData.map((s, i) => (
-            <div
-              key={s.label}
-              className={styles.statsItem}
-              style={i === statsData.length - 1 ? { borderRight: "none" } : {}}
-            >
-              <Counter end={s.value} suffix={s.suffix} />
-              <p className={styles.statsLabel}>{s.label}</p>
-            </div>
-          ))}
         </section>
 
         {/* ── TESTIMONIALS (marquee 100% CSS) ── */}
