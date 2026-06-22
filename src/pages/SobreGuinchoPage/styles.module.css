@@ -1,9 +1,9 @@
 /* ─────────────────────────────────────────
    RESET GLOBAL (scoped)
 ───────────────────────────────────────── */
-.hero,
+.heroContainer,
 .features,
-.imagem,
+.guinchoInterativo,
 .hardwareSection,
 .especificacoes,
 .techSection,
@@ -21,7 +21,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 1; /* Subiu para 1 */
+  z-index: 1;
 }
 
 .pageWrapper > section {
@@ -62,6 +62,88 @@
 }
 
 /* ─────────────────────────────────────────
+   SISTEMA UNIFICADO DE TÍTULO DE SEÇÃO
+   (substitui titleDecoration/titleSquare/decorationHardware/
+   tituloDecoration/tituloModuloDecoration — todos usavam
+   "left" em px fixo relativo à viewport, por isso quebravam
+   em qualquer tela diferente do design original)
+───────────────────────────────────────── */
+.sectionHeader {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 0 16px;
+}
+
+.headerDeco {
+  position: absolute;
+  top: -16px;
+  left: 6%;
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: #041062;
+  z-index: 1;
+}
+
+.headerInner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.headerInner h2 {
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 14px 36px;
+  background: linear-gradient(90deg, #fd742c 8.65%, #fd942d 68.27%, #feb42d 100%);
+  border-radius: 20px;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(22px, 3.4vw, 42px);
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.4px;
+}
+
+.headerInner p {
+  margin-top: 20px;
+  max-width: 720px;
+  color: #041062;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(16px, 2.1vw, 30px);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.4px;
+  padding: 0 8px;
+}
+
+/* Variante para fundos escuros (seção Tech) */
+.headerInnerLight p {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.headerInnerLight h2 .highlightWord {
+  color: inherit;
+}
+
+@media (max-width: 640px) {
+  .headerDeco {
+    display: none;
+  }
+}
+
+/* ─────────────────────────────────────────
    HERO
 ───────────────────────────────────────── */
 .heroContainer {
@@ -70,11 +152,10 @@
   flex-direction: column;
 }
 
-/* --- SEÇÃO DO VÍDEO (1ª Dobra) --- */
 .videoSection {
   position: relative;
   width: 100%;
-  height: 100vh; /* Ocupa toda a primeira tela */
+  height: 100vh;
   overflow: hidden;
   background: #ffffff;
 }
@@ -83,12 +164,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-
   object-position: center;
   transform: translateX(8%) scale(1.18);
 }
 
-/* Alerta de Scroll sobre o vídeo */
 .scrollAlert {
   position: absolute;
   bottom: 40px;
@@ -135,7 +214,6 @@
   100% { opacity: 0; transform: translate(-50%, 15px); }
 }
 
-/* --- SEÇÃO DE TEXTO (2ª Dobra) --- */
 .textSection {
   position: relative;
   width: 100%;
@@ -143,18 +221,18 @@
   padding: 120px 8% 80px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centraliza a caixa de texto na tela */
+  align-items: center;
   justify-content: center;
-  /* Cria o efeito de dissipação: do branco do vídeo para o cinza do site */
   background: linear-gradient(180deg, #ffffff 0%, #f1f1f3 100%);
 }
 
 .heroText {
   max-width: 800px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centraliza os elementos internamente */
-  text-align: center; /* Centraliza o texto */
+  align-items: center;
+  text-align: center;
   gap: 32px;
 }
 
@@ -165,10 +243,11 @@
   -webkit-text-fill-color: transparent;
   color: #041062;
   font-family: "Poppins", sans-serif;
-  font-size: 64px;
+  font-size: clamp(30px, 6vw, 64px);
   font-weight: 700;
-  line-height: 65px;
+  line-height: 1.05;
   letter-spacing: 0.24px;
+  margin: 0;
 }
 
 .linha1, .linha2 {
@@ -178,18 +257,20 @@
 .heroText p {
   color: #041062;
   font-family: "Poppins", sans-serif;
-  font-size: 36px;
+  font-size: clamp(18px, 2.6vw, 36px);
   font-weight: 500;
-  line-height: 40px;
+  line-height: 1.15;
   letter-spacing: 0.24px;
+  margin: 0;
 }
 
 .heroButtons {
   display: flex;
-  justify-content: center; /* Garante que os botões fiquem no meio */
+  justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
   margin-top: 10px;
+  width: 100%;
 }
 
 .btn {
@@ -225,7 +306,6 @@
   background: #f1f1f1;
 }
 
-/* --- Indução de Scroll --- */
 .continueScrolling {
   margin-top: 80px;
   display: flex;
@@ -270,116 +350,15 @@
   flex-direction: column;
   gap: 80px;
   background: #f2f2f5;
-}
-
-/* Título genérico */
-.sectionTitle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-
-/* Decoração azul título 1 */
-.titleDecoration {
-  width: 100px;
-  height: 100px;
-  border-radius: 30px;
-  background: #041062;
-  position: absolute;
-  left: 290px;
-  top: -15px;
-  z-index: 1;
-}
-
-.titleContent {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
   align-items: center;
 }
 
-.titleContent h2 {
-  width: 650px;
-  background: linear-gradient(90deg, #fd742c 8.65%, #fd942d 68.27%, #feb42d 100%);
-  border-radius: 20px;
-  color: #fff;
-  font-family: "Poppins", sans-serif;
-  font-size: 42px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 66px;
-  letter-spacing: -0.4px;
-  text-align: center;
-}
-
-.titleContent p {
-  margin-top: 20px;
-  max-width: 700px;
-  color: #041062;
-  text-align: center;
-  font-family: "Poppins", sans-serif;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 35px;
-  letter-spacing: -0.4px;
-}
-
-/* Quadrado azul título 2 */
-.titleSquare {
-  width: 100px;
-  height: 90px;
-  background: #041062;
-  border-radius: 18px;
-  position: absolute;
-  left: 190px;
-  top: -10px;
-  z-index: 1;
-}
-
-.titleWrapper {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.titleWrapper h2 {
-  width: 850px;
-  border-radius: 20px;
-  background: linear-gradient(90deg, #fd742c 8.65%, #fd942d 68.27%, #feb42d 100%);
-  color: #fff;
-  font-family: "Poppins", sans-serif;
-  font-size: 42px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 66px;
-  letter-spacing: -0.4px;
-  text-align: center;
-}
-
-.titleWrapper p {
-  margin-top: 24px;
-  max-width: 900px;
-  text-align: center;
-  color: #041062;
-  font-family: "Poppins", sans-serif;
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 40px;
-  letter-spacing: -0.4px;
-}
-
-/* Cards de pilares */
 .cards {
   display: flex;
   justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .card {
@@ -432,16 +411,170 @@
 }
 
 /* ─────────────────────────────────────────
-   IMAGEM GUINCHO
+   GUINCHO INTERATIVO (antiga seção .imagem)
+   Hotspots sobre a imagem com tooltip ao
+   passar o mouse (desktop) ou tocar (mobile)
 ───────────────────────────────────────── */
-.imagem {
+.guinchoInterativo {
   width: 100%;
-  height: auto;
+  padding: 100px 8% 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  background: #ffffff;
 }
 
-.imagem img {
+.guinchoImageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.guinchoImage {
   width: 100%;
   height: auto;
+  display: block;
+  border-radius: 24px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.hotspotWrapper {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+}
+
+.hotspotPoint {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: #fd742c;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, background 0.2s ease;
+  padding: 0;
+}
+
+.hotspotPoint:hover,
+.hotspotPointActive {
+  background: #4d00b5;
+  transform: scale(1.15);
+}
+
+.hotspotPlus {
+  position: relative;
+  z-index: 2;
+  line-height: 1;
+  transform: translateY(-1px);
+  pointer-events: none;
+}
+
+.hotspotPulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(253, 116, 44, 0.5);
+  animation: hotspotPulseAnim 1.8s ease-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes hotspotPulseAnim {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.hotspotTooltip {
+  position: absolute;
+  width: 260px;
+  max-width: 70vw;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 18px 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  z-index: 5;
+  animation: tooltipFade 0.2s ease;
+}
+
+.hotspotTooltip h4 {
+  color: #041062;
+  font-family: "Poppins", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+
+.hotspotTooltip p {
+  color: #333;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+}
+
+@keyframes tooltipFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Posição da tooltip relativa ao ponto, calculada em JS
+   (pos-VERTICAL-HORIZONTAL) para nunca vazar da imagem */
+.pos-bottom-center { top: 26px; left: 50%; transform: translateX(-50%); }
+.pos-top-center { bottom: 26px; left: 50%; transform: translateX(-50%); }
+.pos-bottom-left { top: 26px; right: 0; }
+.pos-bottom-right { top: 26px; left: 0; }
+.pos-top-left { bottom: 26px; right: 0; }
+.pos-top-right { bottom: 26px; left: 0; }
+
+.hotspotBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  background: transparent;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .guinchoInterativo {
+    padding: 60px 5% 80px;
+    gap: 32px;
+  }
+
+  .hotspotPoint {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+
+  .hotspotBackdrop {
+    background: rgba(4, 16, 98, 0.45);
+    pointer-events: auto;
+  }
+
+  .hotspotTooltip {
+    position: fixed !important;
+    left: 50% !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: 0 !important;
+    transform: translateX(-50%) !important;
+    width: 92vw;
+    max-width: 92vw;
+    border-radius: 20px 20px 0 0;
+    padding: 24px 22px 32px;
+  }
 }
 
 /* ─────────────────────────────────────────
@@ -459,36 +592,9 @@
 .hardwareHeader {
   display: flex;
   justify-content: center;
-  align-items: center;
-  position: relative;
   margin-bottom: 80px;
 }
 
-.hardwareHeader h2 {
-  position: relative;
-  width: 900px;
-  background: linear-gradient(90deg, #fd742c 8.65%, #fd942d 68.27%, #feb42d 100%);
-  border-radius: 20px;
-  color: #fff;
-  font-family: "Poppins", sans-serif;
-  font-size: 38px;
-  font-weight: 700;
-  line-height: 66px;
-  text-align: center;
-  z-index: 2;
-}
-
-.decorationHardware {
-  width: 100px;
-  height: 100px;
-  border-radius: 30px;
-  background: #041062;
-  position: absolute;
-  left: 280px;
-  z-index: 1;
-}
-
-/* Novo Grid Container */
 .hardwareGrid {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -501,7 +607,6 @@
   padding: 40px 20px;
 }
 
-/* SVG Absoluto preenchendo o Grid */
 .linhasConectoras {
   position: absolute;
   top: 0;
@@ -512,7 +617,6 @@
   pointer-events: none;
 }
 
-/* Posicionamento Específico no Grid */
 .posTopLeft { grid-column: 1; grid-row: 1; }
 .posTopRight { grid-column: 3; grid-row: 1; }
 .posMiddleLeft { grid-column: 1; grid-row: 2; }
@@ -530,37 +634,24 @@
 }
 
 @keyframes fluxoEnergia {
-  from {
-    stroke-dashoffset: 100;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
 }
 
-/* Animação de pulsação (Glow) para o logo central */
 @keyframes pulsoLogo {
-  0% {
-    box-shadow: 0 0 15px rgba(77, 0, 181, 0.4), 0 0 30px rgba(77, 0, 181, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(253, 116, 44, 0.8), 0 0 60px rgba(253, 116, 44, 0.4);
-  }
-  100% {
-    box-shadow: 0 0 15px rgba(77, 0, 181, 0.4), 0 0 30px rgba(77, 0, 181, 0.2);
-  }
+  0% { box-shadow: 0 0 15px rgba(77, 0, 181, 0.4), 0 0 30px rgba(77, 0, 181, 0.2); }
+  50% { box-shadow: 0 0 30px rgba(253, 116, 44, 0.8), 0 0 60px rgba(253, 116, 44, 0.4); }
+  100% { box-shadow: 0 0 15px rgba(77, 0, 181, 0.4), 0 0 30px rgba(77, 0, 181, 0.2); }
 }
 
-/* Estilização Base e Animação das Linhas */
 .linhaAnimada, .linhaRoxaAnimada {
   fill: none;
   stroke-width: 4;
   stroke-linecap: round;
-  stroke-dasharray: 15 15; /* Cria o padrão: 15px de traço, 15px de espaço */
-  animation: fluxoEnergia 1.5s linear infinite; /* Define a velocidade do fluxo */
+  stroke-dasharray: 15 15;
+  animation: fluxoEnergia 1.5s linear infinite;
 }
 
-/* Adiciona o efeito de brilho (Neon) na cor correspondente */
 .linhaAnimada {
   filter: drop-shadow(0px 0px 6px rgba(253, 116, 44, 0.8));
 }
@@ -569,7 +660,6 @@
   filter: drop-shadow(0px 0px 6px rgba(77, 0, 181, 0.8));
 }
 
-/* Atualize a classe do logo para receber o pulso de energia */
 .logoHardware {
   border-radius: 50%;
   background: #4d00b5;
@@ -577,7 +667,7 @@
   height: auto;
   position: relative;
   z-index: 5;
-  animation: pulsoLogo 3s ease-in-out infinite; /* Aplica a pulsação */
+  animation: pulsoLogo 3s ease-in-out infinite;
 }
 
 .cardWrapper {
@@ -657,58 +747,11 @@
   text-align: center;
 }
 
-.tituloDecoration {
-  width: 100px;
-  height: 100px;
-  border-radius: 30px;
-  background: #041062;
-  position: absolute;
-  left: 31%;
-  top: 1%;
-  z-index: 1;
-  margin-top: 30px;
-}
-
-.tituloEspecificacoesContent {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.tituloEspecificacoesContent h2 {
-  width: 500px;
-  background: linear-gradient(90deg, #fd742c 8.65%, #fd942d 68.27%, #feb42d 100%);
-  border-radius: 20px;
-  color: #fff;
-  font-family: "Poppins", sans-serif;
-  font-size: 42px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 66px;
-  letter-spacing: -0.4px;
-  text-align: center;
-}
-
-.tituloEspecificacoesContent p {
-  margin-top: 20px;
-  max-width: 900px;
-  color: #041062;
-  text-align: center;
-  font-family: "Poppins", sans-serif;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 35px;
-  letter-spacing: -0.4px;
-}
-
 .especificacoesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 60px;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .especificacoesCard {
@@ -722,9 +765,10 @@
 }
 
 .iconWrapper {
-  width: 500px;
-  max-width: 500px;
-  height: 500px;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1 / 1;
+  height: auto;
   margin-bottom: 25px;
   display: flex;
   align-items: center;
@@ -741,13 +785,13 @@
   color: #041062;
   text-align: center;
   font-family: "Poppins", sans-serif;
-  font-size: 30px;
-  font-style: normal;
+  font-size: clamp(20px, 2vw, 30px);
   font-weight: 700;
-  line-height: 30px;
+  line-height: 1.2;
   position: relative;
   padding-bottom: 15px;
   width: 100%;
+  margin: 0;
 }
 
 .especificacoesCard h3::after {
@@ -768,15 +812,15 @@
   text-align: left;
   width: 100%;
   max-width: 320px;
+  padding: 0;
 }
 
 .especificacoesCard li {
   color: #000;
   font-family: "Poppins", sans-serif;
-  font-size: 24px;
-  font-style: normal;
+  font-size: clamp(16px, 1.4vw, 24px);
   font-weight: 300;
-  line-height: 40px;
+  line-height: 1.6;
   position: relative;
   padding-left: 25px;
 }
@@ -806,66 +850,12 @@
   margin: auto;
 }
 
-.tituloModuloDecoration {
-  width: 90px;
-  height: 80px;
-  border-radius: 30px;
-  background: #4d00b5;
-  position: absolute;
-  left: 25.5%;
-  top: 5.8%;
-  z-index: 1;
-}
-
-.tituloModuloContent {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.tituloModuloContent span {
-  color: #4d00b5;
-  font-family: "Poppins", sans-serif;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 50px;
-}
-
-.tituloModuloContent h2 {
-  width: 700px;
-  background: linear-gradient(90deg, #fd742c 8.65%, #fd942d 68.27%, #feb42d 100%);
-  border-radius: 20px;
-  color: #fff;
-  font-family: "Poppins", sans-serif;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 50px;
-  margin: auto;
-}
-
-.tituloModuloContent p {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  max-width: 1200px;
-  color: #fff;
-  text-align: center;
-  font-family: "Poppins", sans-serif;
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 40px;
-}
-
 .modulosGrid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
+  margin-top: 50px;
 }
 
 .cardModulo {
@@ -900,7 +890,6 @@
   color: #fff;
   font-family: "Poppins", sans-serif;
   font-size: 30px;
-  font-style: normal;
   font-weight: 700;
   letter-spacing: -0.4px;
 }
@@ -917,53 +906,53 @@
   color: #fff;
   font-family: "Poppins", sans-serif;
   font-size: 20px;
-  font-style: normal;
   font-weight: 500;
-  line-height: 30px;
+  line-height: 1.5;
   letter-spacing: -0.4px;
 }
 
 /* ─────────────────────────────────────────
-   CONTATO
+   CONTATO + FOOTER (seção e foto entram juntas no footer)
 ───────────────────────────────────────── */
+.contatoFooterGroup {
+  position: relative;
+}
+
 .everriseContact {
   position: relative;
   width: 100%;
-  min-height: 100vh;
-  background-color: #f8fafc; /* Cinza bem claro para dar contraste ao Card */
+  min-height: 90vh;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   overflow: hidden;
+  padding-bottom: 100px; /* espaço extra que o footer vai "comer" com overlap */
 }
 
-.container {
+.everriseContact .container {
   display: flex;
   width: 100%;
-  max-width: 1440px;
+  max-width: 100%;
   margin: 0 auto;
-  min-height: 100vh;
+  z-index: 2;
 }
 
 .contentSide {
   width: 50%;
-  padding: 5rem 4rem;
+  flex: 1;
+  padding: 70px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  z-index: 2;
-}
-
-.textWrapper {
-  margin-bottom: 3rem;
 }
 
 .title {
-  color: #0f172a;
+  color: #000;
   font-family: "Poppins", sans-serif;
-  font-size: 3rem; /* Tamanho ajustado */
+  font-size: clamp(26px, 3.4vw, 48px);
   font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 1rem;
+  line-height: 1.15;
+  margin: 0;
 }
 
 .highlight {
@@ -971,91 +960,86 @@
 }
 
 .subtitle {
-  color: #475569;
+  color: #000;
   font-family: "Poppins", sans-serif;
-  font-size: 1.25rem; /* Menor que o título para criar hierarquia */
+  font-size: clamp(18px, 2vw, 32px);
+  font-weight: 500;
+  line-height: 1.4;
+  margin-top: 20px;
+}
+
+.ctaBox {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 40px;
+  margin-top: 20px;
+  max-width: 500px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.ctaBox h3 {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.ctaBox p {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
   font-weight: 400;
   line-height: 1.6;
 }
 
-.ctaBox {
-  background-color: #ffffff;
-  border-radius: 24px;
-  padding: 2.5rem;
-  max-width: 540px;
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05); /* Sombra mais moderna */
-  border: 1px solid #f1f5f9;
-}
-
-.ctaHeader {
-  margin-bottom: 2rem;
-}
-
-.ctaHeader h3 {
-  color: #0f172a;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.ctaHeader p {
-  color: #64748b;
-  font-family: "Poppins", sans-serif;
-  font-size: 1rem;
-}
-
 .contactList {
   list-style: none;
+  margin-top: 10px;
   padding: 0;
-  margin: 0;
 }
 
 .contactList li {
   display: flex;
   align-items: center;
-  padding: 1rem 0;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
   border-bottom: 1px solid #e2e8f0;
-  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .contactList li:last-child {
-  border-bottom: none;
+  margin-bottom: 0;
   padding-bottom: 0;
-}
-
-.contactList li:hover {
-  transform: translateX(4px); /* Efeito sutil ao passar o mouse */
+  border-bottom: none;
 }
 
 .contactIconWrapper {
-  width: 40px;
-  height: 40px;
-  margin-right: 1rem;
+  width: 32px;
+  height: 32px;
+  margin-right: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff7ed; /* Fundo leve combinando com a cor laranja */
-  border-radius: 50%;
   flex-shrink: 0;
 }
 
 .contactIconWrapper img,
 .contactIconWrapper svg {
-  width: 20px;
-  height: 20px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
 .text {
-  font-family: "Poppins", sans-serif;
-  font-size: 1.05rem;
-  color: #1e293b;
+  font-size: 1rem;
+  color: #111111;
   font-weight: 500;
 }
 
 .imageSide {
-  width: 50%;
+  flex: 1;
+  min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1065,61 +1049,28 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
 }
 
-/* Responsividade para Tablets e Celulares */
-@media (max-width: 992px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .contentSide {
-    width: 100%;
-    padding: 4rem 2rem;
-    align-items: center;
-    text-align: center;
-  }
-
-  .textWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .title {
-    font-size: 2.5rem;
-  }
-
-  .ctaBox {
-    text-align: left;
-    width: 100%;
-  }
-
-  .imageSide {
-    width: 100%;
-    min-height: 400px; /* Garante que a imagem apareça no mobile */
-  }
-}
-
-@media (max-width: 480px) {
-  .title {
-    font-size: 2rem;
-  }
-  
-  .contentSide {
-    padding: 3rem 1.5rem;
-  }
-  
-  .ctaBox {
-    padding: 1.5rem;
-  }
-}
-
-.customFooter {
-    margin-top: -100px !important;
+/* Wrapper real do Footer (a antiga regra `Footer { margin-top: -100px }`
+   não fazia nada: "Footer" não é uma tag HTML válida, é o nome do
+   componente React, então aquele seletor nunca bateu em nada).
+   Aqui a foto/seção de contato "entra" visualmente no footer. */
+.footerWrapper {
   position: relative;
-  z-index: 3;
+  z-index: 5;
+  margin-top: -100px;
+}
+
+@media (max-width: 1024px) {
+  .footerWrapper {
+    margin-top: -60px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footerWrapper {
+    margin-top: 0;
+  }
 }
 
 /* ─────────────────────────────────────────
@@ -1129,38 +1080,13 @@
 /* Tablet (≤ 1024px) */
 @media (max-width: 1024px) {
   /* Hero */
-  .hero {
-    flex-direction: column;
-    padding: 60px 6%;
+  .textSection {
+    padding: 90px 6% 60px;
     min-height: auto;
-    text-align: center;
-  }
-
-  .heroText {
-    max-width: 100%;
-    align-items: center;
-  }
-
-  .heroText h1 {
-    font-size: 48px;
-    line-height: 52px;
-  }
-
-  .linha1 {
-    white-space: normal;
-  }
-
-  .heroText p {
-    font-size: 26px;
-    line-height: 34px;
   }
 
   .heroButtons {
     justify-content: center;
-  }
-
-  .heroImage img {
-    max-width: 420px;
   }
 
   /* Features */
@@ -1168,28 +1094,9 @@
     padding: 60px 5%;
   }
 
-  .titleDecoration {
-    left: 100px;
-  }
-
-  .titleSquare {
-    left: 80px;
-  }
-
-  .titleContent h2,
-  .titleWrapper h2 {
-    width: 100%;
-    font-size: 32px;
-    line-height: 50px;
-  }
-
-  .titleContent p,
-  .titleWrapper p {
-    font-size: 22px;
-  }
-
-  .decorationHardware {
-    left: 80px;
+  /* Guincho interativo */
+  .guinchoInterativo {
+    padding: 70px 5% 90px;
   }
 
   /* Hardware */
@@ -1197,14 +1104,25 @@
     display: none;
   }
 
-  .cardLinha1,
-  .cardLinha2,
-  .cardLinha3 {
-    flex-direction: column;
-    align-items: center;
-    gap: 80px;
-    margin-top: 60px;
+  .hardwareGrid {
+    grid-template-columns: 1fr;
+    gap: 60px;
   }
+
+  .posTopLeft, .posTopRight,
+  .posMiddleLeft, .posMiddleRight,
+  .posBottomLeft, .posBottomRight,
+  .logoWrapper {
+    grid-column: 1;
+  }
+
+  .posTopLeft { grid-row: 1; }
+  .posTopRight { grid-row: 2; }
+  .posMiddleLeft { grid-row: 4; }
+  .logoWrapper { grid-row: 3; }
+  .posMiddleRight { grid-row: 5; }
+  .posBottomLeft { grid-row: 6; }
+  .posBottomRight { grid-row: 7; }
 
   .cardHardware {
     width: 90%;
@@ -1212,6 +1130,7 @@
     height: auto;
     min-height: 200px;
     padding: 32px 32px 32px 40px;
+    margin: 0 auto;
   }
 
   .espImage {
@@ -1223,52 +1142,9 @@
     margin-left: auto;
   }
 
-  .logoHardware {
-    margin-left: 0;
-  }
-
-  /* Hardware header */
-  .hardwareHeader h2 {
-    width: 90%;
-    font-size: 28px;
-    line-height: 48px;
-  }
-
   /* Especificações */
   .especificacoes {
     margin-top: 60px;
-  }
-
-  .tituloDecoration {
-    left: auto;
-  }
-
-  .tituloEspecificacoesContent h2 {
-    width: 90%;
-    font-size: 32px;
-  }
-
-  .tituloEspecificacoesContent p {
-    font-size: 22px;
-  }
-
-  .iconWrapper {
-    width: 280px;
-    height: 280px;
-  }
-
-  /* Tech */
-  .tituloModuloDecoration {
-    left: auto;
-  }
-
-  .tituloModuloContent h2 {
-    width: 90%;
-    font-size: 30px;
-  }
-
-  .tituloModuloContent p {
-    font-size: 22px;
   }
 
   /* Contato */
@@ -1286,45 +1162,36 @@
     width: 100%;
   }
 
-  .title {
-    font-size: 36px;
-    line-height: 42px;
-  }
-
-  .subtitle {
-    font-size: 22px;
+  .everriseContact {
+    padding-bottom: 60px;
   }
 }
 
 /* Mobile (≤ 640px) */
 @media (max-width: 640px) {
   /* Hero */
-  .hero {
-    padding: 40px 5%;
+  .videoSection {
+    height: 70vh;
   }
 
-  .heroText h1 {
-    font-size: 36px;
-    line-height: 42px;
+  .textSection {
+    padding: 60px 5% 50px;
   }
 
-  .heroText p {
-    font-size: 20px;
-    line-height: 28px;
+  .heroButtons {
+    flex-direction: column;
+    width: 100%;
   }
 
   .btn {
+    width: 100%;
+    text-align: center;
     padding: 14px 24px;
     font-size: 16px;
   }
 
-  .primary,
-  .secondary {
-    font-size: 16px;
-  }
-
-  .heroImage img {
-    max-width: 100%;
+  .continueScrolling {
+    margin-top: 40px;
   }
 
   /* Features */
@@ -1338,30 +1205,18 @@
     max-width: 100%;
   }
 
-  .titleContent h2,
-  .titleWrapper h2 {
-    font-size: 24px;
-    line-height: 38px;
+  /* Guincho interativo */
+  .guinchoImageWrapper {
+    border-radius: 16px;
   }
 
-  .titleDecoration,
-  .titleSquare {
-    display: none;
+  .guinchoImage {
+    border-radius: 16px;
   }
 
   /* Hardware */
   .hardwareSection {
     padding: 20px 4% 60px;
-  }
-
-  .hardwareHeader h2 {
-    width: 100%;
-    font-size: 22px;
-    line-height: 36px;
-  }
-
-  .decorationHardware {
-    display: none;
   }
 
   .cardHardware {
@@ -1399,31 +1254,8 @@
     padding: 40px 4%;
   }
 
-  .tituloEspecificacoesContent h2 {
-    width: 100%;
-    font-size: 26px;
-  }
-
-  .tituloEspecificacoesContent p {
-    font-size: 18px;
-    line-height: 26px;
-  }
-
   .iconWrapper {
-    width: 200px;
-    height: 200px;
-  }
-
-  .especificacoesCard h3 {
-    font-size: 22px;
-  }
-
-  .especificacoesCard li {
-    font-size: 18px;
-  }
-
-  .tituloDecoration {
-    display: none;
+    max-width: 220px;
   }
 
   /* Tech */
@@ -1431,38 +1263,13 @@
     padding: 50px 4%;
   }
 
-  .tituloModuloContent h2 {
-    width: 100%;
-    font-size: 26px;
-    line-height: 36px;
-  }
-
-  .tituloModuloContent p {
-    font-size: 18px;
-    line-height: 28px;
-  }
-
   .cardModulo {
     width: 100%;
-  }
-
-  .tituloModuloDecoration {
-    display: none;
   }
 
   /* Contato */
   .contentSide {
     padding: 40px 5%;
-  }
-
-  .title {
-    font-size: 28px;
-    line-height: 36px;
-  }
-
-  .subtitle {
-    font-size: 18px;
-    line-height: 28px;
   }
 
   .ctaBox {
@@ -1475,5 +1282,14 @@
 
   .ctaBox p {
     font-size: 16px;
+  }
+
+  .everriseContact {
+    padding-bottom: 30px;
+    min-height: auto;
+  }
+
+  .imageSide {
+    min-height: 320px;
   }
 }

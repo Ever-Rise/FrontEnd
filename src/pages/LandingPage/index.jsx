@@ -1,22 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
+import { Footer, Header } from "../../components";
 
 /* ============================================================
    Icons
    ============================================================ */
-
-const IconPerson = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-    <circle cx="12" cy="8" r="4" fill="#fff" />
-    <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" fill="#fff" />
-  </svg>
-);
-
-const IconChevronDown = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-    <path d="M5 9l7 7 7-7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
 
 const IconArrowRight = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -127,31 +115,8 @@ const DotGrid = ({ style, count = 30, cols = 6 }) => (
   </span>
 );
 
-/* ── Scroll Reveal hook ─────────────────────────────────── */
-function useReveal(options = {}) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          io.unobserve(el);
-        }
-      },
-      { threshold: options.threshold || 0.15 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  return [ref, visible];
-}
-
-/* ── Counter ────────────────────────────────────────────── */
+/* ── Contador animado (único efeito com IntersectionObserver,
+   pontual e autocontido) ─────────────────────────────────── */
 function Counter({ end, suffix = "", duration = 1800 }) {
   const [value, setValue] = useState(0);
   const ref = useRef(null);
@@ -190,196 +155,17 @@ function Counter({ end, suffix = "", duration = 1800 }) {
   );
 }
 
-/* ── Cursor Glow ────────────────────────────────────────── */
-function CursorGlow() {
-  const glowRef = useRef(null);
-
-  useEffect(() => {
-    const isCoarse = window.matchMedia("(pointer: coarse)").matches;
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (isCoarse || prefersReduced) return;
-
-    const el = glowRef.current;
-    if (!el) return;
-
-    let rafId;
-    let targetX = 0, targetY = 0;
-    let currentX = 0, currentY = 0;
-
-    const onMove = (e) => {
-      targetX = e.clientX;
-      targetY = e.clientY;
-    };
-
-    function loop() {
-      currentX += (targetX - currentX) * 0.1;
-      currentY += (targetY - currentY) * 0.1;
-      el.style.left = currentX + "px";
-      el.style.top = currentY + "px";
-      rafId = requestAnimationFrame(loop);
-    }
-
-    window.addEventListener("mousemove", onMove, { passive: true });
-    rafId = requestAnimationFrame(loop);
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      cancelAnimationFrame(rafId);
-    };
-  }, []);
-
-  return <div ref={glowRef} className={styles.cursorGlow} />;
-}
-
-/* ── Particles Canvas ──────────────────────────────────── */
-function HeroParticles() {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-
-    let W, H, particles, rafId;
-    const COUNT = 55;
-
-    const resize = () => {
-      W = canvas.width = canvas.offsetWidth;
-      H = canvas.height = canvas.offsetHeight;
-    };
-
-    const makeP = () => ({
-      x: Math.random() * W,
-      y: Math.random() * H,
-      r: Math.random() * 2.5 + 0.8,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      alpha: Math.random() * 0.6 + 0.2,
-      isOrange: Math.random() > 0.5,
-    });
-
-    const init = () => {
-      resize();
-      particles = Array.from({ length: COUNT }, makeP);
-    };
-
-    const draw = () => {
-      ctx.clearRect(0, 0, W, H);
-
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const d = Math.sqrt(dx * dx + dy * dy);
-          if (d < 120) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(21,17,107,${0.07 * (1 - d / 120)})`;
-            ctx.lineWidth = 0.6;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      particles.forEach((p) => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.isOrange
-          ? `rgba(242,105,28,${p.alpha})`
-          : `rgba(21,17,107,${p.alpha})`;
-        ctx.fill();
-
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < -10) p.x = W + 10;
-        if (p.x > W + 10) p.x = -10;
-        if (p.y < -10) p.y = H + 10;
-        if (p.y > H + 10) p.y = -10;
-      });
-
-      rafId = requestAnimationFrame(draw);
-    };
-
-    init();
-    draw();
-
-    const onResize = () => resize();
-    window.addEventListener("resize", onResize);
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener("resize", onResize);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: "absolute",
-        inset: 0,
-        width: "100%",
-        height: "100%",
-        pointerEvents: "none",
-        zIndex: 0,
-        opacity: 0.5,
-      }}
-    />
-  );
-}
-
-/* ── Typing Headline ────────────────────────────────────── */
-function TypingHeadline({ text, className }) {
-  const [displayed, setDisplayed] = useState("");
-  const [done, setDone] = useState(false);
-  const indexRef = useRef(0);
-
-  useEffect(() => {
-    setDisplayed("");
-    setDone(false);
-    indexRef.current = 0;
-
-    const delay = setTimeout(() => {
-      const interval = setInterval(() => {
-        indexRef.current += 1;
-        setDisplayed(text.slice(0, indexRef.current));
-        if (indexRef.current >= text.length) {
-          clearInterval(interval);
-          setDone(true);
-        }
-      }, 38);
-      return () => clearInterval(interval);
-    }, 300);
-
-    return () => clearTimeout(delay);
-  }, [text]);
-
-  return (
-    <span className={className}>
-      {displayed}
-      {!done && <span className={styles.typingCursor}>|</span>}
-    </span>
-  );
-}
-
-/* ── Audience Card with flip ────────────────────────────── */
-function AudienceCard({ c, delay = 0 }) {
+/* ── Card de público com flip no hover (hover/clique = useState
+   simples, igual ao padrão dos hotspots do SobreGuincho) ───── */
+function AudienceCard({ c }) {
   const [flipped, setFlipped] = useState(false);
-  const [ref, visible] = useReveal();
 
   return (
     <div
-      ref={ref}
-      className={[
-        styles.cardFlipWrapper,
-        flipped ? styles.cardFlipped : "",
-        styles.reveal,
-        visible ? styles.revealVisible : "",
-        delay === 1 ? styles.delay2 : delay === 2 ? styles.delay4 : "",
-      ].join(" ")}
+      className={`${styles.cardFlipWrapper} ${flipped ? styles.cardFlipped : ""}`}
       onMouseEnter={() => setFlipped(true)}
       onMouseLeave={() => setFlipped(false)}
+      onClick={() => setFlipped((prev) => !prev)}
     >
       <div className={styles.cardFlipInner}>
         <div className={`${styles.card} ${styles.cardFront}`}>
@@ -408,14 +194,7 @@ function AudienceCard({ c, delay = 0 }) {
         <div className={`${styles.card} ${styles.cardBack}`}>
           <span className={styles.cardIcon}>{c.icon}</span>
           <h3 className={styles.cardTitle}>{c.title}</h3>
-          <p className={styles.cardBackText}>
-            {c.title === "Família" &&
-              "Seus entes queridos merecem o máximo em segurança. Com alertas em tempo real e botão de pânico, você fica tranquilo onde quer que esteja."}
-            {c.title === "Clínicas" &&
-              "Cada segundo importa na saúde. Nosso sistema garante SLA rigoroso e rastreabilidade total, mantendo sua operação em conformidade e seus pacientes seguros."}
-            {c.title === "ONGs" &&
-              "Missões sociais exigem confiança. Com relatórios automáticos e dashboards transparentes, seus doadores acompanham cada passo do impacto gerado."}
-          </p>
+          <p className={styles.cardBackText}>{c.backText}</p>
           {c.action?.type === "button" && (
             <button className={styles.cardButton}>{c.action.label}</button>
           )}
@@ -430,223 +209,6 @@ function AudienceCard({ c, delay = 0 }) {
   );
 }
 
-/* ── Video Showcase ─────────────────────────────────────── */
-function VideoShowcase() {
-  const sectionRef = useRef(null);
-  const boxRef = useRef(null);
-  const introRef = useRef(null);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    function applyFrame(progress) {
-      const box = boxRef.current;
-      const intro = introRef.current;
-      if (!box) return;
-
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const startWidth = Math.min(860, vw * 0.8);
-      const startHeight = startWidth * (9 / 16);
-      const width = startWidth + (vw - startWidth) * progress;
-      const height = startHeight + (vh - startHeight) * progress;
-      const radius = 24 * (1 - progress);
-
-      box.style.width = `${width}px`;
-      box.style.height = `${height}px`;
-      box.style.borderRadius = `${radius}px`;
-
-      if (intro) {
-        const textOpacity = Math.max(0, 1 - progress * 4);
-        intro.style.opacity = `${textOpacity}`;
-        intro.style.transform = `translateY(${-progress * 50}px)`;
-        intro.style.pointerEvents = progress > 0.2 ? "none" : "";
-        intro.style.marginBottom = progress > 0.3
-          ? `-${intro.offsetHeight * Math.min(1, (progress - 0.3) / 0.3)}px`
-          : "";
-      }
-    }
-
-    function onScroll() {
-      const section = sectionRef.current;
-      if (!section) return;
-      const rect = section.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const total = rect.height - vh;
-      let raw = total > 0 ? -rect.top / total : 0;
-      raw = Math.min(1, Math.max(0, raw));
-      applyFrame(Math.min(1, raw / 0.72));
-    }
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    onScroll();
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-  return (
-    <section className={styles.videoSection} ref={sectionRef}>
-      <div className={styles.videoStickyWrap}>
-        <div className={styles.videoIntro} ref={introRef}>
-          <h2 className={styles.sectionHeading}>Veja o EVERISE em ação</h2>
-          <p>
-            Descubra como nossa plataforma simplifica a gestão de guinchos e frotas através de
-            uma interface intuitiva e automações poderosas.
-          </p>
-        </div>
-        <div className={styles.videoBox} ref={boxRef}>
-          <button className={styles.playButton} aria-label="Reproduzir vídeo de demonstração">
-            <IconPlay />
-          </button>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── Testimonials Carousel ──────────────────────────────── */
-function TestimonialsCarouselRow({ items, direction = "left" }) {
-  const trackRef = useRef(null);
-  const animRef = useRef(null);
-  const posRef = useRef(0);
-  const pausedRef = useRef(false);
-  const speed = direction === "left" ? 0.35 : -0.35;
-
-  const allItems = [...items, ...items, ...items];
-
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    function getLoopWidth() {
-      const cards = track.querySelectorAll(`.${styles.testimonialCard}`);
-      if (!cards.length) return 0;
-      const cardW = cards[0].offsetWidth;
-      return (cardW + 18) * items.length;
-    }
-
-    function animate() {
-      if (!pausedRef.current) {
-        posRef.current -= speed;
-        const loopW = getLoopWidth();
-        if (loopW > 0) {
-          if (posRef.current <= -loopW) posRef.current += loopW;
-          if (posRef.current > 0) posRef.current -= loopW;
-        }
-        track.style.transform = `translateX(${posRef.current}px)`;
-      }
-      animRef.current = requestAnimationFrame(animate);
-    }
-
-    animRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animRef.current);
-  }, [speed, items.length]);
-
-  return (
-    <div
-      className={styles.carouselViewport}
-      onMouseEnter={() => (pausedRef.current = true)}
-      onMouseLeave={() => (pausedRef.current = false)}
-    >
-      <div className={styles.carouselTrack} ref={trackRef}>
-        {allItems.map((t, idx) => (
-          <div className={styles.testimonialCard} key={idx}>
-            <div className={styles.stars}>
-              {Array.from({ length: 5 }).map((_, i) => <IconStar key={i} />)}
-            </div>
-            <p className={styles.testimonialText}>"{t.text}"</p>
-            <div className={styles.testimonialPerson}>
-              <InitialAvatar name={t.name} />
-              <div>
-                <div className={styles.testimonialName}>{t.name}</div>
-                <div className={styles.testimonialRole}>{t.role}</div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ── Magnetic Button wrapper ────────────────────────────── */
-function MagneticBtn({ className, children, onClick }) {
-  const btnRef = useRef(null);
-
-  const onMove = (e) => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const rect = btnRef.current.getBoundingClientRect();
-    const dx = (e.clientX - (rect.left + rect.width / 2)) * 0.28;
-    const dy = (e.clientY - (rect.top + rect.height / 2)) * 0.28;
-    btnRef.current.style.transform = `translate(${dx}px,${dy}px) translateY(-2px)`;
-  };
-
-  const onLeave = () => {
-    btnRef.current.style.transform = "";
-  };
-
-  return (
-    <button
-      ref={btnRef}
-      className={className}
-      onClick={onClick}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-    >
-      {children}
-    </button>
-  );
-}
-
-/* ── Tilt Card wrapper ──────────────────────────────────── */
-function TiltCard({ className, children, popular }) {
-  const cardRef = useRef(null);
-
-  const onMove = (e) => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    const base = popular ? "translateY(-14px)" : "";
-    cardRef.current.style.transform = `perspective(700px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) scale(1.02) ${base}`;
-    cardRef.current.style.transition = "transform 0.08s ease";
-  };
-
-  const onLeave = () => {
-    cardRef.current.style.transform = popular ? "translateY(-14px)" : "";
-    cardRef.current.style.transition = "transform 0.45s cubic-bezier(0.22,1,0.36,1)";
-  };
-
-  return (
-    <div
-      ref={cardRef}
-      className={className}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-    >
-      {children}
-    </div>
-  );
-}
-
-/* ── Section heading with underline reveal ──────────────── */
-function SectionHeading({ children, style }) {
-  const [ref, visible] = useReveal({ threshold: 0.4 });
-  return (
-    <h2
-      ref={ref}
-      className={`${styles.sectionHeading} ${visible ? styles.headingVisible : ""}`}
-      style={style}
-    >
-      {children}
-    </h2>
-  );
-}
-
 /* ============================================================
    Data
    ============================================================ */
@@ -658,9 +220,33 @@ const steps = [
 ];
 
 const audienceCards = [
-  { icon: <IconFamily />, title: "Família", label: "USO DOMÉSTICO", text: "Foco total em segurança e rastreamento em tempo real para garantir que quem você ama esteja sempre protegido.", items: ["Alertas de proximidade", "Botão de pânico digital"], action: null },
-  { icon: <IconClinic />, title: "Clínicas", label: "OPERAÇÕES MÉDICAS", text: "Garantia estrita de SLA, histórico completo de movimentação e total conformidade com normas de saúde.", items: ["Controle rigoroso de SLA", "Logs de auditoria imutáveis"], action: { type: "button", label: "Contatar Consultor" } },
-  { icon: <IconOngs />, title: "ONGs", label: "MISSÕES SOCIAIS", text: "Transparência absoluta e relatórios automáticos de impacto social para doadores e stakeholders.", items: ["Relatórios de transparência", "Dashboard de doadores"], action: { type: "link", label: "Saber mais" } },
+  {
+    icon: <IconFamily />,
+    title: "Família",
+    label: "USO DOMÉSTICO",
+    text: "Foco total em segurança e rastreamento em tempo real para garantir que quem você ama esteja sempre protegido.",
+    items: ["Alertas de proximidade", "Botão de pânico digital"],
+    backText: "Seus entes queridos merecem o máximo em segurança. Com alertas em tempo real e botão de pânico, você fica tranquilo onde quer que esteja.",
+    action: null,
+  },
+  {
+    icon: <IconClinic />,
+    title: "Clínicas",
+    label: "OPERAÇÕES MÉDICAS",
+    text: "Garantia estrita de SLA, histórico completo de movimentação e total conformidade com normas de saúde.",
+    items: ["Controle rigoroso de SLA", "Logs de auditoria imutáveis"],
+    backText: "Cada segundo importa na saúde. Nosso sistema garante SLA rigoroso e rastreabilidade total, mantendo sua operação em conformidade e seus pacientes seguros.",
+    action: { type: "button", label: "Contatar Consultor" },
+  },
+  {
+    icon: <IconOngs />,
+    title: "ONGs",
+    label: "MISSÕES SOCIAIS",
+    text: "Transparência absoluta e relatórios automáticos de impacto social para doadores e stakeholders.",
+    items: ["Relatórios de transparência", "Dashboard de doadores"],
+    backText: "Missões sociais exigem confiança. Com relatórios automáticos e dashboards transparentes, seus doadores acompanham cada passo do impacto gerado.",
+    action: { type: "link", label: "Saber mais" },
+  },
 ];
 
 const testimonials = [
@@ -693,40 +279,17 @@ const statsData = [
 ];
 
 /* ============================================================
-   App
+   Página
    ============================================================ */
 
-export default function App() {
-  const [scrollHintVisible, setScrollHintVisible] = useState(true);
-
-  useEffect(() => {
-    const onScroll = () => setScrollHintVisible(window.scrollY < 60);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const scrollToNext = () => {
-    const hero = document.querySelector(`.${styles.hero}`);
-    if (hero?.nextElementSibling) {
-      hero.nextElementSibling.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  /* reveal refs para seções inteiras */
-  const [founderRef, founderVisible] = useReveal();
-  const [stepsRef, stepsVisible] = useReveal();
-  const [testimonialsRef, testimonialsVisible] = useReveal();
-  const [ctaRef, ctaVisible] = useReveal();
-
+export default function EveriseLanding() {
   return (
     <>
-      <CursorGlow />
-      <div className={styles.page}>
+      <Header />
 
+      <div className={styles.page}>
         {/* ── HERO ── */}
         <section className={styles.hero}>
-          <HeroParticles />
-
           <div className={styles.decorLayer} aria-hidden="true">
             <span className={styles.ringPeach} style={{ width: 200, height: 200, top: "5%", left: "-80px" }} />
             <span className={styles.ringNavy} style={{ width: 90, height: 90, top: "3%", left: "-20px" }} />
@@ -739,41 +302,29 @@ export default function App() {
 
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>
-              <TypingHeadline
-                text="Controle total do seu guincho, sem complicação"
-                className={styles.navyText}
-              />
+              Controle total do seu guincho, sem complicação
             </h1>
             <p className={styles.heroSubtitle}>
               O Ever Rise conecta famílias, clínicas e ONGs a um sistema simples de rastreamento e
               gestão em tempo real, de qualquer lugar.
             </p>
             <div className={styles.heroActions}>
-              <MagneticBtn className={styles.btnOrange}>
+              <button className={styles.btnOrange}>
                 Contratar agora <IconArrowRight />
-              </MagneticBtn>
-              <MagneticBtn className={styles.btnOrangeSoft}>Ver demonstração</MagneticBtn>
+              </button>
+              <button className={styles.btnOrangeSoft}>Ver demonstração</button>
             </div>
           </div>
 
-          {/* scroll hint */}
-          <button
-            className={styles.scrollHint}
-            style={{ opacity: scrollHintVisible ? 0.45 : 0, pointerEvents: scrollHintVisible ? "" : "none" }}
-            aria-label="Rolar para baixo"
-            onClick={scrollToNext}
-          >
+          <div className={styles.scrollHint} aria-hidden="true">
             <div className={styles.scrollHintMouse}>
               <div className={styles.scrollHintDot} />
             </div>
-          </button>
+          </div>
         </section>
 
         {/* ── FOUNDER ── */}
-        <section
-          ref={founderRef}
-          className={styles.founder}
-        >
+        <section className={styles.founder}>
           <div className={styles.decorLayer} aria-hidden="true">
             <span className={styles.ringPeach} style={{ width: 220, height: 220, top: "-60px", left: "-80px" }} />
             <span className={styles.ringNavy} style={{ width: 100, height: 100, top: "-20px", left: "-30px" }} />
@@ -782,9 +333,7 @@ export default function App() {
             <span className={styles.dash} style={{ bottom: "20%", right: "6%" }} />
           </div>
 
-          <div
-            className={[styles.founderLeft, styles.revealLeft, founderVisible ? styles.revealVisible : ""].join(" ")}
-          >
+          <div className={styles.founderLeft}>
             <h2 className={styles.founderHeading}>Criado por quem viveu o problema</h2>
             <p className={styles.founderText}>
               A história da Ever Rise não começou em uma prancheta isolada, mas sim na vivência prática de um problema real. Depois da Rafa e Dona Lidia (Sua mãe) enfrentar na pele a dificuldade de gerenciar um guincho, lidando com equipamento sem segurança. Ela se uniu aos seus amigos para mudar essa realidade.
@@ -794,9 +343,7 @@ export default function App() {
             </p>
           </div>
 
-          <div
-            className={[styles.founderImageWrap, styles.revealRight, founderVisible ? styles.revealVisible : "", styles.delay2].join(" ")}
-          >
+          <div className={styles.founderImageWrap}>
             <div className={styles.founderPortrait}>
               <DotGrid style={{ top: "20px", left: "20px" }} />
               <IconPortrait />
@@ -813,30 +360,21 @@ export default function App() {
         </section>
 
         {/* ── STEPS ── */}
-        <section
-          ref={stepsRef}
-          className={styles.steps}
-        >
+        <section className={styles.steps}>
           <div className={styles.decorLayer} aria-hidden="true">
             <span className={styles.ringPeach} style={{ width: 110, height: 110, bottom: "-40px", right: "-50px" }} />
             <DotGrid style={{ bottom: "10%", left: "5%" }} />
           </div>
 
-          <SectionHeading>Três passos para o controle total</SectionHeading>
-          <p
-            className={[styles.sectionSubheading, styles.reveal, stepsVisible ? styles.revealVisible : "", styles.delay1].join(" ")}
-          >
+          <h2 className={styles.sectionHeading}>Três passos para o controle total</h2>
+          <p className={styles.sectionSubheading}>
             Simplicidade na implementação, excelência na execução.
           </p>
 
           <div className={styles.stepsRow}>
             <span className={styles.stepsLine} />
             {steps.map((s, i) => (
-              <div
-                key={s.title}
-                className={[styles.step, styles.reveal, stepsVisible ? styles.revealVisible : ""].join(" ")}
-                style={{ transitionDelay: `${i * 0.18}s` }}
-              >
+              <div className={styles.step} key={s.title}>
                 <span className={styles.stepIcon}>{s.icon}</span>
                 <span className={styles.stepNumber}>{i + 1}</span>
                 <h3 className={styles.stepTitle}>{s.title}</h3>
@@ -868,14 +406,27 @@ export default function App() {
           </p>
 
           <div className={styles.cardsRow}>
-            {audienceCards.map((c, i) => (
-              <AudienceCard key={c.title} c={c} delay={i} />
+            {audienceCards.map((c) => (
+              <AudienceCard key={c.title} c={c} />
             ))}
           </div>
         </section>
 
-        {/* ── VIDEO SHOWCASE ── */}
-        <VideoShowcase />
+        {/* ── VÍDEO ── */}
+        <section className={styles.videoSection}>
+          <div className={styles.videoIntro}>
+            <h2 className={styles.sectionHeading}>Veja o EVERISE em ação</h2>
+            <p>
+              Descubra como nossa plataforma simplifica a gestão de guinchos e frotas através de
+              uma interface intuitiva e automações poderosas.
+            </p>
+          </div>
+          <div className={styles.videoBox}>
+            <button className={styles.playButton} aria-label="Reproduzir vídeo de demonstração">
+              <IconPlay />
+            </button>
+          </div>
+        </section>
 
         {/* ── STATS BAR ── */}
         <section className={styles.statsBar}>
@@ -891,11 +442,8 @@ export default function App() {
           ))}
         </section>
 
-        {/* ── TESTIMONIALS ── */}
-        <section
-          ref={testimonialsRef}
-          className={styles.testimonials}
-        >
+        {/* ── TESTIMONIALS (marquee 100% CSS) ── */}
+        <section className={styles.testimonials}>
           <div className={styles.decorLayer} aria-hidden="true">
             <DotGrid style={{ top: "6%", left: "2%" }} count={42} cols={7} />
             <DotGrid style={{ bottom: "6%", right: "2%" }} count={42} cols={7} />
@@ -904,13 +452,48 @@ export default function App() {
             <span className={styles.ringPeach} style={{ width: 140, height: 140, bottom: "-40px", left: "-50px" }} />
           </div>
 
-          <SectionHeading>O que dizem nossos parceiros</SectionHeading>
+          <h2 className={styles.sectionHeading}>O que dizem nossos parceiros</h2>
 
-          <div
-            className={[styles.carouselDouble, styles.reveal, testimonialsVisible ? styles.revealVisible : "", styles.delay2].join(" ")}
-          >
-            <TestimonialsCarouselRow items={testimonials} direction="left" />
-            <TestimonialsCarouselRow items={testimonialsRow2} direction="right" />
+          <div className={styles.carouselDouble}>
+            <div className={styles.carouselRow}>
+              <div className={styles.carouselTrack}>
+                {[...testimonials, ...testimonials].map((t, idx) => (
+                  <div className={styles.testimonialCard} key={idx}>
+                    <div className={styles.stars}>
+                      {Array.from({ length: 5 }).map((_, i) => <IconStar key={i} />)}
+                    </div>
+                    <p className={styles.testimonialText}>"{t.text}"</p>
+                    <div className={styles.testimonialPerson}>
+                      <InitialAvatar name={t.name} />
+                      <div>
+                        <div className={styles.testimonialName}>{t.name}</div>
+                        <div className={styles.testimonialRole}>{t.role}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className={`${styles.carouselRow} ${styles.carouselRowReverse}`}>
+              <div className={styles.carouselTrack}>
+                {[...testimonialsRow2, ...testimonialsRow2].map((t, idx) => (
+                  <div className={styles.testimonialCard} key={idx}>
+                    <div className={styles.stars}>
+                      {Array.from({ length: 5 }).map((_, i) => <IconStar key={i} />)}
+                    </div>
+                    <p className={styles.testimonialText}>"{t.text}"</p>
+                    <div className={styles.testimonialPerson}>
+                      <InitialAvatar name={t.name} />
+                      <div>
+                        <div className={styles.testimonialName}>{t.name}</div>
+                        <div className={styles.testimonialRole}>{t.role}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -920,14 +503,13 @@ export default function App() {
             <span className={styles.ringNavy} style={{ width: 56, height: 56, top: 0, left: "-30px" }} />
           </div>
 
-          <SectionHeading>Escolha o plano ideal</SectionHeading>
+          <h2 className={styles.sectionHeading}>Escolha o plano ideal</h2>
           <p className={styles.sectionSubheading}>Sem surpresas. Sem letras miúdas. Cancele quando quiser.</p>
 
           <div className={styles.pricingRow}>
-            {plans.map((p, i) => (
-              <TiltCard
+            {plans.map((p) => (
+              <div
                 key={p.name}
-                popular={p.popular}
                 className={`${styles.pricingCard} ${p.popular ? styles.pricingCardPopular : ""}`}
               >
                 {p.popular && <span className={styles.popularBadge}>POPULAR</span>}
@@ -946,37 +528,27 @@ export default function App() {
                     </li>
                   ))}
                 </ul>
-                <MagneticBtn className={styles.planButton}>{p.cta}</MagneticBtn>
-              </TiltCard>
+                <button className={styles.planButton}>{p.cta}</button>
+              </div>
             ))}
           </div>
         </section>
 
         {/* ── CTA ── */}
-        <section
-          ref={ctaRef}
-          className={styles.cta}
-        >
+        <section className={styles.cta}>
           <span className={styles.ctaGlow} aria-hidden="true" />
-          <h2
-            className={[styles.ctaHeading, styles.reveal, ctaVisible ? styles.revealVisible : ""].join(" ")}
-          >
-            Pronto para elevar seu padrão operacional?
-          </h2>
-          <p
-            className={[styles.ctaText, styles.reveal, ctaVisible ? styles.revealVisible : "", styles.delay2].join(" ")}
-          >
+          <h2 className={styles.ctaHeading}>Pronto para elevar seu padrão operacional?</h2>
+          <p className={styles.ctaText}>
             Junte-se a centenas de gestores que já transformaram seus processos com a EVERISE.
           </p>
-          <div
-            className={[styles.ctaActions, styles.reveal, ctaVisible ? styles.revealVisible : "", styles.delay3].join(" ")}
-          >
-            <MagneticBtn className={styles.btnOrange}>Iniciar Teste Gratuito</MagneticBtn>
+          <div className={styles.ctaActions}>
+            <button className={styles.btnOrange}>Iniciar Teste Gratuito</button>
             <button className={styles.btnOutline}>Falar com Especialista</button>
           </div>
         </section>
-
       </div>
+
+      <Footer />
     </>
   );
 }

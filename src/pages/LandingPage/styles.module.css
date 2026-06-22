@@ -1,5 +1,5 @@
 /* ===================================================================
-   EVERISE — styles.module.css (com animações integradas)
+   EVERISE — styles.module.css
    =================================================================== */
 
 .page {
@@ -22,7 +22,6 @@
   font-family: "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
   color: var(--navy);
   background: var(--white);
-  isolation: isolate;
 }
 
 .page * {
@@ -34,7 +33,7 @@
   font-family: inherit;
 }
 
-/* ===================== decorative background shapes ================= */
+/* ===================== formas decorativas de fundo =================== */
 
 .decorLayer {
   position: absolute;
@@ -70,7 +69,6 @@
 .dotGrid {
   position: absolute;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
   gap: 14px;
   opacity: 0.6;
 }
@@ -89,12 +87,12 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 24px;
+  padding: 100px 24px;
   text-align: center;
 }
 
@@ -105,7 +103,7 @@
   justify-content: center;
   width: 100%;
   max-width: 800px;
-  animation: heroFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  animation: heroFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
 }
 
 @keyframes heroFadeUp {
@@ -116,40 +114,11 @@
 .heroTitle {
   margin: 0 auto;
   max-width: 860px;
-  font-size: 82px;
-  line-height: 0.9;
+  font-size: clamp(36px, 6vw, 82px);
+  line-height: 1.02;
   font-weight: 800;
   letter-spacing: -0.02em;
-  min-height: 1.8em;
-}
-
-.typingCursor {
-  display: inline-block;
-  color: var(--orange);
-  font-weight: 300;
-  margin-left: 2px;
-  animation: blink 0.75s step-end infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-.navyText { color: var(--navy); }
-
-.orangeGrad {
-  background: linear-gradient(90deg, var(--orange-light), var(--orange));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.purpleGrad {
-  background: linear-gradient(100deg, var(--indigo) 0%, var(--purple) 45%, var(--magenta) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--navy);
 }
 
 .heroSubtitle {
@@ -166,28 +135,23 @@
   justify-content: center;
   gap: 16px;
   margin-top: 38px;
+  flex-wrap: wrap;
 }
 
-/* ── Scroll hint ─────────────────────────────────────────── */
+/* ── Indicador de scroll (decorativo, igual padrão do .scrollAlert) ── */
 .scrollHint {
   position: absolute;
   bottom: 32px;
   left: 50%;
   transform: translateX(-50%);
-  border: none;
-  background: none;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
   opacity: 0.45;
   z-index: 10;
-  transition: opacity 0.3s ease;
   animation: hintBounce 1.8s ease-in-out infinite;
 }
-
-.scrollHint:hover { opacity: 0.75; }
 
 .scrollHintMouse {
   width: 24px;
@@ -210,12 +174,12 @@
 
 @keyframes hintBounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
-  50%       { transform: translateX(-50%) translateY(8px); }
+  50%      { transform: translateX(-50%) translateY(8px); }
 }
 
 @keyframes hintDot {
   0%, 100% { opacity: 1;   transform: translateY(0); }
-  50%       { opacity: 0.3; transform: translateY(10px); }
+  50%      { opacity: 0.3; transform: translateY(10px); }
 }
 
 /* ── Botões ──────────────────────────────────────────────── */
@@ -234,24 +198,17 @@
   background: linear-gradient(180deg, #fa8a3c, var(--orange));
   box-shadow: 0 10px 24px rgba(242, 105, 28, 0.28);
   transition: transform 0.18s ease, box-shadow 0.18s ease;
-  animation: pulseShadow 2.4s ease-in-out infinite;
 }
 
 .btnOrangeSoft {
   background: linear-gradient(180deg, #ffb066, #f2812e);
   box-shadow: 0 8px 18px rgba(242, 105, 28, 0.2);
-  animation: none;
 }
 
 .btnOrange:hover,
 .btnOrangeSoft:hover {
   transform: translateY(-2px);
   box-shadow: 0 14px 28px rgba(242, 105, 28, 0.32);
-}
-
-@keyframes pulseShadow {
-  0%, 100% { box-shadow: 0 10px 24px rgba(242, 105, 28, 0.28); }
-  50%       { box-shadow: 0 14px 36px rgba(242, 105, 28, 0.52), 0 0 0 8px rgba(242,105,28,0.10); }
 }
 
 .btnOutline {
@@ -266,10 +223,13 @@
   cursor: pointer;
   color: var(--white);
   background: transparent;
-  transition: background 0.18s ease;
+  transition: background 0.18s ease, transform 0.18s ease;
 }
 
-.btnOutline:hover { background: rgba(255, 255, 255, 0.1); }
+.btnOutline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
 
 /* ============================= founder ================================ */
 
@@ -280,7 +240,6 @@
   grid-template-columns: 1fr 1fr;
   gap: 140px;
   align-items: center;
-  min-height: 100vh;
   max-width: 1400px;
   margin: 0 auto;
   padding: 120px 100px;
@@ -292,9 +251,9 @@
 }
 
 .founderHeading {
-  font-size: 62px;
+  font-size: clamp(34px, 4.5vw, 62px);
   font-weight: 800;
-  line-height: 1.0;
+  line-height: 1.05;
   color: var(--navy);
   margin: 0 0 32px;
 }
@@ -312,20 +271,12 @@
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 40px 80px rgba(20, 10, 90, 0.22);
-  transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s ease;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
 }
 
 .founderImageWrap:hover {
   transform: translateY(-6px) scale(1.01);
   box-shadow: 0 52px 96px rgba(20, 10, 90, 0.28);
-}
-
-.founderImageWrap img {
-  display: block;
-  width: 100%;
-  height: 620px;
-  object-fit: cover;
-  border-radius: 24px;
 }
 
 .founderPortrait {
@@ -369,15 +320,6 @@
   opacity: 0.75;
 }
 
-@media (max-width: 880px) {
-  .founder {
-    grid-template-columns: 1fr;
-    gap: 60px;
-    min-height: auto;
-    padding: 60px 24px;
-  }
-}
-
 /* ============================= steps =================================== */
 
 .steps {
@@ -385,17 +327,16 @@
   z-index: 1;
   overflow: hidden;
   background: var(--gray-bg);
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 80px 24px;
+  padding: 100px 24px;
   text-align: center;
 }
 
 .sectionHeading {
-  font-size: 50px;
+  font-size: clamp(28px, 4vw, 50px);
   font-weight: 800;
   color: var(--navy);
   margin: 0 0 10px;
@@ -403,22 +344,18 @@
   display: inline-block;
 }
 
-/* underline wipe on scroll */
 .sectionHeading::after {
   content: '';
   position: absolute;
   left: 0; bottom: -6px;
   height: 4px;
-  width: 0;
+  width: 100%;
   background: linear-gradient(90deg, var(--orange), var(--orange-light));
   border-radius: 2px;
-  transition: width 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.sectionHeading.headingVisible::after { width: 100%; }
-
 .sectionSubheading {
-  font-size: 35px;
+  font-size: clamp(18px, 2.4vw, 28px);
   color: var(--gray-text-light);
   margin: 0 0 56px;
 }
@@ -503,24 +440,15 @@
   max-width: 260px;
 }
 
-@media (max-width: 880px) {
-  .stepsRow { grid-template-columns: 1fr; gap: 48px; }
-  .stepsLine { display: none; }
-}
-
 /* ============================= audience ================================ */
 
 .audience {
   position: relative;
   z-index: 1;
   overflow: hidden;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 80px 24px;
+  padding: 100px 24px;
 }
 
 .audienceHeadingWrap {
@@ -531,7 +459,7 @@
 
 .audienceHeading {
   position: relative;
-  font-size: 28px;
+  font-size: clamp(24px, 2.6vw, 28px);
   font-weight: 800;
   color: var(--navy);
   margin: 0;
@@ -562,11 +490,13 @@
   gap: 30px;
 }
 
-/* ── Card flip ── */
+/* ── Card flip (cursor pointer pra indicar que dá pra clicar
+   no mobile, já que não existe hover real no toque) ── */
 .cardFlipWrapper {
   perspective: 1200px;
   height: 100%;
   min-height: 420px;
+  cursor: pointer;
 }
 
 .cardFlipInner {
@@ -707,39 +637,23 @@
   gap: 6px;
 }
 
-@media (max-width: 880px) {
-  .cardsRow { grid-template-columns: 1fr; }
-}
-
-/* ============================= video / scroll-driven ==================== */
+/* ============================= vídeo ==================================== */
 
 .videoSection {
   position: relative;
   z-index: 1;
-  height: 230vh;
-}
-
-.videoStickyWrap {
-  position: sticky;
-  top: 0;
-  height: 100vh;
+  padding: 100px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 28px;
-  overflow: hidden;
+  gap: 40px;
+  text-align: center;
   background: var(--white);
 }
 
 .videoIntro {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 0 24px;
-  transition: opacity 0.12s linear, transform 0.12s linear;
   max-width: 640px;
-  flex-shrink: 0;
 }
 
 .videoIntro p {
@@ -752,12 +666,13 @@
 
 .videoBox {
   position: relative;
-  flex-shrink: 0;
+  width: min(900px, 90vw);
+  aspect-ratio: 16 / 9;
+  border-radius: 24px;
   background: linear-gradient(150deg, #b9b9ea, #9a9bdc);
   display: flex;
   align-items: center;
   justify-content: center;
-  will-change: width, height, border-radius;
 }
 
 .playButton {
@@ -780,7 +695,7 @@
 
 @keyframes playPulse {
   0%, 100% { transform: scale(1); }
-  50%       { transform: scale(1.07); }
+  50%      { transform: scale(1.07); }
 }
 
 /* ============================= stats bar ============================== */
@@ -828,12 +743,11 @@
   position: relative;
   z-index: 1;
   background: var(--gray-bg);
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 80px 0;
+  padding: 100px 0;
   text-align: center;
   overflow: hidden;
 }
@@ -846,19 +760,36 @@
   margin-top: 52px;
 }
 
-.carouselViewport {
+/* Marquee 100% CSS: a faixa é duplicada no JSX e a animação anda
+   metade da largura total, criando o loop infinito sem JS. */
+.carouselRow {
   width: 100%;
   overflow: hidden;
-  cursor: grab;
 }
-
-.carouselViewport:active { cursor: grabbing; }
 
 .carouselTrack {
   display: flex;
   gap: 18px;
   width: max-content;
-  will-change: transform;
+  animation: marqueeLeft 45s linear infinite;
+}
+
+.carouselRowReverse .carouselTrack {
+  animation-name: marqueeRight;
+}
+
+.carouselRow:hover .carouselTrack {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
 }
 
 .testimonialCard {
@@ -931,14 +862,9 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 24px;
+  padding: 100px 24px;
   text-align: center;
 }
 
@@ -959,13 +885,21 @@
   color: var(--white);
   box-shadow: 0 24px 48px rgba(30, 10, 90, 0.2);
   text-align: center;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
-  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+
+.pricingCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 32px 64px rgba(75, 15, 174, 0.3);
 }
 
 .pricingCardPopular {
   transform: translateY(-14px);
   box-shadow: 0 30px 60px rgba(30, 10, 90, 0.3);
+}
+
+.pricingCardPopular:hover {
+  transform: translateY(-20px);
 }
 
 .popularBadge {
@@ -1053,11 +987,6 @@
   box-shadow: 0 8px 20px rgba(242,105,28,0.35);
 }
 
-@media (max-width: 880px) {
-  .pricingRow { grid-template-columns: 1fr; }
-  .pricingCardPopular { transform: none; }
-}
-
 /* ============================= CTA ====================================== */
 
 .cta {
@@ -1065,12 +994,11 @@
   z-index: 1;
   overflow: hidden;
   text-align: center;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 80px 24px;
+  padding: 100px 24px;
   background: linear-gradient(135deg, #0c0a4d 0%, #1e0e72 45%, #4b0fae 100%);
   color: var(--white);
 }
@@ -1087,7 +1015,7 @@
 
 .ctaHeading {
   position: relative;
-  font-size: 30px;
+  font-size: clamp(26px, 3vw, 30px);
   font-weight: 800;
   margin: 0 0 14px;
 }
@@ -1107,66 +1035,91 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
+  flex-wrap: wrap;
 }
 
-/* ============================= scroll reveal =========================== */
+/* ─────────────────────────────────────────
+   RESPONSIVIDADE
+───────────────────────────────────────── */
 
-.reveal {
-  opacity: 0;
-  transform: translateY(36px);
-  transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+@media (max-width: 1024px) {
+  .founder {
+    gap: 80px;
+    padding: 90px 6%;
+  }
+
+  .pricingRow {
+    grid-template-columns: 1fr;
+  }
+
+  .pricingCardPopular {
+    transform: none;
+  }
+
+  .pricingCardPopular:hover {
+    transform: translateY(-8px);
+  }
 }
 
-.revealLeft  { opacity: 0; transform: translateX(-48px); transition: opacity 0.72s cubic-bezier(0.22,1,0.36,1), transform 0.72s cubic-bezier(0.22,1,0.36,1); }
-.revealRight { opacity: 0; transform: translateX(48px);  transition: opacity 0.72s cubic-bezier(0.22,1,0.36,1), transform 0.72s cubic-bezier(0.22,1,0.36,1); }
-.revealScale { opacity: 0; transform: scale(0.88);        transition: opacity 0.72s cubic-bezier(0.22,1,0.36,1), transform 0.72s cubic-bezier(0.22,1,0.36,1); }
+@media (max-width: 880px) {
+  .founder {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    padding: 70px 6%;
+  }
 
-.revealVisible { opacity: 1 !important; transform: none !important; }
+  .stepsRow {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
 
-.delay1 { transition-delay: 0.10s; }
-.delay2 { transition-delay: 0.20s; }
-.delay3 { transition-delay: 0.30s; }
-.delay4 { transition-delay: 0.40s; }
-.delay5 { transition-delay: 0.50s; }
-.delay6 { transition-delay: 0.60s; }
+  .stepsLine {
+    display: none;
+  }
 
-/* ============================= cursor glow ============================ */
-
-.cursorGlow {
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(242,105,28,0.07) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
-  mix-blend-mode: multiply;
-  transition: left 0.18s ease, top 0.18s ease;
+  .cardsRow {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* ============================= logo mark ============================== */
+@media (max-width: 640px) {
+  .hero {
+    padding: 70px 5%;
+  }
 
-.logoMark {
-  width: 36px;
-  height: 36px;
-}
+  .heroActions,
+  .ctaActions {
+    flex-direction: column;
+    width: 100%;
+  }
 
-/* ============================= dot grid =============================== */
+  .heroActions .btnOrange,
+  .heroActions .btnOrangeSoft,
+  .ctaActions .btnOrange,
+  .ctaActions .btnOutline {
+    width: 100%;
+    justify-content: center;
+  }
 
-.dotGrid {
-  position: absolute;
-  display: grid;
-  gap: 14px;
-  opacity: 0.6;
-}
+  .founderPortrait,
+  .founderImageWrap {
+    height: auto;
+  }
 
-/* ============================= avatar ================================= */
+  .founderPortrait {
+    height: 420px;
+  }
 
-/* (already defined above) */
+  .statsItem {
+    border-right: none;
+    border-bottom: 1.5px solid var(--cream-line);
+  }
 
-@media (max-width: 600px) {
-  .heroTitle { font-size: 34px; }
-  .ctaActions, .heroActions { flex-direction: column; }
+  .statsItem:last-child {
+    border-bottom: none;
+  }
+
+  .testimonialCard {
+    width: 240px;
+  }
 }
