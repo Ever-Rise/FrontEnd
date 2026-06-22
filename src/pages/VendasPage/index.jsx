@@ -11,10 +11,13 @@ import EverriseCorredor from '../../assets/images/Vendas/EverriseCorredor.svg';
 import GenericoCorredor from '../../assets/images/Vendas/GenericoCorredor.svg';
 import EverriseQuarto from '../../assets/images/Vendas/EverriseQuarto.svg';
 import GenericoQuarto from '../../assets/images/Vendas/GenericoQuarto.svg';
+import VideoHero from '../../assets/images/Vendas/VideoHero.mp4'
+import EverriseBanheiro from '../../assets/images/Vendas/imagemBanheiro.svg'
+import GenericoBanheiro from '../../assets/images/Vendas/genericoBanheiro.svg'
 
 /* ─── IMAGES ─── */
 const IMG = {
-  hero: "https://images.unsplash.com/photo-1576765607924-3f7b8410a787?w=800&q=80",
+  VideoHero,
   GuinchoCrianca,
   MulherGuincho,
   Praticidade,
@@ -25,8 +28,8 @@ const IMG = {
   GenericoCorredor,
   EverriseQuarto,
   GenericoQuarto,
-  banheiro1: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80",
-  banheiro2: "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=600&q=80",
+  EverriseBanheiro,
+  GenericoBanheiro,
   avatar1: "https://i.pravatar.cc/60?img=1",
   avatar2: "https://i.pravatar.cc/60?img=2",
   avatar3: "https://i.pravatar.cc/60?img=3",
@@ -47,7 +50,7 @@ const rooms = [
   { id: "01", label: "Sala", desc: "Transferências seguras da cadeira para a cama ou poltronas", imgs: [IMG.EverriseSala, IMG.GenericoSala] },
   { id: "02", label: "Corredor", desc: "Mobilidade prática entre ambientes sem esforço", imgs: [IMG.EverriseCorredor, IMG.GenericoCorredor] },
   { id: "03", label: "Quarto", desc: "Mais conforto e segurança na rotina de cuidados.", imgs: [IMG.EverriseQuarto, IMG.GenericoQuarto] },
-  { id: "04", label: "Banheiro", desc: "Transferência com dignidade e máxima segurança", imgs: [IMG.banheiro1, IMG.banheiro2] },
+  { id: "04", label: "Banheiro", desc: "Transferência com dignidade e máxima segurança", imgs: [IMG.EverriseBanheiro, IMG.GenericoBanheiro] },
 ];
 
 /* ─── FAQ ─── */
@@ -64,6 +67,30 @@ const plans = [
   { price: "$29,99/m", label: "Plano Business", features: ["Tudo do Pro", "Suporte 24/7", "Usuários ilimitados", "API dedicada"], cta: "Assinar Business", highlight: false },
 ];
 
+/* ─── DOT GRID ─── */
+function DotGrid({ style, count = 30, cols = 6 }) {
+  return (
+    <span
+      className="dot-grid-deco"
+      style={{ ...style, gridTemplateColumns: `repeat(${cols}, 1fr)` }}
+      aria-hidden="true"
+    >
+      {Array.from({ length: count }).map((_, i) => (
+        <span key={i} />
+      ))}
+    </span>
+  );
+}
+
+/* ─── DECOR LAYER ─── */
+function DecorLayer({ children }) {
+  return (
+    <div className="decor-layer" aria-hidden="true">
+      {children}
+    </div>
+  );
+}
+
 /* ─── SECTION HEADER ─── */
 function SectionHeader({ badge, title, sub, squareStyle }) {
   return (
@@ -78,7 +105,7 @@ function SectionHeader({ badge, title, sub, squareStyle }) {
   );
 }
 
-/* ─── HERO ─── */
+
 function HeroSection() {
   const sectionRef = useRef(null);
   const [progress, setProgress] = useState(0);
@@ -102,64 +129,91 @@ function HeroSection() {
   const vw = window.innerWidth;
   const vh = window.innerHeight;
 
-  const initW = Math.min(500, vw * 0.5);
-  const initH = initW * 0.6;
+  
+  const initW = Math.min(600, vw * 0.55);
+  const initH = initW * 0.56;
 
   const videoW = initW + (vw - initW) * progress;
   const videoH = initH + (vh - initH) * progress;
   const borderRadius = 24 * (1 - progress);
   const videoLeft = (vw - videoW) / 2;
 
+  
+  const initTop = 62;  
+  const videoTop = initTop + (50 - initTop) * progress;
+
   return (
-    <section className="hero-section" ref={sectionRef}>
-      <div className="hero-sticky">
+    <section ref={sectionRef} style={{ position: "relative", height: "300vh" }}>
+      <div style={{
+        position: "sticky",
+        top: 0,
+        height: "100vh",
+        overflow: "hidden",
+      }}>
 
-        {/* Vídeo — atrás do texto (z-index baixo) */}
-        <div
-          style={{
-            position: "absolute",
-            width: videoW,
-            height: videoH,
-            top: "50%",
-            left: videoLeft,
-            transform: "translateY(-50%)",
-            borderRadius,
-            overflow: "hidden",
-            zIndex: 1,
-            willChange: "width, height, border-radius, left",
-            alignItems:"center"
-          }}
-        >
-          <video autoPlay muted loop playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}>
-            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
-          </video>
-        </div>
+        <DecorLayer>
+          <span className="ring-peach" style={{ width: 200, height: 200, top: "5%", left: "-80px" }} />
+          <span className="ring-navy" style={{ width: 90, height: 90, top: "3%", left: "-20px" }} />
+          <span className="ring-peach" style={{ width: 140, height: 140, bottom: "8%", right: "-60px" }} />
+          <DotGrid style={{ top: "10%", right: "4%" }} count={42} cols={7} />
+          <DotGrid style={{ bottom: "12%", left: "3%" }} count={30} cols={6} />
+          <span className="dash-deco" style={{ top: "44%", left: "5%" }} />
+          <span className="dash-deco" style={{ bottom: "30%", right: "8%", transform: "rotate(90deg)" }} />
+        </DecorLayer>
 
-        {/* Texto centralizado — na frente do vídeo */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            textAlign: "center",
-            padding: "0 clamp(20px, 5vw, 80px)",
-            zIndex: 2,
-            opacity: textOpacity,
-            pointerEvents: textOpacity < 0.05 ? "none" : "auto",
-            bottom:"300px"
-          }}
-        >
-          <p className="hero-eyebrow">Mobilidade com segurança e dignidade</p>
-          <p className="hero-desc">
-            O guincho de transferência foi projetado para oferecer segurança, conforto, e praticidade na rotina de quem cuida e de quem é cuidado.
+       
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "40%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 2,
+          opacity: textOpacity,
+          pointerEvents: textOpacity < 0.05 ? "none" : "auto",
+          padding: "0 clamp(20px, 5vw, 80px)",
+          textAlign: "center",
+        }}>
+          <p
+            className="hero-eyebrow"
+            style={{
+              background: "linear-gradient(90deg, #3B1FA8 0%, #6B2FD9 40%, #F97316 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            Mobilidade com segurança e dignidade
           </p>
         </div>
 
+        
+        <div style={{
+          position: "absolute",
+          width: videoW,
+          height: videoH,
+          top: `${videoTop}%`,
+          left: videoLeft,
+          transform: "translateY(-50%)",
+          borderRadius,
+          overflow: "hidden",
+          zIndex: 1,
+        }}>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          >
+            <source src={IMG.VideoHero} type="video/mp4" />
+          </video>
+        </div>
+
       </div>
-      <div style={{ height: "150vh" }} />
     </section>
   );
 }
@@ -190,7 +244,15 @@ function ProjectedSection() {
   }, []);
 
   return (
-    <section className="projected-section" ref={sectionRef}>
+    <section className="projected-section" ref={sectionRef} style={{ marginTop: "200px" }}>
+      <DecorLayer>
+        <span className="ring-peach" style={{ width: 220, height: 220, top: "-60px", left: "-80px" }} />
+        <span className="ring-navy" style={{ width: 100, height: 100, top: "-20px", left: "-30px" }} />
+        <DotGrid style={{ bottom: "8%", left: "2%" }} count={42} cols={7} />
+        <DotGrid style={{ top: "6%", right: "2%" }} count={42} cols={7} />
+        <span className="dash-deco" style={{ bottom: "20%", right: "6%" }} />
+      </DecorLayer>
+
       <div className="projected-sticky">
         <SectionHeader
           badge="TECNOLOGIA QUE TRANSFORMA"
@@ -236,7 +298,16 @@ function ProjectedSection() {
 /* ─── WINCH 3D ─── */
 function Winch3DSection() {
   return (
-    <section className="winch3d-section">
+    <section className="winch3d-section" style={{ position: "relative", overflow: "hidden", marginTop:"200px" }}>
+      <DecorLayer>
+        <span className="ring-peach" style={{ width: 110, height: 110, bottom: "-40px", right: "-50px" }} />
+        <span className="ring-navy" style={{ width: 56, height: 56, top: 0, left: "-30px" }} />
+        <DotGrid style={{ bottom: "10%", left: "5%" }} />
+        <DotGrid style={{ top: "10%", right: "4%" }} count={42} cols={7} />
+        <span className="dash-deco" style={{ top: "15%", left: "5%" }} />
+        <span className="dash-deco" style={{ bottom: "25%", right: "8%", transform: "rotate(90deg)" }} />
+      </DecorLayer>
+
       <SectionHeader
         badge="COMEÇA DE TODOS OS ÂNGULOS"
         title="Guincho 3D"
@@ -260,7 +331,14 @@ function CareSection() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="care-section">
+    <section className="care-section" style={{ position: "relative", overflow: "hidden" }}>
+      <DecorLayer>
+        <span className="ring-peach" style={{ width: 160, height: 160, bottom: "-40px", right: "-60px" }} />
+        <span className="ring-navy" style={{ width: 70, height: 70, top: "30%", right: "2%" }} />
+        <span className="dash-deco" style={{ top: "15%", left: "5%" }} />
+        <span className="dash-deco" style={{ bottom: "25%", right: "8%", transform: "rotate(90deg)" }} />
+      </DecorLayer>
+
       <SectionHeader
         badge="EXPERIÊNCIA INTERATIVA"
         title="Cuidado em todos os momentos."
@@ -300,7 +378,15 @@ function CareSection() {
 /* ─── TESTIMONIALS ─── */
 function TestimonialsSection() {
   return (
-    <section className="testimonials-section">
+    <section className="testimonials-section" style={{ position: "relative", overflow: "hidden" }}>
+      <DecorLayer>
+        <DotGrid style={{ top: "6%", left: "2%" }} count={42} cols={7} />
+        <DotGrid style={{ bottom: "6%", right: "2%" }} count={42} cols={7} />
+        <span className="ring-peach" style={{ width: 180, height: 180, top: "-50px", right: "-60px" }} />
+        <span className="ring-navy" style={{ width: 80, height: 80, top: "-20px", right: "-20px" }} />
+        <span className="ring-peach" style={{ width: 140, height: 140, bottom: "-40px", left: "-50px" }} />
+      </DecorLayer>
+
       <SectionHeader
         badge="DEPOIMENTOS"
         title="Ratificado por profissionais da área da saúde"
@@ -327,7 +413,16 @@ function TestimonialsSection() {
 /* ─── PLANS ─── */
 function PlansSection() {
   return (
-    <section className="plans-section">
+    <section className="plans-section" style={{ position: "relative", overflow: "hidden" }}>
+      <DecorLayer>
+        <span className="ring-navy" style={{ width: 56, height: 56, top: 0, left: "-30px" }} />
+        <span className="ring-peach" style={{ width: 160, height: 160, bottom: "-40px", right: "-60px" }} />
+        <DotGrid style={{ top: "6%", right: "4%" }} count={30} cols={6} />
+        <DotGrid style={{ bottom: "10%", left: "5%" }} count={30} cols={6} />
+        <span className="dash-deco" style={{ top: "20%", left: "5%" }} />
+        <span className="dash-deco" style={{ bottom: "20%", right: "8%", transform: "rotate(90deg)" }} />
+      </DecorLayer>
+
       <SectionHeader
         badge="PLANOS ACESSÍVEIS PARA TODAS AS NECESSIDADES"
         title="Escolha o plano ideal para você"
@@ -352,8 +447,16 @@ function PlansSection() {
 /* ─── FAQ ─── */
 function FAQSection() {
   const [open, setOpen] = useState(null);
+
   return (
-    <section className="faq-section">
+    <section className="faq-section" style={{ position: "relative", overflow: "hidden" }}>
+      <DecorLayer>
+        <span className="ring-peach" style={{ width: 120, height: 120, top: "-40px", left: "-50px" }} />
+        <span className="ring-navy" style={{ width: 60, height: 60, top: "-15px", left: "-15px" }} />
+        <DotGrid style={{ bottom: "8%", right: "2%" }} count={30} cols={6} />
+        <span className="dash-deco" style={{ bottom: "20%", left: "6%" }} />
+      </DecorLayer>
+
       <SectionHeader
         badge="PERGUNTAS FREQUENTES"
         title="Encontre respostas para perguntas frequentes sobre nossos serviços, preços e suporte"
@@ -381,7 +484,17 @@ function FAQSection() {
 /* ─── FOOTER CTA ─── */
 function FooterCTA() {
   return (
-    <section className="footer-cta">
+    <section className="footer-cta" style={{ position: "relative", overflow: "hidden" }}>
+      <DecorLayer>
+        <span className="ring-peach" style={{ width: 200, height: 200, top: "-60px", left: "-80px", opacity: 0.3 }} />
+        <span className="ring-peach" style={{ width: 140, height: 140, bottom: "-40px", right: "-60px", opacity: 0.25 }} />
+        <DotGrid style={{ top: "10%", right: "4%" }} count={42} cols={7} />
+        <DotGrid style={{ bottom: "10%", left: "3%" }} count={30} cols={6} />
+        <span className="dash-deco" style={{ top: "44%", left: "5%", background: "rgba(255,255,255,0.4)" }} />
+        <span className="dash-deco" style={{ bottom: "30%", right: "8%", transform: "rotate(90deg)", background: "rgba(255,255,255,0.4)" }} />
+        <span className="cta-glow" aria-hidden="true" />
+      </DecorLayer>
+
       <div className="footer-cta-content">
         <div className="footer-cta-text">
           <h2>O amor continua.<br />O esforço não precisa continuar</h2>
