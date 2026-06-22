@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Footer, Header } from "../../components";
 import {
   FiActivity,
   FiBatteryCharging,
@@ -152,6 +153,8 @@ export default function ManualEverRise() {
 
   return (
     <div className="manual">
+
+      <Header />
 
       {/* ===== HERO ===== */}
       <section className="hero">
@@ -365,6 +368,8 @@ export default function ManualEverRise() {
           </div>
         </div>
       </section>
+
+      <Footer />
 
     </div>
   );
