@@ -161,7 +161,7 @@ body { font-family: "Poppins", sans-serif; }
 
 /* ===== PAINEL ===== */
 
-.panel { padding: 140px 0; }
+.panel { padding: 140px 0; position: relative; overflow: hidden; }
 
 .panel-grid {
   display: grid;
@@ -176,35 +176,35 @@ body { font-family: "Poppins", sans-serif; }
 .panel-grid.show { opacity: 1; transform: none; }
 
 .eyebrow {
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 800;
   color: var(--accent);
   letter-spacing: .04em;
 }
 
 .panel-text h2 {
-  margin-top: 18px;
-  font-size: clamp(2.2rem, 3.6vw, 3.2rem);
+  margin-top: 22px;
+  font-size: clamp(2.8rem, 4.2vw, 4rem);
   line-height: 1.1;
   color: var(--primary);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .panel-text p {
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   line-height: 1.7;
   color: var(--text);
 }
 
-.dashboard { display: flex; flex-direction: column; gap: 24px; }
+.dashboard { display: flex; flex-direction: column; gap: 28px; }
 
-.dashboard span { font-size: 1.05rem; color: var(--text); font-weight: 600; }
-.dashboard h2, .dashboard h3 { color: var(--primary); margin-top: 10px; }
+.dashboard span { font-size: 1.2rem; color: var(--text); font-weight: 600; }
+.dashboard h2, .dashboard h3 { color: var(--primary); margin-top: 12px; }
 
 .dashboard-main {
   background: white;
-  padding: 44px;
-  border-radius: 28px;
+  padding: 56px;
+  border-radius: 32px;
   box-shadow: var(--shadow);
   position: relative;
   overflow: hidden;
@@ -219,14 +219,14 @@ body { font-family: "Poppins", sans-serif; }
   background: radial-gradient(circle, rgba(106,0,255,.10), transparent 70%);
 }
 
-.dashboard-main h2 { font-size: 2.6rem; }
+.dashboard-main h2 { font-size: 3.4rem; }
 
-.dashboard-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.dashboard-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
 
 .dashboard-small {
   background: white;
-  padding: 30px 28px;
-  border-radius: 22px;
+  padding: 38px 34px;
+  border-radius: 26px;
   box-shadow: var(--shadow);
   transition: .4s;
 }
@@ -236,14 +236,14 @@ body { font-family: "Poppins", sans-serif; }
 .dashboard-small:nth-child(2) h3 { color: white; }
 
 .dashboard-small:hover { transform: translateY(-8px); }
-.dashboard-small h3 { font-size: 2rem; }
+.dashboard-small h3 { font-size: 2.6rem; }
 
 .status {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 26px;
-  font-size: 1.1rem;
+  gap: 14px;
+  margin-top: 30px;
+  font-size: 1.3rem;
   color: var(--text);
   font-weight: 600;
 }
@@ -258,7 +258,7 @@ body { font-family: "Poppins", sans-serif; }
 
 /* ===== FEATURES 2x2 ===== */
 
-.features { padding: 140px 0; }
+.features { padding: 140px 0; position: relative; overflow: hidden; }
 
 .section-title { text-align: center; margin-bottom: 70px; }
 
@@ -285,7 +285,7 @@ body { font-family: "Poppins", sans-serif; }
 }
 
 .feature-card {
-  background: var(--gradient-card);
+  background: white;
   padding: 48px 44px;
   border-radius: 24px;
   box-shadow: var(--shadow);
@@ -299,28 +299,21 @@ body { font-family: "Poppins", sans-serif; }
   content: "";
   position: absolute;
   left: 0; top: 0;
-  height: 100%; width: 8px;
-  background: linear-gradient(180deg, #4d00b5, #feb42d);
+  height: 100%; width: 6px;
+  background: linear-gradient(180deg, var(--secondary), var(--accent));
 }
 
 .feature-card:hover { transform: translateY(-10px); }
 
 .feature-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 12px;
-  background: rgba(255,255,255,.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.7rem;
-  color: white;
+  font-size: 2.8rem;
+  color: var(--secondary);
   margin-bottom: 26px;
 }
 
 .feature-card h3 {
   font-size: 1.5rem;
-  color: white;
+  color: var(--primary);
   margin-bottom: 16px;
   font-weight: 700;
 }
@@ -328,12 +321,12 @@ body { font-family: "Poppins", sans-serif; }
 .feature-card p {
   font-size: 1.08rem;
   line-height: 1.65;
-  color: rgba(255,255,255,.85);
+  color: var(--text);
 }
 
 /* ===== SEGURANÇA ===== */
 
-.security { padding: 140px 0; }
+.security { padding: 140px 0; position: relative; overflow: hidden; }
 
 .security-wrap {
   opacity: 0;
@@ -497,7 +490,7 @@ body { font-family: "Poppins", sans-serif; }
 
 /* ===== MANUTENÇÃO ===== */
 
-.maintenance { padding: 140px 0; }
+.maintenance { padding: 140px 0; position: relative; overflow: hidden; }
 
 .maintenance-grid {
   display: grid;
@@ -782,4 +775,119 @@ body { font-family: "Poppins", sans-serif; }
   .sec-tabs { grid-template-columns: 1fr; }
   .sec-detail-left, .sec-detail-right { padding: 32px 28px; }
   .support-card { padding: 36px 28px; }
+}
+
+/* ============================================================
+   DECORAÇÕES DE FUNDO (anéis, dots, dash) — apenas visual
+   ============================================================ */
+
+.decor-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* garante que o conteúdo real fique acima da camada decorativa */
+.hero > .container,
+.hero-scroll-cue,
+.panel > .container,
+.features > .container,
+.security > .container,
+.maintenance > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.ring-primary {
+  border: 7px solid var(--primary);
+  opacity: .08;
+}
+
+.ring-accent {
+  border: 16px solid var(--accent-light, var(--accent));
+  opacity: .35;
+}
+
+.dash {
+  position: absolute;
+  height: 3px;
+  width: 56px;
+  background: var(--accent);
+  opacity: .45;
+  border-radius: 2px;
+}
+
+.dot-grid {
+  position: absolute;
+  display: grid;
+  gap: 14px;
+  opacity: .45;
+}
+
+.dot-grid span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: block;
+}
+
+/* ============================================================
+   CURSOR GLOW
+   ============================================================ */
+
+.cursor-glow {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(253,116,44,.06) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  mix-blend-mode: multiply;
+  transition: left .18s ease, top .18s ease;
+}
+
+/* ============================================================
+   SCROLL REVEAL — variantes left / right / scale
+   (complementam .fade-up já existente)
+   ============================================================ */
+
+.reveal-left,
+.reveal-right,
+.reveal-scale {
+  transition: opacity .72s cubic-bezier(.22,1,.36,1),
+              transform .72s cubic-bezier(.22,1,.36,1);
+}
+
+.reveal-left  { opacity: 0; transform: translateX(-48px); }
+.reveal-right { opacity: 0; transform: translateX(48px); }
+.reveal-scale { opacity: 0; transform: scale(.88); }
+
+.reveal-visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-particles,
+  .cursor-glow {
+    display: none;
+  }
+  .fade-up,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
