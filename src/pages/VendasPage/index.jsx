@@ -105,10 +105,18 @@ function SectionHeader({ badge, title, sub, squareStyle }) {
   );
 }
 
-
+/* ─── HERO SECTION ─── */
 function HeroSection() {
   const sectionRef = useRef(null);
   const [progress, setProgress] = useState(0);
+  const [dims, setDims] = useState({ vw: window.innerWidth, vh: window.innerHeight });
+
+  /* Update dims on resize so video recalculates */
+  useEffect(() => {
+    const onResize = () => setDims({ vw: window.innerWidth, vh: window.innerHeight });
+    window.addEventListener("resize", onResize, { passive: true });
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -124,13 +132,17 @@ function HeroSection() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const { vw, vh } = dims;
+
   const textOpacity = Math.max(0, 1 - progress / 0.3);
 
-  const vw = window.innerWidth;
-  const vh = window.innerHeight;
 
-  
-  const initW = Math.min(600, vw * 0.55);
+  const initW =
+    vw < 480
+      ? vw * 0.90
+      : vw < 768
+      ? vw * 0.82
+      : Math.min(600, vw * 0.55);
   const initH = initW * 0.56;
 
   const videoW = initW + (vw - initW) * progress;
@@ -138,8 +150,7 @@ function HeroSection() {
   const borderRadius = 24 * (1 - progress);
   const videoLeft = (vw - videoW) / 2;
 
-  
-  const initTop = 62;  
+  const initTop = vw < 768 ? 55 : 62;
   const videoTop = initTop + (50 - initTop) * progress;
 
   return (
@@ -150,7 +161,6 @@ function HeroSection() {
         height: "100vh",
         overflow: "hidden",
       }}>
-
         <DecorLayer>
           <span className="ring-peach" style={{ width: 200, height: 200, top: "5%", left: "-80px" }} />
           <span className="ring-navy" style={{ width: 90, height: 90, top: "3%", left: "-20px" }} />
@@ -161,20 +171,19 @@ function HeroSection() {
           <span className="dash-deco" style={{ bottom: "30%", right: "8%", transform: "rotate(90deg)" }} />
         </DecorLayer>
 
-       
         <div style={{
           position: "absolute",
           top: 0,
           left: 0,
           right: 0,
-          height: "40%",
+          height: "38%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           zIndex: 2,
           opacity: textOpacity,
           pointerEvents: textOpacity < 0.05 ? "none" : "auto",
-          padding: "0 clamp(20px, 5vw, 80px)",
+          padding: "0 clamp(16px, 5vw, 80px)",
           textAlign: "center",
         }}>
           <p
@@ -184,13 +193,13 @@ function HeroSection() {
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
+              top:"100px"
             }}
           >
             Mobilidade com segurança e dignidade
           </p>
         </div>
 
-        
         <div style={{
           position: "absolute",
           width: videoW,
@@ -212,7 +221,6 @@ function HeroSection() {
             <source src={IMG.VideoHero} type="video/mp4" />
           </video>
         </div>
-
       </div>
     </section>
   );
@@ -222,6 +230,7 @@ function HeroSection() {
 function ProjectedSection() {
   const sectionRef = useRef(null);
   const [index, setIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   const slides = [
     { title: "Movimento suave", desc: "Sistema de elevação preciso que reduz o cansaço físico do cuidador garantindo uma transição segura e confortável para o paciente, sem movimentos bruscos ou intensos.", img: IMG.GuinchoCrianca },
@@ -230,14 +239,21 @@ function ProjectedSection() {
   ];
 
   useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", onResize, { passive: true });
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  useEffect(() => {
     const onScroll = () => {
       const el = sectionRef.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
       const scrolled = -rect.top;
-      const sectionH = el.offsetHeight;
-      const newIndex = Math.min(slides.length - 1, Math.floor((scrolled / sectionH) * slides.length * 3));
-      setIndex(Math.max(0, newIndex));
+      const totalScroll = el.offsetHeight - window.innerHeight;
+      const progress = Math.max(0, Math.min(1, scrolled / totalScroll));
+      const newIndex = Math.min(slides.length - 1, Math.floor(progress * slides.length));
+      setIndex(newIndex);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -245,24 +261,28 @@ function ProjectedSection() {
 
   return (
     <section className="projected-section" ref={sectionRef} style={{ marginTop: "200px" }}>
-      <DecorLayer>
-        <span className="ring-peach" style={{ width: 220, height: 220, top: "-60px", left: "-80px" }} />
-        <span className="ring-navy" style={{ width: 100, height: 100, top: "-20px", left: "-30px" }} />
-        <DotGrid style={{ bottom: "8%", left: "2%" }} count={42} cols={7} />
-        <DotGrid style={{ top: "6%", right: "2%" }} count={42} cols={7} />
-        <span className="dash-deco" style={{ bottom: "20%", right: "6%" }} />
-      </DecorLayer>
-
       <div className="projected-sticky">
+        <DecorLayer>
+          <span className="ring-peach" style={{ width: 220, height: 220, top: "-60px", left: "-80px" }} />
+          <span className="ring-navy" style={{ width: 100, height: 100, top: "-20px", left: "-30px" }} />
+          <span className="dash-deco" style={{ bottom: "20%", right: "6%" }} />
+        </DecorLayer>
+
         <SectionHeader
           badge="TECNOLOGIA QUE TRANSFORMA"
           title="Projetado para o que realmente importa"
           squareStyle={{ left: "210px", transform: "translateX(0)" }}
         />
+
         <div className="projected-layout">
           <div className="projected-left">
             {slides.map((s, i) => (
-              <div key={i} className={`projected-text-item ${i === index ? "active" : ""}`}>
+              <div
+                key={i}
+                className={`projected-text-item ${i === index ? "active" : ""}`}
+                /* On mobile all items stay visible; on desktop scroll drives opacity */
+                style={isMobile ? { opacity: 1 } : undefined}
+              >
                 <span className="icon-bullet">⚡</span>
                 <div>
                   <strong>{s.title}</strong>
@@ -271,6 +291,7 @@ function ProjectedSection() {
               </div>
             ))}
           </div>
+
           <div className="projected-right">
             <div className="projected-images">
               {slides.map((s, i) => (
@@ -278,19 +299,28 @@ function ProjectedSection() {
                   key={i}
                   src={s.img}
                   alt={s.title}
-                  className={`projected-img ${i === index ? "active" : ""}`}
+                  className={`projected-img ${
+                    isMobile
+                      ? i === 0 ? "active" : ""   /* mobile: show first by default */
+                      : i === index ? "active" : ""
+                  }`}
                 />
               ))}
             </div>
             <div className="projected-dots">
               {slides.map((_, i) => (
-                <span key={i} className={`dot ${i === index ? "active" : ""}`} />
+                <span
+                  key={i}
+                  className={`dot ${i === index ? "active" : ""}`}
+                  onClick={() => setIndex(i)}
+                  style={{ cursor: "pointer" }}
+                />
               ))}
             </div>
           </div>
         </div>
       </div>
-      <div style={{ height: `${slides.length * 60}vh` }} />
+      <div style={{ height: `${slides.length * 80}vh` }} />
     </section>
   );
 }
@@ -298,7 +328,7 @@ function ProjectedSection() {
 /* ─── WINCH 3D ─── */
 function Winch3DSection() {
   return (
-    <section className="winch3d-section" style={{ position: "relative", overflow: "hidden", marginTop:"200px" }}>
+    <section className="winch3d-section" style={{ position: "relative", overflow: "hidden", marginTop: "200px" }}>
       <DecorLayer>
         <span className="ring-peach" style={{ width: 110, height: 110, bottom: "-40px", right: "-50px" }} />
         <span className="ring-navy" style={{ width: 56, height: 56, top: 0, left: "-30px" }} />
@@ -436,7 +466,7 @@ function PlansSection() {
             <ul className="plan-features">
               {p.features.map((f, j) => <li key={j}>{f}</li>)}
             </ul>
-            <button className={p.highlight ? "btn-primary" : "btn-outline"}>{p.cta}</button>
+            <button className="plan-btn">{p.cta}</button>
           </div>
         ))}
       </div>
