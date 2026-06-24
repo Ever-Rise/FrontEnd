@@ -328,7 +328,7 @@ function ProjectedSection() {
 /* ─── WINCH 3D ─── */
 function Winch3DSection() {
   return (
-    <section className="winch3d-section" style={{ position: "relative", overflow: "hidden", marginTop: "200px" }}>
+    <section className="winch3d-section" style={{ position: "relative", overflow: "hidden", marginTop: "60px" }}>
       <DecorLayer>
         <span className="ring-peach" style={{ width: 110, height: 110, bottom: "-40px", right: "-50px" }} />
         <span className="ring-navy" style={{ width: 56, height: 56, top: 0, left: "-30px" }} />
@@ -352,7 +352,7 @@ function Winch3DSection() {
           <div className="control-item"><span className="control-icon">⊕</span><p>Scroll para aproximar</p></div>
         </div>
       </div>
-    </section>
+    </section >
   );
 }
 
