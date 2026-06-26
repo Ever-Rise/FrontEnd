@@ -14,6 +14,10 @@ import GenericoQuarto from '../../assets/images/Vendas/GenericoQuarto.svg';
 import VideoHero from '../../assets/images/Vendas/VideoHero.mp4'
 import EverriseBanheiro from '../../assets/images/Vendas/imagemBanheiro.svg'
 import GenericoBanheiro from '../../assets/images/Vendas/genericoBanheiro.svg'
+import Mariana from '../../assets/images/Vendas/DraMariana.svg'
+import Ana from '../../assets/images/Vendas/DraAndrea.svg'
+import Andre from '../../assets/images/Vendas/DrAndre.svg'
+import Eduardo from '../../assets/images/Vendas/DrEduardo.svg'
 
 /* ─── IMAGES ─── */
 const IMG = {
@@ -30,19 +34,19 @@ const IMG = {
   GenericoQuarto,
   EverriseBanheiro,
   GenericoBanheiro,
-  avatar1: "https://i.pravatar.cc/60?img=1",
-  avatar2: "https://i.pravatar.cc/60?img=2",
-  avatar3: "https://i.pravatar.cc/60?img=3",
-  avatar4: "https://i.pravatar.cc/60?img=4",
+  Mariana,
+  Ana,
+  Andre,
+  Eduardo,
   footer: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
 };
 
 /* ─── TESTIMONIALS ─── */
 const testimonials = [
-  { name: "Dr. Sarah Pinto", role: "Fisioterapeuta", text: "O Guincho EverRise transformou completamente a rotina dos nossos pacientes. A segurança e o conforto são incomparáveis.", img: IMG.avatar1 },
-  { name: "Dr. André Faro", role: "Geriatra", text: "Recomendo fortemente para qualquer ambiente de cuidado. A facilidade de uso e a estabilidade são excepcionais.", img: IMG.avatar2 },
-  { name: "Dr. Sarah Pinto", role: "Enfermeira Chefe", text: "A diferença no dia a dia dos cuidadores é enorme. Menos esforço físico e mais segurança para os pacientes.", img: IMG.avatar3 },
-  { name: "Dr. André Faro", role: "Médico Intensivista", text: "Equipamento de alta qualidade. O modelo 3D interativo me ajudou a tomar a decisão de compra com confiança.", img: IMG.avatar4 },
+  { name: "Dra. Ana Ribeiro", role: "Fisioterapeuta", text: "O Guincho EverRise transformou completamente a rotina dos nossos pacientes. A segurança e o conforto são incomparáveis.", img: IMG.Ana },
+  { name: "Dr. André Faro", role: "Geriatra", text: "Recomendo fortemente para qualquer ambiente de cuidado. A facilidade de uso e a estabilidade são excepcionais.", img: IMG.Andre },
+  { name: "Dr. Eduardo Almeida", role: "Enfermeira Chefe", text: "A diferença no dia a dia dos cuidadores é enorme. Menos esforço físico e mais segurança para os pacientes.", img: IMG.Eduardo },
+  { name: "Dra. Mariana Costa", role: "Médico Intensivista", text: "Equipamento de alta qualidade. O modelo 3D interativo me ajudou a tomar a decisão de compra com confiança.", img: IMG.Mariana },
 ];
 
 /* ─── CARE ROOMS ─── */
