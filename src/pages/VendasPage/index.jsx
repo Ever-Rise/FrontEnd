@@ -4,7 +4,7 @@ import { Footer, Header } from "../../components";
 import GuinchoCrianca from '../../assets/images/Vendas/FotoDaCriancaQuarto.svg';
 import MulherGuincho from '../../assets/images/Vendas/Mulhernoquarto.svg';
 import Praticidade from '../../assets/images/Vendas/Praticidade.svg';
-import Guincho3d from '../../assets/images/Vendas/guincho3d.svg';
+// import Guincho3d from '../../assets/images/Vendas/guincho3d.svg';
 import EverriseSala from '../../assets/images/Vendas/EverriseSala.svg';
 import GenericoSala from '../../assets/images/Vendas/GenericoSala.svg';
 import EverriseCorredor from '../../assets/images/Vendas/EverriseCorredor.svg';
@@ -18,6 +18,14 @@ import Mariana from '../../assets/images/Vendas/DraMariana.svg'
 import Ana from '../../assets/images/Vendas/DraAndrea.svg'
 import Andre from '../../assets/images/Vendas/DrAndre.svg'
 import Eduardo from '../../assets/images/Vendas/DrEduardo.svg'
+import Guincho1 from '../../assets/images/Vendas/GuinchoFrente.svg';
+import Guincho2 from '../../assets/images/Vendas/GuinchoMeioEsquerdo.svg';
+import Guincho3 from '../../assets/images/Vendas/GuinchoMeioDireito.svg';
+import Guincho4 from '../../assets/images/Vendas/GuinchoEsquerdo.svg';
+import Guincho5 from '../../assets/images/Vendas/GuinchoDireito.svg';
+import Guincho6 from '../../assets/images/Vendas/CostaEsquerdo.svg';
+import Guincho7 from '../../assets/images/Vendas/CostaDireito.svg';
+import Guincho8 from '../../assets/images/Vendas/CostasGuincho.svg';
 
 /* ─── IMAGES ─── */
 const IMG = {
@@ -25,7 +33,7 @@ const IMG = {
   GuinchoCrianca,
   MulherGuincho,
   Praticidade,
-  Guincho3d,
+  GuinchoCarrossel: [Guincho1, Guincho2, Guincho3, Guincho4, Guincho5, Guincho6, Guincho7, Guincho8],
   EverriseSala,
   GenericoSala,
   EverriseCorredor,
@@ -336,6 +344,12 @@ function ProjectedSection() {
 
 /* ─── WINCH 3D ─── */
 function Winch3DSection() {
+  const [index, setIndex] = useState(0);
+  const images = IMG.GuinchoCarrossel;
+
+  const goPrev = () => setIndex((i) => (i === 0 ? images.length - 1 : i - 1));
+  const goNext = () => setIndex((i) => (i === images.length - 1 ? 0 : i + 1));
+
   return (
     <section className="winch3d-section" style={{ position: "relative", overflow: "hidden", marginTop: "60px" }}>
       <DecorLayer>
@@ -349,19 +363,38 @@ function Winch3DSection() {
 
       <SectionHeader
         badge="COMEÇA DE TODOS OS ÂNGULOS"
-        title="Guincho 3D"
-        sub="Interaja com o modelo 3D e veja cada detalhe do guincho."
+        title="Guincho"
+        sub="Veja cada detalhe do guincho."
         squareStyle={{ left: "200px", transform: "translateX(0)" }}
       />
+
       <div className="winch3d-viewer">
-        <img src={IMG.Guincho3d} alt="Guincho 3D" className="winch-img" />
-        <div className="winch3d-controls">
-          <div className="control-item"><span className="control-icon">↔</span><p>Arraste para rotacionar</p></div>
-          <div className="control-item"><span className="control-icon">🖱</span><p>Passe o mouse para interagir</p></div>
-          <div className="control-item"><span className="control-icon">⊕</span><p>Scroll para aproximar</p></div>
+        <div className="winch-carousel">
+          <img
+            src={images[index]}
+            alt={`Guincho - foto ${index + 1}`}
+            className="winch-img"
+          />
+
+          <button className="carousel-arrow carousel-arrow-left" onClick={goPrev} aria-label="Foto anterior">
+            ←
+          </button>
+          <button className="carousel-arrow carousel-arrow-right" onClick={goNext} aria-label="Próxima foto">
+            →
+          </button>
+        </div>
+
+        <div className="carousel-dots">
+          {images.map((_, i) => (
+            <span
+              key={i}
+              className={`carousel-dot ${i === index ? "active" : ""}`}
+              onClick={() => setIndex(i)}
+            />
+          ))}
         </div>
       </div>
-    </section >
+    </section>
   );
 }
 
