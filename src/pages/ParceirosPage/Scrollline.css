@@ -105,19 +105,9 @@ body {
   min-height: clamp(200px, 25vw, 500px);
 }
 
-.card--1{
-  margin-left: 200px;
-}
-
-.card--2{
-margin-right: 300px;
-
-}
-
-.card--3{
-  margin-left: 200px;
-}
-
+.card--1 { margin-left: 200px; }
+.card--2 { margin-right: 300px; }
+.card--3 { margin-left: 200px; }
 
 .card::before {
   content: '';
@@ -227,7 +217,7 @@ margin-right: 300px;
     rgba(220, 210, 255, 0.9);
 }
 
-/* ─── Círculos laranja (apenas contorno) ─── */
+/* ─── Círculos laranja ─── */
 .circle-outline {
   position: absolute;
   width: 80px;
@@ -249,58 +239,88 @@ margin-right: 300px;
   50%       { transform: translateY(-12px); }
 }
 
+/* ─── Desktop: ORIGINAL, sem mexer ─── */
 .card--1 { top: 6%;  left: 3%;  animation: float 3.5s ease-in-out infinite; }
 .card--2 { top: 33%; right: 3%; animation: float 3.5s ease-in-out infinite 0.6s; }
 .card--3 { top: 62%; left: 8%;  animation: float 3.5s ease-in-out infinite 1.2s; }
 
 /* ══════════════════════════════════════
-   TABLET (max 1024px)
+   TABLET (769px – 1024px)
+   line-section menor, cards em px
+   para bater com tabletPath viewBox 1000x1400
 ══════════════════════════════════════ */
-@media (max-width: 1024px) {
-  .card { width: clamp(220px, 38vw, 360px); }
-  .card--1 { top: 5%;  left: 8%; }
-  .card--2 { top: 33%; right: 8%; }
-  .card--3 { top: 62%; left: 8%; }
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Seção mais compacta — equivale a ~130vh num iPad Pro */
+  .line-section { min-height: 1400px; }
+
+  .card {
+    width: clamp(220px, 32vw, 320px);
+    padding: clamp(18px, 2.5vw, 32px) clamp(14px, 2vw, 28px);
+    min-height: unset;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .card p { font-size: clamp(0.85rem, 1.6vw, 1rem); margin-top: 16px; }
+
+  /* Posições em px alinhadas com os nós do tabletPath */
+  .card--1 { top: 80px;   left: 4%;  right: auto; animation: float 3.5s ease-in-out infinite; }
+  .card--2 { top: 530px;  right: 4%; left: auto;  animation: float 3.5s ease-in-out infinite 0.6s; }
+  .card--3 { top: 960px;  left: 4%;  right: auto; animation: float 3.5s ease-in-out infinite 1.2s; }
 }
 
 /* ══════════════════════════════════════
    MOBILE (max 768px)
+   viewBox "0 0 400 1400"
 ══════════════════════════════════════ */
 @media (max-width: 768px) {
   .hero-section { min-height: 40vh; padding: 40px 20px; }
   .hero-title { font-size: clamp(0.65rem, 3.5vw, 1rem); white-space: normal; text-align: center; }
   .eyebrow-square { width: clamp(30px, 8vw, 50px); height: clamp(30px, 8vw, 50px); left: -16px; }
   .hero-sub { font-size: clamp(1rem, 5vw, 1.6rem); }
-  .line-section { min-height: 320vh; }
-  .card { width: clamp(140px, 40vw, 220px); padding: clamp(12px, 3vw, 20px); min-height: unset; }
-  .card-icon { width: clamp(32px, 7vw, 48px); height: clamp(32px, 7vw, 48px); margin-bottom: 8px; }
-  .card-icon img { width: clamp(20px, 5vw, 32px); height: clamp(20px, 5vw, 32px); }
-  .card h3 { font-size: clamp(0.7rem, 2.5vw, 1rem); }
-  .card p  { font-size: clamp(0.6rem, 1.8vw, 0.8rem); }
-  .card--1 { top: 4%;  left: 1%; }
-  .card--2 { top: 33%; right: 1%; }
-  .card--3 { top: 62%; left: 2%; }
-  .circle-outline { width: 56px; height: 56px; }
-  .dot-grid--sm { width: 40px; height: 40px; }
+
+  .line-section { min-height: 1400px; }
+
+  .card {
+    width: clamp(150px, 43vw, 220px);
+    padding: 16px;
+    min-height: unset;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .card-icon { width: 38px; height: 38px; margin-bottom: 8px; }
+  .card-icon img { width: 24px; height: 24px; }
+  .card h3 { font-size: clamp(0.72rem, 2.6vw, 0.95rem); }
+  .card p  { font-size: clamp(0.62rem, 2vw, 0.8rem); line-height: 1.45; margin-top: 8px; }
+
+  .card--1 { top: 60px;  left: 2%;  right: auto; animation: float 3.5s ease-in-out infinite; }
+  .card--2 { top: 520px; right: 2%; left: auto;  animation: float 3.5s ease-in-out infinite 0.6s; }
+  .card--3 { top: 980px; left: 2%;  right: auto; animation: float 3.5s ease-in-out infinite 1.2s; }
+
+  .circle-outline--orange { width: 130px; height: 130px; border-width: 14px; }
+  .dot-grid2 { width: 80px; height: 80px; }
 }
 
 /* ══════════════════════════════════════
    SMALL MOBILE (max 480px)
+   viewBox "0 0 400 1200"
 ══════════════════════════════════════ */
 @media (max-width: 480px) {
   .hero-title { font-size: clamp(0.6rem, 3.8vw, 0.85rem); }
-  .hero-sub { font-size: clamp(0.9rem, 5.5vw, 1.3rem); }
-  .card { width: clamp(120px, 42vw, 180px); padding: 10px 12px; }
-  .card h3 { font-size: clamp(0.65rem, 2.8vw, 0.85rem); }
-  .card p  { font-size: clamp(0.55rem, 2vw, 0.7rem); line-height: 1.5; }
+  .hero-sub   { font-size: clamp(0.9rem, 5.5vw, 1.3rem); }
 
-  /* ✅ CORRIGIDO: era max-height: 10vh — agora altura adequada */
-  .line-section { min-height: 180vh; }
+  .line-section { min-height: 1200px; }
 
-  /* ✅ CORRIGIDO: posições dos cards ajustadas para a nova altura */
-  .card--1 { top: 5%;  left: 0.5%; }
-  .card--2 { top: 38%; right: 0.5%; }
-  .card--3 { top: 68%; left: 1%; }
+  .card { width: clamp(130px, 44vw, 190px); padding: 12px 14px; }
+  .card h3 { font-size: clamp(0.65rem, 3vw, 0.88rem); }
+  .card p  { font-size: clamp(0.55rem, 2.2vw, 0.72rem); margin-top: 6px; }
+
+  .card--1 { top: 50px;  }
+  .card--2 { top: 450px; }
+  .card--3 { top: 850px; }
+
+  .circle-outline--orange { width: 100px; height: 100px; border-width: 10px; }
 }
 
 /* ══════════════════════════════════════
