@@ -141,24 +141,29 @@ function HeroSection() {
   const textOpacity = Math.max(0, 1 - progress / 0.3);
 
 
-  const initW =
-    vw < 480
-      ? vw * 0.90
-      : vw < 768
-      ? vw * 0.82
-      : Math.min(600, vw * 0.55);
-  const initH = initW * 0.56;
+const initW =
+  vw < 480
+    ? vw * 0.90
+    : vw < 768
+    ? vw * 0.82
+    : Math.min(600, vw * 0.55);
+const initH = initW * 0.56;
 
-  const videoW = initW + (vw - initW) * progress;
-  const videoH = initH + (vh - initH) * progress;
-  const borderRadius = 24 * (1 - progress);
-  const videoLeft = (vw - videoW) / 2;
+const isMobileHero = vw < 768;
+const initTop = vw < 768 ? 55 : 62;
 
-  const initTop = vw < 768 ? 55 : 62;
-  const videoTop = initTop + (50 - initTop) * progress;
+// No mobile, o vídeo cresce só até 96% da largura (nunca fullscreen)
+const maxW = isMobileHero ? vw * 0.96 : vw;
+const maxH = isMobileHero ? maxW * 0.56 : vh;
+
+const videoW = initW + (maxW - initW) * progress;
+const videoH = initH + (maxH - initH) * progress;
+const borderRadius = 24 * (1 - progress);
+const videoLeft = (vw - videoW) / 2;
+const videoTop = isMobileHero ? 50 : initTop + (50 - initTop) * progress;
 
   return (
-    <section ref={sectionRef} style={{ position: "relative", height: "300vh" }}>
+    <section ref={sectionRef} style={{ position: "relative", height: vw < 768 ? "50vh" : "300vh" }}>
       <div style={{
         position: "sticky",
         top: 0,
@@ -210,7 +215,7 @@ function HeroSection() {
           height: videoH,
           top: `${videoTop}%`,
           left: videoLeft,
-          transform: "translateY(-50%)",
+          transform: isMobileHero ? "translateY(-50%)" : "translateY(-50%)",
           borderRadius,
           overflow: "hidden",
           zIndex: 1,
