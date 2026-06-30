@@ -95,6 +95,7 @@ const IconPortrait = () => (
 
 function InitialAvatar({ name, size = 44 }) {
   const initials = name.split(" ").map((n) => n[0]).slice(0, 2).join("");
+
   return (
     <span
       className={styles.avatarCircle}
@@ -284,6 +285,8 @@ const statsData = [
    ============================================================ */
 
 export default function EveriseLanding() {
+  const [videoExpanded, setVideoExpanded] = useState(false);
+
   return (
     <>
       <Header />
@@ -347,8 +350,8 @@ export default function EveriseLanding() {
           <div className={styles.founderImageWrap}>
             <div className={styles.founderPortrait}>
               <DotGrid style={{ top: "20px", left: "20px" }} />
-              <img 
-                src= {fotoLipe}
+              <img
+                src={fotoLipe}
                 alt="Rafa - Fundadora da Ever Rise"
                 className={styles.founderImg}
               />
@@ -418,20 +421,25 @@ export default function EveriseLanding() {
         </section>
 
         {/* ── VÍDEO ── */}
-        <section className={styles.videoSection}>
-          <div className={styles.videoIntro}>
-            <h2 className={styles.sectionHeading}>Veja o Ever Rise em ação</h2>
-            <p>
-              Descubra como nossa plataforma simplifica a gestão de guinchos e frotas através de
-              uma interface intuitiva e automações poderosas.
-            </p>
-          </div>
-          <div className={styles.videoBox}>
-            <button className={styles.playButton} aria-label="Reproduzir vídeo de demonstração">
-              <IconPlay />
-            </button>
-          </div>
-        </section>
+<section className={styles.videoSection}>
+  <div className={styles.videoIntro}>
+    <h2 className={styles.sectionHeading}>Veja o Ever Rise em ação</h2>
+    <p>
+      Descubra como nossa plataforma simplifica a gestão de guinchos e frotas através de
+      uma interface intuitiva e automações poderosas.
+    </p>
+  </div>
+
+  <div className={styles.videoScrollWrap}>
+    <div className={styles.videoBox}>
+      <div className={styles.videoInner}>
+        <button className={styles.playButton} aria-label="Reproduzir vídeo de demonstração">
+          <IconPlay />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 
         {/* ── TESTIMONIALS (marquee 100% CSS) ── */}
         <section className={styles.testimonials}>

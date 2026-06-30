@@ -17,8 +17,164 @@ import {
   FiSend,
   FiMessageCircle
 } from "react-icons/fi";
+import { Footer, Header } from "../../components";
 
 import "./styles.css";
+
+/* ============================================================
+   Decorações de fundo (anéis, dots, dash) — apenas visual
+   ============================================================ */
+
+const DotGrid = ({ style, count = 30, cols = 6 }) => (
+  <span
+    className="dot-grid"
+    style={{ ...style, gridTemplateColumns: `repeat(${cols}, 1fr)` }}
+  >
+    {Array.from({ length: count }).map((_, i) => (
+      <span key={i} />
+    ))}
+  </span>
+);
+
+function DecorLayer({ children }) {
+  return (
+    <div className="decor-layer" aria-hidden="true">
+      {children}
+    </div>
+  );
+}
+
+/* ============================================================
+   Partículas do hero (canvas, cores do Manual: roxo/laranja)
+   ============================================================ */
+
+function HeroParticles() {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+
+    let W, H, particles, rafId;
+    const COUNT = 50;
+
+    const resize = () => {
+      W = canvas.width = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    };
+
+    const makeP = () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 2.5 + 0.8,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      alpha: Math.random() * 0.5 + 0.2,
+      isAccent: Math.random() > 0.5
+    });
+
+    const init = () => {
+      resize();
+      particles = Array.from({ length: COUNT }, makeP);
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, W, H);
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 120) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(4,16,98,${0.06 * (1 - d / 120)})`;
+            ctx.lineWidth = 0.6;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      particles.forEach((p) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.isAccent
+          ? `rgba(253,116,44,${p.alpha})`
+          : `rgba(77,0,181,${p.alpha})`;
+        ctx.fill();
+
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < -10) p.x = W + 10;
+        if (p.x > W + 10) p.x = -10;
+        if (p.y < -10) p.y = H + 10;
+        if (p.y > H + 10) p.y = -10;
+      });
+
+      rafId = requestAnimationFrame(draw);
+    };
+
+    init();
+    draw();
+
+    const onResize = () => resize();
+    window.addEventListener("resize", onResize);
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="hero-particles" />;
+}
+
+/* ============================================================
+   Cursor glow sutil (segue o mouse)
+   ============================================================ */
+
+function CursorGlow() {
+  const glowRef = useRef(null);
+
+  useEffect(() => {
+    const isCoarse = window.matchMedia("(pointer: coarse)").matches;
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (isCoarse || prefersReduced) return;
+
+    const el = glowRef.current;
+    if (!el) return;
+
+    let rafId;
+    let targetX = 0, targetY = 0;
+    let currentX = 0, currentY = 0;
+
+    const onMove = (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+    };
+
+    function loop() {
+      currentX += (targetX - currentX) * 0.1;
+      currentY += (targetY - currentY) * 0.1;
+      el.style.left = currentX + "px";
+      el.style.top = currentY + "px";
+      rafId = requestAnimationFrame(loop);
+    }
+
+    window.addEventListener("mousemove", onMove, { passive: true });
+    rafId = requestAnimationFrame(loop);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  return <div ref={glowRef} className="cursor-glow" />;
+}
 
 const funcionalidades = [
   {
@@ -123,12 +279,17 @@ function useInView() {
   return [ref, visible];
 }
 
-function FadeUp({ children, delay = 0, className = "" }) {
+function FadeUp({ children, delay = 0, className = "", variant = "up" }) {
   const [ref, visible] = useInView();
+  const variantClass =
+    variant === "left" ? "reveal-left" :
+    variant === "right" ? "reveal-right" :
+    variant === "scale" ? "reveal-scale" : "fade-up";
+
   return (
     <div
       ref={ref}
-      className={`fade-up ${className} ${visible ? "visible" : ""}`}
+      className={`${variantClass} ${className} ${visible ? (variant === "up" ? "visible" : "reveal-visible") : ""}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
@@ -151,35 +312,53 @@ export default function ManualEverRise() {
   const selected = statusSeguranca[activeStatus];
 
   return (
-    <div className="manual">
+    <>
+      <CursorGlow />
+      <Header />
+      <div className="manual">
 
-      {/* ===== HERO ===== */}
-      <section className="hero">
-        <div className="hero-bg" />
-        <div className={`container hero-content ${heroVisible ? "show" : ""}`}>
-          <h1>
-            Controle total do seu equipamento
-            <span> sem complicação</span>
-          </h1>
-          <p>
-            Tudo que você precisa para monitorar, operar e gerenciar
-            recursos com precisão.
-          </p>
-          <div className="hero-buttons">
-            <button className="btn-primary">
-              Abrir suporte <FiArrowRight />
-            </button>
-            <button className="btn-secondary">Explorar recursos</button>
+        {/* ===== HERO ===== */}
+        <section className="hero">
+          <div className="hero-bg" />
+
+          <DecorLayer>
+            <span className="ring ring-accent" style={{ width: 200, height: 200, top: "6%", left: "-80px" }} />
+            <span className="ring ring-primary" style={{ width: 90, height: 90, top: "4%", left: "-20px" }} />
+            <span className="ring ring-accent" style={{ width: 140, height: 140, bottom: "10%", right: "-60px" }} />
+            <DotGrid style={{ top: "12%", right: "4%" }} count={42} cols={7} />
+            <DotGrid style={{ bottom: "14%", left: "3%" }} count={30} cols={6} />
+            <span className="dash" style={{ top: "44%", left: "5%" }} />
+            <span className="dash" style={{ bottom: "30%", right: "8%", transform: "rotate(90deg)" }} />
+          </DecorLayer>
+
+          <div className={`container hero-content ${heroVisible ? "show" : ""}`}>
+            <h1>
+              Controle total do seu equipamento
+              <span> sem complicação</span>
+            </h1>
+            <p>
+              Tudo que você precisa para monitorar, operar e gerenciar
+              recursos com precisão.
+            </p>
+            <div className="hero-buttons">
+              <button className="btn-primary">
+                Abrir suporte <FiArrowRight />
+              </button>
+              <button className="btn-secondary">Explorar recursos</button>
+            </div>
           </div>
-        </div>
-        <div className="hero-scroll-cue">
-          <span>Veja o painel</span>
-          <div className="scroll-line" />
-        </div>
-      </section>
+          <div className="hero-scroll-cue">
+            <span>Veja o painel</span>
+            <div className="scroll-line" />
+          </div>
+        </section>
 
       {/* ===== PAINEL ===== */}
       <section className="panel" ref={panelRef}>
+        <DecorLayer>
+          <DotGrid style={{ top: "8%", left: "2%" }} count={30} cols={6} />
+          <span className="dash" style={{ bottom: "18%", right: "6%" }} />
+        </DecorLayer>
         <div className={`container panel-grid ${panelVisible ? "show" : ""}`}>
           <div className="panel-text">
             <span className="eyebrow">PAINEL DE CONTROLE</span>
@@ -218,6 +397,10 @@ export default function ManualEverRise() {
 
       {/* ===== FEATURES 2x2 ===== */}
       <section className="features">
+        <DecorLayer>
+          <span className="ring ring-accent" style={{ width: 160, height: 160, top: "-40px", right: "-60px" }} />
+          <DotGrid style={{ bottom: "10%", left: "3%" }} count={30} cols={6} />
+        </DecorLayer>
         <div className="container">
           <div className="section-title">
             <span>RECURSOS</span>
@@ -239,6 +422,10 @@ export default function ManualEverRise() {
 
       {/* ===== SEGURANÇA ===== */}
       <section className="security" ref={securityRef}>
+        <DecorLayer>
+          <DotGrid style={{ top: "6%", right: "3%" }} count={30} cols={6} />
+          <span className="dash" style={{ top: "20%", left: "4%" }} />
+        </DecorLayer>
         <div className={`container security-wrap ${securityVisible ? "show" : ""}`}>
           <div className="section-title section-title-left">
             <span>SEGURANÇA</span>
@@ -282,6 +469,10 @@ export default function ManualEverRise() {
 
       {/* ===== MANUTENÇÃO ===== */}
       <section className="maintenance" ref={maintenanceRef}>
+        <DecorLayer>
+          <span className="ring ring-primary" style={{ width: 110, height: 110, bottom: "-30px", left: "-40px" }} />
+          <DotGrid style={{ top: "8%", right: "4%" }} count={30} cols={6} />
+        </DecorLayer>
         <div className={`container ${maintenanceVisible ? "show" : ""}`}>
           <div className="section-title section-title-left">
             <span>CUIDADOS</span>
@@ -366,6 +557,8 @@ export default function ManualEverRise() {
         </div>
       </section>
 
-    </div>
+      </div>
+      <Footer />
+    </>
   );
 }

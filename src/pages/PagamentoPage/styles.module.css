@@ -24,6 +24,24 @@
   overflow: hidden;
 }
 
+/* ─── ANIMAÇÃO DE ONDA ─── */
+
+@keyframes waveFloat {
+  0%   { transform: skewY(0deg)    scaleX(1); }
+  25%  { transform: skewY(0.4deg)  scaleX(1.01); }
+  50%  { transform: skewY(-0.4deg) scaleX(1.02); }
+  75%  { transform: skewY(0.3deg)  scaleX(1.01); }
+  100% { transform: skewY(0deg)    scaleX(1); }
+}
+
+@keyframes waveFloatBottom {
+  0%   { transform: skewY(0deg)    scaleX(1); }
+  25%  { transform: skewY(-0.4deg) scaleX(1.01); }
+  50%  { transform: skewY(0.4deg)  scaleX(1.02); }
+  75%  { transform: skewY(-0.3deg) scaleX(1.01); }
+  100% { transform: skewY(0deg)    scaleX(1); }
+}
+
 .waveTop {
   position: absolute;
   top: 0;
@@ -36,6 +54,8 @@
   background-position: top left;
   pointer-events: none;
   z-index: 1;
+  animation: waveFloat 5s ease-in-out infinite;
+  transform-origin: top left;
 }
 
 .waveBottom {
@@ -50,6 +70,12 @@
   background-position: bottom right;
   pointer-events: none;
   z-index: 1;
+  animation: waveFloatBottom 5s ease-in-out infinite;
+  transform-origin: bottom right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .waveTop, .waveBottom { animation: none; }
 }
 
 /* ─── CARD CENTRAL ─── */

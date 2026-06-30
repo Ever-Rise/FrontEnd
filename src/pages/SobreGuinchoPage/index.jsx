@@ -4,10 +4,10 @@ import { Footer, Header } from "../../components";
 
 
 // Imagens Hero
-import heroVideo from '../../assets/images/SobreGuincho/video_Hero.mp4'; // Ajuste o caminho se necessário
+import heroVideo from '../../assets/images/SobreGuincho/video_Hero1.mp4'; // Ajuste o caminho se necessário
 
 // Seção Guincho Interativo (imagem principal com hotspots)
-import secaoImg from "../../assets/images/SobreGuincho/secao-guincho.png";
+import secaoImg from "../../assets/images/SobreGuincho/secao_guincho.png";
 
 // Hardware
 import raspberryImg from "../../assets/images/SobreGuincho/rasperry.png";
@@ -17,6 +17,7 @@ import cameraUsbImg from "../../assets/images/SobreGuincho/cameraUSB.png";
 import motorImg from "../../assets/images/SobreGuincho/motor.png";
 import fonteImg from "../../assets/images/SobreGuincho/fonte.png";
 import logoHardware from "../../assets/images/SobreGuincho/logo.png";
+import suaSeta from "../../assets/icons/SobreGuincho/seta.svg";
 
 // Especificações
 import estruturaImg from "../../assets/images/SobreGuincho/estrutura.svg";
@@ -29,12 +30,6 @@ import modulosIcon from "../../assets/icons/SobreGuincho/icon_modulos.svg";
 import reconhecimentoIcon from "../../assets/icons/SobreGuincho/icon_reconhecimento.svg";
 import visaoIcon from "../../assets/icons/SobreGuincho/icon_visao.svg";
 import interfaceIcon from "../../assets/icons/SobreGuincho/icon_interface.svg";
-
-// Contato
-import telefoneIcon from "../../assets/icons/SobreGuincho/icon_telefone.svg";
-import emailIcon from "../../assets/icons/SobreGuincho/icon_email.svg";
-import instagramIcon from "../../assets/icons/SobreGuincho/icon_instagram.svg";
-import contatoImg from "../../assets/images/SobreGuincho/contato.jpg";
 
 // Cards de features
 import acessivelIcon from "../../assets/icons/SobreGuincho/icon_acessivel.svg";
@@ -70,44 +65,39 @@ const features = [
 const hotspotsGuincho = [
   {
     id: 1,
-    x: 22,
-    y: 28,
-    title: "Motores e sistema de tração",
-    description:
-      "Responsáveis por movimentos suaves, estáveis e seguros durante toda a transferência.",
+    title: "Motor Elétrico Compacto",
+    description: "Atuador linear blindado de alta capacidade, responsável pela elevação suave e segura do paciente.",
+    x: 34, // Alinhado na junta superior/coluna vertical
+    y: 22
   },
   {
     id: 2,
-    x: 62,
-    y: 18,
-    title: "Sensor de pressão FSR 402",
-    description:
-      "Detecta a pressão aplicada em tempo real, garantindo segurança total na operação.",
+    title: "Sensor Inteligente / Câmera",
+    description: "Monitoramento por inteligência artificial que avalia o posicionamento e garante a segurança durante o movimento.",
+    x: 40, // Embutido logo abaixo da curvatura do braço superior
+    y: 19
   },
   {
     id: 3,
-    x: 78,
-    y: 50,
-    title: "Câmera USB",
-    description:
-      "Permite o monitoramento em tempo real do paciente durante todo o processo.",
+    title: "Sensor FSR Integrado",
+    description: "Sensores de força por película que medem a distribuição de peso e a pressão exercida no ponto de ancoragem.",
+    x: 32, // Na barra de suspensão do sling (cabide)
+    y: 31
   },
   {
     id: 4,
-    x: 45,
-    y: 78,
-    title: "Estrutura em MDF e Ferro",
-    description:
-      "Base resistente que garante estabilidade, durabilidade e suporte de carga.",
+    title: "Botão Failsafe / Emergência",
+    description: "Botão físico de parada imediata e alívio mecânico manual para descida segura em caso de pane elétrica.",
+    x: 35, // Botão vermelho proeminente na alça de controle traseira
+    y: 50
   },
   {
     id: 5,
-    x: 14,
-    y: 62,
-    title: "Botão Failsafe",
-    description:
-      "Botão físico de emergência que funciona mesmo sem conexão à internet.",
-  },
+    title: "Estrutura Metálica Reforçada",
+    description: "Construída em alumínio escovado e aço carbono com base expandida para máxima estabilidade anticapotamento.",
+    x: 52, // Centralizado na base estrutural inferior
+    y: 73
+  }
 ];
 
 const hardwareCardsTop = [
@@ -195,9 +185,28 @@ const modulos = [
   },
 ];
 
+const passos = [
+  { numero: "01", titulo: "Conhecer" },
+  { numero: "02", titulo: "Investir" },
+  { numero: "03", titulo: "Receber" },
+  { numero: "04", titulo: "Desfrutar" },
+];
+
 export default function SobreGuincho() {
   // id do hotspot ativo (hover no desktop / clique no mobile)
   const [activeHotspot, setActiveHotspot] = useState(null);
+
+  const [form, setForm] = useState({ nome: "", email: "", assunto: "" });
+
+  function handleChange(e) {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    // TODO: integrar com endpoint/API real
+    console.log("Form enviado:", form);
+  }
 
   return (
     <>
@@ -209,6 +218,10 @@ export default function SobreGuincho() {
           <img src={decoracao1} className={styles.decoracao2} alt="" />
           <img src={decoracao2} className={styles.decoracao3} alt="" />
           <img src={decoracao3} className={styles.decoracao4} alt="" />
+          <img src={decoracao3} className={styles.decoracao5} alt="" />
+          <img src={decoracao1} className={styles.decoracao6} alt="" />
+          <img src={decoracao2} className={styles.decoracao7} alt="" />
+          <img src={decoracao1} className={styles.decoracao8} alt="" />
         </div>
 
         {/* ── HERO ── */}
@@ -248,7 +261,7 @@ export default function SobreGuincho() {
                 <a href="/parceiros" className={`${styles.btn} ${styles.primary}`}>
                   Quero ser parceiro
                 </a>
-                <a href="/parceiros" className={`${styles.btn} ${styles.secondary}`}>
+                <a href="#contato" className={`${styles.btn} ${styles.secondary}`}>
                   Fale com a gente
                 </a>
               </div>
@@ -532,60 +545,100 @@ export default function SobreGuincho() {
           </div>
         </section>
 
-        {/* ── CONTATO + FOOTER (mesclados) ── */}
-        <div className={styles.contatoFooterGroup}>
-          <section className={styles.everriseContact}>
-            <div className={styles.container}>
-              <div className={styles.contentSide}>
-                <h2 className={styles.title}>
-                  Excelência que você sente,{" "}
-                  <span className={styles.highlight}>confiança</span> que você vê
+        {/* ── COMO VOCÊ VIVER MELHOR (jornada em 4 passos) ── */}
+          <section className={styles.jornadaSection}>
+            <div className={styles.jornadaHeader}>
+              <div className={styles.jornadaTextos}>
+                <h2>
+                  Como você viver melhor <span className={styles.highlightAzul}>com a Ever Rise?</span>
                 </h2>
-                <p className={styles.subtitle}>
-                  EverRise movendo vidas com segurança, tecnologia e propósito
-                </p>
 
-                <div className={styles.ctaBox}>
-                  <h3>Fale com a EverRise</h3>
-                  <p>Estamos prontos para falar com você</p>
-                  <ul className={styles.contactList}>
-                    <li>
-                      <div className={styles.contactIconWrapper}>
-                        <img src={telefoneIcon} alt="" aria-hidden="true" />
-                      </div>
-                      <span className={styles.text}>(11) 00000-0000</span>
-                    </li>
-                    <li>
-                      <div className={styles.contactIconWrapper}>
-                        <img src={emailIcon} alt="" aria-hidden="true" />
-                      </div>
-                      <span className={styles.text}>
-                        everrisorganizacional@gmail.com
-                      </span>
-                    </li>
-                    <li>
-                      <div className={styles.contactIconWrapper}>
-                        <img src={instagramIcon} alt="" aria-hidden="true" />
-                      </div>
-                      <span className={styles.text}>@everrise.oficial</span>
-                    </li>
-                  </ul>
-                </div>
+                {/* Espaço reservado para a seta — adicione sua imagem/svg aqui */}
+                <img src={suaSeta} className={styles.setaPlaceholder} alt="" />
               </div>
 
-              <div className={styles.imageSide}>
-                <img src={contatoImg} alt="Contato EverRise" />
+              <p className={styles.jornadaTexto}>
+                Transformar a rotina de transferência e mobilidade de pacientes na sua
+                instituição de saúde é simples e seguro. Desenvolvemos um processo de
+                aquisição transparente e focado na melhor experiência para a sua equipe.
+              </p>
+            </div>
+
+            <div className={styles.passosFullBleed}>
+              <svg
+                className={styles.linhaPassos}
+                viewBox="0 0 1200 80"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M -20,40 C 60,80 90,5 160,40 C 230,75 330,5 400,40
+                    C 470,75 530,5 600,40 C 670,75 770,5 840,40
+                    C 910,75 970,5 1040,40 C 1110,75 1140,5 1220,40"
+                  className={styles.linhaPassosTraco}
+                />
+              </svg>
+
+              <div className={styles.passosWrapper}>
+                {passos.map((passo) => (
+                  <div className={styles.passoItem} key={passo.numero}>
+                    <div className={styles.passoCirculo}>
+                      <span>{passo.numero}</span>
+                    </div>
+                    <div className={styles.passoLabel}>
+                      <span className={styles.passoSeta}>→</span>
+                      <span>{passo.titulo}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
 
-          {/* Wrapper que sobrepõe o Footer por cima do final da seção de
-              contato, fazendo a foto e o conteúdo "entrarem" no footer. */}
-          <div className={styles.footerWrapper}>
-            <Footer />
+          {/* ── CONTATO + FOOTER ── */}
+          <div className={styles.contatoFooterGroup} id="contato">
+            <section className={styles.contatoSection}>
+              <div className={styles.contatoCard}>
+                <h2>Entre em contato</h2>
+                <p>Vamos fazer sua vida melhor</p>
+
+                <form className={styles.contatoForm} onSubmit={handleSubmit}>
+                  <input
+                    type="text"
+                    name="nome"
+                    placeholder="Seu Nome"
+                    value={form.nome}
+                    onChange={handleChange}
+                    required
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                  />
+                  <textarea
+                    name="assunto"
+                    placeholder="Assunto aqui..."
+                    value={form.assunto}
+                    onChange={handleChange}
+                    rows={5}
+                    required
+                  ></textarea>
+
+                  <button type="submit" className={styles.contatoBtn}>
+                    Enviar para Ever Rise
+                  </button>
+                </form>
+              </div>
+            </section>
+
+            <div className={styles.footerWrapper}>
+              <Footer />
+            </div>
           </div>
         </div>
-      </div>
     </>
   );
 }
