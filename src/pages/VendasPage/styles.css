@@ -927,6 +927,10 @@ img { display: block; max-width: 100%; object-fit: cover; }
     height: 280px;
   }
 
+    .partnersEyebrowSquare {
+    display: none;
+    }
+
 }
 
 /* ── Mobile landscape / small tablet (≤600px) ── */

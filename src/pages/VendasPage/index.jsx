@@ -462,7 +462,7 @@ function TestimonialsSection() {
       <SectionHeader
         badge="DEPOIMENTOS"
         title="Ratificado por profissionais da área da saúde"
-        squareStyle={{ left: "680px", transform: "translateX(0)" }}
+        squareStyle={{ left: "auto", right: "58%", transform: "translateX(30%)" }}
       />
       <div className="testimonials-grid">
         {testimonials.map((t, i) => (
@@ -554,29 +554,29 @@ function FAQSection() {
 }
 
 /* ─── FOOTER CTA ─── */
-function FooterCTA() {
-  return (
-    <section className="footer-cta" style={{ position: "relative", overflow: "hidden" }}>
-      <DecorLayer>
-        <span className="ring-peach" style={{ width: 200, height: 200, top: "-60px", left: "-80px", opacity: 0.3 }} />
-        <span className="ring-peach" style={{ width: 140, height: 140, bottom: "-40px", right: "-60px", opacity: 0.25 }} />
-        <DotGrid style={{ top: "10%", right: "4%" }} count={42} cols={7} />
-        <DotGrid style={{ bottom: "10%", left: "3%" }} count={30} cols={6} />
-        <span className="dash-deco" style={{ top: "44%", left: "5%", background: "rgba(255,255,255,0.4)" }} />
-        <span className="dash-deco" style={{ bottom: "30%", right: "8%", transform: "rotate(90deg)", background: "rgba(255,255,255,0.4)" }} />
-        <span className="cta-glow" aria-hidden="true" />
-      </DecorLayer>
+// function FooterCTA() {
+//   return (
+//     <section className="footer-cta" style={{ position: "relative", overflow: "hidden" }}>
+//       <DecorLayer>
+//         <span className="ring-peach" style={{ width: 200, height: 200, top: "-60px", left: "-80px", opacity: 0.3 }} />
+//         <span className="ring-peach" style={{ width: 140, height: 140, bottom: "-40px", right: "-60px", opacity: 0.25 }} />
+//         <DotGrid style={{ top: "10%", right: "4%" }} count={42} cols={7} />
+//         <DotGrid style={{ bottom: "10%", left: "3%" }} count={30} cols={6} />
+//         <span className="dash-deco" style={{ top: "44%", left: "5%", background: "rgba(255,255,255,0.4)" }} />
+//         <span className="dash-deco" style={{ bottom: "30%", right: "8%", transform: "rotate(90deg)", background: "rgba(255,255,255,0.4)" }} />
+//         <span className="cta-glow" aria-hidden="true" />
+//       </DecorLayer>
 
-      <div className="footer-cta-content">
-        <div className="footer-cta-text">
-          <h2>O amor continua.<br />O esforço não precisa continuar</h2>
-          <button className="btn-primary large">Conheça agora</button>
-        </div>
-        <img src={IMG.footer} alt="Cuidador" className="footer-cta-img" />
-      </div>
-    </section>
-  );
-}
+//       <div className="footer-cta-content">
+//         <div className="footer-cta-text">
+//           <h2>O amor continua.<br />O esforço não precisa continuar</h2>
+//           <button className="btn-primary large">Conheça agora</button>
+//         </div>
+//         <img src={IMG.footer} alt="Cuidador" className="footer-cta-img" />
+//       </div>
+//     </section>
+//   );
+// }
 
 /* ─── APP ─── */
 export default function App() {
@@ -590,7 +590,7 @@ export default function App() {
       <TestimonialsSection />
       <PlansSection />
       <FAQSection />
-      <FooterCTA />
+      {/* <FooterCTA /> */}
       <Footer />
     </div>
   );
