@@ -1,10 +1,17 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./styles.module.css";
 import Header from "../../components/layout/Header";
 
 const CheckoutPage = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const plano = location.state?.plano ?? {
+        name: "Guincho de Transferência Ever Rise",
+        price: "R$ 14.850,00",
+    };
+
     const [delivery, setDelivery] = React.useState("standard");
     const [paymentTab, setPaymentTab] = React.useState("card");
     const [formData, setFormData] = React.useState({
@@ -28,8 +35,8 @@ const CheckoutPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Dados do formulário:", { ...formData, delivery, paymentTab });
-        navigate("/carregamento-pagamento");
+        console.log("Dados do formulário:", { ...formData, delivery, paymentTab, plano });
+        navigate("/carregamento-pagamento", { state: { plano } });
     };
 
     return (
@@ -43,8 +50,6 @@ const CheckoutPage = () => {
             </div>
 
             <section className={styles.page}>
-                {/* A frase "Faça login para continuar com seu pedido" foi removida daqui */}
-
                 <div className={styles.layout}>
                     <form className={styles.left} id="checkout-form" onSubmit={handleSubmit}>
                         {/* Informações Pessoais */}
@@ -115,7 +120,6 @@ const CheckoutPage = () => {
                             </label>
 
                             <label className={`${styles.deliveryOption} ${delivery === "express" ? styles.selected : ""}`}>
-                                {/* Corrigido de setIcon para setDelivery */}
                                 <input type="radio" name="delivery" value="express" checked={delivery === "express"} onChange={(e) => setDelivery(e.target.value)} style={{ display: "none" }} />
                                 <div className={styles.deliveryOptionHeader}>
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -184,7 +188,9 @@ const CheckoutPage = () => {
                             <div className={styles.productRow}>
                                 <div className={styles.productThumb}>🏗️</div>
                                 <div className={styles.productInfo}>
-                                    <div className={styles.productName}>Guincho de Transferência Ever Rise</div>
+                                    <div className={styles.productName}>
+                                        {plano.name} {plano.nameSuffix ?? ""}
+                                    </div>
                                     <div className={styles.inStock}>Em estoque</div>
                                 </div>
                             </div>
@@ -192,7 +198,7 @@ const CheckoutPage = () => {
                             <div className={styles.summaryRows}>
                                 <div className={styles.summaryRow}>
                                     <span>Subtotal</span>
-                                    <span className={styles.summaryRowValue}>R$ 14.850,00</span>
+                                    <span className={styles.summaryRowValue}>{plano.price}</span>
                                 </div>
                                 <div className={styles.summaryRow}>
                                     <span>Frete</span>
@@ -205,7 +211,7 @@ const CheckoutPage = () => {
                                 <div className={styles.divider} />
                                 <div className={styles.totalRow}>
                                     <span>Total</span>
-                                    <span className={styles.totalValue}>R$ 14.850,00</span>
+                                    <span className={styles.totalValue}>{plano.price}</span>
                                 </div>
                             </div>
 

@@ -1,3 +1,7 @@
+/* ═══════════════════════════════════════════
+   EVERRISE — styles.css (limpo e atualizado)
+═══════════════════════════════════════════ */
+
 /* ─── RESET & BASE ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -193,15 +197,19 @@ img { display: block; max-width: 100%; object-fit: cover; }
   width: 100%;
 }
 
+.badge-inner {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
 
 .partnersEyebrowSquare {
+  position: absolute;
+  left: clamp(-24px, -3vw, -18px);
   width: clamp(36px, 6vw, 100px);
   height: clamp(36px, 6vw, 100px);
   background: #041062;
   border-radius: clamp(8px, 1.2vw, 14px);
-  position: absolute;
-  left: 50%;
-  transform: translateX(calc(-100% - clamp(4px, 1vw, 12px)));
   z-index: 1;
 }
 
@@ -272,8 +280,6 @@ img { display: block; max-width: 100%; object-fit: cover; }
 
 /* ──────────────────────────────────────────
    PROJECTED SECTION
-   Keep the two-column layout on ALL screens
-   — just scale proportionally.
 ────────────────────────────────────────── */
 .projected-section {
   position: relative;
@@ -287,7 +293,6 @@ img { display: block; max-width: 100%; object-fit: cover; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* Tighter padding on small screens so content fits */
   padding: clamp(16px, 3vw, 60px) clamp(12px, 4vw, 80px);
   max-width: 1200px;
   margin: 0 auto;
@@ -297,7 +302,6 @@ img { display: block; max-width: 100%; object-fit: cover; }
 
 .projected-layout {
   display: flex;
-  /* Always side-by-side; gap shrinks on small screens */
   flex-direction: row;
   gap: clamp(12px, 3vw, 80px);
   align-items: center;
@@ -306,7 +310,6 @@ img { display: block; max-width: 100%; object-fit: cover; }
 }
 
 .projected-left {
-  /* Slightly narrower than the image column */
   flex: 1;
   min-width: 0;
   display: flex;
@@ -370,7 +373,6 @@ img { display: block; max-width: 100%; object-fit: cover; }
 .projected-images {
   position: relative;
   width: 100%;
-  /* Height shrinks proportionally so it always fits the sticky viewport */
   height: clamp(140px, 28vw, 420px);
 }
 
@@ -406,15 +408,9 @@ img { display: block; max-width: 100%; object-fit: cover; }
   margin: 0 auto;
   text-align: center;
 }
-.winch-img {
-  width: min(600px, 90vw);
-  margin: 0 auto 40px;
-  filter: drop-shadow(0 20px 40px rgba(107,47,217,0.2));
-  height: auto;
-  position: relative;
-  z-index: 1;
-}
+
 .winch3d-viewer { position: relative; z-index: 1; }
+
 .winch3d-controls {
   display: flex;
   justify-content: center;
@@ -433,25 +429,19 @@ img { display: block; max-width: 100%; object-fit: cover; }
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
+  overflow: visible; /* garante que a seta não seja cortada */
 }
 
 .winch-img {
   width: 100%;
-  max-width: 500px;  
-  height: 400px;      
-  object-fit: contain; 
+  max-width: 500px;
+  height: 400px;
+  object-fit: contain;
   border-radius: 16px;
-  background: #f7f7f7; 
+  background: #f7f7f7;
   transition: opacity 0.3s ease;
-}
-
-.winch-carousel {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: visible; /* garante que a seta não seja cortada */
+  filter: drop-shadow(0 20px 40px rgba(107,47,217,0.2));
+  margin: 0 auto 40px;
 }
 
 .carousel-arrow {
@@ -470,16 +460,11 @@ img { display: block; max-width: 100%; object-fit: cover; }
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  z-index: 10; /* fica acima da imagem */
+  z-index: 10;
 }
 
-.carousel-arrow-left {
-  left: 12px;
-}
-
-.carousel-arrow-right {
-  right: 12px;
-}
+.carousel-arrow-left { left: 12px; }
+.carousel-arrow-right { right: 12px; }
 
 .carousel-dots {
   display: flex;
@@ -501,6 +486,7 @@ img { display: block; max-width: 100%; object-fit: cover; }
   background: #4B2FD9;
   transform: scale(1.3);
 }
+
 /* ──────────────────────────────────────────
    CARE SECTION
 ────────────────────────────────────────── */
@@ -637,12 +623,9 @@ img { display: block; max-width: 100%; object-fit: cover; }
 /* ──────────────────────────────────────────
    PLANS
 ────────────────────────────────────────── */
-/* ──────────────────────────────────────────
-   PLANS
-────────────────────────────────────────── */
 .plans-section {
   padding: clamp(60px, 8vw, 100px) clamp(24px, 6vw, 80px);
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
   text-align: center;
 }
@@ -652,7 +635,7 @@ img { display: block; max-width: 100%; object-fit: cover; }
   grid-template-columns: repeat(3, 1fr);
   gap: clamp(16px, 2.5vw, 28px);
   margin-top: 48px;
-  align-items: stretch; /* ← era "start", agora "stretch" */
+  align-items: stretch;
   position: relative;
   z-index: 1;
 }
@@ -667,7 +650,7 @@ img { display: block; max-width: 100%; object-fit: cover; }
   color: #fff;
   box-shadow: 0 24px 48px rgba(30, 10, 90, 0.22);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  min-height: 420px; /* ← garante altura mínima igual */
+  min-height: 420px;
 }
 
 .plan-card:hover {
@@ -675,56 +658,69 @@ img { display: block; max-width: 100%; object-fit: cover; }
   box-shadow: 0 32px 64px rgba(75, 15, 174, 0.32);
 }
 
-.plan-card--popular {
-  transform: translateY(-14px);
-}
 
-.plan-card--popular:hover {
+
+.plan-card.highlight:hover {
   transform: translateY(-20px);
 }
 
-.plan-popular-badge {
+/* Fita "1º/2º/3º PLANO" no canto do card */
+.plan-ribbon {
   position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(90deg, #fa8a3c, #f7b23b);
+  top: 0;
+  left: 0;
+  background: linear-gradient(90deg, var(--purple), var(--purple-light));
   color: #fff;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 5px 20px;
-  border-radius: 999px;
+  letter-spacing: 0.05em;
+  padding: 8px 18px;
+  border-radius: 20px 0 20px 0;
+}
+.plan-name-row {
+  margin-top: 32px;
+  margin-bottom: 8px;
 }
 
-.plan-label {
-  font-size: 13px;
+.plan-name {
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 800;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.plan-name-suffix {
+  font-size: clamp(11px, 1.2vw, 13px);
   font-weight: 700;
-  letter-spacing: 0.07em;
-  color: rgba(255,255,255,0.85);
-  margin: 0 0 14px;
-  text-align: center;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.05em;
+  margin-top: -2px;
+}
+
+.plan-invest-box {
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 16px 0 24px;
+}
+
+.plan-invest-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #f7b23b;
+  letter-spacing: 0.06em;
+  margin-bottom: 2px;
 }
 
 .plan-price {
   font-size: clamp(28px, 4vw, 40px);
   font-weight: 800;
   color: #fff;
-  margin: 0 0 6px;
-  text-align: center;
+  margin: 0;
+  text-align: left;
   line-height: 1.1;
-}
-
-.plan-price--custom {
-  font-style: italic;
-  font-size: clamp(24px, 3.5vw, 34px);
-}
-
-.plan-note {
-  font-size: 13px;
-  color: rgba(255,255,255,0.55);
-  margin: 0 0 28px;
-  text-align: center;
 }
 
 .plan-features {
@@ -740,15 +736,21 @@ img { display: block; max-width: 100%; object-fit: cover; }
 
 .plan-features li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   font-size: clamp(13px, 1.3vw, 15px);
   color: rgba(255,255,255,0.9);
 }
 
-.plan-features li svg {
-  flex-shrink: 0;
+.feature-check {
   color: #f7b23b;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.feature-sub {
+  color: rgba(255,255,255,0.55);
+  font-size: 0.85em;
 }
 
 .plan-btn {
@@ -759,26 +761,18 @@ img { display: block; max-width: 100%; object-fit: cover; }
   border: none;
   font-size: clamp(14px, 1.5vw, 16px);
   font-weight: 600;
-  color: #fff; 
+  color: #fff;
   background: linear-gradient(180deg, #fa8a3c, #f2691c) !important;
   cursor: pointer;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
   margin-top: auto;
 }
 
-
-
 .plan-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(242,105,28,0.38);
 }
 
-/* Responsivo plans */
-@media (max-width: 900px) {
-  .plans-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
-  .plan-card--popular { transform: none; }
-  .plan-card--popular:hover { transform: translateY(-6px); }
-}
 /* ──────────────────────────────────────────
    FAQ
 ────────────────────────────────────────── */
@@ -891,51 +885,33 @@ img { display: block; max-width: 100%; object-fit: cover; }
   .navbar-links { display: none; }
   .navbar-inner { gap: 16px; }
 
-  /* Testimonials & plans */
   .testimonials-grid { grid-template-columns: 1fr 1fr; }
   .plans-grid { grid-template-columns: 1fr; }
 
-  /* Care section stays side-by-side but smaller */
   .care-img { height: clamp(120px, 30vw, 260px); }
 
-  /* Footer CTA stacks */
   .footer-cta-content { flex-direction: column; }
   .footer-cta-img { width: 100%; height: clamp(160px, 50vw, 240px); }
   .footer-inner { flex-direction: column; gap: 24px; }
   .footer-links { gap: 24px; }
 
-  /* Hide large decorative rings on small screens */
   .ring-peach { display: none; }
   .ring-navy  { display: none; }
   .dot-grid-deco { opacity: 0.3; }
 
+  .carousel-arrow-left { left: 12px; }
+  .carousel-arrow-right { right: 12px; }
+  .carousel-arrow { width: 36px; height: 36px; font-size: 16px; }
+  .winch-img { height: 280px; }
 
-  .carousel-arrow-left {
-    left: 12px;
-  }
+  .partnersEyebrowSquare { display: none; }
 
-  .carousel-arrow-right {
-    right: 12px;
-  }
-
-   .carousel-arrow {
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
-  }
-  .winch-img {
-    height: 280px;
-  }
-
-    .partnersEyebrowSquare {
-    display: none;
-    }
-
+  .plan-card.highlight { transform: none; }
+  .plan-card.highlight:hover { transform: translateY(-6px); }
 }
 
 /* ── Mobile landscape / small tablet (≤600px) ── */
 @media (max-width: 600px) {
-  /* Care section: stack tabs above images */
   .care-layout { flex-direction: column; }
   .care-tabs { flex: none; width: 100%; }
   .care-img { height: clamp(140px, 45vw, 220px); }
@@ -948,10 +924,8 @@ img { display: block; max-width: 100%; object-fit: cover; }
 
 /* ── Mobile portrait (≤480px) ── */
 @media (max-width: 480px) {
-  /* Hero text */
   .hero-eyebrow { font-size: clamp(18px, 6vw, 26px); max-width: 95vw; }
 
-  /* Projected section — keep sticky but shrink further */
   .projected-sticky {
     padding: 12px 10px;
     top: 56px;
@@ -963,7 +937,6 @@ img { display: block; max-width: 100%; object-fit: cover; }
   .projected-images { height: clamp(120px, 42vw, 220px); }
   .icon-bullet { display: none; }
 
-  /* Badge pill & square: scale down but keep visible */
   .badge-pill { font-size: clamp(9px, 3.2vw, 14px); padding: 4px 10px; }
   .partnersEyebrowSquare {
     width: 28px;
@@ -972,27 +945,29 @@ img { display: block; max-width: 100%; object-fit: cover; }
     transform: translateX(4px);
   }
 
+    .plan-invest-box {
+    text-align: center;
+  }
+  .plan-price {
+    text-align: center;
+  }
+
   .section-title { font-size: clamp(16px, 5vw, 24px); margin-top: 10px; }
   .section-sub   { font-size: clamp(12px, 3.5vw, 15px); margin-bottom: 20px; }
 
-  /* Plans & testimonials */
   .plan-card { padding: 20px 16px; }
   .plan-price { font-size: clamp(20px, 6vw, 26px); }
   .testimonials-grid { grid-template-columns: 1fr; }
 
-  /* Buttons */
   .btn-primary.large { width: 100%; justify-content: center; }
   .btn-outline       { width: 100%; justify-content: center; }
 
-  /* FAQ */
   .faq-q { font-size: 13px; }
 
-  /* Footer */
   .footer-links   { flex-direction: column; gap: 20px; }
   .footer-cta     { padding: 40px 16px; }
   .footer-cta-text h2 { font-size: clamp(18px, 6vw, 26px); }
 
-  /* 3D section */
   .winch3d-section  { padding: 40px 16px; }
   .winch3d-controls { gap: 16px; }
   .dash-deco { display: none; }

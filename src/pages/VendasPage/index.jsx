@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import "./styles.css";
 import { Footer, Header } from "../../components";
+import { useNavigate } from "react-router-dom";
+
 import GuinchoCrianca from '../../assets/images/Vendas/FotoDaCriancaQuarto.svg';
 import MulherGuincho from '../../assets/images/Vendas/Mulhernoquarto.svg';
 import Praticidade from '../../assets/images/Vendas/Praticidade.svg';
@@ -26,6 +28,7 @@ import Guincho5 from '../../assets/images/Vendas/GuinchoDireito.svg';
 import Guincho6 from '../../assets/images/Vendas/CostaEsquerdo.svg';
 import Guincho7 from '../../assets/images/Vendas/CostaDireito.svg';
 import Guincho8 from '../../assets/images/Vendas/CostasGuincho.svg';
+
 
 /* ─── IMAGES ─── */
 const IMG = {
@@ -74,9 +77,49 @@ const faqs = [
 
 /* ─── PLANS ─── */
 const plans = [
-  { price: "$0/m", label: "Plano Gratuito", features: ["Acesso básico", "Suporte por email", "1 usuário"], cta: "Começar grátis", highlight: false },
-  { price: "$14,99/m", label: "Plano Pro", features: ["Acesso completo", "Suporte prioritário", "5 usuários", "Relatórios avançados"], cta: "Assinar Pro", highlight: true },
-  { price: "$29,99/m", label: "Plano Business", features: ["Tudo do Pro", "Suporte 24/7", "Usuários ilimitados", "API dedicada"], cta: "Assinar Business", highlight: false },
+  {
+    label: "1º PLANO",
+    name: "ESSENTIAL",
+    price: "R$ 6.000",
+    features: [
+      { text: "Capacidade: 100 kg" },
+      { text: "Motores 12V" },
+      { text: "Bateria Chumbo-Ácido 12V", sub: "3 a 4h de autonomia" },
+      { text: "Conectado via aplicativo" },
+      { text: "Operação manual", sub: "comandos via app" },
+    ],
+    cta: "Escolher plano",
+    highlight: false,
+  },
+  {
+    label: "2º PLANO",
+    name: "STANDARD",
+    price: "R$ 10.000",
+    features: [
+      { text: "Capacidade: 120 kg" },
+      { text: "Motores DC 24V" },
+      { text: "Bateria Chumbo-Ácido 24V", sub: "até 8h de autonomia" },
+      { text: "Sensores ultrassônicos", sub: "parada a 30cm" },
+      { text: "App com monitoramento" },
+    ],
+    cta: "Escolher plano",
+    highlight: true,
+  },
+  {
+    label: "3º PLANO",
+    name: "PRO",
+    nameSuffix: "AUTONOMOUS",
+    price: "R$ 16.000",
+    features: [
+      { text: "Capacidade: 150 kg" },
+      { text: "Motores industriais 24V", sub: "alto torque" },
+      { text: "Bateria Lítio LiFePO4 24V", sub: "até 14h de autonomia" },
+      { text: "Visão computacional (YOLOv5n)", sub: "segurança inteligente" },
+      { text: "App completo com IA e relatórios" },
+    ],
+    cta: "Escolher plano",
+    highlight: false,
+  },
 ];
 
 /* ─── DOT GRID ─── */
@@ -104,12 +147,14 @@ function DecorLayer({ children }) {
 }
 
 /* ─── SECTION HEADER ─── */
-function SectionHeader({ badge, title, sub, squareStyle }) {
+function SectionHeader({ badge, title, sub }) {
   return (
     <div className="section-header">
       <div className="badge-wrapper">
-        <div className="partnersEyebrowSquare" style={squareStyle} />
-        <div className="badge-pill">{badge}</div>
+        <div className="badge-inner">
+          <div className="partnersEyebrowSquare" />
+          <div className="badge-pill">{badge}</div>
+        </div>
       </div>
       {title && <h2 className="section-title">{title}</h2>}
       {sub && <p className="section-sub">{sub}</p>}
@@ -362,11 +407,9 @@ function Winch3DSection() {
       </DecorLayer>
 
       <SectionHeader
-        badge="COMEÇA DE TODOS OS ÂNGULOS"
-        title="Guincho"
-        sub="Veja cada detalhe do guincho."
-        squareStyle={{ left: "200px", transform: "translateX(0)" }}
-      />
+  badge="TECNOLOGIA QUE TRANSFORMA"
+  title="Projetado para o que realmente importa"
+/>
 
       <div className="winch3d-viewer">
         <div className="winch-carousel">
@@ -411,12 +454,10 @@ function CareSection() {
         <span className="dash-deco" style={{ bottom: "25%", right: "8%", transform: "rotate(90deg)" }} />
       </DecorLayer>
 
-      <SectionHeader
-        badge="EXPERIÊNCIA INTERATIVA"
-        title="Cuidado em todos os momentos."
-        sub="Navegue e descubra como o guincho se adapta a diferentes ambientes da casa, proporcionando transferências seguras e confortáveis."
-        squareStyle={{ left: "500px", transform: "translateX(0)" }}
-      />
+     <SectionHeader
+  badge="TECNOLOGIA QUE TRANSFORMA"
+  title="Projetado para o que realmente importa"
+/>
       <div className="care-layout">
         <div className="care-tabs">
           {rooms.map((r, i) => (
@@ -459,11 +500,10 @@ function TestimonialsSection() {
         <span className="ring-peach" style={{ width: 140, height: 140, bottom: "-40px", left: "-50px" }} />
       </DecorLayer>
 
-      <SectionHeader
-        badge="DEPOIMENTOS"
-        title="Ratificado por profissionais da área da saúde"
-        squareStyle={{ left: "auto", right: "58%", transform: "translateX(30%)" }}
-      />
+<SectionHeader
+  badge="TECNOLOGIA QUE TRANSFORMA"
+  title="Projetado para o que realmente importa"
+/>
       <div className="testimonials-grid">
         {testimonials.map((t, i) => (
           <div key={i} className="testimonial-card">
@@ -482,8 +522,16 @@ function TestimonialsSection() {
   );
 }
 
+
+/* ─── PLANS ─── */
 /* ─── PLANS ─── */
 function PlansSection() {
+  const navigate = useNavigate();
+
+  const escolherPlano = (plano) => {
+    navigate("/checkout", { state: { plano } });
+  };
+
   return (
     <section className="plans-section" style={{ position: "relative", overflow: "hidden" }}>
       <DecorLayer>
@@ -498,17 +546,39 @@ function PlansSection() {
       <SectionHeader
         badge="PLANOS ACESSÍVEIS PARA TODAS AS NECESSIDADES"
         title="Escolha o plano ideal para você"
-        squareStyle={{ left: "40px", transform: "translateX(0)" }}
       />
       <div className="plans-grid">
         {plans.map((p, i) => (
           <div key={i} className={`plan-card ${p.highlight ? "highlight" : ""}`}>
-            <div className="plan-price">{p.price}</div>
-            <div className="plan-label">{p.label}</div>
+            <span className="plan-ribbon">{p.label}</span>
+
+            <div className="plan-name-row">
+              <div>
+                <div className="plan-name">{p.name}</div>
+                {p.nameSuffix && <div className="plan-name-suffix">{p.nameSuffix}</div>}
+              </div>
+            </div>
+
+            <div className="plan-invest-box">
+              <span className="plan-invest-label">INVESTIMENTO</span>
+              <div className="plan-price">{p.price}</div>
+            </div>
+
             <ul className="plan-features">
-              {p.features.map((f, j) => <li key={j}>{f}</li>)}
+              {p.features.map((f, j) => (
+                <li key={j}>
+                  <span className="feature-check">✓</span>
+                  <span>
+                    {f.text}
+                    {f.sub && <span className="feature-sub"> ({f.sub})</span>}
+                  </span>
+                </li>
+              ))}
             </ul>
-            <button className="plan-btn">{p.cta}</button>
+
+            <button className="plan-btn" onClick={() => escolherPlano(p)}>
+              {p.cta}
+            </button>
           </div>
         ))}
       </div>
@@ -530,10 +600,9 @@ function FAQSection() {
       </DecorLayer>
 
       <SectionHeader
-        badge="PERGUNTAS FREQUENTES"
-        title="Encontre respostas para perguntas frequentes sobre nossos serviços, preços e suporte"
-        squareStyle={{ left: "100px", transform: "translateX(0)" }}
-      />
+  badge="TECNOLOGIA QUE TRANSFORMA"
+  title="Projetado para o que realmente importa"
+/>
       <div className="faq-list">
         {faqs.map((q, i) => (
           <div key={i} className={`faq-item ${open === i ? "open" : ""}`} onClick={() => setOpen(open === i ? null : i)}>
@@ -553,33 +622,22 @@ function FAQSection() {
   );
 }
 
-/* ─── FOOTER CTA ─── */
-// function FooterCTA() {
-//   return (
-//     <section className="footer-cta" style={{ position: "relative", overflow: "hidden" }}>
-//       <DecorLayer>
-//         <span className="ring-peach" style={{ width: 200, height: 200, top: "-60px", left: "-80px", opacity: 0.3 }} />
-//         <span className="ring-peach" style={{ width: 140, height: 140, bottom: "-40px", right: "-60px", opacity: 0.25 }} />
-//         <DotGrid style={{ top: "10%", right: "4%" }} count={42} cols={7} />
-//         <DotGrid style={{ bottom: "10%", left: "3%" }} count={30} cols={6} />
-//         <span className="dash-deco" style={{ top: "44%", left: "5%", background: "rgba(255,255,255,0.4)" }} />
-//         <span className="dash-deco" style={{ bottom: "30%", right: "8%", transform: "rotate(90deg)", background: "rgba(255,255,255,0.4)" }} />
-//         <span className="cta-glow" aria-hidden="true" />
-//       </DecorLayer>
-
-//       <div className="footer-cta-content">
-//         <div className="footer-cta-text">
-//           <h2>O amor continua.<br />O esforço não precisa continuar</h2>
-//           <button className="btn-primary large">Conheça agora</button>
-//         </div>
-//         <img src={IMG.footer} alt="Cuidador" className="footer-cta-img" />
-//       </div>
-//     </section>
-//   );
-// }
 
 /* ─── APP ─── */
 export default function App() {
+  const [pagina, setPagina] = useState("home");
+  const [planoEscolhido, setPlanoEscolhido] = useState(null);
+
+  const irParaCheckout = (plano) => {
+    setPlanoEscolhido(plano);
+    setPagina("checkout");
+    window.scrollTo(0, 0);
+  };
+
+  if (pagina === "checkout") {
+    return <Checkout plano={planoEscolhido} onVoltar={() => setPagina("home")} />;
+  }
+
   return (
     <div className="app">
       <Header />
@@ -588,7 +646,7 @@ export default function App() {
       <Winch3DSection />
       <CareSection />
       <TestimonialsSection />
-      <PlansSection />
+      <PlansSection onEscolherPlano={irParaCheckout} />
       <FAQSection />
       {/* <FooterCTA /> */}
       <Footer />
