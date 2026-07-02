@@ -827,6 +827,13 @@ body {
     padding: 1.5rem 0.5rem;
   }
 
+.hero {
+    min-height: 70vh;
+  }
+  .heroImage img {
+    object-position: top center;
+  }
+
   .partners .dotGridDeco:nth-of-type(5) { display: none; }
   .partners .dotGridDeco:nth-of-type(4) { display: none; }
 
@@ -918,6 +925,13 @@ body {
 @media (max-width: 480px) {
   .heroTitle { font-size: 1.6rem; }
   .heroSubtitle { font-size: 0.85rem; }
+
+.hero {
+    min-height: 70vh;
+  }
+  .heroImage img {
+    object-position: top center;
+  }
 
   .heroCtas { flex-direction: column; width: 100%; }
   .btnPrimary, .btnOutline { width: 100%; text-align: center; }
