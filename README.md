@@ -65,7 +65,7 @@ npm run dev
 
 Variaveis de ambiente esperadas:
 
-- `VITE_API_BASE_URL` (default: `http://157.230.214.231:8080`)
+- `VITE_API_BASE_URL` (default: `https://api.everrise.com.br`)
 - `VITE_WS_URL` (default: `http://localhost:8080/ws`)
 
 ## Scripts disponiveis
@@ -142,6 +142,7 @@ Leia os documentos abaixo na ordem:
 
 1. `src/hooks/useAuth.js` usa `qrCodeBindRequest`, mas o slice expoe `bindDeviceRequest`.
 2. `src/router/PrivateRoute.jsx` redireciona para `/vinculo-dispositivo`, rota que precisa existir no roteador.
+3. Cloudflare em modo Flexible deixa o trecho Cloudflare -> backend em HTTP puro. Funciona no curto prazo, mas credenciais/JWT trafegam sem TLS nessa perna. Migrar para Full (strict) com certificado real no servidor, por exemplo Certbot.
 
 Recomendacao:
 
