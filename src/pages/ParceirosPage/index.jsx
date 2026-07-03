@@ -105,7 +105,9 @@ function Hero({ onParceiro }) {
           <button className={styles.btnPrimary} onClick={onParceiro}>
             Quero ser parceiro
           </button>
-          <button className={styles.btnOutline}>Fale com a gente</button>
+          <button className={styles.btnOutline} onClick={onParceiro}>
+            Fale com a gente
+          </button>
         </div>
       </div>
     </section>
