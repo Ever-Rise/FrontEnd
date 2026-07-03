@@ -9,7 +9,7 @@ export const EQUIPMENT_STATES = Object.freeze({
 
 export const API_ENDPOINTS = Object.freeze({
     AUTH_LOGIN: '/auth/login',
-    AUTH_REGISTER: '/auth/register',
+    AUTH_REGISTER: '/auth/registrar',
     AUTH_LOGOUT: '/auth/logout',
     AUTH_REFRESH: '/auth/refresh',
     AUTH_BIND_DEVICE: '/auth/device/bind',

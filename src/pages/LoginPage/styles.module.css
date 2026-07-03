@@ -107,6 +107,17 @@
   text-align: center;
 }
 
+.successMessage {
+  color: #0f5132;
+  background: #d1e7dd;
+  border: 1px solid #badbcc;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  text-align: center;
+}
+
 .field {
   margin-bottom: 20px;
 }

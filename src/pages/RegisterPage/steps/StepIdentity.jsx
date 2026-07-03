@@ -39,19 +39,19 @@ const StepIdentity = ({ styles, register, errors }) => (
     </div>
 
     <div className={styles.field}>
-      <label htmlFor="register-confirm-email">Confirmar e-mail</label>
-      <input
-        id="register-confirm-email"
-        type="email"
-        placeholder="Confirme seu e-mail"
-        autoComplete="email"
-        aria-invalid={Boolean(errors.confirmEmail)}
-        aria-describedby={errors.confirmEmail ? 'register-confirm-email-error' : undefined}
-        {...register('confirmEmail')}
-      />
-      {errors.confirmEmail && (
-        <span id="register-confirm-email-error" className={styles.fieldError} role="alert">
-          {errors.confirmEmail.message}
+      <label htmlFor="register-role">Tipo de acesso</label>
+      <select
+        id="register-role"
+        aria-invalid={Boolean(errors.role)}
+        aria-describedby={errors.role ? 'register-role-error' : undefined}
+        {...register('role')}
+      >
+        <option value="FAMILIA">Família</option>
+        <option value="VISITANTE">Visitante</option>
+      </select>
+      {errors.role && (
+        <span id="register-role-error" className={styles.fieldError} role="alert">
+          {errors.role.message}
         </span>
       )}
     </div>

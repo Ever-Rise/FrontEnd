@@ -596,7 +596,7 @@ export default function SobreGuincho() {
 
           {/* ── CONTATO + FOOTER ── */}
           <div className={styles.contatoFooterGroup} id="contato">
-            <section className={styles.contatoSection}>
+ent            <section className={styles.contatoSection}>
               <div className={styles.contatoCard}>
                 <h2>Entre em contato</h2>
                 <p>Vamos fazer sua vida melhor</p>

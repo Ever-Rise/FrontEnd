@@ -1,301 +1,281 @@
 .container {
     width: 100%;
-    max-width: 1900px;
     min-height: 100vh;
     background-color: #E6EBFF;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 76px;
+    padding: 108px 20px 48px;
     gap: 24px;
 }
 
+.visao_geral,
+.alertas,
+.graficos,
+.ultima_sessao {
+    width: min(100%, 1500px);
+}
+
 .visao_geral {
-    width: 96%;
-    min-height: 540px;
     color: #FF6F33;
-    margin-top: 16px;
 }
 
-h1 {
-    font-size: 2.9rem;
-    margin: 20px 0 0 0;
-}
-
-h2 {
-    font-size: 1.3rem;
-    color: #000000;
-}
-
-.status {
-    width: 250px;
-    height: 30px;
-    font-size: 15px;
-    background-color: rgb(255, 255, 255);
+.cabecalho {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #00b400;
-    font-weight: 700;
-    border-radius: 30px;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.eyebrow {
+    color: #2563EB;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+}
+
+.cabecalho h1 {
+    font-size: clamp(2rem, 4vw, 2.9rem);
+    line-height: 1.05;
+    margin: 0;
 }
 
 .monitoramento {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 14px;
+    flex-wrap: wrap;
 }
 
-.cards {
-    width: 100%;
-    height: auto;
-    margin-top: 40px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.card {
-    width: 400px;
-    height: 250px;
-    background-color: #ffffff;
-    border-radius: 20px;
-}
-
-.bateria {
-    width: 100%;
-    height: 80px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-h3 {
-    font-size: 1.2rem;
-    margin: 20px;
-    color: #0000009c;
-}
-
-.bateria img {
-    width: 20px;
-    height: 15px;
-    margin: 27px;
-}
-
-.info {
-    font-size: 2.7rem;
-    color: #000000;
-    margin-left: 20px;
-    font-weight: 700;
-}
-
-.carregamento {
-    width: 350px;
-    height: 15px;
-    background-color: #dfdfdf;
-    border-radius: 10px;
-    margin-left: 20px;
-    overflow: hidden;
-}
-
-.nivel {
-    width: 270px;
-    height: 15px;
-    background-color: #00b400;
-    border-radius: 10px;
-}
-
-.duracao {
-    width: 368px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-.tempo {
-    font-size: 1.1rem;
-    color: #0000009c;
-    font-weight: 700;
-    margin-left: 20px;
-}
-
-.capacidade {
-    font-size: 1.1rem;
-    margin-left: 20px;
-    color: #00b400;
-    font-weight: 700;
-}
-
-.rede {
-    font-size: 1.2rem;
-    margin-left: 20px;
-    color: #00b400;
-    font-weight: 700;
-    margin-top: 10px;
-}
-
-.qualidade {
-    font-size: 1.3rem;
-    margin-left: 20px;
-    color: #0000009c;
-    font-weight: 700;
-    margin-top: 10px;
-}
-
-.comando {
-    font-size: 1.3rem;
-    margin-left: 20px;
-    color: #0000009c;
-    font-weight: 700;
-    margin-top: 10px;
-}
-
-.modo {
-    font-size: 1.1rem;
-    margin-left: 20px;
-    color: #00b400;
-    font-weight: 700;
-    margin-top: 10px;
-}
-
-.graus {
-    font-size: 1.3rem;
-    margin-left: 20px;
-    color: #0000009c;
-    font-weight: 700;
-    margin-top: 10px;
-}
-
-.acoes {
-    width: 100%;
-    height: 70px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 30px;
-}
-
-.controle {
-    height: 60px;
-    width: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    border: none;
-    background-color: #2563EB;
-    cursor: pointer;
-    color: #fff;
-    font-weight: 800;
-    display: flex;
-    transition: 0.3s;
-}
-
-.controle:hover {
-    transform: scale(1.05);
-}
-.controle img {
-    width: 20px;
-    height: 20px;
-    margin-right: 15px;
-}
-
-.sessao {
-    height: 60px;
-    width: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    border: none;
-    background-color: #2563EB;
-    cursor: pointer;
-    color: #fff;
-    font-weight: 800;
-    margin-left: 30px;
-    transition: 0.3s;
-}
-
-.sessao:hover {
-    transform: scale(1.05);
-}
-
-.alertas {
-    width: 96%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    background-color: transparent;
-}
-
-.alertas_header {
-    width: 100%;
-    background-color: #ffffff;
-    border-radius: 20px;
-    padding: 24px 30px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 20px;
-}
-
-.titulo_alertas {
-    font-size: 1.9rem;
-    color: #000000;
+.monitoramento h2 {
+    font-size: 1.05rem;
+    color: #111827;
     margin: 0;
 }
 
-.alerta {
-    min-width: 220px;
-    height: 40px;
-    font-size: 1.2rem;
-    color: #00b400;
+.statusBadge {
+    min-height: 34px;
+    font-size: 0.82rem;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    font-weight: 800;
+    border-radius: 999px;
+    padding: 8px 14px;
+    margin: 0;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08);
+    text-align: center;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.card {
+    min-height: 250px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 14px 35px rgba(15, 23, 42, 0.06);
+    display: flex;
+    flex-direction: column;
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.cardHeader h3 {
+    font-size: 0.95rem;
+    margin: 0;
+    color: #0000009c;
+    letter-spacing: 0.04em;
+}
+
+.cardHeader img {
+    width: 22px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.info {
+    font-size: clamp(2rem, 4vw, 2.7rem);
+    color: #111827;
+    margin: 30px 0 14px;
+    font-weight: 800;
+}
+
+.carregamento {
+    width: 100%;
+    height: 14px;
+    background-color: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.nivelVazio {
+    width: 0;
+    height: 100%;
+    background-color: #94a3b8;
+}
+
+.duracao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 14px;
+}
+
+.tempo,
+.qualidade,
+.comando,
+.graus {
+    font-size: 1rem;
+    color: #0000009c;
     font-weight: 700;
-    background-color: #00b4001a;
+    margin: 0;
+}
+
+.capacidadeNeutra,
+.redeNeutra,
+.modoNeutro {
+    font-size: 0.95rem;
+    color: #64748b;
+    font-weight: 800;
+    margin: 0;
+}
+
+.redeNeutra,
+.comando,
+.modoNeutro,
+.graus,
+.qualidade {
+    margin-top: 8px;
+}
+
+.acoes {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+}
+
+.controle,
+.sessao,
+.sessao_btn {
+    min-height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
     border: none;
+    background-color: #2563EB;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 800;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.controle {
+    width: min(100%, 300px);
+    gap: 12px;
+}
+
+.controle:hover,
+.sessao:hover,
+.sessao_btn:hover {
+    transform: translateY(-2px);
+    background-color: #1d4ed8;
+}
+
+.controle img {
+    width: 20px;
+    height: 20px;
+}
+
+.sessao {
+    width: min(100%, 250px);
+}
+
+.alertas {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.alertas_header {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    box-shadow: 0 14px 35px rgba(15, 23, 42, 0.06);
+}
+
+.titulo_alertas {
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    color: #111827;
+    margin: 0;
+}
+
+.alerta,
+.ver_alertas {
+    min-height: 40px;
+    font-size: 0.95rem;
+    font-weight: 800;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    padding: 0 16px;
+}
+
+.alerta {
+    color: #64748b;
+    background-color: #f1f5f9;
+    border: none;
     margin-left: auto;
 }
 
 .ver_alertas {
-    min-width: 180px;
-    height: 40px;
-    font-size: 1.2rem;
     color: #2089f8;
-    font-weight: 700;
-    cursor: pointer;
     border: 1px solid #2088f83d;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    box-shadow: 0px 0px 5px #2088f86c;
-    margin-left: 20px;
+    background: #ffffff;
+    box-shadow: 0 0 5px #2088f82d;
 }
 
 .alerta_status {
-    height: 70px;
+    min-height: 64px;
     display: flex;
     align-items: center;
     gap: 10px;
     background: #2563EB;
-    padding: 10px 16px;
-    border-radius: 10px;
+    padding: 14px 18px;
+    border-radius: 12px;
 }
 
 .sem_alertas {
-    font-size: 1.3rem;
+    font-size: 1rem;
     color: #fff;
-    font-weight: 500;
-    margin-left: 10px;
+    font-weight: 600;
+    margin: 0;
 }
 
 .bolinha {
@@ -303,108 +283,122 @@ h3 {
     height: 12px;
     min-width: 12px;
     border-radius: 50%;
-    background-color: #00b400;
-    box-shadow: 0 0 6px 2px #00b400;
-    margin-left: 10px;
-}
-
-.graficos {
-    width: 96%;
-    margin-top: 20px;
-    margin-bottom: 40px;
-}
-
-.ultima_sessao {
-    width: 96%;
-    margin-top: 20px;
-    margin-bottom: 40px;
+    background-color: #94a3b8;
+    box-shadow: 0 0 6px 2px rgba(148, 163, 184, 0.45);
 }
 
 .sessao_card {
     background: #ffffff;
-    border-radius: 20px;
-    padding: 32px 36px;
+    border-radius: 16px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
-    gap: 0;
+    box-shadow: 0 14px 35px rgba(15, 23, 42, 0.06);
 }
 
 .sessao_topo {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 28px;
+    gap: 18px;
+    margin-bottom: 22px;
 }
 
 .sessao_label {
     font-size: 0.85rem;
     color: #00000060;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.05em;
-    margin-bottom: 6px;
+    margin: 0 0 8px;
 }
 
 .sessao_titulo {
-    font-size: 2.4rem;
-    font-weight: 700;
-    color: #000;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800;
+    color: #111827;
     margin: 0;
 }
 
 .sessao_icone {
-    font-size: 1.4rem;
     color: #8892a4;
+    font-size: 1rem;
+    font-weight: 800;
 }
 
-.sessao_linha {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 0;
-    border-top: 1px solid #f0f0f0;
+.emptySession {
+    border: 1px dashed #cbd5e1;
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 22px;
 }
 
-.sessao_chave {
-    font-size: 1.3rem;
-    color: #000000b4;
-}
-
-.sessao_valor {
-    font-size: 1.3rem;
+.emptySession p {
+    margin: 0;
+    color: #475569;
+    font-size: 1rem;
     font-weight: 600;
-    color: #000;
-    text-align: right;
-}
-
-.sessao_valor_verde {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #00b400;
-    text-align: right;
-}
-
-.sessao_valor_azul {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #2089f8;
-    text-align: right;
+    line-height: 1.5;
 }
 
 .sessao_btn {
     width: 100%;
-    height: 56px;
-    margin-top: 24px;
-    background-color: #2563EB;
-    color: #fff;
-    font-size: 1.25rem;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: 0.3s;
+    margin-top: 22px;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
 }
 
-.sessao_btn:hover {
-    background-color: #1d78da;
+@media (max-width: 1180px) {
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 860px) {
+    .container {
+        padding: 84px 14px 36px;
+    }
+
+    .cabecalho {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .monitoramento {
+        justify-content: flex-start;
+    }
+
+    .acoes {
+        align-items: stretch;
+    }
+
+    .controle,
+    .sessao {
+        width: 100%;
+    }
+
+    .alertas_header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .alerta {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 620px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .card,
+    .sessao_card {
+        padding: 18px;
+    }
+
+    .duracao,
+    .sessao_topo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

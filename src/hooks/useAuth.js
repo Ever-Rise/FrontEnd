@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { loginRequest, logoutRequest, registerRequest, qrCodeBindRequest } from '../store/slices/authSlice';
+import { loginRequest, logoutRequest, registerRequest, bindDeviceRequest } from '../store/slices/authSlice';
 
 export const useAuth = () => {
     const dispatch = useDispatch();
@@ -10,6 +10,6 @@ export const useAuth = () => {
         login: (payload) => dispatch(loginRequest(payload)),
         register: (payload) => dispatch(registerRequest(payload)),
         logout: () => dispatch(logoutRequest()),
-        bindDevice: (payload) => dispatch(qrCodeBindRequest(payload)),
+        bindDevice: (payload) => dispatch(bindDeviceRequest(payload)),
     };
 };

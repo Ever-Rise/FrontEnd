@@ -1,28 +1,30 @@
 .container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
     width: 100%;
-    height: 100%;
 }
 
 .card {
     background: #fff;
-    border-radius: 12px;
-    padding: 28px 32px;
+    border-radius: 16px;
+    padding: 26px;
+    min-width: 0;
+    box-shadow: 0 14px 35px rgba(15, 23, 42, 0.06);
 }
 
 .card_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    gap: 16px;
+    margin-bottom: 22px;
 }
 
 .card_titulo {
-    font-size: 20px;
-    font-weight: 700;
-    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #111827;
     margin: 0;
 }
 
@@ -34,42 +36,81 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    background: #f1f3f5;
-    border: none;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
     border-radius: 8px;
-    padding: 6px 12px;
-    font-size: 13px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
     cursor: pointer;
-    color: #fff;
+    color: #111827;
+    font-weight: 700;
 }
 
 .dropdown_menu {
     position: absolute;
-    top: 110%;
+    top: calc(100% + 8px);
     right: 0;
     background: #fff;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
     z-index: 10;
-    min-width: 160px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    min-width: 190px;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.14);
+    padding: 6px;
 }
 
 .dropdown_item {
-    padding: 8px 14px;
-    font-size: 13px;
+    width: 100%;
+    padding: 9px 10px;
+    font-size: 0.85rem;
     cursor: pointer;
-    color: #fff;
+    color: #334155;
     border-radius: 6px;
+    border: none;
+    background: transparent;
+    text-align: left;
+    font-weight: 600;
 }
 
 .dropdown_item:hover {
-    background: #f8f9fa;
+    background: #f8fafc;
 }
 
 .dropdown_item_ativo {
-    color: #ffffff;
-    font-weight: 600;
+    color: #2563EB;
+    background: #eff6ff;
+}
+
+.emptyChart {
+    min-height: 380px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 12px;
+    background:
+        linear-gradient(#f8fafc 1px, transparent 1px),
+        linear-gradient(90deg, #f8fafc 1px, transparent 1px);
+    background-size: 34px 34px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    padding: 24px;
+}
+
+.emptyChart span {
+    color: #94a3b8;
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.emptyChart p {
+    max-width: 320px;
+    color: #64748b;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.45;
+    margin: 0;
 }
 
 .tooltip {
@@ -89,4 +130,40 @@
     font-size: 13px;
     color: #ffffff;
     font-weight: 600;
+}
+
+@media (max-width: 980px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .card {
+        padding: 18px;
+    }
+
+    .card_header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .dropdown_wrapper,
+    .dropdown_btn {
+        width: 100%;
+    }
+
+    .dropdown_btn {
+        justify-content: space-between;
+    }
+
+    .dropdown_menu {
+        left: 0;
+        right: auto;
+        width: 100%;
+    }
+
+    .emptyChart {
+        min-height: 280px;
+    }
 }

@@ -51,24 +51,6 @@ const StepCredentials = ({
   setShowConfirmPassword,
 }) => (
   <>
-    <div className={styles.field}>
-      <label htmlFor="register-phone">Telefone</label>
-      <input
-        id="register-phone"
-        type="tel"
-        placeholder="+55 (11) 99999-9999"
-        autoComplete="tel"
-        aria-invalid={Boolean(errors.phone)}
-        aria-describedby={errors.phone ? 'register-phone-error' : undefined}
-        {...register('phone')}
-      />
-      {errors.phone && (
-        <span id="register-phone-error" className={styles.fieldError} role="alert">
-          {errors.phone.message}
-        </span>
-      )}
-    </div>
-
     <PasswordField
       styles={styles}
       id="register-password"

@@ -65,7 +65,7 @@ npm run dev
 
 Variaveis de ambiente esperadas:
 
-- `VITE_API_BASE_URL` (default: `http://localhost:8080/api`)
+- `VITE_API_BASE_URL` (default: `http://157.230.214.231:8080`)
 - `VITE_WS_URL` (default: `http://localhost:8080/ws`)
 
 ## Scripts disponiveis

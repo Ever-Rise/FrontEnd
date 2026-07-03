@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 import styles from "./styles.module.css";
 import eyeIcon from "../../assets/icons/login/eye.svg";
 import googleIcon from "../../assets/icons/cadastro/Google - Original.svg";
@@ -7,10 +8,21 @@ import loginImage from "../../assets/images/Login/ImageLogin.svg";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { login, loading, error, isAuthenticated } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({ email: "", password: "" });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [formData, setFormData] = useState({
+    email: location.state?.registeredEmail || "",
+    password: "",
+  });
+  const redirectTo = location.state?.from?.pathname || "/dashboard";
+  const registrationSuccess = Boolean(location.state?.registrationSuccess);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(redirectTo, { replace: true });
+    }
+  }, [isAuthenticated, navigate, redirectTo]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,30 +30,11 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
 
-    try {
-      // Integração com Spring Boot (Ajuste a URL conforme sua API)
-      const response = await fetch("http://localhost:8080/api/v1/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Credenciais inválidas");
-      }
-
-      const data = await response.json();
-      // localStorage.setItem("token", data.token);
-      // navigate("/dashboard");
-      
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
+    login({
+      email: formData.email,
+      senha: formData.password,
+    });
   };
 
   return (
@@ -67,6 +60,12 @@ const LoginPage = () => {
               <p>Insira seu e-mail e senha para acessar sua conta.</p>
             </header>
 
+            {registrationSuccess && (
+              <div className={styles.successMessage}>
+                Cadastro concluído com sucesso. Faça login com seu e-mail e senha.
+              </div>
+            )}
+
             <div className={styles.divider}>
               <span>Continuar com e-mail</span>
             </div>
@@ -82,7 +81,7 @@ const LoginPage = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="Insira seu email"
+                  placeholder="Insira seu e-mail"
                   autoComplete="email"
                   required
                 />
@@ -117,12 +116,12 @@ const LoginPage = () => {
               </div>
 
               <button type="submit" className={styles.primaryBtn} disabled={loading}>
-                {loading ? "Carregando..." : "Entrar  "}
+                {loading ? "Carregando..." : "Entrar"}
               </button>
 
               <button type="button" className={styles.googleBtn}>
                 <img src={googleIcon} alt="Google" aria-hidden="true" />
-                <span>Continue with Google</span>
+                <span>Continuar com Google</span>
               </button>
 
               <p className={styles.footer}>

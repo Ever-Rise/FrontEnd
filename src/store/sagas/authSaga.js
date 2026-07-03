@@ -95,18 +95,12 @@ function* bindDeviceSaga({ payload }) {
 }
 
 function* logoutSaga() {
-    try {
-        yield call(authService.logout);
+    localStorage.removeItem(STORAGE_KEYS.AUTH_TOKEN);
+    localStorage.removeItem(STORAGE_KEYS.REFRESH_TOKEN);
 
-        localStorage.removeItem(STORAGE_KEYS.AUTH_TOKEN);
-        localStorage.removeItem(STORAGE_KEYS.REFRESH_TOKEN);
+    yield put(logoutSuccess());
 
-        yield put(logoutSuccess());
-
-        window.location.assign('/login');
-    } catch (error) {
-        yield put(loginFailure(getErrorMessage(error, 'Nao foi possivel encerrar a sessao.')));
-    }
+    window.location.assign('/login');
 }
 
 export default function* authSaga() {
