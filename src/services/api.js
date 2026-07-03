@@ -2,7 +2,7 @@ import axios from 'axios';
 import { STORAGE_KEYS } from '../utils/constants';
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL || 'http://157.230.214.231:8080',
+    baseURL: import.meta.env.VITE_API_BASE_URL || 'https://api.everrise.com.br',
     timeout: 15000,
 });
 

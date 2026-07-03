@@ -1,7 +1,7 @@
 .container {
     width: 100%;
     min-height: 100vh;
-    background-color: #E6EBFF;
+    background-color: #F2F0FA;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +17,7 @@
 }
 
 .visao_geral {
-    color: #FF6F33;
+    color: #fd742c;
 }
 
 .cabecalho {
@@ -29,7 +29,7 @@
 }
 
 .eyebrow {
-    color: #2563EB;
+    color: #4d00b5;
     font-size: 0.82rem;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -53,7 +53,7 @@
 
 .monitoramento h2 {
     font-size: 1.05rem;
-    color: #111827;
+    color: #041062;
     margin: 0;
 }
 
@@ -64,12 +64,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #64748b;
+    color: #4a4a4a;
     font-weight: 800;
     border-radius: 999px;
     padding: 8px 14px;
     margin: 0;
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08);
+    box-shadow: 0 8px 20px rgba(77, 0, 181, 0.08);
     text-align: center;
 }
 
@@ -84,7 +84,7 @@
     background-color: #ffffff;
     border-radius: 16px;
     padding: 20px;
-    box-shadow: 0 14px 35px rgba(15, 23, 42, 0.06);
+    box-shadow: 0 14px 35px rgba(4, 16, 98, 0.08);
     display: flex;
     flex-direction: column;
 }
@@ -99,7 +99,7 @@
 .cardHeader h3 {
     font-size: 0.95rem;
     margin: 0;
-    color: #0000009c;
+    color: rgba(4, 16, 98, 0.61);
     letter-spacing: 0.04em;
 }
 
@@ -111,7 +111,7 @@
 
 .info {
     font-size: clamp(2rem, 4vw, 2.7rem);
-    color: #111827;
+    color: #041062;
     margin: 30px 0 14px;
     font-weight: 800;
 }
@@ -119,7 +119,7 @@
 .carregamento {
     width: 100%;
     height: 14px;
-    background-color: #e5e7eb;
+    background-color: #ECE6F9;
     border-radius: 999px;
     overflow: hidden;
 }
@@ -127,7 +127,7 @@
 .nivelVazio {
     width: 0;
     height: 100%;
-    background-color: #94a3b8;
+    background-color: #a99bd1;
 }
 
 .duracao {
@@ -144,7 +144,7 @@
 .comando,
 .graus {
     font-size: 1rem;
-    color: #0000009c;
+    color: rgba(4, 16, 98, 0.61);
     font-weight: 700;
     margin: 0;
 }
@@ -153,7 +153,7 @@
 .redeNeutra,
 .modoNeutro {
     font-size: 0.95rem;
-    color: #64748b;
+    color: #4a4a4a;
     font-weight: 800;
     margin: 0;
 }
@@ -183,7 +183,7 @@
     justify-content: center;
     border-radius: 10px;
     border: none;
-    background-color: #2563EB;
+    background-color: #4d00b5;
     cursor: pointer;
     color: #fff;
     font-weight: 800;
@@ -199,7 +199,7 @@
 .sessao:hover,
 .sessao_btn:hover {
     transform: translateY(-2px);
-    background-color: #1d4ed8;
+    background-color: #4710a8;
 }
 
 .controle img {
@@ -225,12 +225,12 @@
     align-items: center;
     gap: 14px;
     flex-wrap: wrap;
-    box-shadow: 0 14px 35px rgba(15, 23, 42, 0.06);
+    box-shadow: 0 14px 35px rgba(4, 16, 98, 0.08);
 }
 
 .titulo_alertas {
     font-size: clamp(1.4rem, 3vw, 1.9rem);
-    color: #111827;
+    color: #041062;
     margin: 0;
 }
 
@@ -248,17 +248,17 @@
 }
 
 .alerta {
-    color: #64748b;
-    background-color: #f1f5f9;
+    color: #4a4a4a;
+    background-color: #F1EDFB;
     border: none;
     margin-left: auto;
 }
 
 .ver_alertas {
-    color: #2089f8;
-    border: 1px solid #2088f83d;
+    color: #4d00b5;
+    border: 1px solid #4d00b53d;
     background: #ffffff;
-    box-shadow: 0 0 5px #2088f82d;
+    box-shadow: 0 0 5px #4d00b52d;
 }
 
 .alerta_status {
@@ -266,7 +266,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    background: #2563EB;
+    background: #4d00b5;
     padding: 14px 18px;
     border-radius: 12px;
 }
@@ -283,8 +283,8 @@
     height: 12px;
     min-width: 12px;
     border-radius: 50%;
-    background-color: #94a3b8;
-    box-shadow: 0 0 6px 2px rgba(148, 163, 184, 0.45);
+    background-color: #a99bd1;
+    box-shadow: 0 0 6px 2px rgba(169, 155, 209, 0.45);
 }
 
 .sessao_card {
@@ -293,7 +293,7 @@
     padding: 30px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 14px 35px rgba(15, 23, 42, 0.06);
+    box-shadow: 0 14px 35px rgba(4, 16, 98, 0.08);
 }
 
 .sessao_topo {
@@ -306,7 +306,7 @@
 
 .sessao_label {
     font-size: 0.85rem;
-    color: #00000060;
+    color: rgba(4, 16, 98, 0.38);
     font-weight: 700;
     letter-spacing: 0.05em;
     margin: 0 0 8px;
@@ -315,26 +315,26 @@
 .sessao_titulo {
     font-size: clamp(1.6rem, 4vw, 2.4rem);
     font-weight: 800;
-    color: #111827;
+    color: #041062;
     margin: 0;
 }
 
 .sessao_icone {
-    color: #8892a4;
+    color: #4a4a4a;
     font-size: 1rem;
     font-weight: 800;
 }
 
 .emptySession {
-    border: 1px dashed #cbd5e1;
-    background: #f8fafc;
+    border: 1px dashed #D9CFF0;
+    background: #F8F6FC;
     border-radius: 12px;
     padding: 22px;
 }
 
 .emptySession p {
     margin: 0;
-    color: #475569;
+    color: #333;
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.5;

@@ -1,6 +1,6 @@
 import { API_ENDPOINTS } from '../utils/constants';
 
-const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://157.230.214.231:8080';
+const baseUrl = import.meta.env.VITE_API_BASE_URL || 'https://api.everrise.com.br';
 
 const streamMessage = ({ message, sessionId, onToken, onError, onComplete }) => {
     let resolvedSessionId = sessionId || null;
