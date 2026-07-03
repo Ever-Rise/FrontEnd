@@ -7,19 +7,15 @@ const PrivateRoute = () => {
     return <Outlet />;
   }
 
-  const { isAuthenticated, deviceId } = useSelector((state) => state.auth);
+  // Removemos a importação e a checagem do deviceId
+  const { isAuthenticated } = useSelector((state) => state.auth);
   const location = useLocation();
 
   if (!isAuthenticated) {
     return <Navigate to='/login' replace state={{ from: location }} />;
   }
 
-  // Se ele está autenticado, mas não tem dispositivo, força a ir para a tela de vínculo.
-  // (Certifique-se de que a rota '/vinculo-dispositivo' NÃO use o PrivateRoute, senão causará loop)
-  if (!deviceId && location.pathname !== '/vinculo-dispositivo') {
-    return <Navigate to='/vinculo-dispositivo' replace />;
-  }
-
+  // Se passou pela autenticação, libera direto para o dashboard
   return <Outlet />;
 };
 
