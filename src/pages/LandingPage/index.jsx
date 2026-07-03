@@ -362,7 +362,7 @@ export default function EveriseLanding() {
                 desaparecer — para que eu pudesse focar nas pessoas."
               </p>
               <div className={styles.founderQuoteName}>Rafa</div>
-              <div className={styles.founderQuoteRole}>Idealizadora &amp; fundadora do EVERISE</div>
+              <div className={styles.founderQuoteRole}>Idealizadora da EVER RISE</div>
             </div>
           </div>
         </section>
