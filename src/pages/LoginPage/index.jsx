@@ -15,14 +15,13 @@ const LoginPage = () => {
     email: location.state?.registeredEmail || "",
     password: "",
   });
-  const redirectTo = location.state?.from?.pathname || "/dashboard";
   const registrationSuccess = Boolean(location.state?.registrationSuccess);
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(redirectTo, { replace: true });
+      navigate('/dashboard', { replace: true });
     }
-  }, [isAuthenticated, navigate, redirectTo]);
+  }, [isAuthenticated, navigate]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
