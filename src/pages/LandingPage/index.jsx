@@ -252,7 +252,7 @@ const audienceCards = [
 ];
 
 const testimonials = [
-  { text: "A EVERISE mudou a forma como gerencio meus caminhões. O tempo de resposta caiu pela metade e a satisfação dos clientes subiu instantaneamente.", name: "Carlos Oliveira", role: "Logística Express" },
+  { text: "A EVER RISE mudou a forma como gerencio meus caminhões. O tempo de resposta caiu pela metade e a satisfação dos clientes subiu instantaneamente.", name: "Carlos Oliveira", role: "Logística Express" },
   { text: "Implementação rápida e um suporte excepcional. Para nossa ONG, a transparência dos relatórios foi o diferencial que precisávamos.", name: "Mariana Costa", role: "Fundação Vidas" },
   { text: "O controle de SLA é cirúrgico. Finalmente temos visibilidade real sobre cada atendimento em nossas clínicas parceiras.", name: "Ricardo Santos", role: "MedCore Group" },
   { text: "Nunca imaginei que seria tão simples ter controle total da minha frota. A interface é intuitiva e o suporte é excelente.", name: "Ana Beatriz", role: "TransFácil" },
@@ -263,7 +263,7 @@ const testimonialsRow2 = [
   { text: "A integração com nosso sistema foi perfeita. Em menos de 24 horas já tínhamos visibilidade total da frota.", name: "Patrícia Mendes", role: "CargoPrime" },
   { text: "O dashboard é intuitivo e o suporte responde rapidíssimo. Melhor investimento que fizemos este ano.", name: "Thiago Alves", role: "VelozLog" },
   { text: "Usamos para monitorar nossas ambulâncias. A precisão do rastreamento é impressionante.", name: "Dra. Camila Ferreira", role: "Clínica Saúde Total" },
-  { text: "Como ONG, precisávamos de transparência para nossos doadores. O EVERISE nos deu exatamente isso.", name: "João Pedro Nunes", role: "Instituto Esperança" },
+  { text: "Como ONG, precisávamos de transparência para nossos doadores. O EVER RISE nos deu exatamente isso.", name: "João Pedro Nunes", role: "Instituto Esperança" },
   { text: "Reduziu nosso custo operacional em 30% no primeiro mês. Os alertas automáticos fazem toda a diferença.", name: "Sílvia Rocha", role: "TransRota Sul" },
 ];
 
@@ -423,7 +423,7 @@ export default function EveriseLanding() {
         {/* ── VÍDEO ── */}
 <section className={styles.videoSection}>
   <div className={styles.videoIntro}>
-    <h2 className={styles.sectionHeading}>Veja o Ever Rise em ação</h2>
+    <h2 className={styles.sectionHeading}>Veja a Ever Rise em ação</h2>
     <p>
       Descubra como nossa plataforma simplifica a gestão de guinchos e frotas através de
       uma interface intuitiva e automações poderosas.
@@ -538,7 +538,7 @@ export default function EveriseLanding() {
           <span className={styles.ctaGlow} aria-hidden="true" />
           <h2 className={styles.ctaHeading}>Pronto para elevar seu padrão operacional?</h2>
           <p className={styles.ctaText}>
-            Junte-se a centenas de gestores que já transformaram seus processos com a EVERISE.
+            Junte-se a centenas de gestores que já transformaram seus processos com a EVER RISE.
           </p>
           <div className={styles.ctaActions}>
             <button className={styles.btnOrange}>Iniciar Teste Gratuito</button>
