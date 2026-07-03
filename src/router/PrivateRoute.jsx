@@ -15,7 +15,7 @@ const PrivateRoute = () => {
   }
 
   if (!deviceId) {
-    return <Navigate to='/vinculo-dispositivo' replace />;
+    return <Navigate to='/dashboard' replace />;
   }
 
   return <Outlet />;
