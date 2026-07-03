@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { FiLogOut } from "react-icons/fi";
+import { useAuth } from '../../../hooks/useAuth';
 import headerLogo from "../../../assets/images/Header/logo_sem_fundo.png";
 import profileIcon from "../../../assets/icons/Header/icon_perfil.svg";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const location = useLocation();
+    const { isAuthenticated, logout } = useAuth();
 
     const toggleMenu = () => setMenuOpen((prev) => !prev);
     const closeMenu = () => setMenuOpen(false);
@@ -84,18 +87,28 @@ const Header = () => {
                     </ul>
                 </nav>
 
-                {/* Login desktop */}
+                {/* Ação de sessão desktop */}
                 <div className={styles.desktopLogin}>
-                    <Link
-                        to="/login"
-                        className={`${styles.loginLink} ${isLoginPage ? styles.loginLinkActive : ""}`}
-                    >
-                        <span className={styles.loginIconWrap} aria-hidden="true">
-                            <img src={profileIcon} alt="" className={styles.loginIcon} />
-                        </span>
-                        Login
-                        <span className={styles.loginChevron} aria-hidden="true" />
-                    </Link>
+                    {isAuthenticated ? (
+                        <button type="button" className={styles.logoutButton} onClick={logout}>
+                            <span className={styles.loginIconWrap} aria-hidden="true">
+                                <img src={profileIcon} alt="" className={styles.loginIcon} />
+                            </span>
+                            <span>Sair</span>
+                            <FiLogOut className={styles.logoutIcon} aria-hidden="true" />
+                        </button>
+                    ) : (
+                        <Link
+                            to="/login"
+                            className={`${styles.loginLink} ${isLoginPage ? styles.loginLinkActive : ""}`}
+                        >
+                            <span className={styles.loginIconWrap} aria-hidden="true">
+                                <img src={profileIcon} alt="" className={styles.loginIcon} />
+                            </span>
+                            Login
+                            <span className={styles.loginChevron} aria-hidden="true" />
+                        </Link>
+                    )}
                 </div>
 
                 {/* Hamburger mobile */}
@@ -172,13 +185,29 @@ const Header = () => {
                     </li>
                 </ul>
                 <div className={styles.mobileLoginWrapper}>
-                    <Link
-                        to="/login"
-                        className={`${styles.loginLink} ${styles.mobileLoginLink} ${isLoginPage ? styles.loginLinkActive : ""}`}
-                        onClick={closeMenu}
-                    >
-                        Login
-                    </Link>
+                    {isAuthenticated ? (
+                        <button
+                            type="button"
+                            className={`${styles.logoutButton} ${styles.mobileLoginLink}`}
+                            onClick={() => {
+                                closeMenu();
+                                logout();
+                            }}
+                        >
+                            <span className={styles.mobileLogoutIconWrap} aria-hidden="true">
+                                <FiLogOut className={styles.logoutIcon} />
+                            </span>
+                            Sair da conta
+                        </button>
+                    ) : (
+                        <Link
+                            to="/login"
+                            className={`${styles.loginLink} ${styles.mobileLoginLink} ${isLoginPage ? styles.loginLinkActive : ""}`}
+                            onClick={closeMenu}
+                        >
+                            Login
+                        </Link>
+                    )}
                 </div>
             </div>
         </header>

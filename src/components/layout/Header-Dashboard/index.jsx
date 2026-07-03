@@ -1,3 +1,4 @@
+import { useAuth } from '../../../hooks/useAuth';
 import styles from "./style.module.css";
 import iconNotificacao from "../../../assets/icons/Header-Dashboard/icon-notificacao.png";
 import iconConfiguracoes from "../../../assets/icons/Header-Dashboard/icon-configuracoes.png";
@@ -14,6 +15,8 @@ export default function HeaderDashboard({
 	onNotificationClick,
 	onSettingsClick,
 }) {
+	const { logout } = useAuth();
+
 	return (
 		<header className={styles.header}>
 			<div className={styles.brand}>
@@ -54,6 +57,15 @@ export default function HeaderDashboard({
 						alt=""
 						aria-hidden="true"
 					/>
+				</button>
+
+				<button
+					type="button"
+					className={styles.logoutButton}
+					onClick={logout}
+					aria-label="Sair da conta"
+				>
+					Sair
 				</button>
 
 				<img className={styles.avatar} src={avatarSrc} alt={avatarAlt} />

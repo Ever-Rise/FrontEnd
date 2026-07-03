@@ -17,7 +17,7 @@
 }
 
 .container {
-  width: 80%;
+  width: min(1180px, calc(100% - 32px));
   max-width: 1440px;
 
   margin: 0 auto;
@@ -29,13 +29,13 @@
   background: #fff;
   border-radius: 999px;
 
-  padding: 18px 32px;
+  padding: 16px 28px;
 
   box-shadow:
     0 4px 20px rgba(0, 0, 0, 0.06),
     0 0 0 1px rgba(0, 0, 0, 0.04);
 
-  gap: 24px;
+  gap: 22px;
 
   transition: all 0.5s ease;
 }
@@ -81,7 +81,7 @@
 .navList {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: clamp(14px, 1.6vw, 28px);
 
   list-style: none;
   margin: 0;
@@ -95,7 +95,7 @@
 
   color: #041062;
 
-  font-size: 18px;
+  font-size: clamp(14px, 1.05vw, 18px);
   font-weight: 700;
 
   transition: color 0.25s ease;
@@ -133,7 +133,8 @@
   flex-shrink: 0;
 }
 
-.loginLink {
+.loginLink,
+.logoutButton {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -146,15 +147,44 @@
 
   color: #111;
   font-weight: 700;
+  font-size: 15px;
 
   transition:
     transform 0.2s ease,
-    background 0.2s ease;
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease;
+}
+
+.logoutButton {
+  border: 1px solid rgba(239, 68, 68, 0.18);
+  background: rgba(239, 68, 68, 0.06);
+  cursor: pointer;
+  color: #991b1b;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.loginLink:hover,
+.logoutButton:hover {
+  transform: translateY(-1px);
 }
 
 .loginLink:hover {
-  transform: translateY(-1px);
   background: rgba(0, 0, 0, 0.03);
+}
+
+.logoutButton:hover {
+  background: rgba(239, 68, 68, 0.1);
+  box-shadow: 0 10px 22px rgba(153, 27, 27, 0.12);
+}
+
+.logoutButton:focus-visible,
+.loginLink:focus-visible,
+.hamburger:focus-visible,
+.mobileNavLink:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.25);
+  outline-offset: 3px;
 }
 
 .loginIconWrap {
@@ -189,6 +219,12 @@
   border-bottom: 2px solid #111;
 
   transform: rotate(45deg) translateY(-1px);
+}
+
+.logoutIcon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
 }
 
 /* =========================
@@ -323,14 +359,14 @@
   .mobileMenu {
     display: block;
 
-    width: 100%;
-    max-width: 1280px;
+    width: calc(100% - 28px);
+    max-width: 720px;
 
     margin: 10px auto 0;
 
     background: white;
 
-    border-radius: 24px;
+    border-radius: 0 0 20px 20px;
 
     overflow: hidden;
 
@@ -358,6 +394,19 @@
   .mobileLoginLink {
     width: 100%;
     justify-content: center;
+    min-height: 48px;
+    padding: 12px 16px;
+    gap: 10px;
+  }
+
+  .mobileLogoutIconWrap {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(153, 27, 27, 0.1);
   }
 
   .logoImage {
@@ -372,12 +421,12 @@
 @media (max-width: 480px) {
 
   .header {
-    padding: 8px 10px;
+    padding: 0;
   }
 
   .container {
     padding: 10px 14px;
-    border-radius: 22px;
+    border-radius: 0;
   }
 
   .logoImage {

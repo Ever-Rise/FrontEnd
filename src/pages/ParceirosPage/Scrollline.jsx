@@ -4,6 +4,30 @@ import iconeMao from '../../assets/images/Parceirosimg/iconeMao.svg'
 import iconeClip from '../../assets/images/Parceirosimg/iconeClip.svg'
 import iconeFoguete from '../../assets/images/Parceirosimg/iconeFoguete.svg'
 
+/* ─── DOT GRID (importado do padrão visual da tela de Vendas) ─── */
+function DotGrid({ style, count = 30, cols = 6 }) {
+  return (
+    <span
+      className="dot-grid-deco"
+      style={{ ...style, gridTemplateColumns: `repeat(${cols}, 1fr)` }}
+      aria-hidden="true"
+    >
+      {Array.from({ length: count }).map((_, i) => (
+        <span key={i} />
+      ))}
+    </span>
+  );
+}
+
+/* ─── DECOR LAYER (importado do padrão visual da tela de Vendas) ─── */
+function DecorLayer({ children }) {
+  return (
+    <div className="decor-layer" aria-hidden="true">
+      {children}
+    </div>
+  );
+}
+
 export default function ScrollLine() {
   const pathRef = useRef(null);
   const containerRef = useRef(null);
@@ -12,10 +36,10 @@ export default function ScrollLine() {
   useEffect(() => {
     const checkSize = () => {
       const w = window.innerWidth;
-      if (w <= 480)      setScreenSize("small-mobile");
-      else if (w <= 768) setScreenSize("mobile");
+      if (w <= 480)       setScreenSize("small-mobile");
+      else if (w <= 768)  setScreenSize("mobile");
       else if (w <= 1024) setScreenSize("tablet");
-      else               setScreenSize("desktop");
+      else                setScreenSize("desktop");
     };
     checkSize();
     window.addEventListener("resize", checkSize);
@@ -92,10 +116,10 @@ export default function ScrollLine() {
   `;
 
   const config = {
-    desktop:      { viewBox: "0 0 1000 1800", path: desktopPath,      strokeWidth: "18" },
-    tablet:       { viewBox: "0 0 1000 1400", path: tabletPath,       strokeWidth: "16" },
-    mobile:       { viewBox: "0 0 400 1400",  path: mobilePath,       strokeWidth: "14" },
-    "small-mobile": { viewBox: "0 0 400 1200", path: smallMobilePath, strokeWidth: "14" },
+    desktop:        { viewBox: "0 0 1000 1800", path: desktopPath,      strokeWidth: "18" },
+    tablet:         { viewBox: "0 0 1000 1400", path: tabletPath,       strokeWidth: "16" },
+    mobile:         { viewBox: "0 0 400 1400",  path: mobilePath,       strokeWidth: "14" },
+    "small-mobile": { viewBox: "0 0 400 1200",  path: smallMobilePath,  strokeWidth: "14" },
   };
 
   const { viewBox, path: activePath, strokeWidth } = config[screenSize];
@@ -108,50 +132,66 @@ export default function ScrollLine() {
     <div className="page-wrapper">
 
       <section className="hero-section">
-        <div className="eyebrow-wrapper">
-          <div className="eyebrow-decor" />
-          <div className="eyebrow-square" />
-          <h1 className="hero-title">BENEFICIOS DE SER PARCEIRO</h1>
+        {/* ── Decoração do hero (padrão Vendas) ── */}
+        <DecorLayer>
+          <span className="ring-peach" style={{ width: 180, height: 180, top: "-15%", left: "-70px" }} />
+          <span className="ring-navy" style={{ width: 90, height: 90, top: "-5%", left: "-10px" }} />
+          <span className="ring-peach" style={{ width: 130, height: 130, bottom: "-10%", right: "-50px" }} />
+          <span className="dash-deco" style={{ top: "18%", right: "8%" }} />
+          <span className="dash-deco" style={{ bottom: "15%", left: "10%", transform: "rotate(90deg)" }} />
+        </DecorLayer>
+
+        <div className="badge-wrapper">
+          <div className="partnersEyebrowSquare" />
+          <div className="badge-pill">BENEFÍCIOS DE SER PARCEIRO</div>
         </div>
+
         <p className="hero-sub">Mais benefício para você e <br /> mais impacto para todos</p>
       </section>
 
       <section className="line-section" ref={containerRef}>
 
-        {/* ── Decorações desktop: idênticas ao original ── */}
-        {isDesktop && (
-          <>
-            <span className="dot-grid2" style={{ top: '120px', right: '18px', transform: 'rotate(-8deg)' }} aria-hidden="true" />
-            <span className="circle-outline circle-outline--orange" style={{ top: '32%', left: '280px', borderWidth: '30px' }} aria-hidden="true" />
-            <span className="circle-outline circle-outline--orange" style={{ top: '72%', right: '-28px', borderWidth: '30px', width: '200px', height: '200px' }} aria-hidden="true" />
-            <span className="dot-grid dot-grid--sm" style={{ bottom: '880px', left: '18px', transform: 'rotate(10deg)' }} aria-hidden="true" />
-            <span className="dot-grid dot-grid--sm dot-grid--purple2" style={{ bottom: '110px', left: '402px', transform: 'rotate(6deg)' }} aria-hidden="true" />
-            <span className="dot-grid dot-grid--sm dot-grid--purple" style={{ bottom: '1050px', right: '18px', transform: 'rotate(-10deg)' }} aria-hidden="true" />
-            <span className="dot-grid dot-grid--purple" style={{ bottom: '200px', right: '400px', transform: 'rotate(-14deg)' }} aria-hidden="true" />
-          </>
-        )}
+        {/* ── Decoração da linha (padrão Vendas, adaptada por breakpoint) ── */}
+        <DecorLayer>
+          {isDesktop && (
+            <>
+ <span className="ring-peach" style={{ width: 220, height: 220, top: "28%", left: "260px" }} />
+    <span className="ring-navy" style={{ width: 100, height: 100, top: "8%", right: "40px" }} />
 
-        {/* ── Decorações tablet ── */}
-        {isTablet && (
-          <>
-            <span className="dot-grid2" style={{ top: '80px', right: '18px', transform: 'rotate(-8deg)' }} aria-hidden="true" />
-            <span className="circle-outline circle-outline--orange" style={{ top: '28%', left: '200px', borderWidth: '22px', width: '220px', height: '220px' }} aria-hidden="true" />
-            <span className="circle-outline circle-outline--orange" style={{ top: '68%', right: '-28px', borderWidth: '22px', width: '180px', height: '180px' }} aria-hidden="true" />
-            <span className="dot-grid dot-grid--sm dot-grid--purple" style={{ bottom: '700px', right: '18px', transform: 'rotate(-10deg)' }} aria-hidden="true" />
-            <span className="dot-grid dot-grid--sm dot-grid--purple2" style={{ bottom: '80px', left: '300px', transform: 'rotate(6deg)' }} aria-hidden="true" />
-          </>
-        )}
+    {/* NOVO: par de anéis à direita, igual ao combo do topo esquerdo */}
+    <span className="ring-peach" style={{ width: 180, height: 180, top: "2%", right: "10px" }} />
 
-        {/* ── Decorações mobile ── */}
-        {isMobile && (
-          <>
-            <span className="circle-outline circle-outline--orange" style={{ top: '20px', right: '-40px' }} aria-hidden="true" />
-            <span className="circle-outline circle-outline--orange" style={{ top: '52%', left: '-40px' }} aria-hidden="true" />
-            <span className="dot-grid2" style={{ bottom: '60px', right: '10px', transform: 'rotate(-8deg)' }} aria-hidden="true" />
-          </>
-        )}
+    <span className="ring-peach" style={{ width: 200, height: 200, top: "68%", right: "-50px" }} />
+    <DotGrid style={{ bottom: "880px", left: "18px" }} count={30} cols={6} />
+    <DotGrid style={{ bottom: "110px", left: "402px" }} count={30} cols={6} />
+    <DotGrid style={{ bottom: "1050px", right: "18px" }} count={30} cols={6} />
+    <span className="dash-deco" style={{ top: "15%", left: "5%" }} />
+    <span className="dash-deco" style={{ bottom: "25%", right: "8%", transform: "rotate(90deg)" }} />
+  </>
+            
+          )}
 
-        {/* ── Cards: idênticos ao original ── */}
+          {isTablet && (
+            <>
+              <span className="ring-peach" style={{ width: 200, height: 200, top: "26%", left: "180px" }} />
+              <span className="ring-navy" style={{ width: 80, height: 80, top: "6%", right: "20px" }} />
+              <span className="ring-peach" style={{ width: 160, height: 160, top: "66%", right: "-30px" }} />
+              <DotGrid style={{ bottom: "700px", right: "18px" }} count={20} cols={5} />
+              <span className="dash-deco" style={{ top: "18%", left: "5%" }} />
+            </>
+          )}
+
+          {isMobile && (
+            <>
+              <span className="ring-peach" style={{ width: 140, height: 140, top: "10px", right: "-40px" }} />
+              <span className="ring-peach" style={{ width: 120, height: 120, top: "50%", left: "-40px" }} />
+              <DotGrid style={{ bottom: "60px", right: "10px" }} count={12} cols={4} />
+              <span className="dash-deco" style={{ bottom: "20%", left: "6%" }} />
+            </>
+          )}
+        </DecorLayer>
+
+        {/* ── Cards: conteúdo mantido ── */}
         <div className="card card--left card--1">
           <div className="card-icon"><img src={iconeMao} alt="" /></div>
           <h3>Parcerias estratégicas</h3>

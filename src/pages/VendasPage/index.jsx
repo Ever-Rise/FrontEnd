@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import "./styles.css";
 import { Footer, Header } from "../../components";
+import { useNavigate } from "react-router-dom";
+
 import GuinchoCrianca from '../../assets/images/Vendas/FotoDaCriancaQuarto.svg';
 import MulherGuincho from '../../assets/images/Vendas/Mulhernoquarto.svg';
 import Praticidade from '../../assets/images/Vendas/Praticidade.svg';
-import Guincho3d from '../../assets/images/Vendas/guincho3d.svg';
+// import Guincho3d from '../../assets/images/Vendas/guincho3d.svg';
 import EverriseSala from '../../assets/images/Vendas/EverriseSala.svg';
 import GenericoSala from '../../assets/images/Vendas/GenericoSala.svg';
 import EverriseCorredor from '../../assets/images/Vendas/EverriseCorredor.svg';
@@ -18,6 +20,15 @@ import Mariana from '../../assets/images/Vendas/DraMariana.svg'
 import Ana from '../../assets/images/Vendas/DraAndrea.svg'
 import Andre from '../../assets/images/Vendas/DrAndre.svg'
 import Eduardo from '../../assets/images/Vendas/DrEduardo.svg'
+import Guincho1 from '../../assets/images/Vendas/GuinchoFrente.svg';
+import Guincho2 from '../../assets/images/Vendas/GuinchoMeioEsquerdo.svg';
+import Guincho3 from '../../assets/images/Vendas/GuinchoMeioDireito.svg';
+import Guincho4 from '../../assets/images/Vendas/GuinchoEsquerdo.svg';
+import Guincho5 from '../../assets/images/Vendas/GuinchoDireito.svg';
+import Guincho6 from '../../assets/images/Vendas/CostaEsquerdo.svg';
+import Guincho7 from '../../assets/images/Vendas/CostaDireito.svg';
+import Guincho8 from '../../assets/images/Vendas/CostasGuincho.svg';
+
 
 /* ─── IMAGES ─── */
 const IMG = {
@@ -25,7 +36,7 @@ const IMG = {
   GuinchoCrianca,
   MulherGuincho,
   Praticidade,
-  Guincho3d,
+  GuinchoCarrossel: [Guincho1, Guincho2, Guincho3, Guincho4, Guincho5, Guincho6, Guincho7, Guincho8],
   EverriseSala,
   GenericoSala,
   EverriseCorredor,
@@ -57,18 +68,67 @@ const rooms = [
   { id: "04", label: "Banheiro", desc: "Transferência com dignidade e máxima segurança", imgs: [IMG.EverriseBanheiro, IMG.GenericoBanheiro] },
 ];
 
+
 /* ─── FAQ ─── */
 const faqs = [
-  "Que serviço a Ever Rise oferece?",
-  "Que serviço a Ever Rise oferece?",
-  "Que serviço a Ever Rise oferece?",
+  {
+    q: "Que serviço a Ever Rise oferece?",
+    a: "O Guincho EverRise oferece transferência segura, confortável e digna para pacientes com mobilidade reduzida, adaptando-se a diferentes ambientes do lar e instituições de saúde.",
+  },
+  {
+    q: "Qual é a principal função do guincho da Everrise?",
+    a: "Sua função principal é auxiliar na movimentação e transferência de pacientes entre cama, cadeira e outros ambientes, reduzindo o esforço físico do cuidador e o risco de quedas ou lesões.",
+  },
+  {
+    q: "Quais são os benefícios de utilizar um guincho hospitalar Everrise?",
+    a: "Entre os principais benefícios estão mais segurança nas transferências, redução de dores e lesões para cuidadores, maior autonomia e dignidade para o paciente, e praticidade no dia a dia de cuidado.",
+  },
 ];
-
 /* ─── PLANS ─── */
 const plans = [
-  { price: "$0/m", label: "Plano Gratuito", features: ["Acesso básico", "Suporte por email", "1 usuário"], cta: "Começar grátis", highlight: false },
-  { price: "$14,99/m", label: "Plano Pro", features: ["Acesso completo", "Suporte prioritário", "5 usuários", "Relatórios avançados"], cta: "Assinar Pro", highlight: true },
-  { price: "$29,99/m", label: "Plano Business", features: ["Tudo do Pro", "Suporte 24/7", "Usuários ilimitados", "API dedicada"], cta: "Assinar Business", highlight: false },
+  {
+    label: "1º PLANO",
+    name: "ESSENTIAL",
+    price: "R$ 6.000",
+    features: [
+      { text: "Capacidade: 100 kg" },
+      { text: "Motores 12V" },
+      { text: "Bateria Chumbo-Ácido 12V", sub: "3 a 4h de autonomia" },
+      { text: "Conectado via aplicativo" },
+      { text: "Operação manual", sub: "comandos via app" },
+    ],
+    cta: "Escolher plano",
+    highlight: false,
+  },
+  {
+    label: "2º PLANO",
+    name: "STANDARD",
+    price: "R$ 10.000",
+    features: [
+      { text: "Capacidade: 120 kg" },
+      { text: "Motores DC 24V" },
+      { text: "Bateria Chumbo-Ácido 24V", sub: "até 8h de autonomia" },
+      { text: "Sensores ultrassônicos", sub: "parada a 30cm" },
+      { text: "App com monitoramento" },
+    ],
+    cta: "Escolher plano",
+    highlight: true,
+  },
+  {
+    label: "3º PLANO",
+    name: "PRO",
+    nameSuffix: "AUTONOMOUS",
+    price: "R$ 16.000",
+    features: [
+      { text: "Capacidade: 150 kg" },
+      { text: "Motores industriais 24V", sub: "alto torque" },
+      { text: "Bateria Lítio LiFePO4 24V", sub: "até 14h de autonomia" },
+      { text: "Visão computacional (YOLOv5n)", sub: "segurança inteligente" },
+      { text: "App completo com IA e relatórios" },
+    ],
+    cta: "Escolher plano",
+    highlight: false,
+  },
 ];
 
 /* ─── DOT GRID ─── */
@@ -96,12 +156,14 @@ function DecorLayer({ children }) {
 }
 
 /* ─── SECTION HEADER ─── */
-function SectionHeader({ badge, title, sub, squareStyle }) {
+function SectionHeader({ badge, title, sub }) {
   return (
     <div className="section-header">
       <div className="badge-wrapper">
-        <div className="partnersEyebrowSquare" style={squareStyle} />
-        <div className="badge-pill">{badge}</div>
+        <div className="badge-inner">
+          <div className="partnersEyebrowSquare" />
+          <div className="badge-pill">{badge}</div>
+        </div>
       </div>
       {title && <h2 className="section-title">{title}</h2>}
       {sub && <p className="section-sub">{sub}</p>}
@@ -141,24 +203,29 @@ function HeroSection() {
   const textOpacity = Math.max(0, 1 - progress / 0.3);
 
 
-  const initW =
-    vw < 480
-      ? vw * 0.90
-      : vw < 768
-      ? vw * 0.82
-      : Math.min(600, vw * 0.55);
-  const initH = initW * 0.56;
+const initW =
+  vw < 480
+    ? vw * 0.90
+    : vw < 768
+    ? vw * 0.82
+    : Math.min(600, vw * 0.55);
+const initH = initW * 0.56;
 
-  const videoW = initW + (vw - initW) * progress;
-  const videoH = initH + (vh - initH) * progress;
-  const borderRadius = 24 * (1 - progress);
-  const videoLeft = (vw - videoW) / 2;
+const isMobileHero = vw < 768;
+const initTop = vw < 768 ? 55 : 62;
 
-  const initTop = vw < 768 ? 55 : 62;
-  const videoTop = initTop + (50 - initTop) * progress;
+// No mobile, o vídeo cresce só até 96% da largura (nunca fullscreen)
+const maxW = isMobileHero ? vw * 0.96 : vw;
+const maxH = isMobileHero ? maxW * 0.56 : vh;
+
+const videoW = initW + (maxW - initW) * progress;
+const videoH = initH + (maxH - initH) * progress;
+const borderRadius = 24 * (1 - progress);
+const videoLeft = (vw - videoW) / 2;
+const videoTop = isMobileHero ? 50 : initTop + (50 - initTop) * progress;
 
   return (
-    <section ref={sectionRef} style={{ position: "relative", height: "300vh" }}>
+    <section ref={sectionRef} style={{ position: "relative", height: vw < 768 ? "50vh" : "300vh" }}>
       <div style={{
         position: "sticky",
         top: 0,
@@ -210,7 +277,7 @@ function HeroSection() {
           height: videoH,
           top: `${videoTop}%`,
           left: videoLeft,
-          transform: "translateY(-50%)",
+          transform: isMobileHero ? "translateY(-50%)" : "translateY(-50%)",
           borderRadius,
           overflow: "hidden",
           zIndex: 1,
@@ -331,6 +398,12 @@ function ProjectedSection() {
 
 /* ─── WINCH 3D ─── */
 function Winch3DSection() {
+  const [index, setIndex] = useState(0);
+  const images = IMG.GuinchoCarrossel;
+
+  const goPrev = () => setIndex((i) => (i === 0 ? images.length - 1 : i - 1));
+  const goNext = () => setIndex((i) => (i === images.length - 1 ? 0 : i + 1));
+
   return (
     <section className="winch3d-section" style={{ position: "relative", overflow: "hidden", marginTop: "60px" }}>
       <DecorLayer>
@@ -343,20 +416,37 @@ function Winch3DSection() {
       </DecorLayer>
 
       <SectionHeader
-        badge="COMEÇA DE TODOS OS ÂNGULOS"
-        title="Guincho 3D"
-        sub="Interaja com o modelo 3D e veja cada detalhe do guincho."
-        squareStyle={{ left: "200px", transform: "translateX(0)" }}
-      />
+  badge="COMEÇA DE TODOS OS ANGULAS"
+  title="Veja cada detalhe do guincho"
+/>
+
       <div className="winch3d-viewer">
-        <img src={IMG.Guincho3d} alt="Guincho 3D" className="winch-img" />
-        <div className="winch3d-controls">
-          <div className="control-item"><span className="control-icon">↔</span><p>Arraste para rotacionar</p></div>
-          <div className="control-item"><span className="control-icon">🖱</span><p>Passe o mouse para interagir</p></div>
-          <div className="control-item"><span className="control-icon">⊕</span><p>Scroll para aproximar</p></div>
+        <div className="winch-carousel">
+          <img
+            src={images[index]}
+            alt={`Guincho - foto ${index + 1}`}
+            className="winch-img"
+          />
+
+          <button className="carousel-arrow carousel-arrow-left" onClick={goPrev} aria-label="Foto anterior">
+            ←
+          </button>
+          <button className="carousel-arrow carousel-arrow-right" onClick={goNext} aria-label="Próxima foto">
+            →
+          </button>
+        </div>
+
+        <div className="carousel-dots">
+          {images.map((_, i) => (
+            <span
+              key={i}
+              className={`carousel-dot ${i === index ? "active" : ""}`}
+              onClick={() => setIndex(i)}
+            />
+          ))}
         </div>
       </div>
-    </section >
+    </section>
   );
 }
 
@@ -373,12 +463,10 @@ function CareSection() {
         <span className="dash-deco" style={{ bottom: "25%", right: "8%", transform: "rotate(90deg)" }} />
       </DecorLayer>
 
-      <SectionHeader
-        badge="EXPERIÊNCIA INTERATIVA"
-        title="Cuidado em todos os momentos."
-        sub="Navegue e descubra como o guincho se adapta a diferentes ambientes da casa, proporcionando transferências seguras e confortáveis."
-        squareStyle={{ left: "500px", transform: "translateX(0)" }}
-      />
+     <SectionHeader
+  badge="EXPERIENCIA INTERATIVA"
+  title="Cuidado em todosos momentos."
+/>
       <div className="care-layout">
         <div className="care-tabs">
           {rooms.map((r, i) => (
@@ -421,11 +509,10 @@ function TestimonialsSection() {
         <span className="ring-peach" style={{ width: 140, height: 140, bottom: "-40px", left: "-50px" }} />
       </DecorLayer>
 
-      <SectionHeader
-        badge="DEPOIMENTOS"
-        title="Ratificado por profissionais da área da saúde"
-        squareStyle={{ left: "680px", transform: "translateX(0)" }}
-      />
+<SectionHeader
+  badge="Depoimentos"
+  title="Ratificado por profissonais da área da saúde"
+/>
       <div className="testimonials-grid">
         {testimonials.map((t, i) => (
           <div key={i} className="testimonial-card">
@@ -444,8 +531,16 @@ function TestimonialsSection() {
   );
 }
 
+
+/* ─── PLANS ─── */
 /* ─── PLANS ─── */
 function PlansSection() {
+  const navigate = useNavigate();
+
+  const escolherPlano = (plano) => {
+    navigate("/checkout", { state: { plano } });
+  };
+
   return (
     <section className="plans-section" style={{ position: "relative", overflow: "hidden" }}>
       <DecorLayer>
@@ -460,17 +555,39 @@ function PlansSection() {
       <SectionHeader
         badge="PLANOS ACESSÍVEIS PARA TODAS AS NECESSIDADES"
         title="Escolha o plano ideal para você"
-        squareStyle={{ left: "40px", transform: "translateX(0)" }}
       />
       <div className="plans-grid">
         {plans.map((p, i) => (
           <div key={i} className={`plan-card ${p.highlight ? "highlight" : ""}`}>
-            <div className="plan-price">{p.price}</div>
-            <div className="plan-label">{p.label}</div>
+            <span className="plan-ribbon">{p.label}</span>
+
+            <div className="plan-name-row">
+              <div>
+                <div className="plan-name">{p.name}</div>
+                {p.nameSuffix && <div className="plan-name-suffix">{p.nameSuffix}</div>}
+              </div>
+            </div>
+
+            <div className="plan-invest-box">
+              <span className="plan-invest-label">INVESTIMENTO</span>
+              <div className="plan-price">{p.price}</div>
+            </div>
+
             <ul className="plan-features">
-              {p.features.map((f, j) => <li key={j}>{f}</li>)}
+              {p.features.map((f, j) => (
+                <li key={j}>
+                  <span className="feature-check">✓</span>
+                  <span>
+                    {f.text}
+                    {f.sub && <span className="feature-sub"> ({f.sub})</span>}
+                  </span>
+                </li>
+              ))}
             </ul>
-            <button className="plan-btn">{p.cta}</button>
+
+            <button className="plan-btn" onClick={() => escolherPlano(p)}>
+              {p.cta}
+            </button>
           </div>
         ))}
       </div>
@@ -478,6 +595,7 @@ function PlansSection() {
   );
 }
 
+/* ─── FAQ ─── */
 /* ─── FAQ ─── */
 function FAQSection() {
   const [open, setOpen] = useState(null);
@@ -492,20 +610,19 @@ function FAQSection() {
       </DecorLayer>
 
       <SectionHeader
-        badge="PERGUNTAS FREQUENTES"
-        title="Encontre respostas para perguntas frequentes sobre nossos serviços, preços e suporte"
-        squareStyle={{ left: "100px", transform: "translateX(0)" }}
+        badge="Perguntas frequentes"
+        title="Encontre respostas para perguntas frequentes sobre nossos serviços, preços e suporte para ajudá-lo a tomar decisões informadas com confiança"
       />
       <div className="faq-list">
-        {faqs.map((q, i) => (
+        {faqs.map((item, i) => (
           <div key={i} className={`faq-item ${open === i ? "open" : ""}`} onClick={() => setOpen(open === i ? null : i)}>
             <div className="faq-q">
-              <span>{q}</span>
+              <span>{item.q}</span>
               <span className="faq-icon">{open === i ? "−" : "+"}</span>
             </div>
             {open === i && (
               <div className="faq-a">
-                O Guincho EverRise oferece transferência segura, confortável e digna para pacientes com mobilidade reduzida, adaptando-se a diferentes ambientes do lar e instituições de saúde.
+                {item.a}
               </div>
             )}
           </div>
@@ -515,33 +632,22 @@ function FAQSection() {
   );
 }
 
-/* ─── FOOTER CTA ─── */
-function FooterCTA() {
-  return (
-    <section className="footer-cta" style={{ position: "relative", overflow: "hidden" }}>
-      <DecorLayer>
-        <span className="ring-peach" style={{ width: 200, height: 200, top: "-60px", left: "-80px", opacity: 0.3 }} />
-        <span className="ring-peach" style={{ width: 140, height: 140, bottom: "-40px", right: "-60px", opacity: 0.25 }} />
-        <DotGrid style={{ top: "10%", right: "4%" }} count={42} cols={7} />
-        <DotGrid style={{ bottom: "10%", left: "3%" }} count={30} cols={6} />
-        <span className="dash-deco" style={{ top: "44%", left: "5%", background: "rgba(255,255,255,0.4)" }} />
-        <span className="dash-deco" style={{ bottom: "30%", right: "8%", transform: "rotate(90deg)", background: "rgba(255,255,255,0.4)" }} />
-        <span className="cta-glow" aria-hidden="true" />
-      </DecorLayer>
-
-      <div className="footer-cta-content">
-        <div className="footer-cta-text">
-          <h2>O amor continua.<br />O esforço não precisa continuar</h2>
-          <button className="btn-primary large">Conheça agora</button>
-        </div>
-        <img src={IMG.footer} alt="Cuidador" className="footer-cta-img" />
-      </div>
-    </section>
-  );
-}
 
 /* ─── APP ─── */
 export default function App() {
+  const [pagina, setPagina] = useState("home");
+  const [planoEscolhido, setPlanoEscolhido] = useState(null);
+
+  const irParaCheckout = (plano) => {
+    setPlanoEscolhido(plano);
+    setPagina("checkout");
+    window.scrollTo(0, 0);
+  };
+
+  if (pagina === "checkout") {
+    return <Checkout plano={planoEscolhido} onVoltar={() => setPagina("home")} />;
+  }
+
   return (
     <div className="app">
       <Header />
@@ -550,9 +656,9 @@ export default function App() {
       <Winch3DSection />
       <CareSection />
       <TestimonialsSection />
-      <PlansSection />
+      <PlansSection onEscolherPlano={irParaCheckout} />
       <FAQSection />
-      <FooterCTA />
+      {/* <FooterCTA /> */}
       <Footer />
     </div>
   );

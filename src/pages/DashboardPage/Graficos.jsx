@@ -50,92 +50,113 @@ const PontoCustom = (props) => {
   return <circle cx={cx} cy={cy} r={5} fill="#0f1623" stroke="#fff" strokeWidth={2} />;
 };
 
-export default function Graficos() {
+function EmptyChart({ value, text }) {
+  return (
+    <div className={styles.emptyChart}>
+      <span>{value}</span>
+      <p>{text}</p>
+    </div>
+  );
+}
+
+export default function Graficos({ hasData = true }) {
   const [opcaoSelecionada, setOpcaoSelecionada] = useState("Velocidade (m/s)");
   const [dropdownAberto, setDropdownAberto] = useState(false);
   const chaveAtual = chaveOpcao[opcaoSelecionada];
+  const emptyText = "Os gráficos serão preenchidos após a primeira sessão.";
 
   return (
     <div className={styles.container}>
-
-      {/* GRÁFICO 1 - DESEMPENHO */}
       <div className={styles.card}>
         <div className={styles.card_header}>
           <h3 className={styles.card_titulo}>Desempenho</h3>
 
-          <div className={styles.dropdown_wrapper}>
-            <button
-              className={styles.dropdown_btn}
-              onClick={() => setDropdownAberto(!dropdownAberto)}
-            >
-              {opcaoSelecionada} <span>▼</span>
-            </button>
+          {hasData && (
+            <div className={styles.dropdown_wrapper}>
+              <button
+                type="button"
+                className={styles.dropdown_btn}
+                onClick={() => setDropdownAberto(!dropdownAberto)}
+              >
+                {opcaoSelecionada} <span>▼</span>
+              </button>
 
-            {dropdownAberto && (
-              <div className={styles.dropdown_menu}>
-                {opcoes.map(op => (
-                  <div
-                    key={op}
-                    className={`${styles.dropdown_item} ${op === opcaoSelecionada ? styles.dropdown_item_ativo : ""}`}
-                    onClick={() => { setOpcaoSelecionada(op); setDropdownAberto(false); }}
-                  >
-                    {op}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+              {dropdownAberto && (
+                <div className={styles.dropdown_menu}>
+                  {opcoes.map((op) => (
+                    <button
+                      type="button"
+                      key={op}
+                      className={`${styles.dropdown_item} ${op === opcaoSelecionada ? styles.dropdown_item_ativo : ""}`}
+                      onClick={() => {
+                        setOpcaoSelecionada(op);
+                        setDropdownAberto(false);
+                      }}
+                    >
+                      {op}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
-        <ResponsiveContainer width="100%" height={380}>
-          <LineChart data={desempenhoData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" vertical={false} />
-            <XAxis dataKey="mes" tick={{ fontSize: 16, fill: "#000000" }} axisLine={false} tickLine={false} />
-            <YAxis tick={{ fontSize: 16, fill: "#000000" }} axisLine={false} tickLine={false} />
-            <Tooltip content={<TooltipCustom />} />
-            <Line
-              type="monotone"
-              dataKey={chaveAtual}
-              stroke="#9b8fe8"
-              strokeWidth={2.5}
-              dot={<PontoCustom />}
-              activeDot={{ r: 6, fill: "#9b8fe8", stroke: "#fff", strokeWidth: 2 }}
-            />
-          </LineChart>
-        </ResponsiveContainer>
+        {hasData ? (
+          <ResponsiveContainer width="100%" height={380}>
+            <LineChart data={desempenhoData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" vertical={false} />
+              <XAxis dataKey="mes" tick={{ fontSize: 16, fill: "#000000" }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fontSize: 16, fill: "#000000" }} axisLine={false} tickLine={false} />
+              <Tooltip content={<TooltipCustom />} />
+              <Line
+                type="monotone"
+                dataKey={chaveAtual}
+                stroke="#9b8fe8"
+                strokeWidth={2.5}
+                dot={<PontoCustom />}
+                activeDot={{ r: 6, fill: "#9b8fe8", stroke: "#fff", strokeWidth: 2 }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        ) : (
+          <EmptyChart value="--" text={emptyText} />
+        )}
       </div>
 
-      {/* GRÁFICO 2 - USO DE ENERGIA */}
       <div className={styles.card}>
         <div className={styles.card_header}>
           <h3 className={styles.card_titulo}>Uso de Energia</h3>
         </div>
 
-        <ResponsiveContainer width="100%" height={380}>
-          <AreaChart data={energiaData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-            <defs>
-              <linearGradient id="gradienteEnergia" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#9b8fe8" stopOpacity={0.3} />
-                <stop offset="95%" stopColor="#9b8fe8" stopOpacity={0} />
-              </linearGradient>
-            </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" vertical={false} />
-            <XAxis dataKey="hora" tick={{ fontSize: 16, fill: "#000000" }} axisLine={false} tickLine={false} />
-            <YAxis tick={{ fontSize: 16, fill: "#000000" }} axisLine={false} tickLine={false} />
-            <Tooltip content={<TooltipCustom />} />
-            <Area
-              type="monotone"
-              dataKey="watts"
-              stroke="#9b8fe8"
-              strokeWidth={2.5}
-              fill="url(#gradienteEnergia)"
-              dot={false}
-              activeDot={{ r: 6, fill: "#9b8fe8", stroke: "#fff", strokeWidth: 2 }}
-            />
-          </AreaChart>
-        </ResponsiveContainer>
+        {hasData ? (
+          <ResponsiveContainer width="100%" height={380}>
+            <AreaChart data={energiaData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+              <defs>
+                <linearGradient id="gradienteEnergia" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#9b8fe8" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#9b8fe8" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" vertical={false} />
+              <XAxis dataKey="hora" tick={{ fontSize: 16, fill: "#000000" }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fontSize: 16, fill: "#000000" }} axisLine={false} tickLine={false} />
+              <Tooltip content={<TooltipCustom />} />
+              <Area
+                type="monotone"
+                dataKey="watts"
+                stroke="#9b8fe8"
+                strokeWidth={2.5}
+                fill="url(#gradienteEnergia)"
+                dot={false}
+                activeDot={{ r: 6, fill: "#9b8fe8", stroke: "#fff", strokeWidth: 2 }}
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        ) : (
+          <EmptyChart value="0 W" text={emptyText} />
+        )}
       </div>
-
     </div>
   );
 }
