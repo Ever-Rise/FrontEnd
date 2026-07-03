@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./styles.module.css";
 import { Footer, Header } from "../../components";
 
-import HeroImg from '../../assets/images/Parceirosimg/imagemHero2.svg'
+import HeroImg from '../../assets/images/Parceirosimg/imagemHero.svg'
 import Guincho1 from '../../assets/images/Parceirosimg/guinchoQuarto.svg'
 import Pessoas from '../../assets/images/Parceirosimg/iconeParceiros.svg'
 import Coracao from '../../assets/images/Parceirosimg/coracao.svg'

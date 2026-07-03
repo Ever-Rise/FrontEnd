@@ -120,9 +120,9 @@ body {
 
 .partnersEyebrowSquare {
   position: absolute;
-  left: clamp(-24px, -3vw, -18px);
-  width: clamp(36px, 6vw, 80px);
-  height: clamp(36px, 6vw, 80px);
+  left: clamp(490px, -3vw, -18px);
+  width: clamp(96px, 6vw, 80px);
+  height: clamp(96px, 6vw, 80px);
   background: #041062;
   border-radius: 14px;
   z-index: 1;
@@ -139,7 +139,7 @@ body {
   color: #ffffff;
   z-index: 2;
   text-align: center;
-  padding: clamp(6px, 1vw, 10px) clamp(12px, 2vw, 20px);
+  height: 70px;
   white-space: nowrap;
 }
 
@@ -295,6 +295,8 @@ body {
     .badge-pill {
     font-size: clamp(0.55rem, 3.2vw, 0.75rem);
     padding: 5px 12px;
+    height: 30px;
+    font-size: 16px;
   }
   .partnersEyebrowSquare {
     width: 22px;
@@ -306,6 +308,11 @@ body {
 
   .partnersEyebrowSquare{
     display:none;
+  }
+
+  .hero-section {
+    min-height: unset;  
+    padding: 32px 20px; 
   }
 
 

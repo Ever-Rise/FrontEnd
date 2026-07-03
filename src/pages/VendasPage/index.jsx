@@ -68,13 +68,22 @@ const rooms = [
   { id: "04", label: "Banheiro", desc: "Transferência com dignidade e máxima segurança", imgs: [IMG.EverriseBanheiro, IMG.GenericoBanheiro] },
 ];
 
+
 /* ─── FAQ ─── */
 const faqs = [
-  "Que serviço a Ever Rise oferece?",
-  "Que serviço a Ever Rise oferece?",
-  "Que serviço a Ever Rise oferece?",
+  {
+    q: "Que serviço a Ever Rise oferece?",
+    a: "O Guincho EverRise oferece transferência segura, confortável e digna para pacientes com mobilidade reduzida, adaptando-se a diferentes ambientes do lar e instituições de saúde.",
+  },
+  {
+    q: "Qual é a principal função do guincho da Everrise?",
+    a: "Sua função principal é auxiliar na movimentação e transferência de pacientes entre cama, cadeira e outros ambientes, reduzindo o esforço físico do cuidador e o risco de quedas ou lesões.",
+  },
+  {
+    q: "Quais são os benefícios de utilizar um guincho hospitalar Everrise?",
+    a: "Entre os principais benefícios estão mais segurança nas transferências, redução de dores e lesões para cuidadores, maior autonomia e dignidade para o paciente, e praticidade no dia a dia de cuidado.",
+  },
 ];
-
 /* ─── PLANS ─── */
 const plans = [
   {
@@ -407,8 +416,8 @@ function Winch3DSection() {
       </DecorLayer>
 
       <SectionHeader
-  badge="TECNOLOGIA QUE TRANSFORMA"
-  title="Projetado para o que realmente importa"
+  badge="COMEÇA DE TODOS OS ANGULAS"
+  title="Veja cada detalhe do guincho"
 />
 
       <div className="winch3d-viewer">
@@ -455,8 +464,8 @@ function CareSection() {
       </DecorLayer>
 
      <SectionHeader
-  badge="TECNOLOGIA QUE TRANSFORMA"
-  title="Projetado para o que realmente importa"
+  badge="EXPERIENCIA INTERATIVA"
+  title="Cuidado em todosos momentos."
 />
       <div className="care-layout">
         <div className="care-tabs">
@@ -501,8 +510,8 @@ function TestimonialsSection() {
       </DecorLayer>
 
 <SectionHeader
-  badge="TECNOLOGIA QUE TRANSFORMA"
-  title="Projetado para o que realmente importa"
+  badge="Depoimentos"
+  title="Ratificado por profissonais da área da saúde"
 />
       <div className="testimonials-grid">
         {testimonials.map((t, i) => (
@@ -587,6 +596,7 @@ function PlansSection() {
 }
 
 /* ─── FAQ ─── */
+/* ─── FAQ ─── */
 function FAQSection() {
   const [open, setOpen] = useState(null);
 
@@ -600,19 +610,19 @@ function FAQSection() {
       </DecorLayer>
 
       <SectionHeader
-  badge="TECNOLOGIA QUE TRANSFORMA"
-  title="Projetado para o que realmente importa"
-/>
+        badge="Perguntas frequentes"
+        title="Encontre respostas para perguntas frequentes sobre nossos serviços, preços e suporte para ajudá-lo a tomar decisões informadas com confiança"
+      />
       <div className="faq-list">
-        {faqs.map((q, i) => (
+        {faqs.map((item, i) => (
           <div key={i} className={`faq-item ${open === i ? "open" : ""}`} onClick={() => setOpen(open === i ? null : i)}>
             <div className="faq-q">
-              <span>{q}</span>
+              <span>{item.q}</span>
               <span className="faq-icon">{open === i ? "−" : "+"}</span>
             </div>
             {open === i && (
               <div className="faq-a">
-                O Guincho EverRise oferece transferência segura, confortável e digna para pacientes com mobilidade reduzida, adaptando-se a diferentes ambientes do lar e instituições de saúde.
+                {item.a}
               </div>
             )}
           </div>
